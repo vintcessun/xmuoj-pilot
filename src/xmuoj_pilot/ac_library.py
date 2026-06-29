@@ -17,12 +17,42 @@ contest_id, fetched_at, statement, code。
 
 from __future__ import annotations
 
+import difflib
 import html
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+
+def _norm_title(title: Any) -> str:
+    return "".join(str(title or "").split()).lower()
+
+
+def _best_title_match(
+    title: str,
+    entries: list[dict[str, Any]],
+    *,
+    threshold: float = 0.6,
+) -> dict[str, Any] | None:
+    """在 entries 里按标题找最接近的一条：先归一化精确匹配，否则取相似度最高且达到阈值的。"""
+    target = _norm_title(title)
+    if not target:
+        return None
+    best: dict[str, Any] | None = None
+    best_ratio = 0.0
+    for entry in entries:
+        candidate = _norm_title(entry.get("title"))
+        if not candidate:
+            continue
+        if candidate == target:
+            return entry
+        ratio = difflib.SequenceMatcher(None, target, candidate).ratio()
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best = entry
+    return best if best is not None and best_ratio >= threshold else None
 
 
 def default_library_dir() -> Path:
@@ -108,6 +138,65 @@ class ACLibrary:
         if record and record.get("code"):
             return record
         remote = await self.fetch_remote(internal_id)
+        if remote and remote.get("code"):
+            return remote
+        return None
+
+    # ---- 按标题模糊匹配（弱匹配，ID 匹配失败时的兜底）----
+    def _iter_local_records(self) -> list[dict[str, Any]]:
+        records: list[dict[str, Any]] = []
+        if not self.root.exists():
+            return records
+        for path in self.root.glob("*.json"):
+            if path.name == "index.json":
+                continue
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if isinstance(data, dict) and data.get("code"):
+                records.append(data)
+        return records
+
+    def find_local_by_title(self, title: str, *, threshold: float = 0.6) -> dict[str, Any] | None:
+        return _best_title_match(title, self._iter_local_records(), threshold=threshold)
+
+    async def fetch_remote_index(self) -> list[dict[str, Any]]:
+        if not self.remote_base_url:
+            return []
+        import httpx
+
+        url = f"{self.remote_base_url}/index.json"
+        try:
+            async with httpx.AsyncClient(timeout=httpx.Timeout(15.0), follow_redirects=True) as client:
+                response = await client.get(url)
+        except httpx.HTTPError:
+            return []
+        if response.status_code != 200:
+            return []
+        try:
+            data = response.json()
+        except ValueError:
+            return []
+        return [item for item in data if isinstance(item, dict)] if isinstance(data, list) else []
+
+    async def find_remote_by_title(self, title: str, *, threshold: float = 0.6) -> dict[str, Any] | None:
+        entry = _best_title_match(title, await self.fetch_remote_index(), threshold=threshold)
+        if not entry:
+            return None
+        internal_id = entry.get("internal_id")
+        if internal_id is None:
+            return None
+        return await self.fetch_remote(internal_id)
+
+    async def get_reference_by_title(self, title: str) -> dict[str, Any] | None:
+        """ID 匹配不到时，按标题模糊匹配一题（弱匹配）；先本地后远程。"""
+        if not title:
+            return None
+        local = self.find_local_by_title(title)
+        if local and local.get("code"):
+            return local
+        remote = await self.find_remote_by_title(title)
         if remote and remote.get("code"):
             return remote
         return None

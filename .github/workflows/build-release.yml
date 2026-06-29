@@ -1,0 +1,98 @@
+name: Build & Release
+
+# 手动触发：
+#   - version 留空：只构建三平台产物并上传为 artifact，不发布 Release。
+#   - version 填了（如 v0.1.0）：构建后用该版本号创建 GitHub Release 并上传产物。
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "版本号（如 v0.1.0）；留空则只构建不发布。"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-linux:
+    name: Build manylinux
+    runs-on: ubuntu-latest
+    container: quay.io/pypa/manylinux_2_28_x86_64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Build
+        run: uv run python scripts/build.py --version "${{ inputs.version }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: xmuoj-pilot-linux
+          path: dist/xmuoj-pilot-linux-*
+
+  build-desktop:
+    name: Build ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: xmuoj-pilot-windows
+          - os: macos-latest
+            artifact: xmuoj-pilot-macos
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Build
+        run: uv run python scripts/build.py --version "${{ inputs.version }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: |
+            dist/xmuoj-pilot-windows-*
+            dist/xmuoj-pilot-macos-*
+
+  release:
+    name: Publish Release
+    needs: [build-linux, build-desktop]
+    if: ${{ inputs.version != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Show artifacts
+        run: find artifacts -type f
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.version }}
+          name: ${{ inputs.version }}
+          generate_release_notes: true
+          files: artifacts/**/*

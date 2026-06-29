@@ -1,136 +1,103 @@
 # XMUOJ Pilot
 
-XMUOJ Pilot 是一个面向本人账号、本人授权练习场景的 XMUOJ CLI 工具。它提供登录状态管理、Cookie/CSRF 维护、比赛和题目获取、DeepSeek / OpenAI-compatible 配置、题面日志、AI 学习笔记、本地代码提交预览和判题结果轮询。
+XMUOJ 命令行练习助手：登录态管理、比赛/题目获取、AI 学习笔记、AI 自动做题（含 ReAct 修复）、已 AC 参考代码库，以及本地提交预览与判题轮询。
 
-项目的交互入口以键盘方向键为主：主菜单、比赛选择、题目选择都使用 `↑/↓` 选择、`←/→` 翻页、`Enter` 确认、`Esc` 取消，不需要输入菜单数字。
+交互界面以方向键操作：`↑/↓` 选择、`←/→` 翻页、`Enter` 确认、`Esc` 取消。
+
+## 功能
+
+- **登录与会话**：管理 cookie / CSRF，保存会话，自动复用。
+- **比赛与题目**：拉取比赛列表、比赛详情、题目列表与题面（支持比赛密码）。
+- **学习任务**：批量拉题面并为每题调用 DeepSeek 生成学习笔记。
+- **AI 自动做题（assist）**：生成 C++ 草稿 → 本地编译 → 跑样例（仅作参考，不阻止提交）→ 提交 → 判题轮询。
+  - 第一遍简单生成；从第二遍起进入 **ReAct 修复循环**（思考→行动→观察：重读题面 / 写代码 / 质疑样例 / 完成），每题一个对话不重置上下文，最多 5 次提交。
+  - 提交遇到限流（`Please wait N seconds`）会自动等待后重试，而非当作错误。
+- **AC 参考代码库**：抓取本账号已满分(AC)题目的代码，按**内部 ID**扁平存储，生成可托管页面；做题时按内部 ID 先查本地、再查远程，命中则作为参考代码注入。
+- **安全提交**：提交前展示比赛 ID、题号、语言、代码预览；半自动模式需人工确认。
 
 ## 安装与启动
 
 ```bash
 uv sync
-uv run xmuoj-pilot
+uv run xmuoj-pilot          # 进入交互主菜单
 ```
 
-常用命令：
+## 命令用法
 
 ```bash
+# 登录 / 配置 AI
 uv run xmuoj-pilot login
 uv run xmuoj-pilot configure-ai
+
+# 学习笔记
 uv run xmuoj-pilot study --contest-id 361
+
+# 自动做题：semi=每题人工确认提交；rehearsal=全自动演练到提交
 uv run xmuoj-pilot assist --contest-id 361 --mode semi
 uv run xmuoj-pilot assist --contest-id 361 --mode rehearsal
+
+# 只对单题走自动做题流程（流程测试用）
+uv run xmuoj-pilot assist-problem JD001 --contest-id 361 --mode semi
+
+# 抓取本账号该比赛的 AC 代码到本地参考库并生成索引页
+uv run xmuoj-pilot fetch-ac --contest-id 361
+
+# 手动提交本地代码文件
 uv run xmuoj-pilot submit 361 JD001 submissions/JD001.cpp --lang "C++"
+
+# 逐项测试 XMUOJ API
 uv run xmuoj-pilot test-api --contest-id 361 --problem-id JD001
 ```
 
-## 主菜单
+主菜单包含：选择比赛、查看题目、学习任务、半自动做题、全自动演练、测试单题自动做题、登录/切换账号、配置 AI、调试 API、测试 API。
 
-主菜单会显示当前选中的比赛，例如：
+## 日志产物
 
-```text
-主菜单 | 当前比赛：361 2026年校外实训一之剑道试炼
-```
-
-菜单项：
-
-- 选择比赛：拉取比赛列表，方向键选择比赛，并进入题目列表。
-- 查看当前比赛题目：展示当前比赛题目，方向键选择题目查看详情。
-- 开始学习任务：批量拉取题面，为每道题保存日志，并调用 DeepSeek 生成学习笔记。
-- 开始半自动做题：拉题面、调用 DeepSeek 生成 C++ 草稿、检测 `g++/gcc`、编译、运行样例、提交前人工确认。
-- 全自动演练到待提交：自动完成题面获取、AI 草稿、本地编译、样例运行和日志保存，但不真实提交。
-- 登录 / 切换账号
-- 配置 AI Provider
-- 调试 API 请求
-- 测试 XMUOJ API
-
-## 学习任务
-
-学习任务会为每道题创建独立日志目录：
+`assist` 每题一个目录，保存全过程便于复查：
 
 ```text
-logs/contest-361/YYYYMMDD-HHMMSS/JD001/
-  statement.md
-  deepseek-note.md
+logs/assist-contest-361/YYYYMMDD-HHMMSS/JD001/
+  statement.md            # 题面
+  solution.cpp            # 当前代码
+  compile.log / samples.log
+  ai-*.md                 # AI 各轮回复
+  react-*.md              # ReAct 修复轨迹
+  reference-ac.json       # 命中的参考 AC 代码（若有）
+  submission-*.json       # 各次提交的判题结果
+  task.log
 ```
 
-每道题使用独立 DeepSeek 请求，输入包含完整题面信息。当前实现用于生成题意、思路、边界情况和实现提示。
+## AC 参考代码库
 
-## 做题辅助流水线
+抓取后按内部 ID 存为 `ac-library/<内部ID>.json`，并生成 `index.html` / `index.json`。做题时通过配置项 `ac_library_url`（默认 `https://vintcessun.github.io/xmuoj-pilot`）按内部 ID 拉取远程参考代码；本地 `ac-library/` 优先。
 
-`assist` 命令提供两个模式：
+可用环境变量临时指定：
+
+```powershell
+$env:XMUOJ_PILOT_AC_LIBRARY_URL="https://vintcessun.github.io/xmuoj-pilot"
+$env:XMUOJ_PILOT_AC_LIBRARY_DIR="ac-library"
+```
+
+## GitHub Actions
+
+- **Fetch AC Library**（`fetch-ac-library.yml`）：手动触发，填 `contest_id`（账号/密码用 Secret `XMUOJ_USERNAME` / `XMUOJ_PASSWORD`）。登录→抓取 AC 代码→提交回仓库→上传 artifact→部署 GitHub Pages（即可拉取的页面）。
+- **Build & Release**（`build-release.yml`）：手动触发，构建 manylinux / Windows / macOS 单文件可执行。`version` 留空则只产出 artifact；填了版本号（如 `v0.1.0`）则创建对应 GitHub Release 并上传产物。
+
+## 本地构建
 
 ```bash
-uv run xmuoj-pilot assist --contest-id 361 --mode semi
-uv run xmuoj-pilot assist --contest-id 361 --mode rehearsal
+uv run python scripts/build.py            # 构建当前平台单文件，输出到 dist/
 ```
 
-半自动模式 `semi`：
+## 配置文件
 
-- 每道题一个独立 DeepSeek 会话。
-- 保存题面、AI 回复、代码草稿、编译日志、样例日志。
-- 如果本机存在 `g++` 或 `gcc`，会尝试编译生成的 `solution.cpp`。
-- 如果题面返回样例，会运行样例并记录结果。
-- 到真实提交前暂停，展示代码预览。
-- 用户确认后才提交；用户拒绝时可以输入理由，理由会反馈给 DeepSeek 继续修改。
+配置目录：Windows `%APPDATA%/xmuoj-pilot/`；Linux/macOS `~/.config/xmuoj-pilot/`。
 
-演练模式 `rehearsal`：
+- `config.json`：base URL、debug、SSL 校验、当前比赛、比赛密码、AI Provider、`ac_library_url`。
+- `session.json`：cookies、csrf token、登录时间。
 
-- 自动执行题面获取、DeepSeek 草稿、本地编译、样例运行、日志保存和提交。
-
-DeepSeek 输出不设置本地 token 上限，使用所选模型和服务端默认限制。
-
-## 提交模式说明
-
-当前支持安全提交模式：
-
-- 提交前展示比赛 ID、显示题号、内部题号、语言、代码文件路径和代码预览。
-- 如果用户拒绝提交，可以输入理由并让 AI 修改，或修改本地代码后再次运行提交。
-- 提交后会轮询 `/api/submission?id=...` 并展示判题结果。
-
-项目保留人工确认边界，避免误提交和批量替代学习。
-
-## 本地配置
-
-配置目录：
-
-- Windows: `%APPDATA%/xmuoj-pilot/`
-- Linux/macOS: `~/.config/xmuoj-pilot/`
-
-文件：
-
-- `config.json`: base URL、debug 开关、SSL 校验开关、当前比赛、比赛密码、AI Provider 配置
-- `session.json`: cookies、csrf token、last_login_at
-
-密码输入会显示 `*`。比赛密码在 CLI 输入后会保存，用于后续访问同一比赛。
-
-项目默认关闭 SSL 证书校验，以适配本机 HTTPS 代理/抓包代理环境。如果你不使用代理并希望开启校验，可以设置：
+默认关闭 SSL 校验以适配抓包代理；如需开启：
 
 ```powershell
 $env:XMUOJ_PILOT_VERIFY_SSL="true"
-```
-
-## API 测试
-
-```bash
-uv run xmuoj-pilot test-api --contest-id 361 --problem-id JD001
-```
-
-从环境变量登录并测试：
-
-```powershell
-$env:XMUOJ_PILOT_USERNAME="你的账号"
-$env:XMUOJ_PILOT_PASSWORD="你的密码"
-$env:XMUOJ_PILOT_CONTEST_ID="361"
-$env:XMUOJ_PILOT_PROBLEM_ID="JD001"
-uv run python scripts/api_smoke_from_env.py
-```
-
-## Windows 打包
-
-```bash
-uv add nuitka
-```
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/build.ps1
 ```

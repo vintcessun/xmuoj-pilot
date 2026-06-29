@@ -31,7 +31,7 @@ class AppConfig(BaseModel):
     contest_passwords: dict[str, str] = Field(default_factory=dict)
     ai: AIConfig | None = None
     # AC 参考代码库的远程基址（如 GitHub Pages），用于做题时拉取已 AC 代码作参考。
-    ac_library_url: str | None = None
+    ac_library_url: str | None = "https://vintcessun.github.io/xmuoj-pilot"
 
 
 class SessionData(BaseModel):

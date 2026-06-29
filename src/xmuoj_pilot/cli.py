@@ -683,19 +683,25 @@ async def assist_single_problem_flow(
     )
 
 
-async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
-    """抓取该比赛已满分题目的代码到本地 AC 参考代码库，并刷新索引页。"""
-    if not await ctx.auth.ensure_login():
-        console.print("[yellow]未检测到可用登录状态，请先登录。[/yellow]")
-        await login_flow(ctx)
+async def fetch_ac_for_contest(
+    ctx: AppContext,
+    contest_id: int,
+    library: ACLibrary,
+    *,
+    skip_existing: bool = False,
+) -> tuple[int, int]:
+    """抓取当前登录账号在该比赛已满分题目的代码，写入 library。
 
+    不负责登录、不负责 build_index（由调用方控制，便于多账号复用）。
+    skip_existing=True 时，库里已有该内部 ID 的代码就跳过，避免多账号间重复抓取。
+    返回 (保存数, 跳过数)。
+    """
     problems_data = await problems_flow(ctx, contest_id)
     items = extract_items(problems_data, preferred_keys=("problems",)) if problems_data is not None else []
     if not items:
         console.print("[red]题目列表为空或无法解析。[/red]")
-        return
+        return 0, 0
 
-    library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
     saved = 0
     skipped = 0
     for item in items:
@@ -707,6 +713,11 @@ async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
             console.print(f"[yellow]{display_id} 无法解析内部 ID，跳过。[/yellow]")
             skipped += 1
             continue
+        if skip_existing:
+            existing = library.load_local(internal_id)
+            if existing and existing.get("code"):
+                skipped += 1
+                continue
         title = str(item.get("title") or item.get("name") or "")
         try:
             record = await ctx.submissions.fetch_accepted_code(contest_id, display_id)
@@ -740,6 +751,17 @@ async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
         console.print(f"[green]已保存 内部ID {internal_id}（{display_id} 分数 {record.get('score')}）→ {path}[/green]")
         saved += 1
 
+    return saved, skipped
+
+
+async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
+    """抓取该比赛已满分题目的代码到本地 AC 参考代码库，并刷新索引页（单账号，交互用）。"""
+    if not await ctx.auth.ensure_login():
+        console.print("[yellow]未检测到可用登录状态，请先登录。[/yellow]")
+        await login_flow(ctx)
+
+    library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
+    saved, skipped = await fetch_ac_for_contest(ctx, contest_id, library)
     library.build_index()
     console.print(
         f"[green]完成：保存 {saved} 题，跳过 {skipped} 题。索引页：{library.root / 'index.html'}[/green]"
@@ -749,32 +771,49 @@ async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
 async def _load_reference_code(
     ctx: AppContext,
     internal_id: int | None,
+    title: str,
     problem_dir: Path,
-) -> str:
-    """按内部 ID 从 AC 参考代码库（本地优先，其次远程）取一份已 AC 代码，拼成提示片段。
+) -> tuple[str, bool]:
+    """从 AC 参考代码库取一份已 AC 代码，拼成提示片段。
 
-    取不到返回空字符串。命中时会把记录落盘到 problem_dir 便于复查。
+    先按内部 ID 精确匹配（强匹配）；取不到再按标题模糊匹配一题（弱匹配，可能不是同一题）。
+    本地优先、其次远程。返回 (提示片段, 是否弱匹配)；取不到返回 ("", False)。
+    命中会把记录落盘到 problem_dir 便于复查。
     """
-    if internal_id is None:
-        return ""
     library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
+    record: dict[str, Any] | None = None
+    weak = False
     try:
-        record = await library.get_reference(internal_id)
+        if internal_id is not None:
+            record = await library.get_reference(internal_id)
+        if not (record and record.get("code")) and title:
+            record = await library.get_reference_by_title(title)
+            weak = bool(record and record.get("code"))
     except Exception:  # 参考代码是可选增强，任何异常都不应中断做题
-        return ""
+        return "", False
     if not record or not record.get("code"):
-        return ""
+        return "", False
+
     code = str(record["code"])
     _write(
         problem_dir / "reference-ac.json",
-        json.dumps(record, ensure_ascii=False, indent=2),
+        json.dumps({**record, "match": "title" if weak else "id"}, ensure_ascii=False, indent=2),
     )
-    _append_log(problem_dir, f"已加载该题的一份 AC 参考代码（分数 {record.get('score')}）。")
-    return (
-        "\n\n---\n以下是该题的一份【已 AC（满分）参考代码】，来自历史提交，"
-        "可重点借鉴其输入输出格式与核心逻辑；但请结合题面独立判断，不要原样照抄注释或多余内容：\n"
-        f"```c++\n{code}\n```\n"
-    )
+    if weak:
+        prompt = (
+            "\n\n---\n下面是通过【标题模糊匹配】找到的一份 AC 代码"
+            f"（匹配到的题目：{record.get('display_id') or ''} {record.get('title') or ''}，"
+            "可能并不是同一题，置信度较低）。请只把它当作输入输出格式与写法风格的弱参考，"
+            "务必以本题题面为准，不要照抄其逻辑：\n"
+            f"```c++\n{code}\n```\n"
+        )
+    else:
+        prompt = (
+            "\n\n---\n以下是该题的一份【已 AC（满分）参考代码】，来自历史提交，"
+            "可重点借鉴其输入输出格式与核心逻辑；但请结合题面独立判断，不要原样照抄注释或多余内容：\n"
+            f"```c++\n{code}\n```\n"
+        )
+    return prompt, weak
 
 
 async def _assist_one_problem(
@@ -815,10 +854,9 @@ async def _assist_one_problem(
     _write(problem_dir / "statement.md", statement)
     internal_id = _extract_internal_problem_id(detail_data) or item_internal_id
 
+    # 第一轮让 AI 独立做题，不给参考代码；参考代码留到第一次提交失败、进入第二轮 ReAct 时再附上。
     user_content = statement
-    reference = await _load_reference_code(ctx, internal_id, problem_dir)
-    if reference:
-        user_content = statement + reference
+    reference, reference_weak = await _load_reference_code(ctx, internal_id, title, problem_dir)
 
     messages: list[dict[str, str]] = [
         {
@@ -963,6 +1001,8 @@ async def _assist_one_problem(
                 just_failed_attempt=submit_attempt,
                 max_attempts=MAX_SUBMIT_ATTEMPTS,
                 prefix=f"rehearsal-{submit_attempt:02d}",
+                reference=reference,
+                reference_weak=reference_weak,
             )
             if not code:
                 _append_log(problem_dir, "演练模式：ReAct 修复未能给出可提交代码，停止当前题。")
@@ -1018,6 +1058,8 @@ async def _assist_one_problem(
                 just_failed_attempt=submit_count,
                 max_attempts=MAX_SUBMIT_ATTEMPTS,
                 prefix=f"semi-{submit_count:02d}",
+                reference=reference,
+                reference_weak=reference_weak,
             )
             if not code:
                 _append_log(problem_dir, "ReAct 修复未能给出可提交代码。")
@@ -1575,6 +1617,7 @@ def _build_react_kickoff(
     sample_feedback: str,
     just_failed_attempt: int,
     max_attempts: int,
+    reference: str = "",
 ) -> str:
     if just_failed_attempt <= 1:
         escalation = (
@@ -1603,6 +1646,7 @@ def _build_react_kickoff(
         + json.dumps(submit_result, ensure_ascii=False, indent=2)
         + "\n\n本地样例试跑（仅供参考，样例可能很弱甚至有错）：\n"
         + sample_feedback
+        + ("【重要】已经成功的代码可以供参考："+reference or "")
     )
 
 
@@ -1631,6 +1675,8 @@ async def _react_repair_after_oj_failure(
     just_failed_attempt: int,
     max_attempts: int,
     prefix: str,
+    reference: str = "",
+    reference_weak: bool = False,
     max_steps: int = 6,
 ) -> tuple[str, str | None]:
     """OJ 提交失败后进入的 ReAct 修复循环。
@@ -1638,9 +1684,30 @@ async def _react_repair_after_oj_failure(
     全程复用同一条 messages（同一题同一对话，不重置上下文），返回
     (最新 ai_text, 本地编译通过的候选代码或 None)。OJ 提交仍由外层循环控制，
     本函数只负责“思考-行动-观察”地产出下一份候选代码。
+
+    reference 只在第一次失败（进入第二轮）时随启动消息附上一次，避免重复刷屏；
+    因为对话不重置，后续轮次仍能在上下文里看到它。
     """
     sample_feedback = _read_optional(problem_dir / "samples.log")
     trace_path = problem_dir / f"react-{prefix}.md"
+    # 只在第一次失败（进入第二轮）时处理参考代码：有就提示并框起来展示，没有就警告。
+    kickoff_reference = ""
+    if just_failed_attempt <= 1:
+        if reference:
+            kickoff_reference = reference
+            if reference_weak:
+                _append_log(problem_dir, "第二轮 ReAct：未按 ID 命中，已通过【标题模糊匹配】到一份 AC 代码（弱参考，可能不是同一题）。")
+                panel_title = "AC 参考代码（标题模糊匹配·弱参考）"
+                panel_style = "yellow"
+            else:
+                _append_log(problem_dir, "第二轮 ReAct：已按 ID 获取到该题的 AC 参考代码，加入本轮修复参考。")
+                panel_title = "AC 参考代码（来自历史满分提交）"
+                panel_style = "cyan"
+            ref_code = _extract_cpp_code(reference)
+            if ref_code:
+                console.print(Panel(escape(ref_code), title=panel_title, border_style=panel_style))
+        else:
+            _append_log(problem_dir, "[警告] 第二轮 ReAct：未找到该题的 AC 参考代码（ID 与标题均未匹配），本轮不带参考继续修复。")
     messages.append({"role": "assistant", "content": last_ai_text})
     messages.append(
         {
@@ -1651,6 +1718,7 @@ async def _react_repair_after_oj_failure(
                 sample_feedback=sample_feedback,
                 just_failed_attempt=just_failed_attempt,
                 max_attempts=max_attempts,
+                reference=kickoff_reference,
             ),
         }
     )

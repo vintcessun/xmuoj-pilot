@@ -1,9 +1,11 @@
 name: Fetch AC Library
 
-# 手动触发：启动前填入 contest_id（账号/密码从仓库 Secret 读取，账号也可临时覆盖）。
-# 需要在仓库 Settings -> Secrets and variables -> Actions 配置两个 Secret：
-#   XMUOJ_USERNAME  账号
-#   XMUOJ_PASSWORD  密码
+# 手动触发：启动前填入 contest_id；账号/密码从仓库 Secret 读取。
+# 多账号（推荐）：配置 Secret  XMUOJ_ACCOUNTS  ，多行，每行一个：
+#   user1:pass1
+#   user2:pass2
+#   （也支持空格/逗号分隔，或写成 JSON 数组 [{"username":"u1","password":"p1"}]）
+# 单账号（可选，未配 XMUOJ_ACCOUNTS 时使用）：Secret  XMUOJ_USERNAME / XMUOJ_PASSWORD 。
 # 若要发布为可访问页面：Settings -> Pages -> Source 选 "GitHub Actions"。
 
 on:
@@ -49,6 +51,7 @@ jobs:
 
       - name: Fetch AC code
         env:
+          XMUOJ_PILOT_ACCOUNTS: ${{ secrets.XMUOJ_ACCOUNTS }}
           XMUOJ_PILOT_USERNAME: ${{ inputs.username != '' && inputs.username || secrets.XMUOJ_USERNAME }}
           XMUOJ_PILOT_PASSWORD: ${{ secrets.XMUOJ_PASSWORD }}
           XMUOJ_PILOT_CONTEST_ID: ${{ inputs.contest_id }}
