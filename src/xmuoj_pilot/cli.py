@@ -683,6 +683,48 @@ async def assist_single_problem_flow(
     )
 
 
+def parse_accounts() -> list[tuple[str, str]]:
+    """从环境变量解析多账号；XMUOJ_PILOT_USERNAME/PASSWORD 也会一并并入并去重。
+
+    XMUOJ_PILOT_ACCOUNTS 支持：
+      - 每行一个：``用户名:密码``（也支持空格 / 逗号分隔，密码可含冒号）
+      - JSON 数组：[{"username": "u1", "password": "p1"}, ...]
+    """
+    accounts: list[tuple[str, str]] = []
+    raw = (os.getenv("XMUOJ_PILOT_ACCOUNTS") or "").strip()
+    if raw:
+        if raw.startswith("["):
+            try:
+                for entry in json.loads(raw):
+                    username = str(entry.get("username", "")).strip()
+                    password = str(entry.get("password", ""))
+                    if username and password:
+                        accounts.append((username, password))
+            except (ValueError, AttributeError):
+                console.print("[red]XMUOJ_PILOT_ACCOUNTS 不是合法 JSON 数组。[/red]")
+        else:
+            for line in raw.splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                parts = re.split(r"[:\s,]+", line, maxsplit=1)
+                if len(parts) == 2 and parts[0] and parts[1]:
+                    accounts.append((parts[0], parts[1]))
+
+    single_user = os.getenv("XMUOJ_PILOT_USERNAME")
+    single_pass = os.getenv("XMUOJ_PILOT_PASSWORD")
+    if single_user and single_pass:
+        accounts.append((single_user, single_pass))
+
+    seen: set[str] = set()
+    unique: list[tuple[str, str]] = []
+    for username, password in accounts:
+        if username not in seen:
+            seen.add(username)
+            unique.append((username, password))
+    return unique
+
+
 async def fetch_ac_for_contest(
     ctx: AppContext,
     contest_id: int,
@@ -755,12 +797,49 @@ async def fetch_ac_for_contest(
 
 
 async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
-    """抓取该比赛已满分题目的代码到本地 AC 参考代码库，并刷新索引页（单账号，交互用）。"""
+    """抓取该比赛已满分题目的代码到本地 AC 参考代码库，并刷新索引页。
+
+    优先读取环境变量里的账号（XMUOJ_PILOT_ACCOUNTS / XMUOJ_PILOT_USERNAME+PASSWORD）：
+    有就逐个登录、合并去重地抓取（多账号覆盖更广）；都没有再用当前登录态。
+    """
+    library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
+    accounts = parse_accounts()
+
+    if accounts:
+        contest_password = os.getenv("XMUOJ_PILOT_CONTEST_PASSWORD") or ctx.get_contest_password(contest_id)
+        console.print(f"[cyan]从环境变量读取到 {len(accounts)} 个账号，逐个抓取比赛 {contest_id}。[/cyan]")
+        total_saved = 0
+        ok_accounts = 0
+        for index, (username, password) in enumerate(accounts, start=1):
+            console.print(f"[cyan]== 账号 {index}/{len(accounts)}：{username} ==[/cyan]")
+            ctx.session_storage.clear()  # 每账号全新会话，避免 cookie 串号
+            try:
+                logged_in = await ctx.auth.login(username, password)
+            except RuntimeError as exc:
+                console.print(f"[red]{username} 登录失败：{exc}[/red]")
+                continue
+            if not logged_in:
+                console.print(f"[red]{username} 登录未通过，跳过。[/red]")
+                continue
+            ok_accounts += 1
+            if contest_password:
+                try:
+                    await ctx.contests.submit_password(contest_id, contest_password)
+                except RuntimeError as exc:
+                    console.print(f"[yellow]{username} 提交比赛密码失败（继续抓取）：{exc}[/yellow]")
+            saved, skipped = await fetch_ac_for_contest(ctx, contest_id, library, skip_existing=True)
+            total_saved += saved
+            console.print(f"[green]{username}：新增 {saved} 题，跳过 {skipped} 题。[/green]")
+        library.build_index()
+        console.print(
+            f"[green]全部完成：{ok_accounts}/{len(accounts)} 个账号成功，共新增 {total_saved} 题。"
+            f"索引页：{library.root / 'index.html'}[/green]"
+        )
+        return
+
     if not await ctx.auth.ensure_login():
         console.print("[yellow]未检测到可用登录状态，请先登录。[/yellow]")
         await login_flow(ctx)
-
-    library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
     saved, skipped = await fetch_ac_for_contest(ctx, contest_id, library)
     library.build_index()
     console.print(
