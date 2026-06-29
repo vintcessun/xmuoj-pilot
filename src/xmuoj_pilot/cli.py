@@ -8,7 +8,7 @@ import shutil
 import subprocess
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Awaitable
 
 import typer
 from rich.markup import escape
@@ -588,7 +588,10 @@ async def study_task_flow(ctx: AppContext, contest_id: int) -> None:
 
         console.print(f"[cyan]调用 DeepSeek：{display_id}[/cyan]")
         try:
-            note = await provider.study_problem(statement)
+            note = await _call_ai_with_status(
+                provider.study_problem(statement),
+                f"DeepSeek：{display_id}",
+            )
         except Exception as exc:
             (problem_dir / "ai-error.txt").write_text(str(exc), encoding="utf-8")
             console.print(f"[red]AI 调用失败：{display_id}: {exc}[/red]")
@@ -1014,7 +1017,10 @@ async def _assist_one_problem(
         },
         {"role": "user", "content": user_content},
     ]
-    ai_text = await provider.revise_cpp_solution(messages)  # type: ignore[arg-type]
+    ai_text = await _call_ai_with_status(
+        provider.revise_cpp_solution(messages),  # type: ignore[arg-type]
+        "DeepSeek：生成 C++ 草稿",
+    )
     _write(problem_dir / "ai-01.md", ai_text)
     code = _extract_cpp_code(ai_text)
     if not code:
@@ -1153,7 +1159,10 @@ async def _assist_one_problem(
             break
         messages.append({"role": "assistant", "content": ai_text})
         messages.append({"role": "user", "content": f"用户拒绝提交，理由：{reason}\n请据此修改代码。"})
-        ai_text = await provider.revise_cpp_solution(messages)  # type: ignore[arg-type]
+        ai_text = await _call_ai_with_status(
+            provider.revise_cpp_solution(messages),  # type: ignore[arg-type]
+            "DeepSeek：按用户反馈修改",
+        )
         _write(problem_dir / f"ai-user-revision-{datetime.now().strftime('%H%M%S')}.md", ai_text)
         code = _extract_cpp_code(ai_text) or code
         _write(code_path, code)
@@ -1681,7 +1690,10 @@ async def _revise_after_local_failure(
             "```",
         }
     )
-    revised = await provider.revise_cpp_solution(messages)  # type: ignore[arg-type]
+    revised = await _call_ai_with_status(
+        provider.revise_cpp_solution(messages),  # type: ignore[arg-type]
+        "DeepSeek：修复本地编译失败",
+    )
     _write(output_path, revised)
     code = _extract_cpp_code(revised)
     if code:
@@ -1784,7 +1796,7 @@ async def _react_repair_after_oj_failure(
                 panel_style = "cyan"
             ref_code = _extract_cpp_code(reference)
             if ref_code:
-                console.print(Panel(escape(ref_code), title=panel_title, border_style=panel_style))
+                console.print(Panel(escape(_preview_text(ref_code)), title=panel_title, border_style=panel_style))
         else:
             _append_log(problem_dir, "[警告] 第二轮 ReAct：未找到该题的 AC 参考代码（ID 与标题均未匹配），本轮不带参考继续修复。")
     messages.append({"role": "assistant", "content": last_ai_text})
@@ -1805,7 +1817,10 @@ async def _react_repair_after_oj_failure(
     last_compiled_code: str | None = None
     ai_text = last_ai_text
     for step in range(1, max_steps + 1):
-        ai_text = await provider.chat(messages)  # type: ignore[arg-type]
+        ai_text = await _call_ai_with_status(
+            provider.chat(messages),  # type: ignore[arg-type]
+            "DeepSeek：修复 OJ 判题失败",
+        )
         _append_file(trace_path, f"### 第 {step} 步（模型）\n{ai_text}\n\n")
         messages.append({"role": "assistant", "content": ai_text})
         action = _parse_react_action(ai_text)
@@ -1882,6 +1897,19 @@ def _extract_cpp_code(text: str) -> str:
     if match:
         return match.group(1).strip()
     return ""
+
+
+def _preview_text(text: str, line_count: int = 20) -> str:
+    lines = text.splitlines()
+    preview = "\n".join(f"{idx + 1:>4}: {safe_text(line)}" for idx, line in enumerate(lines[:line_count]))
+    if len(lines) > line_count:
+        preview += f"\n...（还有 {len(lines) - line_count} 行）"
+    return preview
+
+
+async def _call_ai_with_status(awaitable: Awaitable[str], label: str = "DeepSeek") -> str:
+    with console.status(f"[cyan]Working: {safe_text(label)}[/cyan]", spinner="dots"):
+        return await awaitable
 
 
 def _compile_cpp(compiler: str, source: Path, output: Path) -> tuple[bool, str]:
