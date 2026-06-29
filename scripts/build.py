@@ -1,12 +1,13 @@
-"""用 Nuitka 把 xmuoj-pilot 打包成当前平台的单文件可执行程序。
+"""Build xmuoj-pilot into a single-file executable with Nuitka.
 
 输出到 dist/，文件名形如：
     xmuoj-pilot-linux-x86_64
     xmuoj-pilot-windows-x86_64.exe
     xmuoj-pilot-macos-arm64
 
-本脚本只构建“当前运行平台”的产物；三平台(manylinux/windows/macos)的统一构建
-由 .github/workflows/build-release.yml 的 matrix 分别在对应 runner 上调用本脚本完成。
+This script only builds the current platform artifact. The GitHub Actions
+matrix in .github/workflows/build-release.yml runs it on Linux, Windows, and
+macOS separately.
 
 用法：
     python scripts/build.py [--version X.Y.Z]
@@ -43,7 +44,7 @@ def target_name() -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build xmuoj-pilot single-file binary via Nuitka.")
-    parser.add_argument("--version", default="", help="可选版本号，仅用于日志/产物标识。")
+    parser.add_argument("--version", default="", help="Optional version, used for build logs only.")
     args = parser.parse_args()
 
     DIST.mkdir(parents=True, exist_ok=True)
@@ -66,14 +67,14 @@ def main() -> int:
     print("[build] running:", " ".join(cmd))
     result = subprocess.run(cmd, cwd=str(ROOT))
     if result.returncode != 0:
-        print("[build] Nuitka 构建失败。", file=sys.stderr)
+        print("[build] Nuitka build failed.", file=sys.stderr)
         return result.returncode
 
     produced = DIST / output_name
     if not produced.exists():
-        print(f"[build] 未找到产物：{produced}", file=sys.stderr)
+        print(f"[build] artifact not found: {produced}", file=sys.stderr)
         return 1
-    print(f"[build] 完成：{produced}")
+    print(f"[build] done: {produced}")
     return 0
 
 
