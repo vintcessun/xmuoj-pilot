@@ -702,6 +702,11 @@ async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
         display_id = _problem_display_id(item)
         if not display_id:
             continue
+        internal_id = _problem_internal_id(item) or _extract_internal_problem_id(item)
+        if internal_id is None:
+            console.print(f"[yellow]{display_id} 无法解析内部 ID，跳过。[/yellow]")
+            skipped += 1
+            continue
         title = str(item.get("title") or item.get("name") or "")
         try:
             record = await ctx.submissions.fetch_accepted_code(contest_id, display_id)
@@ -722,16 +727,17 @@ async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
             pass
 
         path = library.save_record(
-            contest_id,
-            display_id,
+            internal_id,
             code=record["code"],
+            display_id=display_id,
             title=title,
             language=record.get("language", ""),
             score=record.get("score"),
             submission_id=record.get("submission_id", ""),
+            contest_id=contest_id,
             statement=statement,
         )
-        console.print(f"[green]已保存 {display_id}（分数 {record.get('score')}）→ {path}[/green]")
+        console.print(f"[green]已保存 内部ID {internal_id}（{display_id} 分数 {record.get('score')}）→ {path}[/green]")
         saved += 1
 
     library.build_index()
@@ -742,17 +748,18 @@ async def fetch_ac_flow(ctx: AppContext, contest_id: int) -> None:
 
 async def _load_reference_code(
     ctx: AppContext,
-    contest_id: int,
-    display_problem_id: str,
+    internal_id: int | None,
     problem_dir: Path,
 ) -> str:
-    """从 AC 参考代码库（本地优先，其次远程）取一份已 AC 代码，拼成提示片段。
+    """按内部 ID 从 AC 参考代码库（本地优先，其次远程）取一份已 AC 代码，拼成提示片段。
 
     取不到返回空字符串。命中时会把记录落盘到 problem_dir 便于复查。
     """
+    if internal_id is None:
+        return ""
     library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
     try:
-        record = await library.get_reference(contest_id, display_problem_id)
+        record = await library.get_reference(internal_id)
     except Exception:  # 参考代码是可选增强，任何异常都不应中断做题
         return ""
     if not record or not record.get("code"):
@@ -809,7 +816,7 @@ async def _assist_one_problem(
     internal_id = _extract_internal_problem_id(detail_data) or item_internal_id
 
     user_content = statement
-    reference = await _load_reference_code(ctx, contest_id, display_id, problem_dir)
+    reference = await _load_reference_code(ctx, internal_id, problem_dir)
     if reference:
         user_content = statement + reference
 
