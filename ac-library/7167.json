@@ -1,0 +1,12 @@
+{
+  "internal_id": 7167,
+  "display_id": "JD063",
+  "title": "方圆初阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "945db0ceb232ad32a718ed33d2096cf5",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:44:42+00:00",
+  "statement": "显示题号: JD063\n内部 ID: 7167\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「此乃方圆剑阵——最外圈剑气最淡，标记为1；往里一圈剑气渐浓，标记为2。」赵晴儿在沙盘上画出一圈圈剑芒，「到剑阵中心，剑气愈凝愈实。每一圈剑芒的强度，就是你离外界最远的那道剑气的距离。」\n\n## 输入描述\n多行，每行一个整数N。N=0时结束。\n\n## 输出描述\n每个N输出一个N阶矩阵，每个数字占3个字符宽度。每个矩阵后跟一个空行。\n\n## 样例\n[\n  {\n    \"input\": \"1\\n0\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\n每个位置的值 = min(i+1, j+1, N-i, N-j)，即到四条边的最小距离。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int N;\n    while (cin >> N && N != 0) {\n        for (int i = 0; i < N; ++i) {\n            for (int j = 0; j < N; ++j) {\n                int val = min(min(i + 1, j + 1), min(N - i, N - j));\n                cout << setw(3) << val;\n            }\n            cout << endl;\n        }\n        cout << endl;   // 每个矩阵后输出一个空行\n    }\n    return 0;\n}"
+}

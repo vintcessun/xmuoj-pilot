@@ -1,0 +1,12 @@
+{
+  "internal_id": 7197,
+  "display_id": "JD093",
+  "title": "登阶问道",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "ab6952f24b46c6c57201422bf21cfb69",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:46+00:00",
+  "statement": "显示题号: JD093\n内部 ID: 7197\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n试炼场尽头，一座石阶直通山顶。石阶共有n级，每次只能跨1级或2级。\n\n赵晴儿站在山脚问：\"从第一级走到第n级，一共有多少种不同的走法？\"\n\n李少白想了想：\"如果我最后一步跨1级，那之前有f(n-1)种走法；如果最后一步跨2级，那之前有f(n-2)种走法……\"\n\n\"没错，\"赵晴儿点头，\"这就是递归。\"\n\n## 输入描述\n一个整数n（1 ≤ n ≤ 20）。\n\n## 输出描述\n输出跳法总数。\n\n## 样例\n[\n  {\n    \"input\": \"5\",\n    \"output\": \"8\"\n  }\n]\n\n## 提示\nf(n) = f(n-1) + f(n-2)。最后一步跳1级或2级，两种情况之和。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n \nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    std::vector<ull> fib(100);\n    fib[0] = 0, fib[1] = 1;\n    for(int i = 2; i < 100; ++i) fib[i] = fib[i - 1] + fib[i - 2];\n    printf(\"%llu\\n\", fib[read() + 1]);\n}\n \nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

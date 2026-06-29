@@ -1,0 +1,12 @@
+{
+  "internal_id": 7198,
+  "display_id": "JD094",
+  "title": "方阵寻路",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "111fe62c79560f3156bd7fbc2ad915e5",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:49+00:00",
+  "statement": "显示题号: JD094\n内部 ID: 7198\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画了一个(n+1)×(m+1)的方格阵，每个格子标着坐标。\n\n\"假设你站在左上角(0,0)，\"赵晴儿指着沙盘说，\"目标是走到右下角(n,m)。每次只能向右走一步，或者向下走一步。一共有多少种不同的路径？\"\n\n李少白盯着沙盘看了一会儿：\"走到(n,m)之前，一定是从(n-1,m)或(n,m-1)过来的……\"\n\n\"很好，又是一个递归。\"\n\n## 输入描述\n一行，两个整数n和m（目标坐标，0 ≤ n,m ≤ 20）。\n\n## 输出描述\n输出走法总数。\n\n## 样例\n[\n  {\n    \"input\": \"2 3\",\n    \"output\": \"10\"\n  }\n]\n\n## 提示\n从(0,0)到(n,m)的网格路径数。f(n,m) = f(n-1,m) + f(n,m-1)。边界：f(0,m)=1, f(n,0)=1。等价于组合数C(n+m, n)。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n \nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    int n = read(), m = read();\n    ll res = 1;\n    for(int i = 0; i < n; ++i) res *= (n + m - i);\n    for(int i = 0; i < n; ++i) res /= (i + 1);\n    printf(\"%lld\\n\", res);\n}\n \nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

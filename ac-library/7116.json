@@ -1,0 +1,12 @@
+{
+  "internal_id": 7116,
+  "display_id": "JD012",
+  "title": "圆盘开孔",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "11609b0fec8a94dfd38b422c609a4e3a",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:41:10+00:00",
+  "statement": "显示题号: JD012\n内部 ID: 7116\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画了五个图形，每个图形都用A、B、C三个数来定义。她让李少白算出每个图形的面积：三角形（底A高C）、圆形（半径C）、梯形（上底A下底B高C）、正方形（边长B）、长方形（长A宽B）。π取3.14159，结果保留3位小数。\n\n## 输入描述\n一行，三个浮点数A、B、C。\n\n## 输出描述\n五行，分别输出 TRIANGULO（三角形）、CIRCULO（圆形）、TRAPEZIO（梯形）、QUADRADO（正方形）、RETANGULO（长方形）的面积，各保留3位小数。格式为 `名称: 面积`。\n\n## 样例\n[\n  {\n    \"input\": \"3.0 4.0 5.2\",\n    \"output\": \"TRIANGULO: 7.800\\nCIRCULO: 84.949\\nTRAPEZIO: 18.200\\nQUADRADO: 16.000\\nRETANGULO: 12.000\"\n  }\n]\n\n## 提示\n注意输出格式：名称与面积之间有一个空格。π取3.14159。使用 printf(\"%.3f\") 或 cout << fixed << setprecision(3) 保留3位小数。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    double a, b, c;\n    std::cin >> a >> b >> c;\n    printf(\"TRIANGULO: %.3lf\\n\", 0.5 * a * c);\n    printf(\"CIRCULO: %.3lf\\n\", 3.14159 * c * c);\n    printf(\"TRAPEZIO: %.3lf\\n\", 0.5 * (a + b) * c);\n    printf(\"QUADRADO: %.3lf\\n\", b * b);\n    printf(\"RETANGULO: %.3lf\\n\", a * b);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7168,
+  "display_id": "JD064",
+  "title": "镜像方阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "46e5dd2c5fd10daa648de191fc1a5332",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:44:46+00:00",
+  "statement": "显示题号: JD064\n内部 ID: 7168\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「此阵以主对角线为镜——镜中剑影，左右互映。」赵晴儿落下第一柄长剑，「主对角线上的剑势最强，为1；往右上和左下方逐次递减，如剑光在水面的倒影越远越淡。」\n\n## 输入描述\n多行，每行一个整数N。N=0时结束。\n\n## 输出描述\n每个N输出一个N阶矩阵，每个数字占3个字符宽度。每个矩阵后跟一个空行。\n\n## 样例\n[\n  {\n    \"input\": \"1\\n0\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\nM[i][j] = |i-j|+1。对角线为1，离对角线越远数越大。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int N;\n    while (cin >> N && N != 0) {\n        for (int i = 0; i < N; ++i) {\n            for (int j = 0; j < N; ++j) {\n                cout << setw(3) << abs(i - j) + 1;\n            }\n            cout << endl;\n        }\n        cout << endl;   // 每个矩阵后跟一个空行\n    }\n    return 0;\n}"
+}

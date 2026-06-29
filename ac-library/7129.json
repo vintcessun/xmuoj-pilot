@@ -1,0 +1,12 @@
+{
+  "internal_id": 7129,
+  "display_id": "JD025",
+  "title": "信鸽传信",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "659b96292f3eb661d3550dce5b924f10",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:42:02+00:00",
+  "statement": "显示题号: JD025\n内部 ID: 7129\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宗门各分舵之间用信鸽传信，每个分舵有一个编号（DDD码）。李少白拿到一个编号，需要查出它对应哪个分舵：61=Brasilia，71=Salvador，11=Sao Paulo，21=Rio de Janeiro，32=Juiz de Fora，19=Campinas，27=Vitoria，31=Belo Horizonte，其他编号则输出\"DDD nao cadastrado\"。\n\n## 输入描述\n一个整数。\n\n## 输出描述\n输出对应分舵名称，或 `DDD nao cadastrado`。\n\n## 样例\n[\n  {\n    \"input\": \"11\",\n    \"output\": \"Sao Paulo\"\n  }\n]\n\n## 提示\n用 if-elif 链逐一比对，或用字典/映射表查找。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    int n = read();\n    switch(n){\n        case 61: puts(\"Brasilia\"); break;\n        case 71: puts(\"Salvador\"); break;\n        case 11: puts(\"Sao Paulo\"); break;\n        case 21: puts(\"Rio de Janeiro\"); break;\n        case 32: puts(\"Juiz de Fora\"); break;\n        case 19: puts(\"Campinas\"); break;\n        case 27: puts(\"Vitoria\"); break;\n        case 31: puts(\"Belo Horizonte\"); break;\n        default: puts(\"DDD nao cadastrado\"); break;\n    }\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

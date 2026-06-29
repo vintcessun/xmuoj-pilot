@@ -1,0 +1,12 @@
+{
+  "internal_id": 7151,
+  "display_id": "JD047",
+  "title": "剑锋所指",
+  "language": "Python3",
+  "score": 100.0,
+  "submission_id": "48ce38ac5e55558a2a200cd003425c87",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:31+00:00",
+  "statement": "显示题号: JD047\n内部 ID: 7151\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功场上一排木桩，每根木桩上刻着一个数。赵晴儿让他找到最矮的那根木桩——剑锋所向，以弱制动。找到最小值并说出它在第几根。\n\n## 输入描述\n第一行一个整数N。第二行N个整数。\n\n## 输出描述\n输出最小值和它的位置，格式见样例。\n\n## 样例\n[\n  {\n    \"input\": \"10\\n1 2 3 4 -5 6 7 8 9 10\",\n    \"output\": \"Menor valor: -5\\nPosicao: 4\"\n  }\n]\n\n## 提示\n遍历时记录最小值和位置。",
+  "code": "import sys\n\ndef main():\n    data = sys.stdin.read().strip().split()\n    if not data:\n        return\n\n    n = int(data[0])\n    nums = list(map(int, data[1:1+n]))\n    if n == 0:\n        return\n    min_val = min(nums)\n    pos = nums.index(min_val)  # 返回第一个最小值的索引\n    print(f\"Menor valor: {min_val}\")\n    print(f\"Posicao: {pos}\")\n\nif __name__ == \"__main__\":\n    main()"
+}

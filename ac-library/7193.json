@@ -1,0 +1,12 @@
+{
+  "internal_id": 7193,
+  "display_id": "JD089",
+  "title": "印阵成招",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "840f4884e185a6b7726195e29608acde",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:33+00:00",
+  "statement": "显示题号: JD089\n内部 ID: 7193\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画了一个row行col列的剑阵图，每个格子标着一个数字。她需要把这个阵图工整地抄录到竹简上。\n\n\"写一个函数，\"赵晴儿说，\"传入二维数组和行列数，按格式逐行打印。每行的数字用空格隔开，行末不要有多余空格。\"\n\n## 输入描述\n第一行两个整数row和col。接下来row行，每行col个整数。\n\n## 输出描述\n矩阵元素，每行末尾无多余空格。\n\n## 样例\n[\n  {\n    \"input\": \"3 4\\n1 3 4 5\\n2 6 9 4\\n1 4 7 5\",\n    \"output\": \"1 3 4 5\\n2 6 9 4\\n1 4 7 5\"\n  }\n]\n\n## 提示\n嵌套循环遍历行列，注意行末空格处理。",
+  "code": "#include <iostream>\n\nusing namespace std;\n\nvoid print2D(int a[][100], int row, int col)\n{\n    for (int i = 0; i < row; i ++ )\n    {\n        for (int j = 0; j < col; j ++ )\n            cout << a[i][j] << ' ';\n        cout << endl;\n    }\n}\n\nint main()\n{\n    int a[100][100];\n\n    int row, col;\n\n    cin >> row >> col;\n    for (int i = 0; i < row; i ++ )\n        for (int j = 0; j < col; j ++ )\n            cin >> a[i][j];\n\n    print2D(a, row, col);\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7184,
+  "display_id": "JD080",
+  "title": "密文跨距",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "70024cec5546fabf1e3550046916d929",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:51+00:00",
+  "statement": "显示题号: JD080\n内部 ID: 7184\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白一长段密文和两个短码S1、S2：「S1在左，S2在右，不交叉。最大间距是多少？」\n\n## 输入描述\n一行，三个字符串用逗号隔开：S,S1,S2。\n\n## 输出描述\n最大跨距。不满足条件输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"abcd123dABdefghjsdef76ki,ab,ef\",\n    \"output\": \"16\"\n  }\n]\n\n## 提示\n从左往右找S1最后出现的位置end1，从右往左找S2最后出现的位置start2。如果end1",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    string s;\n    getline(cin, s);\n    vector<string> parts;\n    stringstream ss(s);\n    string item;\n    while (getline(ss, item, ',')) {\n        parts.push_back(item);\n    }\n    if (parts.size() < 3) return 0;\n    string S = parts[0], S1 = parts[1], S2 = parts[2];\n    size_t pos1 = S.find(S1);\n    size_t pos2 = S.rfind(S2);\n    if (pos1 == string::npos || pos2 == string::npos || pos1 + S1.length() > pos2) {\n        cout << -1 << endl;\n    } else {\n        int distance = pos2 - (pos1 + S1.length());\n        cout << distance << endl;\n    }\n    return 0;\n}"
+}

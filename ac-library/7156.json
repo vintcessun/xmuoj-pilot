@@ -1,0 +1,12 @@
+{
+  "internal_id": 7156,
+  "display_id": "JD052",
+  "title": "剑列纵横",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "cbc8a5c3f9c55ba99e56a32407a38c83",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:52+00:00",
+  "statement": "显示题号: JD052\n内部 ID: 7156\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿又指向剑阵的其中一列：「纵览此列，算其力量。」李少白沿着列的方向逐行检视。\n\n## 输入描述\n第一行一个整数C（0~11，表示列号）。第二行一个字符（S或M）。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出该列的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"1\\nS\\n-29.7 94.5 43.8 3.7 68.1 19.9 23.4 -0.3 -85.3 57.3 89.7 36.0\\n...\",\n    \"output\": \"199.5\"\n  }\n]\n\n## 提示\n遍历所有行取指定列元素。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int C;\n    char op;\n    cin >> C >> op;\n\n    double sum = 0.0;\n    for (int i = 0; i < 12; ++i) {\n        for (int j = 0; j < 12; ++j) {\n            double x;\n            cin >> x;\n            if (j == C) sum += x;\n        }\n    }\n\n    double ans = (op == 'S') ? sum : sum / 12.0;\n    cout << fixed << setprecision(1) << ans << endl;\n    return 0;\n}"
+}

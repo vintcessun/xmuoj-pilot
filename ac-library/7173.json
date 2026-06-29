@@ -1,0 +1,12 @@
+{
+  "internal_id": 7173,
+  "display_id": "JD069",
+  "title": "墨迹遮字",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6b97e33a625eb403b93f4a512deec90c",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:08+00:00",
+  "statement": "显示题号: JD069\n内部 ID: 7173\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n古卷上有些字被墨迹遮住了，需要替换成'#'，露出可辨认的文字。\n\n## 输入描述\n一行字符串（长度不超过100，全大写）。第二行一个字符，表示要替换的字符。\n\n## 输出描述\n替换后的字符串。\n\n## 样例\n[\n  {\n    \"input\": \"hello\\no\\nworld\\nl\\nabc\\nx\\ntest\\ne\\nhello\\na\\nh\\ne\",\n    \"output\": \"hell#\"\n  }\n]\n\n## 提示\n遍历字符串，遇到目标字符输出'#'，否则输出原字符。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    string s;\n    char ch;\n\n    getline(cin, s);   // 读入字符串\n    cin >> ch;         // 读入要替换的字符\n\n    for (char &c : s) {\n        if (c == ch) c = '#';\n    }\n\n    cout << s << endl;\n    return 0;\n}"
+}

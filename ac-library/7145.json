@@ -1,0 +1,12 @@
+{
+  "internal_id": 7145,
+  "display_id": "JD041",
+  "title": "千层阵列",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "1eef2e390bc371c1edecced26a66ddf8",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:06+00:00",
+  "statement": "显示题号: JD041\n内部 ID: 7145\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n千层塔的一面墙上刻着N行M列的数字阵列，每行从1开始递增，但每逢第M个位置不写数字，写SWORD。赵晴儿让李少白按这个规律把整个阵列报出来。\n\n## 输入描述\n一行，两个整数N和M。\n\n## 输出描述\nN行，每行M个值，最后一个用SWORD代替，值之间用空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"7 4\",\n    \"output\": \"1 2 3 SWORD\\n5 6 7 SWORD\\n9 10 11 SWORD\\n13 14 15 SWORD\\n17 18 19 SWORD\\n21 22 23 SWORD\\n25 26 27 SWORD\"\n  }\n]\n\n## 提示\n嵌套循环，外层控制行，内层控制列。每行第M个位置输出SWORD。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    int n = read(), m = read();\n    for(int i = 1; i <= n; ++i){\n        for(int j = 1; j < m; ++j){\n            printf(\"%d \", (i - 1) * m + j);\n        }\n        puts(\"SWORD\");\n    }\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

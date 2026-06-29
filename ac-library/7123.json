@@ -1,0 +1,12 @@
+{
+  "internal_id": 7123,
+  "display_id": "JD019",
+  "title": "杂货铺",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "581b3835ec2a01e5f0fae2597a762ebd",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:41:39+00:00",
+  "statement": "显示题号: JD019\n内部 ID: 7123\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n山脚杂货铺有5种干粮，编号1到5，单价分别是4.00、4.50、5.00、2.00、1.50文。赵晴儿报了干粮编号和要买的数量，掌柜让她自己算总价。\n\n## 输入描述\n一行，两个整数：干粮编号X和数量Y。\n\n## 输出描述\n输出 `Total: R$ ` 后跟总价，保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"3 2\",\n    \"output\": \"Total: R$ 10.00\"\n  }\n]\n\n## 提示\n用数组或条件判断存储5种单价，查表后乘以数量。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    const double a[] = {4.00, 4.50, 5.00, 2.00, 1.50};\n    int n = read(), x = read();\n    printf(\"Total: R$ %.2lf\\n\", a[n - 1] * x);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

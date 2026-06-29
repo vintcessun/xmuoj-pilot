@@ -1,0 +1,12 @@
+{
+  "internal_id": 7154,
+  "display_id": "JD050",
+  "title": "列阵求和",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2691956ee79690542f7a267b82f3acff",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:42+00:00",
+  "statement": "显示题号: JD050\n内部 ID: 7154\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在沙盘上画了一个数字阵列：「从M到N，全部列出来，再算和。如果M比N大，先交换。」李少白从M一路数到N，把每个数刻在石板上。\n\n## 输入描述\n若干行，每行两个整数M和N。以两个0结束。\n\n## 输出描述\n每组：先输出序列（空格隔开），再输出 `Sum=S`。\n\n## 样例\n[\n  {\n    \"input\": \"5 10\\n2 3\\n0 0\",\n    \"output\": \"5 6 7 8 9 10 Sum=45\\n2 3 Sum=5\"\n  }\n]\n\n## 提示\n循环从M到N输出并累加。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    ll n, m;\n    while(std::cin >> n >> m){\n        if(!n and !m or n < 0 or m < 0) break;\n        ll sum = 0;\n        for(ll i = min(n, m); i <= max(n, m); ++i) printf(\"%lld \", i), sum += i;\n        printf(\"Sum=%lld\\n\", sum);\n    }\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

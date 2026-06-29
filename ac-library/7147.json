@@ -1,0 +1,12 @@
+{
+  "internal_id": 7147,
+  "display_id": "JD043",
+  "title": "正剑除邪",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "546e0bcba36d3d5fda2de05a10e383f7",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:14+00:00",
+  "statement": "显示题号: JD043\n内部 ID: 7147\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功房的石板上有10道剑气留下的痕迹，每道痕迹上刻着一个数。其中有些数带着邪气（负数或零），梁嘉峰让李少白运起纯阳内力，把这些不纯正的数全部净化，替换成1——象征正气归于一元。\n\n## 输入描述\n一行，10个整数，用空格隔开。\n\n## 输出描述\n替换后的10个数，每行格式为 `X[i] = 值`。\n\n## 样例\n[\n  {\n    \"input\": \"-73\\n27\\n-35\\n50\\n-67\\n86\\n39\\n-81\\n-7\\n31\",\n    \"output\": \"X[0] = 1\\nX[1] = 27\\nX[2] = 1\\nX[3] = 50\\nX[4] = 1\\nX[5] = 86\\nX[6] = 39\\nX[7] = 1\\nX[8] = 1\\nX[9] = 31\"\n  }\n]\n\n## 提示\n遍历数组，将≤0的元素替换为1。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int a[10];\n    for (int i = 0; i < 10; ++i) {\n        cin >> a[i];\n        if (a[i] <= 0) a[i] = 1;\n    }\n\n    for (int i = 0; i < 10; ++i) {\n        cout << \"X[\" << i << \"] = \" << a[i] << endl;\n    }\n    return 0;\n}"
+}

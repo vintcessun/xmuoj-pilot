@@ -1,0 +1,12 @@
+{
+  "internal_id": 7202,
+  "display_id": "JD098",
+  "title": "倒转铁链",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f9ba77c09226c3c8f9d4880aee14f8c8",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:47:02+00:00",
+  "statement": "显示题号: JD098\n内部 ID: 7202\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器阁的架子上挂着一串铁环，每个环上刻着一个数字，从头到尾依次是1、2、3……最后一个环上刻着-1，表示链条结束。\n\n梁嘉峰指着铁链说：\"我要从最后一个环开始，把数字一个个报出来。但这串铁环只能从前往后读，不能直接跳到末尾。\"\n\n赵晴儿想了想：\"用一个容器——先把所有数字存进去，再从后往前取出来。这就像把铁环一个个摘下来放到盒子里，最后从盒子里倒着取。\"\n\n## 输入描述\n一行整数，以-1结尾，表示链表的节点值（-1不算节点）。\n\n## 输出描述\n从尾到头输出每个节点的值，每行一个。\n\n## 样例\n[\n  {\n    \"input\": \"1 2 3 -1\",\n    \"output\": \"3\\n2\\n1\"\n  }\n]\n\n## 提示\n用栈存储所有节点值，然后依次弹出。或者用递归。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n \nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    std::vector<int> a;\n    while(true){\n        int x = read();\n        if(x == -1) break;\n        a.push_back(x);\n    }\n    std::reverse(a.begin(), a.end());\n    for(auto& x : a) printf(\"%d\\n\", x);\n}\n \nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7180,
+  "display_id": "JD076",
+  "title": "古卷插字",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "a14783879c706575b77989e25ca6d2c6",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:33+00:00",
+  "statement": "显示题号: JD076\n内部 ID: 7180\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白两段古卷残篇，要把后一段插到前一段ASCII码最大的字符后面。\n\n## 输入描述\n若干行，每行两个字符串str和substr，用空格隔开。\n\n## 输出描述\n每行输出插入后的字符串。\n\n## 样例\n[\n  {\n    \"input\": \"hello\\nX\",\n    \"output\": \"helloX\"\n  }\n]\n\n## 提示\n找到str中ASCII值最大的字符的位置，把substr插在它后面。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    string str, sub;\n    while (cin >> str >> sub) {\n        int pos = 0;\n        char maxChar = str[0];\n        for (int i = 1; i < (int)str.size(); ++i) {\n            if (str[i] > maxChar) {\n                maxChar = str[i];\n                pos = i;\n            }\n        }\n        str.insert(pos + 1, sub);\n        cout << str << endl;\n    }\n    return 0;\n}"
+}

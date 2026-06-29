@@ -1,0 +1,12 @@
+{
+  "internal_id": 7135,
+  "display_id": "JD031",
+  "title": "反复之门",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "d3d10f2f0bacb3b28bb45d6d55cf6288",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:42:24+00:00",
+  "statement": "显示题号: JD031\n内部 ID: 7135\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n千层塔的某一层有一扇不断重复的门。每次门前出现一个数X：如果X不为0，就从1数到X；如果X为0，修炼结束。\n\n## 输入描述\n若干行，每行一个整数X。以0结束。\n\n## 输出描述\n对每个非零的X，输出1到X，每行一个数。每组之间空一行。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n10\\n3\\n0\",\n    \"output\": \"1 2 3 4 5\\n1 2 3 4 5 6 7 8 9 10\\n1 2 3\"\n  }\n]\n\n## 提示\n外层while循环读入X，遇到0停止。内层for循环从1到X输出。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    int n;\n    while(std::cin >> n){\n        if(!n) break;\n        for(int i = 1; i < n; ++i) printf(\"%d \", i); printf(\"%d\\n\", n);\n    }\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

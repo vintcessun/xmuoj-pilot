@@ -1,0 +1,12 @@
+{
+  "internal_id": 7206,
+  "display_id": "JD102",
+  "title": "三元归序",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "799e381af99a4db9d4139e66375b1282",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:47:20+00:00",
+  "statement": "显示题号: JD102\n内部 ID: 7206\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器阁的账房先生有一本厚厚的兵器账本，每条记录记着三样东西：兵器编号x、重量y（带两位小数）、兵器名称z。\n\n\"这本账太乱了，\"赵晴儿翻了几页就头疼，\"编号不按顺序，同编号的重量也乱排。\"\n\n梁嘉峰说：\"先按编号从小到大排，编号相同的再按重量从小到大排。你可以用结构体存每条记录，放进容器里，再自定义排序规则。\"\n\n## 输入描述\n第一行一个整数N。接下来N行，每行两个整数和一个字符串。\n\n## 输出描述\n排序后的N条记录，每行一条。x输出整数，y输出保留两位小数的浮点数，字符串原样输出，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"3\\n1 2 abc\\n3 4 def\\n2 1 ghi\",\n    \"output\": \"1 2.00 abc\\n2 1.00 ghi\\n3 4.00 def\"\n  }\n]\n\n## 提示\n定义结构体存储三元组，自定义比较函数：先比x，再比y。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n\nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    struct X {\n        int x; double y; std::string z;\n    };\n    int n = read();\n    std::vector<X> v(n);\n    for(auto& [x, y, z] : v) std::cin >> x >> y >> z;\n    std::sort(v.begin(), v.end(), [](const X& a, const X& b){\n        if(a.x != b.x) return a.x < b.x;\n        return a.y < b.y;\n    });\n\n    for(auto& [x, y, z] : v){\n        printf(\"%d %.2lf %s\\n\", x, y, z.c_str());\n    }\n}\n\nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

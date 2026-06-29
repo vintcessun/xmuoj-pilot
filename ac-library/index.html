@@ -1,0 +1,5243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XMUOJ AC 参考代码库</title>
+<style>
+body { font-family: system-ui, "Segoe UI", sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+th { background: #f6f8fa; }
+pre { background: #0d1117; color: #e6edf3; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+section { border-top: 1px solid #ddd; padding-top: 1rem; }
+a { color: #0969da; }
+</style>
+</head>
+<body>
+<h1>XMUOJ AC 参考代码库</h1>
+<table><thead><tr><th>内部 ID</th><th>显示题号</th><th>标题</th><th>分数</th><th>来源比赛</th></tr></thead><tbody>
+<tr><td><a href="#p7105">7105</a></td><td>JD001</td><td>铁令求和</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7106">7106</a></td><td>JD002</td><td>铁令相乘</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7107">7107</a></td><td>JD003</td><td>四令求差</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7108">7108</a></td><td>JD004</td><td>集市算账</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7109">7109</a></td><td>JD005</td><td>比武台</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7110">7110</a></td><td>JD006</td><td>剑术考核</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7111">7111</a></td><td>JD007</td><td>月底发饷</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7112">7112</a></td><td>JD008</td><td>马匹脚力</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7113">7113</a></td><td>JD009</td><td>铁球体积</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7114">7114</a></td><td>JD010</td><td>三令比大</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7115">7115</a></td><td>JD011</td><td>哨塔测距</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7116">7116</a></td><td>JD012</td><td>圆盘开孔</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7117">7117</a></td><td>JD013</td><td>水钟报时</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7118">7118</a></td><td>JD014</td><td>钱庄换银</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7119">7119</a></td><td>JD015</td><td>石碑之谜</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7120">7120</a></td><td>JD016</td><td>三根木棍</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7121">7121</a></td><td>JD017</td><td>比武时辰</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7122">7122</a></td><td>JD018</td><td>三石排序</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7123">7123</a></td><td>JD019</td><td>杂货铺</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7124">7124</a></td><td>JD020</td><td>内力分级</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7125">7125</a></td><td>JD021</td><td>沙盘点位</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7126">7126</a></td><td>JD022</td><td>跨夜比武</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7127">7127</a></td><td>JD023</td><td>账房调薪</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7128">7128</a></td><td>JD024</td><td>五关考验</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7129">7129</a></td><td>JD025</td><td>信鸽传信</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7130">7130</a></td><td>JD026</td><td>木棍辨形</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7131">7131</a></td><td>JD027</td><td>怪兽辨识</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7132">7132</a></td><td>JD028</td><td>田赋计算</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7133">7133</a></td><td>JD029</td><td>石砖偶数</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7134">7134</a></td><td>JD030</td><td>奇数石砖</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7135">7135</a></td><td>JD031</td><td>反复之门</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7136">7136</a></td><td>JD032</td><td>六奇连珠</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7137">7137</a></td><td>JD033</td><td>正数清点</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7138">7138</a></td><td>JD034</td><td>余数寻踪</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7139">7139</a></td><td>JD035</td><td>区间计数</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7140">7140</a></td><td>JD036</td><td>奇数求和</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7141">7141</a></td><td>JD037</td><td>数链连珠</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7142">7142</a></td><td>JD038</td><td>石中之王</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7143">7143</a></td><td>JD039</td><td>约数寻踪</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7144">7144</a></td><td>JD040</td><td>九九归真</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7145">7145</a></td><td>JD041</td><td>千层阵列</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7146">7146</a></td><td>JD042</td><td>兵刃统计</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7147">7147</a></td><td>JD043</td><td>正剑除邪</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7148">7148</a></td><td>JD044</td><td>翻倍剑阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7149">7149</a></td><td>JD045</td><td>剑中取精</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7150">7150</a></td><td>JD046</td><td>剑阵倒转</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7151">7151</a></td><td>JD047</td><td>剑锋所指</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7152">7152</a></td><td>JD048</td><td>二气相生</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7153">7153</a></td><td>JD049</td><td>斐波剑诀</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7154">7154</a></td><td>JD050</td><td>列阵求和</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7155">7155</a></td><td>JD051</td><td>剑行取道</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7156">7156</a></td><td>JD052</td><td>剑列纵横</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7157">7157</a></td><td>JD053</td><td>完璧归宗</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7158">7158</a></td><td>JD054</td><td>剑意之质</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7159">7159</a></td><td>JD055</td><td>上方剑域</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7160">7160</a></td><td>JD056</td><td>下方剑域</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7161">7161</a></td><td>JD057</td><td>左方剑域</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7162">7162</a></td><td>JD058</td><td>右方剑域</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7163">7163</a></td><td>JD059</td><td>右上剑角</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7164">7164</a></td><td>JD060</td><td>左上剑角</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7165">7165</a></td><td>JD061</td><td>右下剑角</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7166">7166</a></td><td>JD062</td><td>左下剑角</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7167">7167</a></td><td>JD063</td><td>方圆初阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7168">7168</a></td><td>JD064</td><td>镜像方阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7169">7169</a></td><td>JD065</td><td>倍增方阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7170">7170</a></td><td>JD066</td><td>蛇形剑阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7171">7171</a></td><td>JD067</td><td>古卷测长</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7172">7172</a></td><td>JD068</td><td>密文留白</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7173">7173</a></td><td>JD069</td><td>墨迹遮字</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7174">7174</a></td><td>JD070</td><td>经文重构</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7175">7175</a></td><td>JD071</td><td>密文数符</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7176">7176</a></td><td>JD072</td><td>拳掌对决</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7177">7177</a></td><td>JD073</td><td>经文加密</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7178">7178</a></td><td>JD074</td><td>古卷替换</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7179">7179</a></td><td>JD075</td><td>寻最长词</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7180">7180</a></td><td>JD076</td><td>古卷插字</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7181">7181</a></td><td>JD077</td><td>独字寻踪</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7182">7182</a></td><td>JD078</td><td>两卷对校</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7183">7183</a></td><td>JD079</td><td>经文周期</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7184">7184</a></td><td>JD080</td><td>密文跨距</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7185">7185</a></td><td>JD081</td><td>初窥阶乘</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7186">7186</a></td><td>JD082</td><td>比剑取大</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7187">7187</a></td><td>JD083</td><td>剑气归正</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7188">7188</a></td><td>JD084</td><td>双剑互易</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7189">7189</a></td><td>JD085</td><td>辗转相除</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7190">7190</a></td><td>JD086</td><td>剑阵复制</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7191">7191</a></td><td>JD087</td><td>剑阵翻转</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7192">7192</a></td><td>JD088</td><td>印数成招</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7193">7193</a></td><td>JD089</td><td>印阵成招</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7194">7194</a></td><td>JD090</td><td>剑阵排序</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7195">7195</a></td><td>JD091</td><td>递归阶乘</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7196">7196</a></td><td>JD092</td><td>递归斐波</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7197">7197</a></td><td>JD093</td><td>登阶问道</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7198">7198</a></td><td>JD094</td><td>方阵寻路</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7199">7199</a></td><td>JD095</td><td>全排列阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7200">7200</a></td><td>JD096</td><td>空格替换</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7201">7201</a></td><td>JD097</td><td>再算斐波</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7202">7202</a></td><td>JD098</td><td>倒转铁链</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7203">7203</a></td><td>JD099</td><td>双栈为队</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7204">7204</a></td><td>JD100</td><td>铁链翻转</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7205">7205</a></td><td>JD101</td><td>双链归并</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7206">7206</a></td><td>JD102</td><td>三元归序</td><td>100.0</td><td>359</td></tr>
+</tbody></table>
+<section id="p7105">
+<h2>内部 ID 7105（JD001 铁令求和）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7105.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read();
+    printf(&quot;%lld\n&quot;, a + b);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7106">
+<h2>内部 ID 7106（JD002 铁令相乘）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7106.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read();
+    printf(&quot;PROD = %lld\n&quot;, a * b);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7107">
+<h2>内部 ID 7107（JD003 四令求差）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7107.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read(), c = read(), d = read();
+    printf(&quot;DIFFERENCE = %lld\n&quot;, a * b - c * d);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7108">
+<h2>内部 ID 7108（JD004 集市算账）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7108.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int id = read();
+    ll num = read();
+    double a; std::cin &gt;&gt; a;
+    printf(&quot;TOTAL = %.2lf\n&quot;, num * a);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7109">
+<h2>内部 ID 7109（JD005 比武台）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7109.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double r; std::cin &gt;&gt; r;
+    printf(&quot;A=%.4lf\n&quot;, r * r * 3.14159);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7110">
+<h2>内部 ID 7110（JD006 剑术考核）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7110.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double a, b; std::cin &gt;&gt; a &gt;&gt; b;
+    printf(&quot;Average = %.5lf\n&quot;, (a * 3.5 + b * 7.5) / 11.0);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7111">
+<h2>内部 ID 7111（JD007 月底发饷）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7111.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int id; std::cin &gt;&gt; id;
+    int num = read(); double x; std::cin &gt;&gt; x;
+    printf(&quot;NUMBER = %d\nSALARY = U$ %.2lf\n&quot;, id, num * x);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7112">
+<h2>内部 ID 7112（JD008 马匹脚力）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7112.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double a, b;
+    std::cin &gt;&gt; a &gt;&gt; b;
+    printf(&quot;%.3lf km/l&quot;, a / b);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7113">
+<h2>内部 ID 7113（JD009 铁球体积）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7113.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double r;
+    std::cin &gt;&gt; r;
+    printf(&quot;VOLUME = %.3lf\n&quot;, 4.0 / 3.0 * 3.14159 * r * r * r);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7114">
+<h2>内部 ID 7114（JD010 三令比大）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7114.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read(), c = read();
+    printf(&quot;Max = %lld\n&quot;, max(max(a, b), c));
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7115">
+<h2>内部 ID 7115（JD011 哨塔测距）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7115.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double x1, y1, x2, y2;
+    std::cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
+    printf(&quot;%.4lf\n&quot;, sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7116">
+<h2>内部 ID 7116（JD012 圆盘开孔）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7116.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double a, b, c;
+    std::cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    printf(&quot;TRIANGULO: %.3lf\n&quot;, 0.5 * a * c);
+    printf(&quot;CIRCULO: %.3lf\n&quot;, 3.14159 * c * c);
+    printf(&quot;TRAPEZIO: %.3lf\n&quot;, 0.5 * (a + b) * c);
+    printf(&quot;QUADRADO: %.3lf\n&quot;, b * b);
+    printf(&quot;RETANGULO: %.3lf\n&quot;, a * b);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7117">
+<h2>内部 ID 7117（JD013 水钟报时）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7117.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int t = read();
+    printf(&quot;%d:%d:%d\n&quot;, t / 3600, (t % 3600) / 60, t % 60);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7118">
+<h2>内部 ID 7118（JD014 钱庄换银）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7118.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int t = read();
+    printf(&quot;%d\n&quot;, t);
+    const int a[] = {100, 50, 20, 10, 5, 2, 1};
+    for(int i = 0; i &lt; 7; ++i){
+        printf(&quot;%d nota(s) de R$ %d,00\n&quot;, t / a[i], a[i]);
+        t %= a[i];
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7119">
+<h2>内部 ID 7119（JD015 石碑之谜）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7119.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read();
+    puts(a % b == 0 or b % a == 0 ? &quot;Yes&quot; : &quot;No&quot;);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7120">
+<h2>内部 ID 7120（JD016 三根木棍）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7120.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double a, b, c;
+    std::cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    if(a + b &gt; c and a + c &gt; b and b + c &gt; a){
+        printf(&quot;Perimeter = %.1lf\n&quot;, a + b + c);
+    }
+    else printf(&quot;Area = %.1lf\n&quot;, 0.5 * (a + b) * c);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7121">
+<h2>内部 ID 7121（JD017 比武时辰）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7121.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int a = read(), b = read();
+    printf(&quot;%d\n&quot;, b - a &gt; 0 ? b - a : b - a + 24);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7122">
+<h2>内部 ID 7122（JD018 三石排序）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7122.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    std::vector&lt;ll&gt; a(3);
+    for(auto &amp;x : a) x = read();
+    std::sort(a.begin(), a.end());
+    for(auto&amp; x : a) printf(&quot;%lld &quot;, x);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7123">
+<h2>内部 ID 7123（JD019 杂货铺）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7123.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    const double a[] = {4.00, 4.50, 5.00, 2.00, 1.50};
+    int n = read(), x = read();
+    printf(&quot;Total: R$ %.2lf\n&quot;, a[n - 1] * x);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7124">
+<h2>内部 ID 7124（JD020 内力分级）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7124.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double x; std::cin &gt;&gt; x;
+    if(x &gt;= 0 and x &lt;= 25) puts(&quot;Interval [0,25]&quot;);
+    else if(x &gt; 25 and x &lt; 50) puts(&quot;Interval (25,50]&quot;);
+    else if(x &gt; 50 and x &lt; 75) puts(&quot;Interval (50,75]&quot;);
+    else if(x &gt; 75 and x &lt;= 100) puts(&quot;Interval (75,100]&quot;);
+    else puts(&quot;Out of interval&quot;);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7125">
+<h2>内部 ID 7125（JD021 沙盘点位）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7125.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double x, y; std::cin &gt;&gt; x &gt;&gt; y;
+    if(x == 0 and y == 0) puts(&quot;Origem&quot;);
+    else if(x == 0) puts(&quot;Eixo Y&quot;);
+    else if(y == 0) puts(&quot;Eixo X&quot;);
+    else if(x &gt; 0 and y &gt; 0) puts(&quot;Q1&quot;);
+    else if(x &lt; 0 and y &gt; 0) puts(&quot;Q2&quot;);
+    else if(x &lt; 0 and y &lt; 0) puts(&quot;Q3&quot;);
+    else if(x &gt; 0 and y &lt; 0) puts(&quot;Q4&quot;);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7126">
+<h2>内部 ID 7126（JD022 跨夜比武）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7126.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int a = read(), b = read(), c = read(), d = read();
+    int t1 = a * 60 + b, t2 = c * 60 + d;
+    int t = t2 &gt; t1 ? t2 - t1 : 1440 - t1 + t2;
+    printf(&quot;%d:%d\n&quot;, t / 60, t % 60);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7127">
+<h2>内部 ID 7127（JD023 账房调薪）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7127.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    double salary;
+    cin &gt;&gt; salary;
+
+    int p; // 涨幅百分比（整数）
+    if (salary &lt;= 400.0) p = 15;
+    else if (salary &lt;= 800.0) p = 12;
+    else if (salary &lt;= 1200.0) p = 10;
+    else if (salary &lt;= 2000.0) p = 7;
+    else p = 4;
+
+    double increase = salary * p / 100.0;
+    double newSalary = salary + increase;
+
+    cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+    cout &lt;&lt; &quot;New salary: &quot; &lt;&lt; newSalary &lt;&lt; &quot;\n&quot;;
+    cout &lt;&lt; &quot;Increase: &quot; &lt;&lt; increase &lt;&lt; &quot;\n&quot;;
+    cout &lt;&lt; &quot;Percentage: &quot; &lt;&lt; p &lt;&lt; &quot; %\n&quot;;  // 注意空格
+    return 0;
+}</code></pre>
+</section>
+<section id="p7128">
+<h2>内部 ID 7128（JD024 五关考验）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7128.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int a = read(), b = read(), c = read(), d = read();
+    if(b &gt; a and d &gt; a and c + d &gt; a + b and c &gt; 0 and !(a &amp; 1)) puts(&quot;Accepted&quot;);
+    else puts(&quot;Not accepted&quot;);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7129">
+<h2>内部 ID 7129（JD025 信鸽传信）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7129.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read();
+    switch(n){
+        case 61: puts(&quot;Brasilia&quot;); break;
+        case 71: puts(&quot;Salvador&quot;); break;
+        case 11: puts(&quot;Sao Paulo&quot;); break;
+        case 21: puts(&quot;Rio de Janeiro&quot;); break;
+        case 32: puts(&quot;Juiz de Fora&quot;); break;
+        case 19: puts(&quot;Campinas&quot;); break;
+        case 27: puts(&quot;Vitoria&quot;); break;
+        case 31: puts(&quot;Belo Horizonte&quot;); break;
+        default: puts(&quot;DDD nao cadastrado&quot;); break;
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7130">
+<h2>内部 ID 7130（JD026 木棍辨形）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7130.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+ 
+int main() {
+    double sides[3];
+    cin &gt;&gt; sides[0] &gt;&gt; sides[1] &gt;&gt; sides[2];
+ 
+    // 降序排列，确保 sides[0] 为最长边
+    sort(sides, sides + 3, greater&lt;double&gt;());
+    double a = sides[0], b = sides[1], c = sides[2];
+ 
+    // 1. 是否能构成三角形
+    if (a &gt;= b + c) {
+        cout &lt;&lt; &quot;Not a triangle&quot; &lt;&lt; endl;
+        return 0;
+    }
+ 
+    // 2. 角类型（根据最长边平方与另外两边平方和的关系）
+    double a2 = a * a, b2 = b * b, c2 = c * c;
+    if (fabs(a2 - (b2 + c2)) &lt; 1e-9)
+        cout &lt;&lt; &quot;Right&quot; &lt;&lt; endl;
+    else if (a2 &gt; b2 + c2)
+        cout &lt;&lt; &quot;Obtuse&quot; &lt;&lt; endl;
+    else
+        cout &lt;&lt; &quot;Acute&quot; &lt;&lt; endl;
+ 
+    // 3. 边类型（等腰/等边）
+    if (fabs(a - b) &lt; 1e-9 &amp;&amp; fabs(b - c) &lt; 1e-9)
+        cout &lt;&lt; &quot;Equilateral&quot; &lt;&lt; endl;
+    else if (fabs(a - b) &lt; 1e-9 || fabs(b - c) &lt; 1e-9 || fabs(a - c) &lt; 1e-9)
+        cout &lt;&lt; &quot;Isosceles&quot; &lt;&lt; endl;
+    // 不等边不输出额外行
+ 
+    return 0;
+}</code></pre>
+</section>
+<section id="p7131">
+<h2>内部 ID 7131（JD027 怪兽辨识）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7131.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+int main()
+{
+    string a, b, c;
+
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+
+    if (a == &quot;vertebrado&quot;)
+    {
+        if (b == &quot;ave&quot;)
+        {
+            if (c == &quot;carnivoro&quot;)
+                cout &lt;&lt; &quot;aguia&quot;;
+            else
+                cout &lt;&lt; &quot;pomba&quot;;
+        }
+        else if (b == &quot;mamifero&quot;)
+        {
+            if (c == &quot;onivoro&quot;)
+                cout &lt;&lt; &quot;homem&quot;;
+            else
+                cout &lt;&lt; &quot;vaca&quot;;
+        }
+    }
+    else if (a == &quot;invertebrado&quot;)
+    {
+        if (b == &quot;inseto&quot;)
+        {
+            if (c == &quot;hematofago&quot;)
+                cout &lt;&lt; &quot;pulga&quot;;
+            else
+                cout &lt;&lt; &quot;lagarta&quot;;
+        }
+        else if (b == &quot;anelideo&quot;)
+        {
+            if (c == &quot;hematofago&quot;)
+                cout &lt;&lt; &quot;sanguessuga&quot;;
+            else
+                cout &lt;&lt; &quot;minhoca&quot;;
+        }
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7132">
+<h2>内部 ID 7132（JD028 田赋计算）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7132.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    double x;
+    cin &gt;&gt; x;
+
+    if (x &lt;= 2000.0) {
+        cout &lt;&lt; &quot;Isento&quot; &lt;&lt; endl;
+        return 0;
+    }
+
+    double tax = 0.0;
+    // 区间 (2000, 3000] 按 8%
+    if (x &gt; 3000.0) tax += 1000.0 * 0.08;
+    else tax += (x - 2000.0) * 0.08;
+
+    // 区间 (3000, 4500] 按 18%
+    if (x &gt; 4500.0) tax += 1500.0 * 0.18;
+    else if (x &gt; 3000.0) tax += (x - 3000.0) * 0.18;
+
+    // 区间 (4500, +∞) 按 28%
+    if (x &gt; 4500.0) tax += (x - 4500.0) * 0.28;
+
+    cout &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; &quot;R$ &quot; &lt;&lt; tax &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7133">
+<h2>内部 ID 7133（JD029 石砖偶数）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7133.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+   // int x = read();
+    for(int i = 2; i &lt;= 100; i += 2){
+        printf(&quot;%d\n&quot;, i);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7134">
+<h2>内部 ID 7134（JD030 奇数石砖）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7134.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int x = read();
+    for(int i = 1; i &lt;= x; i += 2){
+        printf(&quot;%d\n&quot;, i);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7135">
+<h2>内部 ID 7135（JD031 反复之门）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7135.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n;
+    while(std::cin &gt;&gt; n){
+        if(!n) break;
+        for(int i = 1; i &lt; n; ++i) printf(&quot;%d &quot;, i); printf(&quot;%d\n&quot;, n);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7136">
+<h2>内部 ID 7136（JD032 六奇连珠）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7136.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read();
+    int cnt = 0;
+    for(int i = n + 1; cnt &lt; 6; ++i){
+        if(i &amp; 1) ++cnt, printf(&quot;%d\n&quot;, i);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7137">
+<h2>内部 ID 7137（JD033 正数清点）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7137.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int cnt = 0;
+    double x;
+    for(int i = 0; i &lt; 6; ++i){
+        std::cin &gt;&gt; x;
+        if(x &gt; 0) ++cnt;
+    }
+    printf(&quot;%d positive numbers\n&quot;, cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7138">
+<h2>内部 ID 7138（JD034 余数寻踪）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7138.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read();
+    for(int i = 1; i &lt;= 10000; ++i){
+        if(i % n == 2) printf(&quot;%d\n&quot;, i);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7139">
+<h2>内部 ID 7139（JD035 区间计数）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7139.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read();
+    std::vector&lt;int&gt; a(n);
+    int cnt = 0;
+    for(auto&amp; x : a){
+        x = read();
+        if(x &gt;= 10 and x &lt;= 20) ++cnt;
+    }
+    printf(&quot;%d in\n%d out\n&quot;, cnt, n - cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7140">
+<h2>内部 ID 7140（JD036 奇数求和）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7140.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll sum = 0;
+    ll x = read(), y = read();
+    for(ll i = min(x, y) + 1; i &lt; max(x, y); ++i){
+        if(i &amp; 1) sum += i;
+    }
+    printf(&quot;%lld\n&quot;, sum);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7141">
+<h2>内部 ID 7141（JD037 数链连珠）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7141.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read();
+    int x = -1;
+    while(x &lt;= 0) x = read();
+    printf(&quot;%lld\n&quot;, (a + a + x - 1) * x / 2);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7142">
+<h2>内部 ID 7142（JD038 石中之王）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7142.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read();
+    assert(n &lt;= 1e6);
+    std::vector&lt;int&gt; a;
+    int x;
+    while(std::cin &gt;&gt; x) a.push_back(x);
+    auto it = std::max_element(a.begin(), a.end());
+    printf(&quot;%d\n%d\n&quot;, *it, it - a.begin() + 1);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7143">
+<h2>内部 ID 7143（JD039 约数寻踪）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7143.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read();
+    for(int i = 1; i &lt;= n; ++i){
+        if(n % i == 0) printf(&quot;%d\n&quot;, i);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7144">
+<h2>内部 ID 7144（JD040 九九归真）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7144.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read();
+    for(int i = 1; i &lt;= 10; ++i) printf(&quot;%d x %d = %d\n&quot;, i, n, n * i);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7145">
+<h2>内部 ID 7145（JD041 千层阵列）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7145.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read(), m = read();
+    for(int i = 1; i &lt;= n; ++i){
+        for(int j = 1; j &lt; m; ++j){
+            printf(&quot;%d &quot;, (i - 1) * m + j);
+        }
+        puts(&quot;SWORD&quot;);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7146">
+<h2>内部 ID 7146（JD042 兵刃统计）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7146.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+
+    int total = 0;
+    int cntC = 0, cntR = 0, cntF = 0;
+
+    for (int i = 0; i &lt; N; ++i) {
+        int num;
+        char type;
+        cin &gt;&gt; num &gt;&gt; type;
+        total += num;
+        if (type == &#x27;C&#x27;) cntC += num;
+        else if (type == &#x27;R&#x27;) cntR += num;
+        else if (type == &#x27;F&#x27;) cntF += num;
+    }
+
+    cout &lt;&lt; &quot;Total: &quot; &lt;&lt; total &lt;&lt; &quot; weapons\n&quot;;
+    cout &lt;&lt; &quot;Total swords: &quot; &lt;&lt; cntC &lt;&lt; &quot;\n&quot;;
+    cout &lt;&lt; &quot;Total blades: &quot; &lt;&lt; cntR &lt;&lt; &quot;\n&quot;;
+    cout &lt;&lt; &quot;Total spears: &quot; &lt;&lt; cntF &lt;&lt; &quot;\n&quot;;
+
+    cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+    cout &lt;&lt; &quot;Percentage of swords: &quot; &lt;&lt; (cntC * 100.0 / total) &lt;&lt; &quot; %\n&quot;;
+    cout &lt;&lt; &quot;Percentage of blades: &quot; &lt;&lt; (cntR * 100.0 / total) &lt;&lt; &quot; %\n&quot;;
+    cout &lt;&lt; &quot;Percentage of spears: &quot; &lt;&lt; (cntF * 100.0 / total) &lt;&lt; &quot; %\n&quot;;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7147">
+<h2>内部 ID 7147（JD043 正剑除邪）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7147.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int a[10];
+    for (int i = 0; i &lt; 10; ++i) {
+        cin &gt;&gt; a[i];
+        if (a[i] &lt;= 0) a[i] = 1;
+    }
+
+    for (int i = 0; i &lt; 10; ++i) {
+        cout &lt;&lt; &quot;X[&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt; a[i] &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7148">
+<h2>内部 ID 7148（JD044 翻倍剑阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7148.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int V;
+    cin &gt;&gt; V;
+    for (int i = 0; i &lt; 10; ++i) {
+        cout &lt;&lt; &quot;N[&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt; V &lt;&lt; endl;
+        V *= 2;
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7149">
+<h2>内部 ID 7149（JD045 剑中取精）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7149.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    double a[100];
+    for (int i = 0; i &lt; 100; ++i) {
+        cin &gt;&gt; a[i];
+    }
+
+    cout &lt;&lt; fixed &lt;&lt; setprecision(1);
+    for (int i = 0; i &lt; 100; ++i) {
+        if (a[i] &lt;= 10.0) {
+            cout &lt;&lt; &quot;A[&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt; a[i] &lt;&lt; endl;
+        }
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7150">
+<h2>内部 ID 7150（JD046 剑阵倒转）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7150.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main() {
+    int a[20];
+    for (int i = 0; i &lt; 20; ++i) cin &gt;&gt; a[i];
+    for (int i = 19; i &gt;= 0; --i) {
+        cout &lt;&lt; &quot;N[&quot; &lt;&lt; (19 - i) &lt;&lt; &quot;] = &quot; &lt;&lt; a[i] &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7151">
+<h2>内部 ID 7151（JD047 剑锋所指）</h2>
+<p>分数：100.0 ｜ 语言：Python3 ｜ <a href="7151.json">JSON</a></p>
+<pre><code>import sys
+
+def main():
+    data = sys.stdin.read().strip().split()
+    if not data:
+        return
+
+    n = int(data[0])
+    nums = list(map(int, data[1:1+n]))
+    if n == 0:
+        return
+    min_val = min(nums)
+    pos = nums.index(min_val)  # 返回第一个最小值的索引
+    print(f&quot;Menor valor: {min_val}&quot;)
+    print(f&quot;Posicao: {pos}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+</section>
+<section id="p7152">
+<h2>内部 ID 7152（JD048 二气相生）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7152.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+
+    long long a = 0, b = 1;   // F(0) 和 F(1)
+    if (N == 0) {
+        cout &lt;&lt; a &lt;&lt; endl;
+        return 0;
+    }
+    if (N == 1) {
+        cout &lt;&lt; b &lt;&lt; endl;
+        return 0;
+    }
+
+    for (int i = 2; i &lt;= N; ++i) {
+        long long c = a + b;
+        a = b;
+        b = c;
+    }
+    cout &lt;&lt; b &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7153">
+<h2>内部 ID 7153（JD049 斐波剑诀）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7153.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+std::vector&lt;ull&gt; fib(80);
+
+void pre(){
+    fib[0] = 0, fib[1] = 1;
+    for(int i = 2; i &lt; 80; ++i) fib[i] = fib[i-1] + fib[i-2];
+}
+
+void solve(){
+    int n = read();
+    for(int i = 0; i &lt; n; ++i) printf(&quot;%llu &quot;, fib[i]);
+    puts(&quot;&quot;);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    pre();
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7154">
+<h2>内部 ID 7154（JD050 列阵求和）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7154.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    ll n, m;
+    while(std::cin &gt;&gt; n &gt;&gt; m){
+        if(!n and !m or n &lt; 0 or m &lt; 0) break;
+        ll sum = 0;
+        for(ll i = min(n, m); i &lt;= max(n, m); ++i) printf(&quot;%lld &quot;, i), sum += i;
+        printf(&quot;Sum=%lld\n&quot;, sum);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7155">
+<h2>内部 ID 7155（JD051 剑行取道）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7155.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int L;
+    char op;
+
+    cin &gt;&gt; L;
+    cin &gt;&gt; op;
+
+    double a[12][12];
+
+    for (int i = 0; i &lt; 12; i++)
+    {
+        for (int j = 0; j &lt; 12; j++)
+        {
+            cin &gt;&gt; a[i][j];
+        }
+    }
+
+    double sum = 0;
+
+    for (int j = 0; j &lt; 12; j++)
+    {
+        sum += a[L][j];
+    }
+
+    if (op == &#x27;M&#x27;)
+    {
+        sum /= 12;
+    }
+
+    cout &lt;&lt; fixed &lt;&lt; setprecision(1) &lt;&lt; sum &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7156">
+<h2>内部 ID 7156（JD052 剑列纵横）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7156.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int C;
+    char op;
+    cin &gt;&gt; C &gt;&gt; op;
+
+    double sum = 0.0;
+    for (int i = 0; i &lt; 12; ++i) {
+        for (int j = 0; j &lt; 12; ++j) {
+            double x;
+            cin &gt;&gt; x;
+            if (j == C) sum += x;
+        }
+    }
+
+    double ans = (op == &#x27;S&#x27;) ? sum : sum / 12.0;
+    cout &lt;&lt; fixed &lt;&lt; setprecision(1) &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7157">
+<h2>内部 ID 7157（JD053 完璧归宗）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7157.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    const int a[] = {6, 28, 496, 8128, 33550336};
+    int n = read();
+    for(int i = 0; i &lt; 5 and a[i] &lt;= n; ++i){
+        printf(&quot;%d\n&quot;, a[i]);
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7158">
+<h2>内部 ID 7158（JD054 剑意之质）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7158.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+std::vector&lt;int&gt; primes, minp;
+
+void sieve(int n){
+    minp.resize(n+1);
+    for(int i = 2; i &lt;= n; ++i){
+        if(!minp[i]){
+            minp[i] = i;
+            primes.push_back(i);
+        }
+        for(auto j : primes){
+            if(j &gt; minp[i] or j &gt; n / i) break;
+            minp[i*j] = j;
+        }
+    }
+}
+
+void solve(){
+    int n = read();
+    sieve(n);
+    for(auto&amp; p : primes) printf(&quot;%d\n&quot;, p);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7159">
+<h2>内部 ID 7159（JD055 上方剑域）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7159.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(i &lt; j and i + j &lt; 11) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7160">
+<h2>内部 ID 7160（JD056 下方剑域）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7160.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(i &gt; j and i + j &gt; 11) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7161">
+<h2>内部 ID 7161（JD057 左方剑域）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7161.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(j &lt; i and i + j &lt; 11) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7162">
+<h2>内部 ID 7162（JD058 右方剑域）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7162.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(j &gt; i and i + j &gt; 11) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7163">
+<h2>内部 ID 7163（JD059 右上剑角）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7163.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(j &gt; i) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7164">
+<h2>内部 ID 7164（JD060 左上剑角）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7164.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(i + j &lt; 11) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7165">
+<h2>内部 ID 7165（JD061 右下剑角）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7165.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(i + j &gt; 11) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7166">
+<h2>内部 ID 7166（JD062 左下剑角）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7166.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    char tp; std::cin &gt;&gt; tp;
+    std::vector&lt;std::vector&lt;double&gt;&gt; a(12, std::vector&lt;double&gt;(12));
+    for(int i = 0; i &lt; 12; ++i) for(int j = 0; j &lt; 12; ++j) std::cin &gt;&gt; a[i][j];
+    double sum = 0;
+    int cnt = 0;
+    for(int i = 0; i &lt; 12; ++i){
+        for(int j = 0; j &lt; 12; ++j){
+            if(j &lt; i) sum += a[i][j], ++cnt;
+        }
+    }
+    if(tp == &#x27;S&#x27;) printf(&quot;%.1lf\n&quot;, sum);
+    else printf(&quot;%.1lf\n&quot;, sum / cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7167">
+<h2>内部 ID 7167（JD063 方圆初阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7167.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int N;
+    while (cin &gt;&gt; N &amp;&amp; N != 0) {
+        for (int i = 0; i &lt; N; ++i) {
+            for (int j = 0; j &lt; N; ++j) {
+                int val = min(min(i + 1, j + 1), min(N - i, N - j));
+                cout &lt;&lt; setw(3) &lt;&lt; val;
+            }
+            cout &lt;&lt; endl;
+        }
+        cout &lt;&lt; endl;   // 每个矩阵后输出一个空行
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7168">
+<h2>内部 ID 7168（JD064 镜像方阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7168.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int N;
+    while (cin &gt;&gt; N &amp;&amp; N != 0) {
+        for (int i = 0; i &lt; N; ++i) {
+            for (int j = 0; j &lt; N; ++j) {
+                cout &lt;&lt; setw(3) &lt;&lt; abs(i - j) + 1;
+            }
+            cout &lt;&lt; endl;
+        }
+        cout &lt;&lt; endl;   // 每个矩阵后跟一个空行
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7169">
+<h2>内部 ID 7169（JD065 倍增方阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7169.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int N;
+    while (cin &gt;&gt; N &amp;&amp; N != 0) {
+        for (int i = 0; i &lt; N; ++i) {
+            for (int j = 0; j &lt; N; ++j) {
+                cout &lt;&lt; (1 &lt;&lt; (i + j)) &lt;&lt; &quot; &quot;;
+            }
+            cout &lt;&lt; endl;
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7170">
+<h2>内部 ID 7170（JD066 蛇形剑阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7170.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#define re register
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    int n = read(), m = read();
+    const int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};
+    std::vector&lt;std::vector&lt;int&gt;&gt; a(n + 1, std::vector&lt;int&gt;(m + 1, 0));
+    
+    int x = 1, y = 1, dir = 0;
+    for(int cnt = 1; cnt &lt;= n * m; ++cnt){
+        a[x][y] = cnt;
+        int nx = x + dx[dir], ny = y + dy[dir];
+        if(nx &lt; 1 or nx &gt; n or ny &lt; 1 or ny &gt; m or a[nx][ny]){
+            dir = (dir + 1) % 4;
+            nx = x + dx[dir], ny = y + dy[dir];
+        }
+        x = nx, y = ny;
+    }
+
+    for(int i = 1; i &lt;= n; ++i){
+        for(int j = 1; j &lt;= m; ++j){
+            printf(&quot;%d &quot;, a[i][j]);
+        } puts(&quot;&quot;);
+    }
+}
+
+int main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7171">
+<h2>内部 ID 7171（JD067 古卷测长）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7171.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::string s; std::getline(std::cin, s);
+    printf(&quot;%d\n&quot;, s.size());
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7172">
+<h2>内部 ID 7172（JD068 密文留白）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7172.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::string s; std::getline(std::cin, s);
+    for(auto&amp; ch : s) putchar(ch), putchar(32);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7173">
+<h2>内部 ID 7173（JD069 墨迹遮字）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7173.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string s;
+    char ch;
+
+    getline(cin, s);   // 读入字符串
+    cin &gt;&gt; ch;         // 读入要替换的字符
+
+    for (char &amp;c : s) {
+        if (c == ch) c = &#x27;#&#x27;;
+    }
+
+    cout &lt;&lt; s &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7174">
+<h2>内部 ID 7174（JD070 经文重构）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7174.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string a;
+    getline(cin, a);
+    int n = a.size();
+
+    for (int i = 0; i &lt; n; ++i) {
+        int sum = (unsigned char)a[i] + (unsigned char)a[(i + 1) % n];
+        cout &lt;&lt; (char)sum;
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7175">
+<h2>内部 ID 7175（JD071 密文数符）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7175.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::string s; std::getline(std::cin, s);
+    int cnt = 0;
+    for(auto&amp; ch : s) cnt += (isdigit(ch));
+    printf(&quot;%d\n&quot;, cnt);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7176">
+<h2>内部 ID 7176（JD072 拳掌对决）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7176.json">JSON</a></p>
+<pre><code>#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+int main()
+{
+    int n = 1;
+
+    while (n -- )
+    {
+        string a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+
+        int x, y;
+        if (a == &quot;Hunter&quot;) x = 0;
+        else if (a == &quot;Bear&quot;) x = 1;
+        else x = 2;
+
+        if (b == &quot;Hunter&quot;) y = 0;
+        else if (b == &quot;Bear&quot;) y = 1;
+        else y = 2;
+
+        if (x == y) puts(&quot;Tie&quot;);
+        else if (x == (y + 1) % 3) puts(&quot;Player1&quot;);
+        else puts(&quot;Player2&quot;);
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7177">
+<h2>内部 ID 7177（JD073 经文加密）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7177.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::string s; std::getline(std::cin, s);
+    for(auto&amp; ch : s){
+      /*  if(isdigit(ch)){
+            if(ch != &#x27;9&#x27;) ch += 1;
+            else ch = &#x27;0&#x27;;
+        }*/
+        if(isalpha(ch)){
+            if(ch != &#x27;z&#x27; and ch != &#x27;Z&#x27;) ch += 1;
+            else if(ch == &#x27;z&#x27;) ch = &#x27;a&#x27;;
+            else if(ch == &#x27;Z&#x27;) ch = &#x27;A&#x27;;
+        }
+    }
+    std::cout &lt;&lt; s &lt;&lt; std::endl;
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7178">
+<h2>内部 ID 7178（JD074 古卷替换）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7178.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string text;
+    getline(cin, text);
+    string from, to;
+    cin &gt;&gt; from &gt;&gt; to;
+
+    stringstream ss(text);
+    vector&lt;string&gt; words;
+    string word;
+    while (ss &gt;&gt; word) {
+        if (word == from) word = to;
+        words.push_back(word);
+    }
+
+    for (int i = 0; i &lt; (int)words.size(); ++i) {
+        if (i) cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; words[i];
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7179">
+<h2>内部 ID 7179（JD075 寻最长词）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7179.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+    
+    // 去掉末尾的句号
+    if (!s.empty() &amp;&amp; s.back() == &#x27;.&#x27;) s.pop_back();
+
+    stringstream ss(s);
+    string word, longest;
+    while (ss &gt;&gt; word) {
+        if (word.length() &gt; longest.length()) longest = word;
+    }
+    cout &lt;&lt; longest &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7180">
+<h2>内部 ID 7180（JD076 古卷插字）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7180.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string str, sub;
+    while (cin &gt;&gt; str &gt;&gt; sub) {
+        int pos = 0;
+        char maxChar = str[0];
+        for (int i = 1; i &lt; (int)str.size(); ++i) {
+            if (str[i] &gt; maxChar) {
+                maxChar = str[i];
+                pos = i;
+            }
+        }
+        str.insert(pos + 1, sub);
+        cout &lt;&lt; str &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7181">
+<h2>内部 ID 7181（JD077 独字寻踪）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7181.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string s;
+    cin &gt;&gt; s;
+    int cnt[26] = {0};
+    for (char c : s) cnt[c - &#x27;a&#x27;]++;
+    for (char c : s) {
+        if (cnt[c - &#x27;a&#x27;] == 1) {
+            cout &lt;&lt; c &lt;&lt; endl;
+            return 0;
+        }
+    }
+    cout &lt;&lt; &quot;no&quot; &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7182">
+<h2>内部 ID 7182（JD078 两卷对校）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7182.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::vector&lt;std::string&gt; a;
+    std::string s;
+    while(std::getline(std::cin, s)){
+        a.push_back(s);
+    }
+    puts(a[1].find(a[2]) == std::string::npos ? &quot;no&quot; : &quot;yes&quot;);
+}
+
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7183">
+<h2>内部 ID 7183（JD079 经文周期）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7183.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string s;
+    while (cin &gt;&gt; s &amp;&amp; s != &quot;.&quot;) {
+        int n = s.size();
+        for (int p = 1; p &lt;= n; ++p) {
+            if (n % p == 0) {
+                bool ok = true;
+                for (int i = 0; i &lt; n; ++i) {
+                    if (s[i] != s[i % p]) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok) {
+                    cout &lt;&lt; n / p &lt;&lt; endl;
+                    break;
+                }
+            }
+        }
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7184">
+<h2>内部 ID 7184（JD080 密文跨距）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7184.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+    vector&lt;string&gt; parts;
+    stringstream ss(s);
+    string item;
+    while (getline(ss, item, &#x27;,&#x27;)) {
+        parts.push_back(item);
+    }
+    if (parts.size() &lt; 3) return 0;
+    string S = parts[0], S1 = parts[1], S2 = parts[2];
+    size_t pos1 = S.find(S1);
+    size_t pos2 = S.rfind(S2);
+    if (pos1 == string::npos || pos2 == string::npos || pos1 + S1.length() &gt; pos2) {
+        cout &lt;&lt; -1 &lt;&lt; endl;
+    } else {
+        int distance = pos2 - (pos1 + S1.length());
+        cout &lt;&lt; distance &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7185">
+<h2>内部 ID 7185（JD081 初窥阶乘）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7185.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll n = read();
+    ll res = 1;
+    for(int i = 1; i &lt;= n; ++i) res *= i;
+    printf(&quot;%lld\n&quot;, res);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7186">
+<h2>内部 ID 7186（JD082 比剑取大）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7186.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read();
+    printf(&quot;%lld\n&quot;, max(a, b));
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7187">
+<h2>内部 ID 7187（JD083 剑气归正）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7187.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    printf(&quot;%lld\n&quot;, abs(read()));
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7188">
+<h2>内部 ID 7188（JD084 双剑互易）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7188.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read();
+    printf(&quot;%lld %lld\n&quot;, b, a);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7189">
+<h2>内部 ID 7189（JD085 辗转相除）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7189.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ll a = read(), b = read();
+    printf(&quot;%lld\n&quot;, gcd(a, b));
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7190">
+<h2>内部 ID 7190（JD086 剑阵复制）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7190.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read(), m = read(), k = read();
+    for(int i = 1; i &lt;= n; ++i){
+        if(i &lt;= k) printf(&quot;%d &quot;, read());
+        else read();
+    }
+    for(int i = 1; i &lt;= m; ++i){
+        if(i &lt;= k) read();
+        else printf(&quot;%d &quot;, read());
+    }
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7191">
+<h2>内部 ID 7191（JD087 剑阵翻转）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7191.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read(), k = read();
+    std::vector&lt;int&gt; a(n);
+    for(auto&amp; x : a) x = read();
+    std::reverse(a.begin(), a.begin() + k);
+    for(auto&amp; x : a) printf(&quot;%d &quot;, x);
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7192">
+<h2>内部 ID 7192（JD088 印数成招）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7192.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read(), k = read();
+    for(int i = 0; i &lt; k; ++i) printf(&quot;%d &quot;, read());
+}
+ 
+signed main(){
+ //   std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7193">
+<h2>内部 ID 7193（JD089 印阵成招）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7193.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+void print2D(int a[][100], int row, int col)
+{
+    for (int i = 0; i &lt; row; i ++ )
+    {
+        for (int j = 0; j &lt; col; j ++ )
+            cout &lt;&lt; a[i][j] &lt;&lt; &#x27; &#x27;;
+        cout &lt;&lt; endl;
+    }
+}
+
+int main()
+{
+    int a[100][100];
+
+    int row, col;
+
+    cin &gt;&gt; row &gt;&gt; col;
+    for (int i = 0; i &lt; row; i ++ )
+        for (int j = 0; j &lt; col; j ++ )
+            cin &gt;&gt; a[i][j];
+
+    print2D(a, row, col);
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7194">
+<h2>内部 ID 7194（JD090 剑阵排序）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7194.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read(), l = read(), r = read();
+    std::vector&lt;int&gt; a(n);
+    for(auto&amp; x : a) x = read();
+    std::sort(a.begin() + l, a.begin() + r + 1);
+    for(auto&amp; x : a) printf(&quot;%d &quot;, x);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7195">
+<h2>内部 ID 7195（JD091 递归阶乘）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7195.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    ull res = 1;
+    int n = read();
+    for(int i = 1; i &lt;= n; ++i) res *= i;
+    printf(&quot;%llu\n&quot;, res);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7196">
+<h2>内部 ID 7196（JD092 递归斐波）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7196.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    std::vector&lt;ull&gt; fib(100);
+    fib[0] = 0, fib[1] = 1;
+    for(int i = 2; i &lt; 100; ++i) fib[i] = fib[i - 1] + fib[i - 2];
+    printf(&quot;%llu\n&quot;, fib[read()]);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7197">
+<h2>内部 ID 7197（JD093 登阶问道）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7197.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    std::vector&lt;ull&gt; fib(100);
+    fib[0] = 0, fib[1] = 1;
+    for(int i = 2; i &lt; 100; ++i) fib[i] = fib[i - 1] + fib[i - 2];
+    printf(&quot;%llu\n&quot;, fib[read() + 1]);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7198">
+<h2>内部 ID 7198（JD094 方阵寻路）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7198.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read(), m = read();
+    ll res = 1;
+    for(int i = 0; i &lt; n; ++i) res *= (n + m - i);
+    for(int i = 0; i &lt; n; ++i) res /= (i + 1);
+    printf(&quot;%lld\n&quot;, res);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7199">
+<h2>内部 ID 7199（JD095 全排列阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7199.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n = read();
+    std::vector&lt;int&gt; a(n);
+    std::iota(a.begin(), a.end(), 1);
+    do{
+        printf(&quot;%d&quot;, a[0]);
+        for(int i = 1; i &lt; n; ++i) printf(&quot; %d&quot;, a[i]);
+        puts(&quot;&quot;);
+    } while(std::next_permutation(a.begin(), a.end()));
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7200">
+<h2>内部 ID 7200（JD096 空格替换）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7200.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    std::string s;
+    std::getline(std::cin, s);
+    for(auto&amp; ch : s){
+        if(ch == &#x27; &#x27;) printf(&quot;%%20&quot;);
+        else putchar(ch);
+    }
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7201">
+<h2>内部 ID 7201（JD097 再算斐波）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7201.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    std::vector&lt;ull&gt; fib(100);
+    fib[0] = 0, fib[1] = 1;
+    for(int i = 2; i &lt; 100; ++i) fib[i] = fib[i - 1] + fib[i - 2];
+    printf(&quot;%llu\n&quot;, fib[read()]);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7202">
+<h2>内部 ID 7202（JD098 倒转铁链）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7202.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    std::vector&lt;int&gt; a;
+    while(true){
+        int x = read();
+        if(x == -1) break;
+        a.push_back(x);
+    }
+    std::reverse(a.begin(), a.end());
+    for(auto&amp; x : a) printf(&quot;%d\n&quot;, x);
+}
+ 
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7203">
+<h2>内部 ID 7203（JD099 双栈为队）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7203.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::queue&lt;int&gt; q;
+    std::string op;
+    while(std::cin &gt;&gt; op){
+        if(op == &quot;empty&quot;) puts(q.empty() ? &quot;yes&quot; : &quot;no&quot;);
+        if(op == &quot;push&quot;) q.push(read());
+        if(op == &quot;pop&quot;){
+            printf(&quot;%d\n&quot;, q.front()); q.pop();
+        }
+    }
+}
+
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7204">
+<h2>内部 ID 7204（JD100 铁链翻转）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7204.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::vector&lt;int&gt; a;
+    while(true){
+        int x = read();
+        if(x == -1) break;
+        a.push_back(x);
+    }
+    std::reverse(a.begin(), a.end());
+    for(auto&amp; x : a) printf(&quot;%d &quot;, x);
+}
+
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7205">
+<h2>内部 ID 7205（JD101 双链归并）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7205.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    std::vector&lt;int&gt; a;
+    while(true){
+        int x = read();
+        if(x == -1) break;
+        a.push_back(x);
+    }
+    while(true){
+        int x = read();
+        if(x == -1) break;
+        a.push_back(x);
+    }
+    std::sort(a.begin(), a.end());
+    for(auto&amp; x : a) printf(&quot;%d &quot;, x);
+}
+
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7206">
+<h2>内部 ID 7206（JD102 三元归序）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7206.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+
+void solve(){
+    struct X {
+        int x; double y; std::string z;
+    };
+    int n = read();
+    std::vector&lt;X&gt; v(n);
+    for(auto&amp; [x, y, z] : v) std::cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;
+    std::sort(v.begin(), v.end(), [](const X&amp; a, const X&amp; b){
+        if(a.x != b.x) return a.x &lt; b.x;
+        return a.y &lt; b.y;
+    });
+
+    for(auto&amp; [x, y, z] : v){
+        printf(&quot;%d %.2lf %s\n&quot;, x, y, z.c_str());
+    }
+}
+
+signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+</body>
+</html>

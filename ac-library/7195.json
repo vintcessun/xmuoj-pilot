@@ -1,0 +1,12 @@
+{
+  "internal_id": 7195,
+  "display_id": "JD091",
+  "title": "递归阶乘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "74159cc562979061573f356f62f7ed8c",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:41+00:00",
+  "statement": "显示题号: JD091\n内部 ID: 7195\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白在丹房翻到一本古籍，上面记载着一种\"以丹炼丹\"的奇术——要炼n味丹药，先炼好n-1味；要炼n-1味，先炼好n-2味……直到只剩1味，直接炼成。\n\n赵晴儿看了笑道：\"这就是递归。一个函数调用自己，层层深入，直到触底再层层返回。阶乘的定义本身就是递归的——fact(n) = n × fact(n-1)，fact(1) = 1。\"\n\n\"用递归重新实现阶乘函数。\"\n\n## 输入描述\n一个整数n。\n\n## 输出描述\n输出n的阶乘。\n\n## 样例\n[\n  {\n    \"input\": \"5\",\n    \"output\": \"120\"\n  }\n]\n\n## 提示\n递归三要素：终止条件(n==1返回1)、递推关系(n*fact(n-1))、缩小规模。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n \nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    ull res = 1;\n    int n = read();\n    for(int i = 1; i <= n; ++i) res *= i;\n    printf(\"%llu\\n\", res);\n}\n \nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

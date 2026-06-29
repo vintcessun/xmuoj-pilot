@@ -1,0 +1,12 @@
+{
+  "internal_id": 7185,
+  "display_id": "JD081",
+  "title": "初窥阶乘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c649689930ab78cd25d41cf078c164c4",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:55+00:00",
+  "statement": "显示题号: JD081\n内部 ID: 7185\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白在丹房帮赵晴儿炼丹。丹方上写着：\"取n味药材，第一味放1份，第二味放2份，第三味放3份……第n味放n份。\"\n\n赵晴儿问：\"n味药材总共需要多少份？\"\n\n李少白拿出笔从头算：1×2×3×……×n。赵晴儿摇头：\"每次都要从头算，太慢了。把它封装成一个函数，以后直接调用。\"\n\n请帮李少白编写一个函数，计算n的阶乘（n!）。\n\n## 输入描述\n一个整数n（0 ≤ n ≤ 10）。\n\n## 输出描述\n输出n的阶乘。\n\n## 样例\n[\n  {\n    \"input\": \"3\",\n    \"output\": \"6\"\n  }\n]\n\n## 提示\n函数内用循环累乘，或递归实现。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    ll n = read();\n    ll res = 1;\n    for(int i = 1; i <= n; ++i) res *= i;\n    printf(\"%lld\\n\", res);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

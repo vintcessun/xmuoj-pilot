@@ -1,0 +1,12 @@
+{
+  "internal_id": 7201,
+  "display_id": "JD097",
+  "title": "再算斐波",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "62b6be33e9ebc4c21a46f9a0b4cdbe5c",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:47:00+00:00",
+  "statement": "显示题号: JD097\n内部 ID: 7201\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在兵器阁的账本上翻到一串奇怪的数字：1, 1, 2, 3, 5, 8, 13, 21……\n\n\"这是前辈铸剑师留下的排列规律，\"梁嘉峰说，\"每一柄新剑的重量都是前两柄之和。第1柄和第2柄都是1斤，第3柄就是1+1=2斤，第4柄是1+2=3斤……\"\n\n\"上一章你用递归算过这个数列，但递归太慢了。这次用容器来存——把每一项都推进一个序列里，只保留最近两项，循环推进。\"\n\n请帮赵晴儿算出第n柄剑的重量。\n\n## 输入描述\n一个整数n（0 ≤ n ≤ 90）。\n\n## 输出描述\n输出斐波那契数列第n项。\n\n## 样例\n[\n  {\n    \"input\": \"10\",\n    \"output\": \"55\"\n  }\n]\n\n## 提示\n两个变量a,b滚动：a,b = b,a+b。循环n次。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n \nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    std::vector<ull> fib(100);\n    fib[0] = 0, fib[1] = 1;\n    for(int i = 2; i < 100; ++i) fib[i] = fib[i - 1] + fib[i - 2];\n    printf(\"%llu\\n\", fib[read()]);\n}\n \nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

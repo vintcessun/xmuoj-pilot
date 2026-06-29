@@ -1,0 +1,12 @@
+{
+  "internal_id": 7169,
+  "display_id": "JD065",
+  "title": "倍增方阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "82d5159dbce25cebb933cad24e7c0381",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:44:51+00:00",
+  "statement": "显示题号: JD065\n内部 ID: 7169\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「此阵每一格，剑气强度皆由剑气原点(0,0)倍增而来。」赵晴儿剑尖轻点沙盘，「位在(i,j)的剑势，强度为2的(i+j)次方。一生二，二生四，剑气倍增如潮水蔓延。」\n\n## 输入描述\n多行，每行一个整数N（0≤N≤15）。N=0时结束。\n\n## 输出描述\n每个N输出一个N阶矩阵，每行N个整数用空格隔开。每个矩阵后跟一个空行。\n\n## 样例\n[\n  {\n    \"input\": \"3 0\",\n    \"output\": \"1 2 4 \\n2 4 8 \\n4 8 16\"\n  }\n]\n\n## 提示\nM[i][j] = 2^(i+j)。用位运算 1<<(i+j) 或 pow函数。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int N;\n    while (cin >> N && N != 0) {\n        for (int i = 0; i < N; ++i) {\n            for (int j = 0; j < N; ++j) {\n                cout << (1 << (i + j)) << \" \";\n            }\n            cout << endl;\n        }\n        cout << endl;\n    }\n    return 0;\n}"
+}

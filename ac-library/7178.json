@@ -1,0 +1,12 @@
+{
+  "internal_id": 7178,
+  "display_id": "JD074",
+  "title": "古卷替换",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "83ecaf33ee5a778e9a4e20851d84f777",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:28+00:00",
+  "statement": "显示题号: JD074\n内部 ID: 7178\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n古卷上的某个词需要全部替换成另一个词。赵晴儿让李少白逐词核对。\n\n## 输入描述\n三行：第一行原文字符串，第二行要替换的词A，第三行替换成的词B。\n\n## 输出描述\n替换后的字符串。\n\n## 样例\n[\n  {\n    \"input\": \"first late system see school still great different year Place far take same\\nlife\\ngroup\",\n    \"output\": \"first late system see school still great different year Place far take same\"\n  }\n]\n\n## 提示\n字符串替换函数，或按空格分割单词逐个比较替换。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    string text;\n    getline(cin, text);\n    string from, to;\n    cin >> from >> to;\n\n    stringstream ss(text);\n    vector<string> words;\n    string word;\n    while (ss >> word) {\n        if (word == from) word = to;\n        words.push_back(word);\n    }\n\n    for (int i = 0; i < (int)words.size(); ++i) {\n        if (i) cout << \" \";\n        cout << words[i];\n    }\n    cout << endl;\n    return 0;\n}"
+}

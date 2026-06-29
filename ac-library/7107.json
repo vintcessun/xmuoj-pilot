@@ -1,0 +1,12 @@
+{
+  "internal_id": 7107,
+  "display_id": "JD003",
+  "title": "四令求差",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "bf9b0c064b36f116345ec4e2a8c5366a",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:40:34+00:00",
+  "statement": "显示题号: JD003\n内部 ID: 7107\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功房桌上摆着四枚铁令。梁嘉峰说：「A和B相乘，C和D相乘，把两个积的差报给我。」\n\n## 输入描述\n一行，四个整数A、B、C、D，用空格隔开。\n\n## 输出描述\n输出 `DIFFERENCE = ` 后跟A×B − C×D的结果。\n\n## 样例\n[\n  {\n    \"input\": \"5 6 7 8\",\n    \"output\": \"-26\"\n  }\n]\n\n## 提示\n先乘后减，注意运算顺序和输出格式。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    ll a = read(), b = read(), c = read(), d = read();\n    printf(\"DIFFERENCE = %lld\\n\", a * b - c * d);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

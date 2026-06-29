@@ -1,0 +1,12 @@
+{
+  "internal_id": 7187,
+  "display_id": "JD083",
+  "title": "剑气归正",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "8eb6f4a3d62f134a277d8190993a66b9",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:05+00:00",
+  "statement": "显示题号: JD083\n内部 ID: 7187\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白在练剑气外放时，需要计算剑气落点与自己的距离。距离本该是正数，但有时算出的结果是负数——因为方向搞反了。\n\n赵晴儿说：\"别每次遇到负数就手动取反，写一个函数，不管传入正数还是负数，都返回它的绝对值。\"\n\n## 输入描述\n一个整数x。\n\n## 输出描述\n输出x的绝对值。\n\n## 样例\n[\n  {\n    \"input\": \"-5\",\n    \"output\": \"5\"\n  }\n]\n\n## 提示\nif x < 0: return -x, else: return x。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    printf(\"%lld\\n\", abs(read()));\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

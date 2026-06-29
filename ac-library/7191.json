@@ -1,0 +1,12 @@
+{
+  "internal_id": 7191,
+  "display_id": "JD087",
+  "title": "剑阵翻转",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6a92ab28bdf95a12911e61f39587b66e",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:26+00:00",
+  "statement": "显示题号: JD087\n内部 ID: 7191\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在沙盘上摆了一排石块，每块上刻着一个数字。他指着前size块说：\"剑阵需要反转——把第一个和最后一个交换，第二个和倒数第二个交换，依此类推。后面的石块不动。\"\n\n请帮李少白写一个函数，将数组的前size个元素原地翻转。\n\n## 输入描述\n第一行两个整数n和size。第二行n个整数。\n\n## 输出描述\n翻转前size个元素后的数组，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"5 3\\n1 2 3 4 5\",\n    \"output\": \"3 2 1 4 5\"\n  }\n]\n\n## 提示\n双指针从两端向中间交换，只交换前size个。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    int n = read(), k = read();\n    std::vector<int> a(n);\n    for(auto& x : a) x = read();\n    std::reverse(a.begin(), a.begin() + k);\n    for(auto& x : a) printf(\"%d \", x);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

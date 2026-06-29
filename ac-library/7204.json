@@ -1,0 +1,12 @@
+{
+  "internal_id": 7204,
+  "display_id": "JD100",
+  "title": "铁链翻转",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f5e4ee60e54e9de739eedb72c483622d",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:47:11+00:00",
+  "statement": "显示题号: JD100\n内部 ID: 7204\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰从架子上取下一条铁链，每个环上刻着一个数字。他把铁链平铺在桌上，从头到尾是1、2、3、4、5……最后一个环上刻着-1，表示结束。\n\n\"我要把这条铁链反过来，\"梁嘉峰说，\"第一个变最后一个，最后一个变第一个。但不能断开重接，只能用容器来辅助。\"\n\n赵晴儿拿起一个铁盒：\"把铁环一个个摘下来放进盒子里——先进去的沉到底部。等全部摘完，再从盒子里取出来，顺序就反了。\"\n\n## 输入描述\n一行整数，以-1结尾，表示链表节点值。\n\n## 输出描述\n反转后的链表，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"1 2 3 4 5 -1\",\n    \"output\": \"5 4 3 2 1\"\n  }\n]\n\n## 提示\n三指针法：prev=None, curr=head。循环：next=curr.next, curr.next=prev, prev=curr, curr=next。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n\nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    std::vector<int> a;\n    while(true){\n        int x = read();\n        if(x == -1) break;\n        a.push_back(x);\n    }\n    std::reverse(a.begin(), a.end());\n    for(auto& x : a) printf(\"%d \", x);\n}\n\nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

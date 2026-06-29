@@ -1,0 +1,12 @@
+{
+  "internal_id": 7130,
+  "display_id": "JD026",
+  "title": "木棍辨形",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "edd9015881980facc4f5c5c4e4e52b2d",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:42:05+00:00",
+  "statement": "显示题号: JD026\n内部 ID: 7130\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递来三根木棍：「先判断能不能拼成三角形。能的话，再判断是直角、锐角还是钝角三角形。」判断依据：最长边的平方与另外两边平方和的关系。\n\n## 输入描述\n一行，三个浮点数，表示三边长度（已从小到大排列）。\n\n## 输出描述\n不能构成输出 `Not a triangle`；能构成则输出三角形类型：`Equilateral`（等边）、`Isosceles`（等腰）、`Scalene`（不等边）、`Right`（直角）、`Acute`（锐角）、`Obtuse`（钝角）。\n\n## 样例\n[\n  {\n    \"input\": \"6.0 4.0 2.0\",\n    \"output\": \"Not a triangle\"\n  }\n]\n\n## 提示\n先验证两边之和大于第三边。再比较最长边平方：等于→直角，大于→钝角，小于→锐角。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n \nint main() {\n    double sides[3];\n    cin >> sides[0] >> sides[1] >> sides[2];\n \n    // 降序排列，确保 sides[0] 为最长边\n    sort(sides, sides + 3, greater<double>());\n    double a = sides[0], b = sides[1], c = sides[2];\n \n    // 1. 是否能构成三角形\n    if (a >= b + c) {\n        cout << \"Not a triangle\" << endl;\n        return 0;\n    }\n \n    // 2. 角类型（根据最长边平方与另外两边平方和的关系）\n    double a2 = a * a, b2 = b * b, c2 = c * c;\n    if (fabs(a2 - (b2 + c2)) < 1e-9)\n        cout << \"Right\" << endl;\n    else if (a2 > b2 + c2)\n        cout << \"Obtuse\" << endl;\n    else\n        cout << \"Acute\" << endl;\n \n    // 3. 边类型（等腰/等边）\n    if (fabs(a - b) < 1e-9 && fabs(b - c) < 1e-9)\n        cout << \"Equilateral\" << endl;\n    else if (fabs(a - b) < 1e-9 || fabs(b - c) < 1e-9 || fabs(a - c) < 1e-9)\n        cout << \"Isosceles\" << endl;\n    // 不等边不输出额外行\n \n    return 0;\n}"
+}

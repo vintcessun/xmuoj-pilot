@@ -1,0 +1,12 @@
+{
+  "internal_id": 7155,
+  "display_id": "JD051",
+  "title": "剑行取道",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "172433f412e73498dd5fdd82138e5941",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:48+00:00",
+  "statement": "显示题号: JD051\n内部 ID: 7155\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n沙盘上一个12×12的剑阵，赵晴儿指着其中一行：「这一行的所有剑，力量之和是多少？或平均力量？」李少白逐格检视。\n\n## 输入描述\n第一行一个整数L（0~11，表示行号）。第二行一个字符（S或M）。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出该行的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"1\\nM\\n94.2 65.35 7.41 -67.85 18.62 -72.49 -5.91 66.06 -20.35 -17.4 12.62 -63.04\\n...\",\n    \"output\": \"17.3\"\n  }\n]\n\n## 提示\n遍历指定行，根据操作类型求和或求平均。",
+  "code": "#include <iostream>\n#include <iomanip>\n\nusing namespace std;\n\nint main()\n{\n    int L;\n    char op;\n\n    cin >> L;\n    cin >> op;\n\n    double a[12][12];\n\n    for (int i = 0; i < 12; i++)\n    {\n        for (int j = 0; j < 12; j++)\n        {\n            cin >> a[i][j];\n        }\n    }\n\n    double sum = 0;\n\n    for (int j = 0; j < 12; j++)\n    {\n        sum += a[L][j];\n    }\n\n    if (op == 'M')\n    {\n        sum /= 12;\n    }\n\n    cout << fixed << setprecision(1) << sum << endl;\n\n    return 0;\n}"
+}

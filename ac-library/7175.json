@@ -1,0 +1,12 @@
+{
+  "internal_id": 7175,
+  "display_id": "JD071",
+  "title": "密文数符",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "b1790276cf27fc41c3047713d765123e",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:18+00:00",
+  "statement": "显示题号: JD071\n内部 ID: 7175\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白一行密文，里面混着文字和数字。她说：「数一数有几个数字字符。」\n\n## 输入描述\n一行字符（长度不超过100）。\n\n## 输出描述\n输出其中数字字符（'0'~'9'）的个数。\n\n## 样例\n[\n  {\n    \"input\": \"hello2024world\",\n    \"output\": \"4\"\n  }\n]\n\n## 提示\n遍历字符串，判断每个字符是否在'0'到'9'之间。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    std::string s; std::getline(std::cin, s);\n    int cnt = 0;\n    for(auto& ch : s) cnt += (isdigit(ch));\n    printf(\"%d\\n\", cnt);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

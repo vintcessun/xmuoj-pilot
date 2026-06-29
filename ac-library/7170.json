@@ -1,0 +1,12 @@
+{
+  "internal_id": 7170,
+  "display_id": "JD066",
+  "title": "蛇形剑阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "aabc549833d0df2b0ce81d8caec2d7cd",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:44:56+00:00",
+  "statement": "显示题号: JD066\n内部 ID: 7170\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「剑阵蜿蜒如蛇，以身引气，气走周身。」赵晴儿在沙盘上画了一个n行m列的剑阵，「从左上角开始，依次填入从1到n×m的剑气。行到尽头便拐弯，似灵蛇折返。」\n\n## 输入描述\n一行，两个整数n和m。\n\n## 输出描述\nn行，每行m个整数用空格隔开。输出后跟一个空行。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\",\n    \"output\": \"1 2 3 \\n8 9 4 \\n7 6 5\"\n  }\n]\n\n## 提示\n模拟蛇形遍历：右→下→左→上循环。维护四个边界。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#define re register\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n\nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    int n = read(), m = read();\n    const int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};\n    std::vector<std::vector<int>> a(n + 1, std::vector<int>(m + 1, 0));\n    \n    int x = 1, y = 1, dir = 0;\n    for(int cnt = 1; cnt <= n * m; ++cnt){\n        a[x][y] = cnt;\n        int nx = x + dx[dir], ny = y + dy[dir];\n        if(nx < 1 or nx > n or ny < 1 or ny > m or a[nx][ny]){\n            dir = (dir + 1) % 4;\n            nx = x + dx[dir], ny = y + dy[dir];\n        }\n        x = nx, y = ny;\n    }\n\n    for(int i = 1; i <= n; ++i){\n        for(int j = 1; j <= m; ++j){\n            printf(\"%d \", a[i][j]);\n        } puts(\"\");\n    }\n}\n\nint main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

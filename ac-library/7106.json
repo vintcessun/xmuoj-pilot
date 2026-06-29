@@ -1,0 +1,12 @@
+{
+  "internal_id": 7106,
+  "display_id": "JD002",
+  "title": "铁令相乘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "b1b85becf2dc7a3f970fedbb2a885217",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:40:29+00:00",
+  "statement": "显示题号: JD002\n内部 ID: 7106\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰又递来两枚铁令。这一次他竖起两根手指——乘起来。\n\n## 输入描述\n一行，两个整数A和B，用空格隔开。\n\n## 输出描述\n输出 `PROD = ` 后跟A×B的结果。\n\n## 样例\n[\n  {\n    \"input\": \"3 9\",\n    \"output\": \"PROD = 27\"\n  }\n]\n\n## 提示\n读入两个整数，输出乘积。注意输出格式带前缀。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    ll a = read(), b = read();\n    printf(\"PROD = %lld\\n\", a * b);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

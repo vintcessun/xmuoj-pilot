@@ -1,0 +1,12 @@
+{
+  "internal_id": 7183,
+  "display_id": "JD079",
+  "title": "经文周期",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "63ce5b391bf5a0a6fa9193fef7f8fe12",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:44+00:00",
+  "statement": "显示题号: JD079\n内部 ID: 7183\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着一篇重复的经文：「这段文字是某个子串重复几次写成的？找出最小的重复次数。」\n\n## 输入描述\n一行字符串。\n\n## 输出描述\n一行，最大的n。\n\n## 样例\n[\n  {\n    \"input\": \"abcd\\naaaa\\nababab\\n.\",\n    \"output\": \"1\\n4\\n3\"\n  }\n]\n\n## 提示\n枚举周期p（p是len的因子），检查s[0:p]重复len/p次是否等于原串。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    string s;\n    while (cin >> s && s != \".\") {\n        int n = s.size();\n        for (int p = 1; p <= n; ++p) {\n            if (n % p == 0) {\n                bool ok = true;\n                for (int i = 0; i < n; ++i) {\n                    if (s[i] != s[i % p]) {\n                        ok = false;\n                        break;\n                    }\n                }\n                if (ok) {\n                    cout << n / p << endl;\n                    break;\n                }\n            }\n        }\n    }\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7176,
+  "display_id": "JD072",
+  "title": "拳掌对决",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "d45cc0868754bab964ae97ed998ddf99",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:20+00:00",
+  "statement": "显示题号: JD072\n内部 ID: 7176\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白和师弟在练功间隙玩猜拳：出剪刀、石头或布。给定T组对局，判断每组谁赢。\n\n## 输入描述\n第一行整数T。接下来T行，每行两个字符串，表示两人出的拳。\n\n## 输出描述\n每行输出结果：Player1赢输出\"Player1\"，Player2赢输出\"Player2\"，平局输出\"Tei\"。\n\n## 样例\n[\n  {\n    \"input\": \"Hunter Bear\",\n    \"output\": \"Player2\"\n  }\n]\n\n## 提示\n判断两者相等→平局；否则检查是否构成\"石头>剪刀>布>石头\"的环。",
+  "code": "#include <cstdio>\n#include <iostream>\n\nusing namespace std;\n\nint main()\n{\n    int n = 1;\n\n    while (n -- )\n    {\n        string a, b;\n        cin >> a >> b;\n\n        int x, y;\n        if (a == \"Hunter\") x = 0;\n        else if (a == \"Bear\") x = 1;\n        else x = 2;\n\n        if (b == \"Hunter\") y = 0;\n        else if (b == \"Bear\") y = 1;\n        else y = 2;\n\n        if (x == y) puts(\"Tie\");\n        else if (x == (y + 1) % 3) puts(\"Player1\");\n        else puts(\"Player2\");\n    }\n\n    return 0;\n}"
+}

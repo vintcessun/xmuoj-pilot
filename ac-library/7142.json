@@ -1,0 +1,12 @@
+{
+  "internal_id": 7142,
+  "display_id": "JD038",
+  "title": "石中之王",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f712002c7c08e75762af84438dc5d96d",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:42:54+00:00",
+  "statement": "显示题号: JD038\n内部 ID: 7142\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功场上摆了一排石块，每块上面刻着一个数。赵晴儿让李少白找到最大的数，并说出它是第几块（从1开始计数）。\n\n## 输入描述\n第一行一个整数N，表示石块数量。第二行N个整数。\n\n## 输出描述\n输出最大值和它的位置，格式见样例。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n3 2 5 1 4\",\n    \"output\": \"5\\n3\"\n  }\n]\n\n## 提示\n遍历时同时记录最大值和位置。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n    int n = read();\n    assert(n <= 1e6);\n    std::vector<int> a;\n    int x;\n    while(std::cin >> x) a.push_back(x);\n    auto it = std::max_element(a.begin(), a.end());\n    printf(\"%d\\n%d\\n\", *it, it - a.begin() + 1);\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

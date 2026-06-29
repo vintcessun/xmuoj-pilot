@@ -1,0 +1,12 @@
+{
+  "internal_id": 7186,
+  "display_id": "JD082",
+  "title": "比剑取大",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "73804de776053ad880110e5c4baaa8b9",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:45:59+00:00",
+  "statement": "显示题号: JD082\n内部 ID: 7186\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器库里，赵晴儿和李少白各自挑了一柄剑。赵晴儿的剑重x斤，李少白的剑重y斤。\n\n赵晴儿说：\"我们总要比谁的剑更重，每次都手算太麻烦。写一个函数，传入两个数，返回较大的那个。以后比试直接调用就行。\"\n\n请帮他们实现这个函数。\n\n## 输入描述\n一行，两个整数x和y。\n\n## 输出描述\n输出最大值。\n\n## 样例\n[\n  {\n    \"input\": \"3 5\",\n    \"output\": \"5\"\n  }\n]\n\n## 提示\n函数内用 if 比较或三元表达式。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    ll a = read(), b = read();\n    printf(\"%lld\\n\", max(a, b));\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

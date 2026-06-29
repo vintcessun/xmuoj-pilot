@@ -1,0 +1,12 @@
+{
+  "internal_id": 7148,
+  "display_id": "JD044",
+  "title": "翻倍剑阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "fe6319d18004d815b5956d5beb6ce231",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:43:17+00:00",
+  "statement": "显示题号: JD044\n内部 ID: 7148\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上布下一个翻倍剑阵。她说：「以第一个数为起点，后面每个数都是前一个的两倍。内力如此，出剑亦是如此——一重更比一重强。」\n\n## 输入描述\n一个整数V。\n\n## 输出描述\n10行，格式为 `N[i] = X`。\n\n## 样例\n[\n  {\n    \"input\": \"6\",\n    \"output\": \"N[0] = 6\\nN[1] = 12\\nN[2] = 24\\nN[3] = 48\\nN[4] = 96\\nN[5] = 192\\nN[6] = 384\\nN[7] = 768\\nN[8] = 1536\\nN[9] = 3072\"\n  }\n]\n\n## 提示\nN[0]=V，循环N[i]=N[i-1]*2。",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int V;\n    cin >> V;\n    for (int i = 0; i < 10; ++i) {\n        cout << \"N[\" << i << \"] = \" << V << endl;\n        V *= 2;\n    }\n    return 0;\n}"
+}

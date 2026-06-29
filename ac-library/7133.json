@@ -1,0 +1,12 @@
+{
+  "internal_id": 7133,
+  "display_id": "JD029",
+  "title": "石砖偶数",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "bf352855e49c26ac347434573c5c3936",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:42:17+00:00",
+  "statement": "显示题号: JD029\n内部 ID: 7133\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n千层塔第一层。墙上刻着一排编号从1到100的石砖。赵晴儿说：「把所有偶数编号的石砖挑出来，每行报一个。」\n\n## 输入描述\n无输入。\n\n## 输出描述\n输出全部偶数，每个偶数占一行。\n\n## 样例\n[\n  {\n    \"input\": \"No input\",\n    \"output\": \"2\\n4\\n6\\n8\\n10\\n12\\n14\\n16\\n18\\n20\\n22\\n24\\n26\\n28\\n30\\n32\\n34\\n36\\n38\\n40\\n42\\n44\\n46\\n48\\n50\\n52\\n54\\n56\\n58\\n60\\n62\\n64\\n66\\n68\\n70\\n72\\n74\\n76\\n78\\n80\\n82\\n84\\n86\\n88\\n90\\n92\\n94\\n96\\n98\\n100\"\n  }\n]\n\n## 提示\nfor循环从2开始，步长为2，到100结束。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n\nvoid solve(){\n   // int x = read();\n    for(int i = 2; i <= 100; i += 2){\n        printf(\"%d\\n\", i);\n    }\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

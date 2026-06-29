@@ -1,0 +1,12 @@
+{
+  "internal_id": 7131,
+  "display_id": "JD027",
+  "title": "怪兽辨识",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2e1bb6a03801190b1818c8de0874941d",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:42:09+00:00",
+  "statement": "显示题号: JD027\n内部 ID: 7131\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n迷踪林外遇到一只怪兽。赵晴儿观察了三层特征来判断它的种类：第一层是有脊椎还是无脊椎；第二层是哺乳类、鸟类还是爬行类；第三层是食性（食肉、食草、杂食）。\n\n根据三层特征，输出对应的动物名称。\n\n## 输入描述\n三行，每行一个字符串，分别表示三层分类特征。\n\n## 输出描述\n输出对应的动物名称。\n\n## 样例\n[\n  {\n    \"input\": \"vertebrado\\nmamifero onivoro\",\n    \"output\": \"homem\"\n  }\n]\n\n## 提示\n三层嵌套 if-else：先判断第一层，再判断第二层，最后判断第三层。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n\nusing namespace std;\n\nint main()\n{\n    string a, b, c;\n\n    cin >> a >> b >> c;\n\n    if (a == \"vertebrado\")\n    {\n        if (b == \"ave\")\n        {\n            if (c == \"carnivoro\")\n                cout << \"aguia\";\n            else\n                cout << \"pomba\";\n        }\n        else if (b == \"mamifero\")\n        {\n            if (c == \"onivoro\")\n                cout << \"homem\";\n            else\n                cout << \"vaca\";\n        }\n    }\n    else if (a == \"invertebrado\")\n    {\n        if (b == \"inseto\")\n        {\n            if (c == \"hematofago\")\n                cout << \"pulga\";\n            else\n                cout << \"lagarta\";\n        }\n        else if (b == \"anelideo\")\n        {\n            if (c == \"hematofago\")\n                cout << \"sanguessuga\";\n            else\n                cout << \"minhoca\";\n        }\n    }\n\n    return 0;\n}"
+}

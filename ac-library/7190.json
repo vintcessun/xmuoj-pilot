@@ -1,0 +1,12 @@
+{
+  "internal_id": 7190,
+  "display_id": "JD086",
+  "title": "剑阵复制",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "94076f0cc14c7c47885917db79b767a4",
+  "contest_id": 359,
+  "fetched_at": "2026-06-29T15:46:22+00:00",
+  "statement": "显示题号: JD086\n内部 ID: 7190\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上摆了一个剑阵（数组a），需要原样复制一份到另一个沙盘（数组b）上。\n\n\"手抄太慢，\"赵晴儿说，\"写一个函数，把a的前size个元素复制到b对应的位置上。\"\n\n李少白接过两个沙盘，发现b上原来也有数字，只需覆盖前size个位置，其余保持不变。\n\n## 输入描述\n第一行两个整数n和size（数组长度和复制个数）。第二行n个整数。\n\n## 输出描述\n复制后的数组，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"3 5 2\\n1 2 3\\n4 5 6 7 8\",\n    \"output\": \"1 2 6 7 8\"\n  }\n]\n\n## 提示\n函数内循环，b[i] = a[i]，复制前size个元素。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    int n = read(), m = read(), k = read();\n    for(int i = 1; i <= n; ++i){\n        if(i <= k) printf(\"%d \", read());\n        else read();\n    }\n    for(int i = 1; i <= m; ++i){\n        if(i <= k) read();\n        else printf(\"%d \", read());\n    }\n}\n \nsigned main(){\n //   std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}
