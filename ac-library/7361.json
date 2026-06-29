@@ -1,0 +1,12 @@
+{
+  "internal_id": 7361,
+  "display_id": "JD070",
+  "title": "经文重构",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "159cd32d4b8767a0c379794374dd0430",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:38+00:00",
+  "statement": "显示题号: JD070\n内部 ID: 7361\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白一段经文a，让他按规则重新构造一段经文b：每个位置b[i]的ASCII值等于a[i]和a[i+1]的ASCII值之和。\n\n## 输入描述\n一行字符串a（长度3~100）。\n\n## 输出描述\n构造后的字符串b。\n\n## 样例\n[\n  {\n    \"input\": \"=-9+=.3'<<-!!'+5.</=+/3672?96,7'<%5 //>$#:)6*(6.(;7>*)>35#5.72#/44;/)0#864\\\"!51$1=00*:$&'\",\n    \"output\": \"jfdhkaZcxiNBHR`cjklhZbimiqxobc^caZUO^mbG]c_`R^dVcruhSgqhXXceiURchojXYS[njVCVfUUnm`Zd^JMd\"\n  }\n]\n\n## 提示\n遍历a，b[i] = chr(ord(a[i]) + ord(a[i+1]))。最后一个用a[-1]和a[0]。",
+  "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string a;\n    std::getline(std::cin, a);          // 读取整行，可能包含空格\n    std::string b;\n    int n = static_cast<int>(a.size());\n    b.reserve(n);\n    for (int i = 0; i < n; ++i) {\n        int sum = static_cast<int>(a[i]) + static_cast<int>(a[(i + 1) % n]);\n        b.push_back(static_cast<char>(sum));\n    }\n    std::cout << b << std::endl;\n    return 0;\n}"
+}

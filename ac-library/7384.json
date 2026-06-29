@@ -1,0 +1,12 @@
+{
+  "internal_id": 7384,
+  "display_id": "JD093",
+  "title": "登阶问道",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "570274ddeac29498b016c8e6cf2193db",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:01+00:00",
+  "statement": "显示题号: JD093\n内部 ID: 7384\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n试炼场尽头，一座石阶直通山顶。石阶共有n级，每次只能跨1级或2级。\n\n赵晴儿站在山脚问：\"从第一级走到第n级，一共有多少种不同的走法？\"\n\n李少白想了想：\"如果我最后一步跨1级，那之前有f(n-1)种走法；如果最后一步跨2级，那之前有f(n-2)种走法……\"\n\n\"没错，\"赵晴儿点头，\"这就是递归。\"\n\n## 输入描述\n一个整数n（1 ≤ n ≤ 20）。\n\n## 输出描述\n输出跳法总数。\n\n## 样例\n[\n  {\n    \"input\": \"5\",\n    \"output\": \"8\"\n  }\n]\n\n## 提示\nf(n) = f(n-1) + f(n-2)。最后一步跳1级或2级，两种情况之和。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n == 1) {\n        cout << 1 << endl;\n        return 0;\n    }\n    int a = 1, b = 2; // f(1), f(2)\n    for (int i = 3; i <= n; ++i) {\n        int c = a + b;\n        a = b;\n        b = c;\n    }\n    cout << b << endl;\n    return 0;\n}"
+}

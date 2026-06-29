@@ -1,0 +1,12 @@
+{
+  "internal_id": 7333,
+  "display_id": "JD042",
+  "title": "兵刃统计",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "83bd3e522981375763c57e99875f1033",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:03+00:00",
+  "statement": "显示题号: JD042\n内部 ID: 7333\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n演武场上，弟子们正在操练。李少白走过一排兵器架，记录了N次观察：每次看到一件兵器，C代表剑，R代表刀，F代表枪。赵晴儿让他统计每种兵器出现了多少把，以及各自的占比。\n\n## 输入描述\n第一行一个整数N。接下来N行，每行一个整数（数量）和一个字符（C/R/F），分别表示某次看到的兵器数量和类型。\n\n## 输出描述\n第一行输出 Total: X weapons（总数量）。接下来三行输出每种兵器的总数：Total swords: X、Total blades: X、Total spears: X。最后三行输出各自占比：Percentage of swords: XX.XX % 等，保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"11\\n1 F\\n5 C\\n4 C\\n12 C\\n11 F\\n15 F\\n2 F\\n7 C\\n1 C\\n4 C\\n9 F\",\n    \"output\": \"Total: 71 weapons\\nTotal swords: 33\\nTotal blades: 0\\nTotal spears: 38\\nPercentage of swords: 46.48 %\\nPercentage of blades: 0.00 %\\nPercentage of spears: 53.52 %\"\n  }\n]\n\n## 提示\n三个计数器分别累加C、R、F的数量。注意每行先读数量再读类型。总数 = 所有数量之和。占比 = 各类数量 / 总数 × 100%，保留两位小数。",
+  "code": "#include <iostream>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    long long swords = 0, blades = 0, spears = 0;\n    long long total = 0;\n    for (int i = 0; i < n; ++i) {\n        int cnt;\n        char type;\n        cin >> cnt >> type;\n        total += cnt;\n        if (type == 'C') swords += cnt;\n        else if (type == 'R') blades += cnt;\n        else if (type == 'F') spears += cnt;\n    }\n    cout << \"Total: \" << total << \" weapons\" << endl;\n    cout << \"Total swords: \" << swords << endl;\n    cout << \"Total blades: \" << blades << endl;\n    cout << \"Total spears: \" << spears << endl;\n    cout << fixed << setprecision(2);\n    if (total == 0) {\n        cout << \"Percentage of swords: 0.00 %\" << endl;\n        cout << \"Percentage of blades: 0.00 %\" << endl;\n        cout << \"Percentage of spears: 0.00 %\" << endl;\n    } else {\n        double ps = 100.0 * swords / total;\n        double pb = 100.0 * blades / total;\n        double pf = 100.0 * spears / total;\n        cout << \"Percentage of swords: \" << ps << \" %\" << endl;\n        cout << \"Percentage of blades: \" << pb << \" %\" << endl;\n        cout << \"Percentage of spears: \" << pf << \" %\" << endl;\n    }\n    return 0;\n}"
+}

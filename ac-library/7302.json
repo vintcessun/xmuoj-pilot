@@ -1,0 +1,12 @@
+{
+  "internal_id": 7302,
+  "display_id": "JD011",
+  "title": "哨塔测距",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f25bed8629bb8f512414f60b4964418d",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:14+00:00",
+  "statement": "显示题号: JD011\n内部 ID: 7302\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上标了两个哨塔的坐标(x1,y1)和(x2,y2)。她说：「算算它们之间的直线距离。」\n\n## 输入描述\n一行，四个浮点数x1, y1, x2, y2，用空格隔开。\n\n## 输出描述\n输出两点间的距离，保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"1.0 7.0 5.0 9.0\",\n    \"output\": \"4.4721\"\n  }\n]\n\n## 提示\n使用距离公式，需要引入数学库以使用sqrt函数。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cmath>\n#include <iomanip>\n\nusing namespace std;\n\nint main() {\n    double x1, y1, x2, y2;\n    cin >> x1 >> y1 >> x2 >> y2;\n    double dx = x2 - x1;\n    double dy = y2 - y1;\n    double distance = sqrt(dx * dx + dy * dy);\n    cout << fixed << setprecision(4) << distance << endl;\n    return 0;\n}"
+}

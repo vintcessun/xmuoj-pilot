@@ -1,0 +1,12 @@
+{
+  "internal_id": 7301,
+  "display_id": "JD010",
+  "title": "三令比大",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "585e5c1e42bda4ca268c8e3268a84cf7",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:11+00:00",
+  "statement": "显示题号: JD010\n内部 ID: 7301\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在墙上刻了三个数，转头说：「最大的那个，报给我。」\n\n## 输入描述\n一行，三个整数A、B、C，用空格隔开。\n\n## 输出描述\n输出 `Max = ` 后跟三个数中的最大值。\n\n## 样例\n[\n  {\n    \"input\": \"7 14 106\",\n    \"output\": \"Max = 106\"\n  }\n]\n\n## 提示\n用条件判断两两比较，或直接用max函数。\n\n原题链接",
+  "code": "#include <iostream>\n#include <algorithm>\n\nint main() {\n    int A, B, C;\n    std::cin >> A >> B >> C;\n    int maxVal = std::max({A, B, C});\n    std::cout << \"Max = \" << maxVal << std::endl;\n    return 0;\n}"
+}

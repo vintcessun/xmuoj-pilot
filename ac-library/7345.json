@@ -1,0 +1,12 @@
+{
+  "internal_id": 7345,
+  "display_id": "JD054",
+  "title": "剑意之质",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "ef4c974ac8fa6b30c6432e6fd800a3e1",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:45+00:00",
+  "statement": "显示题号: JD054\n内部 ID: 7345\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在沙盘上点出几枚剑棋：「天下剑法，有些可以拆分化简，有些不可再分，乃剑意之基石。这些不可拆分的棋位——只能被1和自己整除的数——就是剑意之质。排出2到N之间所有的剑意质数。」\n\n## 输入描述\n一个整数N。\n\n## 输出描述\n输出2到N之间所有的质数，每行一个。\n\n## 样例\n[\n  {\n    \"input\": \"10\",\n    \"output\": \"2\\n3\\n5\\n7\"\n  }\n]\n\n## 提示\n对每个数从2到√n试除。",
+  "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    int N;\n    cin >> N;\n    if (N < 2) return 0;\n    \n    vector<int> primes;\n    vector<bool> is_prime(N + 1, true);\n    for (int i = 2; i <= N; ++i) {\n        if (is_prime[i]) primes.push_back(i);\n        for (int p : primes) {\n            if (i * p > N) break;\n            is_prime[i * p] = false;\n            if (i % p == 0) break;\n        }\n    }\n    \n    for (int x : primes) cout << x << '\\n';\n    return 0;\n}"
+}

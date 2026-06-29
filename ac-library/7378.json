@@ -1,0 +1,12 @@
+{
+  "internal_id": 7378,
+  "display_id": "JD087",
+  "title": "剑阵翻转",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "501617d00d58f12f95796bbe98928304",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:41+00:00",
+  "statement": "显示题号: JD087\n内部 ID: 7378\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在沙盘上摆了一排石块，每块上刻着一个数字。他指着前size块说：\"剑阵需要反转——把第一个和最后一个交换，第二个和倒数第二个交换，依此类推。后面的石块不动。\"\n\n请帮李少白写一个函数，将数组的前size个元素原地翻转。\n\n## 输入描述\n第一行两个整数n和size。第二行n个整数。\n\n## 输出描述\n翻转前size个元素后的数组，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"5 3\\n1 2 3 4 5\",\n    \"output\": \"3 2 1 4 5\"\n  }\n]\n\n## 提示\n双指针从两端向中间交换，只交换前size个。",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nint main() {\n    int n, size;\n    cin >> n >> size;\n    vector<int> a(n);\n    for (int i = 0; i < n; ++i) cin >> a[i];\n    \n    // 防止 size 超过 n\n    if (size > n) size = n;\n    \n    // 翻转前 size 个元素\n    reverse(a.begin(), a.begin() + size);\n    \n    // 输出\n    for (int i = 0; i < n; ++i) {\n        if (i > 0) cout << \" \";\n        cout << a[i];\n    }\n    \n    return 0;\n}"
+}

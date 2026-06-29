@@ -1,0 +1,12 @@
+{
+  "internal_id": 7329,
+  "display_id": "JD038",
+  "title": "石中之王",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "94978667c710b243dcfc8804d9e6151a",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:49+00:00",
+  "statement": "显示题号: JD038\n内部 ID: 7329\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功场上摆了一排石块，每块上面刻着一个数。赵晴儿让李少白找到最大的数，并说出它是第几块（从1开始计数）。\n\n## 输入描述\n第一行一个整数N，表示石块数量。第二行N个整数。\n\n## 输出描述\n输出最大值和它的位置，格式见样例。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n3 2 5 1 4\",\n    \"output\": \"5\\n3\"\n  }\n]\n\n## 提示\n遍历时同时记录最大值和位置。",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    \n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int i = 0; i < n; ++i) {\n        std::cin >> a[i];\n    }\n    \n    int max_val = a[0];\n    int pos = 1;\n    for (int i = 1; i < n; ++i) {\n        if (a[i] > max_val) {\n            max_val = a[i];\n            pos = i + 1;\n        }\n    }\n    \n    std::cout << max_val << '\\n' << pos << '\\n';\n    return 0;\n}"
+}

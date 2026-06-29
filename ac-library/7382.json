@@ -1,0 +1,12 @@
+{
+  "internal_id": 7382,
+  "display_id": "JD091",
+  "title": "递归阶乘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "343d5a0679695208948f6c98a250034b",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:54+00:00",
+  "statement": "显示题号: JD091\n内部 ID: 7382\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白在丹房翻到一本古籍，上面记载着一种\"以丹炼丹\"的奇术——要炼n味丹药，先炼好n-1味；要炼n-1味，先炼好n-2味……直到只剩1味，直接炼成。\n\n赵晴儿看了笑道：\"这就是递归。一个函数调用自己，层层深入，直到触底再层层返回。阶乘的定义本身就是递归的——fact(n) = n × fact(n-1)，fact(1) = 1。\"\n\n\"用递归重新实现阶乘函数。\"\n\n## 输入描述\n一个整数n。\n\n## 输出描述\n输出n的阶乘。\n\n## 样例\n[\n  {\n    \"input\": \"5\",\n    \"output\": \"120\"\n  }\n]\n\n## 提示\n递归三要素：终止条件(n==1返回1)、递推关系(n*fact(n-1))、缩小规模。",
+  "code": "#include <iostream>\n\nusing namespace std;\n\nunsigned long long factorial(int n) {\n    if (n <= 1) return 1;\n    return n * factorial(n - 1);\n}\n\nint main() {\n    int n;\n    cin >> n;\n    cout << factorial(n) << endl;\n    return 0;\n}"
+}

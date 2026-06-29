@@ -1,0 +1,12 @@
+{
+  "internal_id": 7309,
+  "display_id": "JD018",
+  "title": "三石排序",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "93bd1f4f381d37692a54c2518cb14253",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:34+00:00",
+  "statement": "显示题号: JD018\n内部 ID: 7309\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在地上放了三块石头，上面各刻着一个数。他说：「从小到大排好，报给我。」\n\n## 输入描述\n一行，三个整数，用空格隔开。\n\n## 输出描述\n三个数从小到大输出，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"7 21 -14\",\n    \"output\": \"-14 7 21\"\n  }\n]\n\n## 提示\n用条件判断两两比较确定顺序，或存入数组排序。\n\n原题链接",
+  "code": "#include <iostream>\n#include <algorithm>\n\nint main() {\n    int a, b, c;\n    std::cin >> a >> b >> c;\n    int arr[] = {a, b, c};\n    std::sort(arr, arr + 3);\n    std::cout << arr[0] << \" \" << arr[1] << \" \" << arr[2] << std::endl;\n    return 0;\n}"
+}

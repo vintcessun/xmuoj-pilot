@@ -1,0 +1,12 @@
+{
+  "internal_id": 7300,
+  "display_id": "JD009",
+  "title": "铁球体积",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "1236c71edb96875e3f1a6e42303a69a1",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:08+00:00",
+  "statement": "显示题号: JD009\n内部 ID: 7300\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器库里有一颗实心铁球。李少白量出半径r，想算出它的体积。V = (4/3)πr³，π取3.14159。\n\n## 输入描述\n一个浮点数r，表示铁球的半径。\n\n## 输出描述\n输出 `VOLUME = ` 后跟体积，保留3位小数。\n\n## 样例\n[\n  {\n    \"input\": \"3\",\n    \"output\": \"VOLUME = 113.097\"\n  }\n]\n\n## 提示\n体积 = (4.0/3.0) × 3.14159 × r³，注意用浮点数除法。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n#include <cmath>\n\nint main() {\n    double r;\n    std::cin >> r;\n    const double pi = 3.14159;\n    double volume = (4.0 / 3.0) * pi * std::pow(r, 3);\n    std::cout << std::fixed << std::setprecision(3);\n    std::cout << \"VOLUME = \" << volume << std::endl;\n    return 0;\n}"
+}

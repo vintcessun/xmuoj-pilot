@@ -1,0 +1,12 @@
+{
+  "internal_id": 7383,
+  "display_id": "JD092",
+  "title": "递归斐波",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "e2b851bab8ce8f2755c206d7790b6476",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:58+00:00",
+  "statement": "显示题号: JD092\n内部 ID: 7383\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画出一串数字：1, 1, 2, 3, 5, 8, 13……\n\n\"看出规律了吗？\"她问。\n\n李少白看了半天：\"每个数都是前两个数的和！\"\n\n\"对，这就是斐波那契数列。\"赵晴儿说，\"用递归来写——f(1)=1, f(2)=1, f(n)=f(n-1)+f(n-2)。不过提醒你，朴素递归效率很低，后面会学到优化的方法。\"\n\n## 输入描述\n一个整数n。\n\n## 输出描述\n输出斐波那契数列第n项。\n\n## 样例\n[\n  {\n    \"input\": \"4\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n递归：f(1)=1, f(2)=1, f(n)=f(n-1)+f(n-2)。注意效率问题。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    long long a = 1, b = 1;  // f(1) = 1, f(2) = 1\n    if (n == 1 || n == 2) {\n        cout << 1 << endl;\n        return 0;\n    }\n    for (int i = 3; i <= n; ++i) {\n        long long c = a + b;\n        a = b;\n        b = c;\n    }\n    cout << b << endl;\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7340,
+  "display_id": "JD049",
+  "title": "斐波剑诀",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "12a172d48eca4332dd27ff67c6ce8c51",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:26+00:00",
+  "statement": "显示题号: JD049\n内部 ID: 7340\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿展开一卷古剑谱，上面记载着斐波那契剑诀：0, 1, 1, 2, 3, 5, 8, 13……「每一式都是前两式的融合。T次问询，每次报出第N式。」\n\n## 输入描述\n第一行一个整数T。接下来T行，每行一个整数N。\n\n## 输出描述\n每行输出对应的F(N)。\n\n## 样例\n[\n  {\n    \"input\": \"5\",\n    \"output\": \"0 1 1 2 3\"\n  }\n]\n\n## 提示\n预处理斐波那契数组到60，查询时直接取值。",
+  "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    const int MAX = 60;\n    vector<long long> fib(MAX + 1);\n    fib[0] = 0;\n    if (MAX >= 1) fib[1] = 1;\n    for (int i = 2; i <= MAX; ++i) {\n        fib[i] = fib[i - 1] + fib[i - 2];\n    }\n\n    int n;\n    if (cin >> n) {\n        for (int i = 0; i < n; ++i) {\n            if (i > 0) cout << \" \";\n            cout << fib[i];\n        }\n        cout << \"\\n\";\n    }\n    return 0;\n}"
+}

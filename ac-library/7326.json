@@ -1,0 +1,12 @@
+{
+  "internal_id": 7326,
+  "display_id": "JD035",
+  "title": "区间计数",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "4cc660091d3b80a476bcaf16b1a52f77",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:34+00:00",
+  "statement": "显示题号: JD035\n内部 ID: 7326\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白N个测量数据，让他数一数有多少个落在[10,20]这个区间内。\n\n## 输入描述\n第一行一个整数N。第二行N个整数。\n\n## 输出描述\n第一行输出 X in，X为区间内个数。第二行输出 Y out，Y为区间外个数。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n5 12 18 25 10\",\n    \"output\": \"3 in\\n2 out\"\n  }\n]\n\n## 提示\n循环读入，判断是否 10≤X≤20，计数器累加。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int in = 0;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        if (x >= 10 && x <= 20)\n            ++in;\n    }\n    cout << in << \" in\\n\" << n - in << \" out\\n\";\n    return 0;\n}"
+}

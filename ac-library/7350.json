@@ -1,0 +1,12 @@
+{
+  "internal_id": 7350,
+  "display_id": "JD059",
+  "title": "右上剑角",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "24ccab8339f9407b06deeab518434d94",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:01+00:00",
+  "statement": "显示题号: JD059\n内部 ID: 7350\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「右上剑角——天乾之位，日升之处。」赵晴儿在沙盘上比划，「从主对角线往上，剑势腾空而起，覆盖右上半壁。算算这角的剑气总和。」\n\n## 输入描述\n第一行一个大写字母S或M。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出右上半部分的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"S\\n86.0 26.0 52.0 44.0 73.0 60.0 63.0 26.0 54.0 1.0 35.0 0.0\\n60.0 49.0 95.0 82.0 59.0 59.0 69.0 19.0 72.0 79.0 82.0 75.0\\n86.0 23.0 26.0 13.0 5.0 99.0 13.0 84.0 28.0 26.0 60.0 23.0\\n...\",\n    \"output\": \"3319.0\"\n  }\n]\n\n## 提示\n右上部分即j>i的元素。S求和，M求平均。",
+  "code": "#include <iostream>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    char op;\n    cin >> op;\n    double a[12][12];\n    for (int i = 0; i < 12; ++i)\n        for (int j = 0; j < 12; ++j)\n            cin >> a[i][j];\n    double sum = 0.0;\n    int cnt = 0;\n    for (int i = 0; i < 12; ++i)\n        for (int j = i + 1; j < 12; ++j) {\n            sum += a[i][j];\n            ++cnt;\n        }\n    if (op == 'M') sum /= cnt;\n    cout << fixed << setprecision(1) << sum << endl;\n    return 0;\n}"
+}

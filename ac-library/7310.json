@@ -1,0 +1,12 @@
+{
+  "internal_id": 7310,
+  "display_id": "JD019",
+  "title": "杂货铺",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "3834a3724ebe2fd0b4217c1ca9c67a1f",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:37+00:00",
+  "statement": "显示题号: JD019\n内部 ID: 7310\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n山脚杂货铺有5种干粮，编号1到5，单价分别是4.00、4.50、5.00、2.00、1.50文。赵晴儿报了干粮编号和要买的数量，掌柜让她自己算总价。\n\n## 输入描述\n一行，两个整数：干粮编号X和数量Y。\n\n## 输出描述\n输出 `Total: R$ ` 后跟总价，保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"3 2\",\n    \"output\": \"Total: R$ 10.00\"\n  }\n]\n\n## 提示\n用数组或条件判断存储5种单价，查表后乘以数量。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    int x, y;\n    std::cin >> x >> y;\n    double price[] = {0.0, 4.00, 4.50, 5.00, 2.00, 1.50};\n    double total = price[x] * y;\n    std::cout << \"Total: R$ \" << std::fixed << std::setprecision(2) << total << std::endl;\n    return 0;\n}"
+}

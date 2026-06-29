@@ -1,0 +1,12 @@
+{
+  "internal_id": 7348,
+  "display_id": "JD057",
+  "title": "左方剑域",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "5e3cf6d2ffb51c2b0e67b5e366918bb8",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:55+00:00",
+  "statement": "显示题号: JD057\n内部 ID: 7348\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「左域之剑，守青龙之位。」赵晴儿指向光幕左侧，「左方剑阵主守，去势较短。算算左域之力和。」\n\n## 输入描述\n第一行一个大写字母S或M。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出对应区域的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"S\\n68.0 59.0 10.0 88.0 95.0 50.0 60.0 8.0 6.0 7.0 5.0 79.0\\n18.0 94.0 63.0 2.0 15.0 13.0 39.0 37.0 33.0 27.0 11.0 29.0\\n12.0 23.0 6.0 42.0 4.0 63.0 7.0 20.0 11.0 74.0 27.0 5.0\\n...\",\n    \"output\": \"1410.0\"\n  }\n]\n\n## 提示\n左方区域即满足j < i && i + j < 11的元素（主对角线下且反对角线上）。",
+  "code": "#include <iostream>\n#include <iomanip>\n#include <vector>\n\nint main() {\n    char op;\n    std::cin >> op;\n    \n    const int n = 12;\n    std::vector<std::vector<double>> a(n, std::vector<double>(n));\n    for (int i = 0; i < n; ++i)\n        for (int j = 0; j < n; ++j)\n            std::cin >> a[i][j];\n    \n    double sum = 0.0;\n    int cnt = 0;\n    for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < n; ++j) {\n            if (j < i && i + j < 11) {\n                sum += a[i][j];\n                ++cnt;\n            }\n        }\n    }\n    \n    double ans = (op == 'S') ? sum : sum / cnt;\n    std::cout << std::fixed << std::setprecision(1) << ans << std::endl;\n    return 0;\n}"
+}

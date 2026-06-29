@@ -1,0 +1,12 @@
+{
+  "internal_id": 7344,
+  "display_id": "JD053",
+  "title": "完璧归宗",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "5c130a74798c8192f2ba1a607ff5fb35",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:41+00:00",
+  "statement": "显示题号: JD053\n内部 ID: 7344\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上写下「完璧」二字：「完璧之数，等于它的所有真因子之和。譬如6=1+2+3。找到不超过N的所有完璧之数，以印证归宗之意。」\n\n## 输入描述\n一个整数N。\n\n## 输出描述\n每行一个完全数，格式为 `X = f1 + f2 + f3 + fk`，所有真因子从小到大用加号连接。\n\n## 样例\n[\n  {\n    \"input\": \"30\",\n    \"output\": \"6\\n28\"\n  }\n]\n\n## 提示\n对每个数找所有真因子求和，等于自身则输出。",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    vector<long long> perfects = {\n        6,\n        28,\n        496,\n        8128,\n        33550336,\n        8589869056,\n        137438691328,\n        2305843008139952128\n    };\n    for (long long p : perfects) {\n        if (p <= N)\n            cout << p << \"\\n\";\n    }\n    return 0;\n}"
+}

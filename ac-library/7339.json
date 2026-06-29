@@ -1,0 +1,12 @@
+{
+  "internal_id": 7339,
+  "display_id": "JD048",
+  "title": "二气相生",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "fce0adae8251645c53ebc2ebc88aa505",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:22+00:00",
+  "statement": "显示题号: JD048\n内部 ID: 7339\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画出两道气旋：「阴阳二气，交替相生。第一气为0，第二气为1，此后每气皆为前二气之和。只用两个变量，算出第N气。」\n\n## 输入描述\n一个整数N。\n\n## 输出描述\n输出F(0)到F(N)的所有值，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"4\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n两个变量滚动：a,b = b,a+b。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    unsigned long long a = 0, b = 1;\n    for (int i = 1; i <= n; ++i) {\n        unsigned long long c = a + b;\n        a = b;\n        b = c;\n    }\n    cout << a << endl;\n    return 0;\n}"
+}

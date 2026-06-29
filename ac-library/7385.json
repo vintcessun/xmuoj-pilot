@@ -1,0 +1,12 @@
+{
+  "internal_id": 7385,
+  "display_id": "JD094",
+  "title": "方阵寻路",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c9e5d3e2ae6b90d8362a0a1c424415ea",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:06+00:00",
+  "statement": "显示题号: JD094\n内部 ID: 7385\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画了一个(n+1)×(m+1)的方格阵，每个格子标着坐标。\n\n\"假设你站在左上角(0,0)，\"赵晴儿指着沙盘说，\"目标是走到右下角(n,m)。每次只能向右走一步，或者向下走一步。一共有多少种不同的路径？\"\n\n李少白盯着沙盘看了一会儿：\"走到(n,m)之前，一定是从(n-1,m)或(n,m-1)过来的……\"\n\n\"很好，又是一个递归。\"\n\n## 输入描述\n一行，两个整数n和m（目标坐标，0 ≤ n,m ≤ 20）。\n\n## 输出描述\n输出走法总数。\n\n## 样例\n[\n  {\n    \"input\": \"2 3\",\n    \"output\": \"10\"\n  }\n]\n\n## 提示\n从(0,0)到(n,m)的网格路径数。f(n,m) = f(n-1,m) + f(n,m-1)。边界：f(0,m)=1, f(n,0)=1。等价于组合数C(n+m, n)。",
+  "code": "#include <iostream>\n#include <algorithm>\n\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    int k = min(n, m);\n    int N = n + m;\n    long long ans = 1;\n    for (int i = 1; i <= k; ++i) {\n        ans = ans * (N - k + i) / i;\n    }\n    cout << ans << endl;\n    return 0;\n}"
+}

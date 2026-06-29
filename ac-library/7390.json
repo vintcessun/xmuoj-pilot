@@ -1,0 +1,12 @@
+{
+  "internal_id": 7390,
+  "display_id": "JD099",
+  "title": "双栈为队",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "31c209d0b8ff841292fc1021ed99c6b4",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:24+00:00",
+  "statement": "显示题号: JD099\n内部 ID: 7390\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在兵器阁里找到两个铁盒，每个盒子只能从顶部放入和取出——这就是\"栈\"，后进先出。\n\n梁嘉峰说：\"现在我需要一个'队列'——先进先出。但手边只有这两个栈，没有队列。你能用这两个栈模拟一个队列吗？\"\n\n赵晴儿思索片刻：\"入队的时候都放进盒子1。出队的时候，如果盒子2是空的，就把盒子1的东西全部倒进盒子2——这样顺序就反过来了，最先进来的变成了盒子2的顶部，直接取就行。\"\n\n请帮赵晴儿实现这个\"双栈模拟队列\"的操作。\n\n## 输入描述\n若干操作命令：`push x`（入队）、`pop`（出队并输出）、`empty`（判空）。\n\n## 输出描述\n对pop操作输出队首值，empty操作输出`yes`或`no`。\n\n## 样例\n[\n  {\n    \"input\": \"push 1\\npush 2\\npop\\npush 3\\npop\\npop\\nempty\",\n    \"output\": \"1\\n2\\n3\\nyes\"\n  }\n]\n\n## 提示\n栈1入队，栈2出队。出队时栈2空就把栈1全部倒入栈2。",
+  "code": "#include <iostream>\n#include <stack>\n#include <string>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    stack<int> s1, s2; // s1用于入队，s2用于出队\n    string op;\n\n    while (cin >> op) {\n        if (op == \"push\") {\n            int x;\n            cin >> x;\n            s1.push(x);\n        } else if (op == \"pop\") {\n            // 如果s2为空，将s1全部倾倒入s2\n            if (s2.empty()) {\n                while (!s1.empty()) {\n                    s2.push(s1.top());\n                    s1.pop();\n                }\n            }\n            // 题目保证pop时队列非空，直接输出s2栈顶\n            cout << s2.top() << '\\n';\n            s2.pop();\n        } else if (op == \"empty\") {\n            if (s1.empty() && s2.empty())\n                cout << \"yes\\n\";\n            else\n                cout << \"no\\n\";\n        }\n    }\n\n    return 0;\n}"
+}

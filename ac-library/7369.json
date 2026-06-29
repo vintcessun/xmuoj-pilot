@@ -1,0 +1,12 @@
+{
+  "internal_id": 7369,
+  "display_id": "JD078",
+  "title": "两卷对校",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "da8d7774630ef6cc07f61a3a9b3c7066",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:04+00:00",
+  "statement": "显示题号: JD078\n内部 ID: 7369\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿拿着两卷古卷：「看看第二段经文是不是第一段中的一部分——如果是，就算对上了。」\n\n## 输入描述\n第一行一个整数k（忽略，用于兼容）。第二行字符串a。第三行字符串b。\n\n## 输出描述\nb是a的子串输出yes，否则输出no。\n\n## 样例\n[\n  {\n    \"input\": \"abc\\nd\",\n    \"output\": \"no\"\n  }\n]\n\n## 提示\n遍历a的每个位置，用strncmp比较是否与b匹配。",
+  "code": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<string> words;\n    string s;\n    while (cin >> s) {\n        words.push_back(s);\n    }\n    string a, b;\n    if (words.size() == 3) {\n        // 第一行是整数k，忽略\n        a = words[1];\n        b = words[2];\n    } else if (words.size() == 2) {\n        a = words[0];\n        b = words[1];\n    } else {\n        // 输入异常，认为不是子串\n        cout << \"no\" << endl;\n        return 0;\n    }\n    if (a.find(b) != string::npos) {\n        cout << \"yes\" << endl;\n    } else {\n        cout << \"no\" << endl;\n    }\n    return 0;\n}"
+}

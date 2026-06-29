@@ -1,0 +1,12 @@
+{
+  "internal_id": 7370,
+  "display_id": "JD079",
+  "title": "经文周期",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "11fefc9e7965673c423b69b8a8c64e1f",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:07+00:00",
+  "statement": "显示题号: JD079\n内部 ID: 7370\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着一篇重复的经文：「这段文字是某个子串重复几次写成的？找出最小的重复次数。」\n\n## 输入描述\n一行字符串。\n\n## 输出描述\n一行，最大的n。\n\n## 样例\n[\n  {\n    \"input\": \"abcd\\naaaa\\nababab\\n.\",\n    \"output\": \"1\\n4\\n3\"\n  }\n]\n\n## 提示\n枚举周期p（p是len的因子），检查s[0:p]重复len/p次是否等于原串。",
+  "code": "#include <iostream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    string s;\n    while (getline(cin, s)) {\n        if (s == \".\") break;\n        if (s.empty()) continue; // 跳过空行，若存在\n        \n        int len = s.size();\n        vector<int> next(len, 0);\n        \n        // 计算 next 数组（前缀函数）\n        for (int i = 1; i < len; ++i) {\n            int j = next[i - 1];\n            while (j > 0 && s[i] != s[j]) {\n                j = next[j - 1];\n            }\n            if (s[i] == s[j]) {\n                ++j;\n            }\n            next[i] = j;\n        }\n        \n        int L = len - next[len - 1]; // 最小可能周期\n        int n = (len % L == 0) ? len / L : 1;\n        cout << n << \"\\n\";\n    }\n    \n    return 0;\n}"
+}

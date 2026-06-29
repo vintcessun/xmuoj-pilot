@@ -1,0 +1,12 @@
+{
+  "internal_id": 7315,
+  "display_id": "JD024",
+  "title": "五关考验",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "49b87ec37008722b9c829951c0637e66",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:51+00:00",
+  "statement": "显示题号: JD024\n内部 ID: 7315\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰考李少白：「给你四个数A、B、C、D，同时满足以下五个条件才算过关：B大于A，D大于A，C与D之和大于A与B之和，C是正数，A是偶数。」\n\n## 输入描述\n一行，四个整数A、B、C、D。\n\n## 输出描述\n满足所有条件输出 `Accepted`，否则输出 `Not accepted`。\n\n## 样例\n[\n  {\n    \"input\": \"-87 14 68 33\",\n    \"output\": \"Not accepted\"\n  }\n]\n\n## 提示\n用逻辑与（&&/and）连接五个条件，全部为真才通过。\n\n原题链接",
+  "code": "#include <iostream>\n\nint main() {\n    int A, B, C, D;\n    std::cin >> A >> B >> C >> D;\n    \n    if (B > A && D > A && (C + D) > (A + B) && C > 0 && A % 2 == 0) {\n        std::cout << \"Accepted\\n\";\n    } else {\n        std::cout << \"Not accepted\\n\";\n    }\n    \n    return 0;\n}"
+}

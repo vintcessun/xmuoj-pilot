@@ -1,0 +1,12 @@
+{
+  "internal_id": 7393,
+  "display_id": "JD102",
+  "title": "三元归序",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "15a5285a27ce8c84985e74606e2d7c1d",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:34+00:00",
+  "statement": "显示题号: JD102\n内部 ID: 7393\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器阁的账房先生有一本厚厚的兵器账本，每条记录记着三样东西：兵器编号x、重量y（带两位小数）、兵器名称z。\n\n\"这本账太乱了，\"赵晴儿翻了几页就头疼，\"编号不按顺序，同编号的重量也乱排。\"\n\n梁嘉峰说：\"先按编号从小到大排，编号相同的再按重量从小到大排。你可以用结构体存每条记录，放进容器里，再自定义排序规则。\"\n\n## 输入描述\n第一行一个整数N。接下来N行，每行两个整数和一个字符串。\n\n## 输出描述\n排序后的N条记录，每行一条。x输出整数，y输出保留两位小数的浮点数，字符串原样输出，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"3\\n1 2 abc\\n3 4 def\\n2 1 ghi\",\n    \"output\": \"1 2.00 abc\\n2 1.00 ghi\\n3 4.00 def\"\n  }\n]\n\n## 提示\n定义结构体存储三元组，自定义比较函数：先比x，再比y。",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <iomanip>\n#include <string>\nusing namespace std;\n\nstruct Record {\n    int x;\n    double y;\n    string z;\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    int N;\n    cin >> N;\n    vector<Record> records(N);\n    for (int i = 0; i < N; ++i) {\n        cin >> records[i].x >> records[i].y >> records[i].z;\n    }\n    \n    sort(records.begin(), records.end(), [](const Record& a, const Record& b) {\n        if (a.x != b.x) return a.x < b.x;\n        return a.y < b.y;\n    });\n    \n    cout << fixed << setprecision(2);\n    for (const auto& r : records) {\n        cout << r.x << \" \" << r.y << \" \" << r.z << \"\\n\";\n    }\n    \n    return 0;\n}"
+}

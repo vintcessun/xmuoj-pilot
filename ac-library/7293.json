@@ -1,0 +1,12 @@
+{
+  "internal_id": 7293,
+  "display_id": "JD002",
+  "title": "铁令相乘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "b3fbd4e9131e6b8b2f9f232a4f2176ab",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:12:47+00:00",
+  "statement": "显示题号: JD002\n内部 ID: 7293\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰又递来两枚铁令。这一次他竖起两根手指——乘起来。\n\n## 输入描述\n一行，两个整数A和B，用空格隔开。\n\n## 输出描述\n输出 `PROD = ` 后跟A×B的结果。\n\n## 样例\n[\n  {\n    \"input\": \"3 9\",\n    \"output\": \"PROD = 27\"\n  }\n]\n\n## 提示\n读入两个整数，输出乘积。注意输出格式带前缀。\n\n原题链接",
+  "code": "#include <iostream>\n\nint main() {\n    int A, B;\n    std::cin >> A >> B;\n    std::cout << \"PROD = \" << A * B << std::endl;\n    return 0;\n}"
+}

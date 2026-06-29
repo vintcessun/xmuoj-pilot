@@ -1,0 +1,12 @@
+{
+  "internal_id": 7322,
+  "display_id": "JD031",
+  "title": "反复之门",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "9bd7fc2008b8ac8028ed2c9d83edb206",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:18+00:00",
+  "statement": "显示题号: JD031\n内部 ID: 7322\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n千层塔的某一层有一扇不断重复的门。每次门前出现一个数X：如果X不为0，就从1数到X；如果X为0，修炼结束。\n\n## 输入描述\n若干行，每行一个整数X。以0结束。\n\n## 输出描述\n对每个非零的X，输出1到X，每行一个数。每组之间空一行。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n10\\n3\\n0\",\n    \"output\": \"1 2 3 4 5\\n1 2 3 4 5 6 7 8 9 10\\n1 2 3\"\n  }\n]\n\n## 提示\n外层while循环读入X，遇到0停止。内层for循环从1到X输出。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int x;\n    while (cin >> x && x != 0) {\n        if (x > 0) {\n            for (int i = 1; i <= x; ++i) {\n                if (i > 1) cout << ' ';\n                cout << i;\n            }\n            cout << '\\n';\n        }\n    }\n    return 0;\n}"
+}

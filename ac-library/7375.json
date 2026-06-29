@@ -1,0 +1,12 @@
+{
+  "internal_id": 7375,
+  "display_id": "JD084",
+  "title": "双剑互易",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "33344fb85b1bc3c41fd3738a08af471b",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:29+00:00",
+  "statement": "显示题号: JD084\n内部 ID: 7375\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在教李少白一套双剑术。左右手各持一剑，攻守之间需要不断交换位置。\n\n\"实战中你不能把剑放到地上再捡起来，\"梁嘉峰说，\"直接交换。写一个函数，传入两个变量的引用，在函数内部交换它们的值。\"\n\n李少白提笔写下函数签名，却犯了难——C++里普通参数只传值，改不了外面的变量。\n\n## 输入描述\n一行，两个整数x和y。\n\n## 输出描述\n交换后的x和y。\n\n## 样例\n[\n  {\n    \"input\": \"6 26\",\n    \"output\": \"26 6\"\n  }\n]\n\n## 提示\nC++用引用参数 `void swap(int &x, int &y)`。Python中 a, b = b, a。",
+  "code": "#include <iostream>\nusing namespace std;\n\nvoid swap(int &x, int &y) {\n    int tmp = x;\n    x = y;\n    y = tmp;\n}\n\nint main() {\n    int x, y;\n    cin >> x >> y;\n    swap(x, y);\n    cout << x << \" \" << y << endl;\n    return 0;\n}"
+}

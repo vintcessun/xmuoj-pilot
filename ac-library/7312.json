@@ -1,0 +1,12 @@
+{
+  "internal_id": 7312,
+  "display_id": "JD021",
+  "title": "沙盘点位",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "5ec2e5212ee15d1e974487dbcb5635c6",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:43+00:00",
+  "statement": "显示题号: JD021\n内部 ID: 7312\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上标了一个点P(x, y)，让李少白判断它落在第几象限，还是在坐标轴上，还是在原点。\n\n## 输入描述\n一行，两个浮点数x和y。\n\n## 输出描述\n输出 Q1（第一象限）、Q2（第二）、Q3（第三）、Q4（第四）、Eixo X（X轴上）、Eixo Y（Y轴上）或 Origem（原点）。\n\n## 样例\n[\n  {\n    \"input\": \"4.5 -2.2\",\n    \"output\": \"Q4\"\n  }\n]\n\n## 提示\n先判断是否在原点或坐标轴上（x==0 或 y==0），再判断象限。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cmath>\n\nint main() {\n    double x, y;\n    std::cin >> x >> y;\n\n    const double eps = 1e-9;\n\n    bool zeroX = std::fabs(x) < eps;\n    bool zeroY = std::fabs(y) < eps;\n\n    if (zeroX && zeroY) {\n        std::cout << \"Origem\" << std::endl;\n    } else if (zeroX) {\n        std::cout << \"Eixo Y\" << std::endl;\n    } else if (zeroY) {\n        std::cout << \"Eixo X\" << std::endl;\n    } else if (x > 0 && y > 0) {\n        std::cout << \"Q1\" << std::endl;\n    } else if (x < 0 && y > 0) {\n        std::cout << \"Q2\" << std::endl;\n    } else if (x < 0 && y < 0) {\n        std::cout << \"Q3\" << std::endl;\n    } else {\n        std::cout << \"Q4\" << std::endl;\n    }\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7392,
+  "display_id": "JD101",
+  "title": "双链归并",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "21bbdc53d0b73b689a506831693ccfa9",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:29+00:00",
+  "statement": "显示题号: JD101\n内部 ID: 7392\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿从兵器阁的两个抽屉里各取出一条铁链，每条链上的数字都从小到大排好了。她需要把两条链合并成一条，仍然保持从小到大的顺序。\n\n\"不能拆开重排，\"梁嘉峰说，\"两条链都是有序的，你要利用这个特点——从两条链的头部同时开始比较，每次取较小的那个接到结果链的末尾。\"\n\n赵晴儿拿起两个容器：\"用一个容器存结果。两个指针分别指向两条链的头部，谁小就取谁，直到一条链取完，再把另一条的剩余全部接上。\"\n\n## 输入描述\n两行，每行若干整数（以-1结尾），分别表示两个有序链表。\n\n## 输出描述\n合并后的有序链表，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"1 3 5 -1\\n2 4 6 -1\",\n    \"output\": \"1 2 3 4 5 6\"\n  }\n]\n\n## 提示\n双指针比较合并。一个链表遍历完后，直接接上另一个的剩余部分。",
+  "code": "#include <iostream>\n#include <vector>\n\nint main() {\n    std::vector<int> a, b;\n    int x;\n    while (std::cin >> x && x != -1) a.push_back(x);\n    while (std::cin >> x && x != -1) b.push_back(x);\n\n    std::vector<int> res;\n    std::size_t i = 0, j = 0;\n    while (i < a.size() && j < b.size()) {\n        if (a[i] <= b[j])\n            res.push_back(a[i++]);\n        else\n            res.push_back(b[j++]);\n    }\n    while (i < a.size()) res.push_back(a[i++]);\n    while (j < b.size()) res.push_back(b[j++]);\n\n    for (std::size_t k = 0; k < res.size(); ++k) {\n        if (k) std::cout << ' ';\n        std::cout << res[k];\n    }\n    std::cout << std::endl;\n    return 0;\n}"
+}

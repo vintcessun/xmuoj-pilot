@@ -1,0 +1,12 @@
+{
+  "internal_id": 7321,
+  "display_id": "JD030",
+  "title": "奇数石砖",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2fc9743e57bd32fdc39fc87ab3c7d1df",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:14+00:00",
+  "statement": "显示题号: JD030\n内部 ID: 7321\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n千层塔第二层。墙上有一排编号从1到X的石砖。梁嘉峰指着石砖说：「把所有奇数编号的报出来。」\n\n## 输入描述\n一个正整数X。\n\n## 输出描述\n每行一个奇数，从1到X（含）。\n\n## 样例\n[\n  {\n    \"input\": \"8\",\n    \"output\": \"1\\n3\\n5\\n7\"\n  }\n]\n\n## 提示\nfor循环从1开始，步长为2，到X结束。如果X是偶数，最后一个奇数是X-1。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x;\n    cin >> x;\n    for (int i = 1; i <= x; i += 2) {\n        cout << i << \"\\n\";\n    }\n    return 0;\n}"
+}

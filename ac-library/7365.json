@@ -1,0 +1,12 @@
+{
+  "internal_id": 7365,
+  "display_id": "JD074",
+  "title": "古卷替换",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "4f1db234d2137aea2e9fc20138178d1c",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:53+00:00",
+  "statement": "显示题号: JD074\n内部 ID: 7365\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n古卷上的某个词需要全部替换成另一个词。赵晴儿让李少白逐词核对。\n\n## 输入描述\n三行：第一行原文字符串，第二行要替换的词A，第三行替换成的词B。\n\n## 输出描述\n替换后的字符串。\n\n## 样例\n[\n  {\n    \"input\": \"first late system see school still great different year Place far take same\\nlife\\ngroup\",\n    \"output\": \"first late system see school still great different year Place far take same\"\n  }\n]\n\n## 提示\n字符串替换函数，或按空格分割单词逐个比较替换。",
+  "code": "#include <iostream>\n#include <string>\n#include <cctype>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    string text, wordA, wordB;\n    getline(cin, text);\n    getline(cin, wordA);\n    getline(cin, wordB);\n    \n    string result;\n    int n = (int)text.size();\n    int i = 0;\n    while (i < n) {\n        if (isspace(text[i])) {\n            result += text[i];\n            ++i;\n            continue;\n        }\n        int j = i;\n        while (j < n && !isspace(text[j])) {\n            ++j;\n        }\n        string token = text.substr(i, j - i);\n        if (token == wordA) {\n            result += wordB;\n        } else {\n            result += token;\n        }\n        i = j;\n    }\n    \n    cout << result << '\\n';\n    return 0;\n}"
+}

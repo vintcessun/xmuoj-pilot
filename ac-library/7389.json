@@ -1,0 +1,12 @@
+{
+  "internal_id": 7389,
+  "display_id": "JD098",
+  "title": "倒转铁链",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "3427e6ae6dbd1a2779554490089dc2cd",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:20+00:00",
+  "statement": "显示题号: JD098\n内部 ID: 7389\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器阁的架子上挂着一串铁环，每个环上刻着一个数字，从头到尾依次是1、2、3……最后一个环上刻着-1，表示链条结束。\n\n梁嘉峰指着铁链说：\"我要从最后一个环开始，把数字一个个报出来。但这串铁环只能从前往后读，不能直接跳到末尾。\"\n\n赵晴儿想了想：\"用一个容器——先把所有数字存进去，再从后往前取出来。这就像把铁环一个个摘下来放到盒子里，最后从盒子里倒着取。\"\n\n## 输入描述\n一行整数，以-1结尾，表示链表的节点值（-1不算节点）。\n\n## 输出描述\n从尾到头输出每个节点的值，每行一个。\n\n## 样例\n[\n  {\n    \"input\": \"1 2 3 -1\",\n    \"output\": \"3\\n2\\n1\"\n  }\n]\n\n## 提示\n用栈存储所有节点值，然后依次弹出。或者用递归。",
+  "code": "#include <iostream>\n#include <vector>\n\nint main() {\n    std::vector<int> vals;\n    int x;\n    while (std::cin >> x) {\n        if (x == -1) break;\n        vals.push_back(x);\n    }\n    // 从尾到头输出，每行一个\n    for (auto it = vals.rbegin(); it != vals.rend(); ++it) {\n        std::cout << *it << '\\n';\n    }\n    return 0;\n}"
+}

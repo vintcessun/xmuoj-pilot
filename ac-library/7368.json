@@ -1,0 +1,12 @@
+{
+  "internal_id": 7368,
+  "display_id": "JD077",
+  "title": "独字寻踪",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6c6b49af08cd9e4284653546f47f1267",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:02+00:00",
+  "statement": "显示题号: JD077\n内部 ID: 7368\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n古卷上有些字重复出现，有些只出现一次。赵晴儿让李少白找到第一个只出现一次的字符。\n\n## 输入描述\n一行只包含小写字母的字符串。\n\n## 输出描述\n第一个只出现一次的字符，或\"no\"。\n\n## 样例\n[\n  {\n    \"input\": \"abaccdeff\",\n    \"output\": \"b\"\n  }\n]\n\n## 提示\n先统计每个字符出现次数，再从头遍历找第一个次数为1的。",
+  "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string s;\n    std::cin >> s;\n\n    int cnt[26] = {0};\n    for (char c : s) {\n        cnt[c - 'a']++;\n    }\n\n    for (char c : s) {\n        if (cnt[c - 'a'] == 1) {\n            std::cout << c;\n            return 0;\n        }\n    }\n\n    std::cout << \"no\";\n    return 0;\n}"
+}

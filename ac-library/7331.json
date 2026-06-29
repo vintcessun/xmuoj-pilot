@@ -1,0 +1,12 @@
+{
+  "internal_id": 7331,
+  "display_id": "JD040",
+  "title": "九九归真",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "32d60fbb2ea8042a892f31c402936943",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:56+00:00",
+  "statement": "显示题号: JD040\n内部 ID: 7331\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿教李少白背乘法口诀。她写下一个数N，让李少白从1乘到10，按格式列出N的乘法表：「i x N = i*N」。\n\n## 输入描述\n一个整数N。\n\n## 输出描述\n10行，格式为 `i x N = i*N`。\n\n## 样例\n[\n  {\n    \"input\": \"140\",\n    \"output\": \"1 x 140 = 140\\n2 x 140 = 280\\n3 x 140 = 420\\n4 x 140 = 560\\n5 x 140 = 700\\n6 x 140 = 840\\n7 x 140 = 980\\n8 x 140 = 1120\\n9 x 140 = 1260\\n10 x 140 = 1400\"\n  }\n]\n\n## 提示\nfor循环从1到10，每次输出i x N = i*N。",
+  "code": "#include <iostream>\n\nint main() {\n    long long n;\n    std::cin >> n;\n    for (int i = 1; i <= 10; ++i) {\n        std::cout << i << \" x \" << n << \" = \" << i * n << '\\n';\n    }\n    return 0;\n}"
+}

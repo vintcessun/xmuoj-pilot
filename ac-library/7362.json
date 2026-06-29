@@ -1,0 +1,12 @@
+{
+  "internal_id": 7362,
+  "display_id": "JD071",
+  "title": "密文数符",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f5d3ed5627bb91c8b985a6db9d39766e",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:42+00:00",
+  "statement": "显示题号: JD071\n内部 ID: 7362\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白一行密文，里面混着文字和数字。她说：「数一数有几个数字字符。」\n\n## 输入描述\n一行字符（长度不超过100）。\n\n## 输出描述\n输出其中数字字符（'0'~'9'）的个数。\n\n## 样例\n[\n  {\n    \"input\": \"hello2024world\",\n    \"output\": \"4\"\n  }\n]\n\n## 提示\n遍历字符串，判断每个字符是否在'0'到'9'之间。",
+  "code": "#include <iostream>\n#include <string>\n\nusing namespace std;\n\nint main() {\n    string s;\n    getline(cin, s);\n    int cnt = 0;\n    for (char c : s) {\n        if (c >= '0' && c <= '9') ++cnt;\n    }\n    cout << cnt << endl;\n    return 0;\n}"
+}

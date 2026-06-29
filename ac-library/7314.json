@@ -1,0 +1,12 @@
+{
+  "internal_id": 7314,
+  "display_id": "JD023",
+  "title": "账房调薪",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "eb4b19059766d0bfa576744046381323",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:48+00:00",
+  "statement": "显示题号: JD023\n内部 ID: 7314\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宗门账房年底调薪，按原月钱所在区间确定涨幅：0~400涨15%，400.01~800涨12%，800.01~1200涨10%，1200.01~2000涨7%，2000以上涨4%。涨幅是按整个工资乘以对应百分比，不是分段累进。\n\n李少白拿到一名弟子的原月钱，请算出新月钱、涨了多少和涨幅百分比。\n\n## 输入描述\n一个浮点数，表示原月钱。\n\n## 输出描述\n三行：新月钱、涨了多少、涨幅百分比（整数带%号），金额保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"400.00\",\n    \"output\": \"New salary: 460.00\\nIncrease: 60.00\\nPercentage: 15 %\"\n  }\n]\n\n## 提示\n用 if-elif 判断原月钱落在哪个区间，确定涨幅百分比p。涨额 = 原月钱 × p/100，新月钱 = 原月钱 + 涨额。注意400属于0~400区间（涨15%），400.01才属于400~800区间。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    double salary;\n    std::cin >> salary;\n\n    int p;\n    if (salary <= 400.0) {\n        p = 15;\n    } else if (salary <= 800.0) {\n        p = 12;\n    } else if (salary <= 1200.0) {\n        p = 10;\n    } else if (salary <= 2000.0) {\n        p = 7;\n    } else {\n        p = 4;\n    }\n\n    double increase = salary * p / 100.0;\n    double new_salary = salary + increase;\n\n    std::cout << std::fixed << std::setprecision(2);\n    std::cout << \"New salary: \" << new_salary << \"\\n\";\n    std::cout << \"Increase: \" << increase << \"\\n\";\n    std::cout << \"Percentage: \" << p << \" %\" << std::endl;\n\n    return 0;\n}"
+}

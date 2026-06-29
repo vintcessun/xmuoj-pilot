@@ -1,0 +1,12 @@
+{
+  "internal_id": 7294,
+  "display_id": "JD003",
+  "title": "四令求差",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "135bfb24c82c8d8a4bbc2ff4de470517",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:12:50+00:00",
+  "statement": "显示题号: JD003\n内部 ID: 7294\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功房桌上摆着四枚铁令。梁嘉峰说：「A和B相乘，C和D相乘，把两个积的差报给我。」\n\n## 输入描述\n一行，四个整数A、B、C、D，用空格隔开。\n\n## 输出描述\n输出 `DIFFERENCE = ` 后跟A×B − C×D的结果。\n\n## 样例\n[\n  {\n    \"input\": \"5 6 7 8\",\n    \"output\": \"-26\"\n  }\n]\n\n## 提示\n先乘后减，注意运算顺序和输出格式。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long a, b, c, d;\n    cin >> a >> b >> c >> d;\n    cout << \"DIFFERENCE = \" << (a * b - c * d) << endl;\n    return 0;\n}"
+}

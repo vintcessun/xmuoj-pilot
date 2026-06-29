@@ -1,0 +1,12 @@
+{
+  "internal_id": 7292,
+  "display_id": "JD001",
+  "title": "铁令求和",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "118dfca8e063df79f586853e946847f6",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:12:44+00:00",
+  "statement": "显示题号: JD001\n内部 ID: 7292\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白第一次来到剑道宗山门前。梁嘉峰递给他两枚铁令，上面各刻着一个数。「加起来，报给我。」\n\n## 输入描述\n一行，两个整数A和B，用空格隔开。\n\n## 输出描述\n一个整数，即A+B的结果。\n\n## 提示\n读入两个整数，输出它们的和。最基础的输入输出练习。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long A, B;\n    cin >> A >> B;\n    cout << A + B << endl;\n    return 0;\n}"
+}

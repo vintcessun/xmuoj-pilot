@@ -1,0 +1,12 @@
+{
+  "internal_id": 7295,
+  "display_id": "JD004",
+  "title": "集市算账",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c3a85ba6ff96e8c6660003e1e357fedf",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:12:52+00:00",
+  "statement": "显示题号: JD004\n内部 ID: 7295\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宗门集市上，赵晴儿帮账房算一笔账。已知商品编号、购买数量和单价，算出总价。\n\n## 输入描述\n一行，三个数：商品编号（整数）、购买数量（整数）、单价（浮点数）。\n\n## 输出描述\n输出 TOTAL = 后跟总价（数量×单价），保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"12 1 5.30\",\n    \"output\": \"TOTAL = 5.30\"\n  }\n]\n\n## 提示\n总价 = 件数₁×单价₁ + 件数₂×单价₂。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    int id, quantity;\n    double price;\n    std::cin >> id >> quantity >> price;\n    double total = quantity * price;\n    std::cout << \"TOTAL = \" << std::fixed << std::setprecision(2) << total << std::endl;\n    return 0;\n}"
+}

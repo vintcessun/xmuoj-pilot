@@ -1,0 +1,12 @@
+{
+  "internal_id": 7386,
+  "display_id": "JD095",
+  "title": "全排列阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "39a27be8622245499f391ca4a3d53776",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:10+00:00",
+  "statement": "显示题号: JD095\n内部 ID: 7386\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白n枚令牌，上面分别刻着1到n。\n\n\"把它们排成一列，列出所有可能的排列顺序。\"梁嘉峰说，\"按字典序从小到大输出。\"\n\n李少白开始手动枚举，很快就乱了套。赵晴儿在旁边提醒：\"用递归的思路——每次选一个没用过的令牌放到当前位置，然后递归处理剩下的位置。选完之后要'回退'，把令牌放回去，才能尝试下一个选择。这就是回溯。\"\n\n## 输入描述\n一个整数n（1 ≤ n ≤ 9）。\n\n## 输出描述\n每行一个排列，数字之间用空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"3\",\n    \"output\": \"1 2 3\\n1 3 2\\n2 1 3\\n2 3 1\\n3 1 2\\n3 2 1\"\n  }\n]\n\n## 提示\nDFS+回溯：用used[]标记已用数字，path[]记录当前排列。",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint n;\nvector<int> path;\nvector<bool> used;\n\nvoid dfs(int depth) {\n    if (depth == n) {\n        for (int i = 0; i < n; ++i) {\n            if (i > 0) cout << ' ';\n            cout << path[i];\n        }\n        cout << '\\n';\n        return;\n    }\n    for (int i = 1; i <= n; ++i) {\n        if (!used[i]) {\n            used[i] = true;\n            path.push_back(i);\n            dfs(depth + 1);\n            path.pop_back();\n            used[i] = false;\n        }\n    }\n}\n\nint main() {\n    cin >> n;\n    used.assign(n + 1, false);\n    path.reserve(n);\n    dfs(0);\n    return 0;\n}"
+}

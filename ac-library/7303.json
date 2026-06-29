@@ -1,0 +1,12 @@
+{
+  "internal_id": 7303,
+  "display_id": "JD012",
+  "title": "圆盘开孔",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "7cb03b87b46a0a8c108a019ef1c1bcf9",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:17+00:00",
+  "statement": "显示题号: JD012\n内部 ID: 7303\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上画了五个图形，每个图形都用A、B、C三个数来定义。她让李少白算出每个图形的面积：三角形（底A高C）、圆形（半径C）、梯形（上底A下底B高C）、正方形（边长B）、长方形（长A宽B）。π取3.14159，结果保留3位小数。\n\n## 输入描述\n一行，三个浮点数A、B、C。\n\n## 输出描述\n五行，分别输出 TRIANGULO（三角形）、CIRCULO（圆形）、TRAPEZIO（梯形）、QUADRADO（正方形）、RETANGULO（长方形）的面积，各保留3位小数。格式为 `名称: 面积`。\n\n## 样例\n[\n  {\n    \"input\": \"3.0 4.0 5.2\",\n    \"output\": \"TRIANGULO: 7.800\\nCIRCULO: 84.949\\nTRAPEZIO: 18.200\\nQUADRADO: 16.000\\nRETANGULO: 12.000\"\n  }\n]\n\n## 提示\n注意输出格式：名称与面积之间有一个空格。π取3.14159。使用 printf(\"%.3f\") 或 cout << fixed << setprecision(3) 保留3位小数。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    double A, B, C;\n    cin >> A >> B >> C;\n    const double PI = 3.14159;\n    cout << fixed << setprecision(3);\n    cout << \"TRIANGULO: \" << (A * C / 2.0) << \"\\n\";\n    cout << \"CIRCULO: \" << (PI * C * C) << \"\\n\";\n    cout << \"TRAPEZIO: \" << ((A + B) * C / 2.0) << \"\\n\";\n    cout << \"QUADRADO: \" << (B * B) << \"\\n\";\n    cout << \"RETANGULO: \" << (A * B) << \"\\n\";\n    return 0;\n}"
+}

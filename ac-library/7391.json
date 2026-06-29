@@ -1,0 +1,12 @@
+{
+  "internal_id": 7391,
+  "display_id": "JD100",
+  "title": "铁链翻转",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6de1c7f96812d936c5d1595f079f9936",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:26+00:00",
+  "statement": "显示题号: JD100\n内部 ID: 7391\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰从架子上取下一条铁链，每个环上刻着一个数字。他把铁链平铺在桌上，从头到尾是1、2、3、4、5……最后一个环上刻着-1，表示结束。\n\n\"我要把这条铁链反过来，\"梁嘉峰说，\"第一个变最后一个，最后一个变第一个。但不能断开重接，只能用容器来辅助。\"\n\n赵晴儿拿起一个铁盒：\"把铁环一个个摘下来放进盒子里——先进去的沉到底部。等全部摘完，再从盒子里取出来，顺序就反了。\"\n\n## 输入描述\n一行整数，以-1结尾，表示链表节点值。\n\n## 输出描述\n反转后的链表，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"1 2 3 4 5 -1\",\n    \"output\": \"5 4 3 2 1\"\n  }\n]\n\n## 提示\n三指针法：prev=None, curr=head。循环：next=curr.next, curr.next=prev, prev=curr, curr=next。",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    std::vector<int> values;\n    int x;\n    while (std::cin >> x && x != -1) {\n        values.push_back(x);\n    }\n    std::reverse(values.begin(), values.end());\n    for (size_t i = 0; i < values.size(); ++i) {\n        if (i > 0) std::cout << ' ';\n        std::cout << values[i];\n    }\n    std::cout << '\\n';\n    return 0;\n}"
+}

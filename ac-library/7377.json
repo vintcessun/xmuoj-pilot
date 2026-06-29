@@ -1,0 +1,12 @@
+{
+  "internal_id": 7377,
+  "display_id": "JD086",
+  "title": "剑阵复制",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "867cb7cd042634101dd079f7b0bfdd6a",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:37+00:00",
+  "statement": "显示题号: JD086\n内部 ID: 7377\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上摆了一个剑阵（数组a），需要原样复制一份到另一个沙盘（数组b）上。\n\n\"手抄太慢，\"赵晴儿说，\"写一个函数，把a的前size个元素复制到b对应的位置上。\"\n\n李少白接过两个沙盘，发现b上原来也有数字，只需覆盖前size个位置，其余保持不变。\n\n## 输入描述\n第一行两个整数n和size（数组长度和复制个数）。第二行n个整数。\n\n## 输出描述\n复制后的数组，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"3 5 2\\n1 2 3\\n4 5 6 7 8\",\n    \"output\": \"1 2 6 7 8\"\n  }\n]\n\n## 提示\n函数内循环，b[i] = a[i]，复制前size个元素。",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m, sz;\n    cin >> n >> m >> sz;\n    vector<int> a(n), b(m);\n    for (int i = 0; i < n; ++i) cin >> a[i];\n    for (int i = 0; i < m; ++i) cin >> b[i];\n    int limit = min({sz, n, m});\n    for (int i = 0; i < limit; ++i) b[i] = a[i];\n    for (int i = 0; i < m; ++i) {\n        if (i > 0) cout << ' ';\n        cout << b[i];\n    }\n    cout << '\\n';\n    return 0;\n}"
+}

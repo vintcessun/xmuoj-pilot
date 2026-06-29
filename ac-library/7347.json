@@ -1,0 +1,12 @@
+{
+  "internal_id": 7347,
+  "display_id": "JD056",
+  "title": "下方剑域",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "cfd0ee443f7ca739bd3e4fc3affde18e",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:52+00:00",
+  "statement": "显示题号: JD056\n内部 ID: 7347\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「下域之剑，承地脉之气。」赵晴儿的手指向光幕下方划去，「靠近大地的剑势更沉。算算下域之力和。」\n\n## 输入描述\n第一行一个大写字母S或M。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出对应区域的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"S\\n6.0 90.0 70.0 55.0 69.0 69.0 62.0 79.0 7.0 9.0 54.0 43.0\\n30.0 75.0 74.0 58.0 99.0 52.0 88.0 51.0 77.0 92.0 77.0 10.0\\n89.0 99.0 84.0 60.0 90.0 25.0 95.0 82.0 96.0 5.0 92.0 10.0\\n...\",\n    \"output\": \"1694.0\"\n  }\n]\n\n## 提示\n下方区域即i>j的元素。",
+  "code": "#include <iostream>\n#include <vector>\n#include <cstdio>\n\nvoid solve() {\n    char tp;\n    std::cin >> tp;\n    std::vector<std::vector<double>> a(12, std::vector<double>(12));\n    for (int i = 0; i < 12; ++i)\n        for (int j = 0; j < 12; ++j)\n            std::cin >> a[i][j];\n    double sum = 0.0;\n    int cnt = 0;\n    for (int i = 0; i < 12; ++i) {\n        for (int j = 0; j < 12; ++j) {\n            if (i > j && i + j > 11) {\n                sum += a[i][j];\n                ++cnt;\n            }\n        }\n    }\n    if (tp == 'S')\n        printf(\"%.1lf\\n\", sum);\n    else\n        printf(\"%.1lf\\n\", sum / cnt);\n}\n\nint main() {\n    int T = 1;\n    while (T--) solve();\n    return 0;\n}"
+}

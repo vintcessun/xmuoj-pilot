@@ -1,0 +1,12 @@
+{
+  "internal_id": 7311,
+  "display_id": "JD020",
+  "title": "内力分级",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "4fa456b77ea8928af3393ae3306e8c4b",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:40+00:00",
+  "statement": "显示题号: JD020\n内部 ID: 7311\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宗门把弟子的内力值分成四个等级：[0,25]是入门，(25,50]是初级，(50,75]是中级，(75,100]是高级。超出100则不在评级范围内。李少白测出一名弟子的内力值，需要判断他属于哪个等级。\n\n## 输入描述\n一个浮点数，表示内力值。\n\n## 输出描述\n输出对应区间的名称，或 `Out of interval`（超出范围）。\n\n## 样例\n[\n  {\n    \"input\": \"95.29\",\n    \"output\": \"Interval (75,100]\"\n  }\n]\n\n## 提示\n用 if-elif-else 逐一判断落在哪个区间。\n\n原题链接",
+  "code": "#include <iostream>\n\nint main() {\n    double x;\n    std::cin >> x;\n    if (x >= 0.0 && x <= 25.0) {\n        std::cout << \"Interval [0,25]\" << std::endl;\n    } else if (x > 25.0 && x <= 50.0) {\n        std::cout << \"Interval (25,50]\" << std::endl;\n    } else if (x > 50.0 && x <= 75.0) {\n        std::cout << \"Interval (50,75]\" << std::endl;\n    } else if (x > 75.0 && x <= 100.0) {\n        std::cout << \"Interval (75,100]\" << std::endl;\n    } else {\n        std::cout << \"Out of interval\" << std::endl;\n    }\n    return 0;\n}"
+}

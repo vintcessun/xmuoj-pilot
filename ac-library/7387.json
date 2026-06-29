@@ -1,0 +1,12 @@
+{
+  "internal_id": 7387,
+  "display_id": "JD096",
+  "title": "空格替换",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "bbb3582bbc08f0b63573b53ec22a0495",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:18:14+00:00",
+  "statement": "显示题号: JD096\n内部 ID: 7387\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器阁的大门上刻着一行古文，但年代久远，字迹模糊，空格处尤其难以辨认。赵晴儿凑近看了看：\"这行字里夹了太多空格，密密麻麻的，根本看不清。\"\n\n梁嘉峰说：\"古卷传输时，空格容易丢失。古人想了个办法——把每个空格替换成%20，这样既保留了间隔，又不会和真正的空白混淆。\"\n\n\"你写一段程序，把这行古文里的所有空格替换成%20。\"\n\n## 输入描述\n一行字符串（长度不超过100）。\n\n## 输出描述\n替换空格为%20后的字符串。\n\n## 样例\n[\n  {\n    \"input\": \"Hello World\",\n    \"output\": \"Hello%20World\"\n  }\n]\n\n## 提示\n遍历字符串，遇到空格输出%20，否则输出原字符。",
+  "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string s;\n    std::getline(std::cin, s);\n    std::string ans;\n    for (char c : s) {\n        if (c == ' ') {\n            ans += \"%20\";\n        } else {\n            ans.push_back(c);\n        }\n    }\n    std::cout << ans << std::endl;\n    return 0;\n}"
+}

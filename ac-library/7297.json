@@ -1,0 +1,12 @@
+{
+  "internal_id": 7297,
+  "display_id": "JD006",
+  "title": "剑术考核",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "4f270add678b6a6a515b1f7e39feb77f",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:12:59+00:00",
+  "statement": "显示题号: JD006\n内部 ID: 7297\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n入门考核有两项：剑术和心法。剑术权重3.5，心法权重7.5。赵晴儿拿到成绩后要算加权平均分。\n\n## 输入描述\n两行，每行一个浮点数，分别表示剑术成绩A和心法成绩B。\n\n## 输出描述\n输出 `Average = ` 后跟加权平均分，保留5位小数。\n\n## 样例\n[\n  {\n    \"input\": \"9.7\\n5.3\",\n    \"output\": \"Average = 6.70000\"\n  }\n]\n\n## 提示\n加权平均 = (A×3.5 + B×7.5) / 11。分母是权重之和，不是2。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    double A, B;\n    std::cin >> A >> B;\n    double average = (A * 3.5 + B * 7.5) / 11.0;\n    std::cout << \"Average = \" << std::fixed << std::setprecision(5) << average << std::endl;\n    return 0;\n}"
+}

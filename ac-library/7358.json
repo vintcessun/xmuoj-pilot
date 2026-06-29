@@ -1,0 +1,12 @@
+{
+  "internal_id": 7358,
+  "display_id": "JD067",
+  "title": "古卷测长",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "5571ceddd98b8c97e88308cd671282c2",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:28+00:00",
+  "statement": "显示题号: JD067\n内部 ID: 7358\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白一卷竹简：「上面刻着一行字，告诉我它有多长。」\n\n## 输入描述\n一行字符串（长度不超过100），可能包含空格。\n\n## 输出描述\n输出字符串的实际长度。\n\n## 样例\n[\n  {\n    \"input\": \"Hello World\",\n    \"output\": \"11\"\n  }\n]\n\n## 提示\n读入一行字符串（含空格），输出其长度。",
+  "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string s;\n    std::getline(std::cin, s);\n    std::cout << s.size() << std::endl;\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7327,
+  "display_id": "JD036",
+  "title": "奇数求和",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "fb4872849d3f2c52067fbba269b5da33",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:40+00:00",
+  "statement": "显示题号: JD036\n内部 ID: 7327\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在墙上刻了两个数X和Y，让李少白算出X和Y之间（不含X和Y）所有奇数的和。\n\n## 输入描述\n一行，两个整数X和Y（X\n\n## 输出描述\n输出X和Y之间所有奇数的和。\n\n## 样例\n[\n  {\n    \"input\": \"6 -5\",\n    \"output\": \"5\"\n  }\n]\n\n## 提示\n从X+1到Y-1循环，判断每个数是否为奇数，是则累加。",
+  "code": "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long a, b;\n    cin >> a >> b;\n    if (a > b) swap(a, b);\n    long long L = a + 1;\n    long long R = b - 1;\n    long long sum = 0;\n    if (L <= R) {\n        long long s = L;\n        if (!(s & 1)) s++;\n        long long e = R;\n        if (!(e & 1)) e--;\n        if (s <= e) {\n            long long cnt = (e - s) / 2 + 1;\n            sum = cnt * (s + e) / 2;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}"
+}

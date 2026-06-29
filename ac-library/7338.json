@@ -1,0 +1,12 @@
+{
+  "internal_id": 7338,
+  "display_id": "JD047",
+  "title": "剑锋所指",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "3c2c0b01520255290009f2373bdaadc4",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:19+00:00",
+  "statement": "显示题号: JD047\n内部 ID: 7338\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练功场上一排木桩，每根木桩上刻着一个数。赵晴儿让他找到最矮的那根木桩——剑锋所向，以弱制动。找到最小值并说出它在第几根。\n\n## 输入描述\n第一行一个整数N。第二行N个整数。\n\n## 输出描述\n输出最小值和它的位置，格式见样例。\n\n## 样例\n[\n  {\n    \"input\": \"10\\n1 2 3 4 -5 6 7 8 9 10\",\n    \"output\": \"Menor valor: -5\\nPosicao: 4\"\n  }\n]\n\n## 提示\n遍历时记录最小值和位置。",
+  "code": "#include <iostream>\n#include <vector>\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    std::vector<int> data;\n    int x;\n    while (std::cin >> x) {\n        data.push_back(x);\n    }\n\n    if (data.empty()) return 0;\n    int n = data[0];\n    if (n <= 0) return 0;  // 无效或空数组不输出\n\n    int count = std::min(n, static_cast<int>(data.size()) - 1);\n    if (count == 0) return 0;\n\n    int min_val = data[1];\n    int min_pos = 0;\n    for (int i = 1; i < count; ++i) {\n        if (data[1 + i] < min_val) {\n            min_val = data[1 + i];\n            min_pos = i;\n        }\n    }\n\n    std::cout << \"Menor valor: \" << min_val << \"\\n\";\n    std::cout << \"Posicao: \" << min_pos << \"\\n\";\n    return 0;\n}"
+}

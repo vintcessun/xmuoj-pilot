@@ -1,0 +1,12 @@
+{
+  "internal_id": 7299,
+  "display_id": "JD008",
+  "title": "马匹脚力",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "121acd81495d3239b7d4a4e745a890c1",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:05+00:00",
+  "statement": "显示题号: JD008\n内部 ID: 7299\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白骑马送信，跑了S公里，马匹消耗了L升草料汁。他想知道每升草料汁能支撑跑多少公里。\n\n## 输入描述\n一行，两个浮点数，分别表示路程（km）和草料消耗（L）。\n\n## 输出描述\n输出每升草料汁能跑的公里数，保留3位小数，后跟 km/l。\n\n## 样例\n[\n  {\n    \"input\": \"500 35.0\",\n    \"output\": \"14.286 km/l\"\n  }\n]\n\n## 提示\n消耗率 = 草料 / 路程，注意浮点数除法。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstdio>\n\nint main() {\n    double S, L;\n    std::cin >> S >> L;\n    printf(\"%.3f km/l\\n\", S / L);\n    return 0;\n}"
+}

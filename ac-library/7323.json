@@ -1,0 +1,12 @@
+{
+  "internal_id": 7323,
+  "display_id": "JD032",
+  "title": "六奇连珠",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "170d68638db1d98808d86ae3f60bbaf5",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:22+00:00",
+  "statement": "显示题号: JD032\n内部 ID: 7323\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白一个数X：「从X之后开始，找出6个连续的奇数，一个一个报给我。」\n\n## 输入描述\n一个整数X。\n\n## 输出描述\n从X之后开始的6个连续奇数，每行一个。\n\n## 样例\n[\n  {\n    \"input\": \"8\",\n    \"output\": \"9\\n11\\n13\\n15\\n17\\n19\"\n  }\n]\n\n## 提示\n如果X是奇数，从X+2开始；如果X是偶数，从X+1开始。循环6次，每次加2。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long x;\n    cin >> x;\n    \n    long long start;\n    if (x % 2 == 0) {\n        start = x + 1;   // 偶数，从下一个奇数开始\n    } else {\n        start = x + 2;   // 奇数，跳过本身和下一个偶数\n    }\n    \n    for (int i = 0; i < 6; ++i) {\n        cout << start << '\\n';\n        start += 2;\n    }\n    \n    return 0;\n}"
+}

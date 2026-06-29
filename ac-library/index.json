@@ -916,5 +916,923 @@
     "language": "C++",
     "contest_id": 359,
     "path": "7206.json"
+  },
+  {
+    "internal_id": 7292,
+    "display_id": "JD001",
+    "title": "铁令求和",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7292.json"
+  },
+  {
+    "internal_id": 7293,
+    "display_id": "JD002",
+    "title": "铁令相乘",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7293.json"
+  },
+  {
+    "internal_id": 7294,
+    "display_id": "JD003",
+    "title": "四令求差",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7294.json"
+  },
+  {
+    "internal_id": 7295,
+    "display_id": "JD004",
+    "title": "集市算账",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7295.json"
+  },
+  {
+    "internal_id": 7296,
+    "display_id": "JD005",
+    "title": "比武台",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7296.json"
+  },
+  {
+    "internal_id": 7297,
+    "display_id": "JD006",
+    "title": "剑术考核",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7297.json"
+  },
+  {
+    "internal_id": 7298,
+    "display_id": "JD007",
+    "title": "月底发饷",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7298.json"
+  },
+  {
+    "internal_id": 7299,
+    "display_id": "JD008",
+    "title": "马匹脚力",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7299.json"
+  },
+  {
+    "internal_id": 7300,
+    "display_id": "JD009",
+    "title": "铁球体积",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7300.json"
+  },
+  {
+    "internal_id": 7301,
+    "display_id": "JD010",
+    "title": "三令比大",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7301.json"
+  },
+  {
+    "internal_id": 7302,
+    "display_id": "JD011",
+    "title": "哨塔测距",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7302.json"
+  },
+  {
+    "internal_id": 7303,
+    "display_id": "JD012",
+    "title": "圆盘开孔",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7303.json"
+  },
+  {
+    "internal_id": 7304,
+    "display_id": "JD013",
+    "title": "水钟报时",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7304.json"
+  },
+  {
+    "internal_id": 7305,
+    "display_id": "JD014",
+    "title": "钱庄换银",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7305.json"
+  },
+  {
+    "internal_id": 7306,
+    "display_id": "JD015",
+    "title": "石碑之谜",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7306.json"
+  },
+  {
+    "internal_id": 7307,
+    "display_id": "JD016",
+    "title": "三根木棍",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7307.json"
+  },
+  {
+    "internal_id": 7308,
+    "display_id": "JD017",
+    "title": "比武时辰",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7308.json"
+  },
+  {
+    "internal_id": 7309,
+    "display_id": "JD018",
+    "title": "三石排序",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7309.json"
+  },
+  {
+    "internal_id": 7310,
+    "display_id": "JD019",
+    "title": "杂货铺",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7310.json"
+  },
+  {
+    "internal_id": 7311,
+    "display_id": "JD020",
+    "title": "内力分级",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7311.json"
+  },
+  {
+    "internal_id": 7312,
+    "display_id": "JD021",
+    "title": "沙盘点位",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7312.json"
+  },
+  {
+    "internal_id": 7313,
+    "display_id": "JD022",
+    "title": "跨夜比武",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7313.json"
+  },
+  {
+    "internal_id": 7314,
+    "display_id": "JD023",
+    "title": "账房调薪",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7314.json"
+  },
+  {
+    "internal_id": 7315,
+    "display_id": "JD024",
+    "title": "五关考验",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7315.json"
+  },
+  {
+    "internal_id": 7316,
+    "display_id": "JD025",
+    "title": "信鸽传信",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7316.json"
+  },
+  {
+    "internal_id": 7317,
+    "display_id": "JD026",
+    "title": "木棍辨形",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7317.json"
+  },
+  {
+    "internal_id": 7318,
+    "display_id": "JD027",
+    "title": "怪兽辨识",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7318.json"
+  },
+  {
+    "internal_id": 7319,
+    "display_id": "JD028",
+    "title": "田赋计算",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7319.json"
+  },
+  {
+    "internal_id": 7320,
+    "display_id": "JD029",
+    "title": "石砖偶数",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7320.json"
+  },
+  {
+    "internal_id": 7321,
+    "display_id": "JD030",
+    "title": "奇数石砖",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7321.json"
+  },
+  {
+    "internal_id": 7322,
+    "display_id": "JD031",
+    "title": "反复之门",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7322.json"
+  },
+  {
+    "internal_id": 7323,
+    "display_id": "JD032",
+    "title": "六奇连珠",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7323.json"
+  },
+  {
+    "internal_id": 7324,
+    "display_id": "JD033",
+    "title": "正数清点",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7324.json"
+  },
+  {
+    "internal_id": 7325,
+    "display_id": "JD034",
+    "title": "余数寻踪",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7325.json"
+  },
+  {
+    "internal_id": 7326,
+    "display_id": "JD035",
+    "title": "区间计数",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7326.json"
+  },
+  {
+    "internal_id": 7327,
+    "display_id": "JD036",
+    "title": "奇数求和",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7327.json"
+  },
+  {
+    "internal_id": 7328,
+    "display_id": "JD037",
+    "title": "数链连珠",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7328.json"
+  },
+  {
+    "internal_id": 7329,
+    "display_id": "JD038",
+    "title": "石中之王",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7329.json"
+  },
+  {
+    "internal_id": 7330,
+    "display_id": "JD039",
+    "title": "约数寻踪",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7330.json"
+  },
+  {
+    "internal_id": 7331,
+    "display_id": "JD040",
+    "title": "九九归真",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7331.json"
+  },
+  {
+    "internal_id": 7332,
+    "display_id": "JD041",
+    "title": "千层阵列",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7332.json"
+  },
+  {
+    "internal_id": 7333,
+    "display_id": "JD042",
+    "title": "兵刃统计",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7333.json"
+  },
+  {
+    "internal_id": 7334,
+    "display_id": "JD043",
+    "title": "正剑除邪",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7334.json"
+  },
+  {
+    "internal_id": 7335,
+    "display_id": "JD044",
+    "title": "翻倍剑阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7335.json"
+  },
+  {
+    "internal_id": 7336,
+    "display_id": "JD045",
+    "title": "剑中取精",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7336.json"
+  },
+  {
+    "internal_id": 7337,
+    "display_id": "JD046",
+    "title": "剑阵倒转",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7337.json"
+  },
+  {
+    "internal_id": 7338,
+    "display_id": "JD047",
+    "title": "剑锋所指",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7338.json"
+  },
+  {
+    "internal_id": 7339,
+    "display_id": "JD048",
+    "title": "二气相生",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7339.json"
+  },
+  {
+    "internal_id": 7340,
+    "display_id": "JD049",
+    "title": "斐波剑诀",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7340.json"
+  },
+  {
+    "internal_id": 7341,
+    "display_id": "JD050",
+    "title": "列阵求和",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7341.json"
+  },
+  {
+    "internal_id": 7342,
+    "display_id": "JD051",
+    "title": "剑行取道",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7342.json"
+  },
+  {
+    "internal_id": 7343,
+    "display_id": "JD052",
+    "title": "剑列纵横",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7343.json"
+  },
+  {
+    "internal_id": 7344,
+    "display_id": "JD053",
+    "title": "完璧归宗",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7344.json"
+  },
+  {
+    "internal_id": 7345,
+    "display_id": "JD054",
+    "title": "剑意之质",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7345.json"
+  },
+  {
+    "internal_id": 7346,
+    "display_id": "JD055",
+    "title": "上方剑域",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7346.json"
+  },
+  {
+    "internal_id": 7347,
+    "display_id": "JD056",
+    "title": "下方剑域",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7347.json"
+  },
+  {
+    "internal_id": 7348,
+    "display_id": "JD057",
+    "title": "左方剑域",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7348.json"
+  },
+  {
+    "internal_id": 7349,
+    "display_id": "JD058",
+    "title": "右方剑域",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7349.json"
+  },
+  {
+    "internal_id": 7350,
+    "display_id": "JD059",
+    "title": "右上剑角",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7350.json"
+  },
+  {
+    "internal_id": 7351,
+    "display_id": "JD060",
+    "title": "左上剑角",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7351.json"
+  },
+  {
+    "internal_id": 7352,
+    "display_id": "JD061",
+    "title": "右下剑角",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7352.json"
+  },
+  {
+    "internal_id": 7353,
+    "display_id": "JD062",
+    "title": "左下剑角",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7353.json"
+  },
+  {
+    "internal_id": 7354,
+    "display_id": "JD063",
+    "title": "方圆初阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7354.json"
+  },
+  {
+    "internal_id": 7355,
+    "display_id": "JD064",
+    "title": "镜像方阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7355.json"
+  },
+  {
+    "internal_id": 7356,
+    "display_id": "JD065",
+    "title": "倍增方阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7356.json"
+  },
+  {
+    "internal_id": 7357,
+    "display_id": "JD066",
+    "title": "蛇形剑阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7357.json"
+  },
+  {
+    "internal_id": 7358,
+    "display_id": "JD067",
+    "title": "古卷测长",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7358.json"
+  },
+  {
+    "internal_id": 7359,
+    "display_id": "JD068",
+    "title": "密文留白",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7359.json"
+  },
+  {
+    "internal_id": 7360,
+    "display_id": "JD069",
+    "title": "墨迹遮字",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7360.json"
+  },
+  {
+    "internal_id": 7361,
+    "display_id": "JD070",
+    "title": "经文重构",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7361.json"
+  },
+  {
+    "internal_id": 7362,
+    "display_id": "JD071",
+    "title": "密文数符",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7362.json"
+  },
+  {
+    "internal_id": 7363,
+    "display_id": "JD072",
+    "title": "拳掌对决",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7363.json"
+  },
+  {
+    "internal_id": 7364,
+    "display_id": "JD073",
+    "title": "经文加密",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7364.json"
+  },
+  {
+    "internal_id": 7365,
+    "display_id": "JD074",
+    "title": "古卷替换",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7365.json"
+  },
+  {
+    "internal_id": 7366,
+    "display_id": "JD075",
+    "title": "寻最长词",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7366.json"
+  },
+  {
+    "internal_id": 7367,
+    "display_id": "JD076",
+    "title": "古卷插字",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7367.json"
+  },
+  {
+    "internal_id": 7368,
+    "display_id": "JD077",
+    "title": "独字寻踪",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7368.json"
+  },
+  {
+    "internal_id": 7369,
+    "display_id": "JD078",
+    "title": "两卷对校",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7369.json"
+  },
+  {
+    "internal_id": 7370,
+    "display_id": "JD079",
+    "title": "经文周期",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7370.json"
+  },
+  {
+    "internal_id": 7371,
+    "display_id": "JD080",
+    "title": "密文跨距",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7371.json"
+  },
+  {
+    "internal_id": 7372,
+    "display_id": "JD081",
+    "title": "初窥阶乘",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7372.json"
+  },
+  {
+    "internal_id": 7373,
+    "display_id": "JD082",
+    "title": "比剑取大",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7373.json"
+  },
+  {
+    "internal_id": 7374,
+    "display_id": "JD083",
+    "title": "剑气归正",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7374.json"
+  },
+  {
+    "internal_id": 7375,
+    "display_id": "JD084",
+    "title": "双剑互易",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7375.json"
+  },
+  {
+    "internal_id": 7376,
+    "display_id": "JD085",
+    "title": "辗转相除",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7376.json"
+  },
+  {
+    "internal_id": 7377,
+    "display_id": "JD086",
+    "title": "剑阵复制",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7377.json"
+  },
+  {
+    "internal_id": 7378,
+    "display_id": "JD087",
+    "title": "剑阵翻转",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7378.json"
+  },
+  {
+    "internal_id": 7379,
+    "display_id": "JD088",
+    "title": "印数成招",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7379.json"
+  },
+  {
+    "internal_id": 7380,
+    "display_id": "JD089",
+    "title": "印阵成招",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7380.json"
+  },
+  {
+    "internal_id": 7381,
+    "display_id": "JD090",
+    "title": "剑阵排序",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7381.json"
+  },
+  {
+    "internal_id": 7382,
+    "display_id": "JD091",
+    "title": "递归阶乘",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7382.json"
+  },
+  {
+    "internal_id": 7383,
+    "display_id": "JD092",
+    "title": "递归斐波",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7383.json"
+  },
+  {
+    "internal_id": 7384,
+    "display_id": "JD093",
+    "title": "登阶问道",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7384.json"
+  },
+  {
+    "internal_id": 7385,
+    "display_id": "JD094",
+    "title": "方阵寻路",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7385.json"
+  },
+  {
+    "internal_id": 7386,
+    "display_id": "JD095",
+    "title": "全排列阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7386.json"
+  },
+  {
+    "internal_id": 7387,
+    "display_id": "JD096",
+    "title": "空格替换",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7387.json"
+  },
+  {
+    "internal_id": 7388,
+    "display_id": "JD097",
+    "title": "再算斐波",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7388.json"
+  },
+  {
+    "internal_id": 7389,
+    "display_id": "JD098",
+    "title": "倒转铁链",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7389.json"
+  },
+  {
+    "internal_id": 7390,
+    "display_id": "JD099",
+    "title": "双栈为队",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7390.json"
+  },
+  {
+    "internal_id": 7391,
+    "display_id": "JD100",
+    "title": "铁链翻转",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7391.json"
+  },
+  {
+    "internal_id": 7392,
+    "display_id": "JD101",
+    "title": "双链归并",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7392.json"
+  },
+  {
+    "internal_id": 7393,
+    "display_id": "JD102",
+    "title": "三元归序",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7393.json"
   }
 ]

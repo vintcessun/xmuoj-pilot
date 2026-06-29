@@ -1,0 +1,12 @@
+{
+  "internal_id": 7330,
+  "display_id": "JD039",
+  "title": "约数寻踪",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "142a729abe9c855b73a079060022b783",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:51+00:00",
+  "statement": "显示题号: JD039\n内部 ID: 7330\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上写下一个数N：「找出它的所有约数，从小到大列出来。」\n\n## 输入描述\n一个正整数N。\n\n## 输出描述\n每行一个约数，从小到大。\n\n## 样例\n[\n  {\n    \"input\": \"6\",\n    \"output\": \"1\\n2\\n3\\n6\"\n  }\n]\n\n## 提示\n从1到N循环，如果N%i==0则i是约数。",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    vector<long long> divisors;\n    for (long long i = 1; i <= N / i; ++i) {\n        if (N % i == 0) {\n            divisors.push_back(i);\n            long long other = N / i;\n            if (other != i) {\n                divisors.push_back(other);\n            }\n        }\n    }\n    sort(divisors.begin(), divisors.end());\n    for (long long d : divisors) {\n        cout << d << \"\\n\";\n    }\n    return 0;\n}"
+}

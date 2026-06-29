@@ -1,0 +1,12 @@
+{
+  "internal_id": 7364,
+  "display_id": "JD073",
+  "title": "经文加密",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "78c167cba92c39e2fdc151e4ed7b655b",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:49+00:00",
+  "statement": "显示题号: JD073\n内部 ID: 7364\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n古卷需要加密保存。加密规则：每个字母后移一位（z→a），每个数字后移一位（9→0），其他字符不变。\n\n## 输入描述\n一行字符串（长度不超过100）。\n\n## 输出描述\n加密后的字符串。\n\n## 样例\n[\n  {\n    \"input\": \"Hello, World!\",\n    \"output\": \"Ifmmp, Xpsme!\"\n  }\n]\n\n## 提示\n遍历字符串，对字母、数字分别做+1循环偏移，其他字符原样输出。",
+  "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string s;\n    std::getline(std::cin, s);\n\n    for (char& c : s) {\n        if ('a' <= c && c <= 'z') {\n            c = (c - 'a' + 1) % 26 + 'a';\n        } else if ('A' <= c && c <= 'Z') {\n            c = (c - 'A' + 1) % 26 + 'A';\n        }\n        // 数字和其他字符原样输出\n    }\n\n    std::cout << s << std::endl;\n    return 0;\n}"
+}

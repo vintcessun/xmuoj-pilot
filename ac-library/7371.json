@@ -1,0 +1,12 @@
+{
+  "internal_id": 7371,
+  "display_id": "JD080",
+  "title": "密文跨距",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "fe4c3c8616278f786b5846654c963a8d",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:17:10+00:00",
+  "statement": "显示题号: JD080\n内部 ID: 7371\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白一长段密文和两个短码S1、S2：「S1在左，S2在右，不交叉。最大间距是多少？」\n\n## 输入描述\n一行，三个字符串用逗号隔开：S,S1,S2。\n\n## 输出描述\n最大跨距。不满足条件输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"abcd123dABdefghjsdef76ki,ab,ef\",\n    \"output\": \"16\"\n  }\n]\n\n## 提示\n从左往右找S1最后出现的位置end1，从右往左找S2最后出现的位置start2。如果end1",
+  "code": "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<int> findAll(const string& text, const string& pattern) {\n    vector<int> matches;\n    int n = text.size(), m = pattern.size();\n    if (m == 0) return matches;\n    vector<int> pi(m);\n    for (int i = 1; i < m; ++i) {\n        int j = pi[i - 1];\n        while (j > 0 && pattern[i] != pattern[j])\n            j = pi[j - 1];\n        if (pattern[i] == pattern[j])\n            ++j;\n        pi[i] = j;\n    }\n    int j = 0;\n    for (int i = 0; i < n; ++i) {\n        while (j > 0 && text[i] != pattern[j])\n            j = pi[j - 1];\n        if (text[i] == pattern[j])\n            ++j;\n        if (j == m) {\n            matches.push_back(i - m + 1);\n            j = pi[j - 1];\n        }\n    }\n    return matches;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    string line;\n    getline(cin, line);\n    // 分割三个字符串\n    size_t p1 = line.find(',');\n    size_t p2 = line.find(',', p1 + 1);\n    string S = line.substr(0, p1);\n    string S1 = line.substr(p1 + 1, p2 - p1 - 1);\n    string S2 = line.substr(p2 + 1);\n\n    vector<int> pos1 = findAll(S, S1);\n    vector<int> pos2 = findAll(S, S2);\n    if (pos1.empty() || pos2.empty()) {\n        cout << -1;\n        return 0;\n    }\n\n    int min_end = *min_element(pos1.begin(), pos1.end()) + (int)S1.size();\n    int max_start = *max_element(pos2.begin(), pos2.end());\n\n    if (min_end <= max_start)\n        cout << max_start - min_end;\n    else\n        cout << -1;\n\n    return 0;\n}"
+}

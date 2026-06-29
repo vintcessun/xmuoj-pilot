@@ -1,0 +1,12 @@
+{
+  "internal_id": 7306,
+  "display_id": "JD015",
+  "title": "石碑之谜",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c5c277a2c67d6409c4f1a20686d45a37",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:26+00:00",
+  "statement": "显示题号: JD015\n内部 ID: 7306\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n山门前有两条路，路边各立一块石碑。赵晴儿指着石碑上的两个数说：「如果其中一个数能被另一个整除，这两块碑就是一对——走左边这条路。否则走右边。」\n\n给定两个整数A和B，判断它们是否互为倍数关系（即A能被B整除，或B能被A整除）。\n\n## 输入描述\n一行，两个整数A和B。\n\n## 输出描述\n互为倍数输出 `Yes`，否则输出 `No`。\n\n## 样例\n[\n  {\n    \"input\": \"6 24\",\n    \"output\": \"Yes\"\n  }\n]\n\n## 提示\n判断 A%B==0 或 B%A==0，只要有一个成立就是倍数关系，输出Yes；否则输出No。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int A, B;\n    cin >> A >> B;\n    if ((B != 0 && A % B == 0) || (A != 0 && B % A == 0))\n        cout << \"Yes\" << endl;\n    else\n        cout << \"No\" << endl;\n    return 0;\n}"
+}

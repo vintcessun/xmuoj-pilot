@@ -1,0 +1,12 @@
+{
+  "internal_id": 7298,
+  "display_id": "JD007",
+  "title": "月底发饷",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "342d08dcd70c04e0a8ce098fbbfed0dd",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:02+00:00",
+  "statement": "显示题号: JD007\n内部 ID: 7298\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n月底发饷，李少白帮账房核算一名弟子的工钱。已知工号、出工天数和每日工钱。\n\n## 输入描述\n第一行一个整数，表示工号。第二行两个数：出工天数（整数）和每日工钱（浮点数）。\n\n## 输出描述\n第一行输出工号。第二行输出 `SALARY = U$ ` 后跟实发金额，保留两位小数。\n\n## 样例\n[\n  {\n    \"input\": \"25\\n100 5.50\",\n    \"output\": \"NUMBER = 25\\nSALARY = U$ 550.00\"\n  }\n]\n\n## 提示\n实发金额 = 出工天数 × 每日工钱。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    int number;\n    int days;\n    double rate;\n    std::cin >> number;\n    std::cin >> days >> rate;\n    double salary = days * rate;\n    std::cout << \"NUMBER = \" << number << std::endl;\n    std::cout << \"SALARY = U$ \" << std::fixed << std::setprecision(2) << salary << std::endl;\n    return 0;\n}"
+}

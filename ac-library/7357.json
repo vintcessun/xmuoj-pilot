@@ -1,0 +1,12 @@
+{
+  "internal_id": 7357,
+  "display_id": "JD066",
+  "title": "蛇形剑阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "686e39d0b14f67fbef3f3737c8997530",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:25+00:00",
+  "statement": "显示题号: JD066\n内部 ID: 7357\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「剑阵蜿蜒如蛇，以身引气，气走周身。」赵晴儿在沙盘上画了一个n行m列的剑阵，「从左上角开始，依次填入从1到n×m的剑气。行到尽头便拐弯，似灵蛇折返。」\n\n## 输入描述\n一行，两个整数n和m。\n\n## 输出描述\nn行，每行m个整数用空格隔开。输出后跟一个空行。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\",\n    \"output\": \"1 2 3 \\n8 9 4 \\n7 6 5\"\n  }\n]\n\n## 提示\n模拟蛇形遍历：右→下→左→上循环。维护四个边界。",
+  "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n\n    vector<vector<int>> a(n, vector<int>(m, 0));\n\n    int top = 0, bottom = n - 1;\n    int left = 0, right = m - 1;\n    int num = 1;\n\n    while (top <= bottom && left <= right) {\n        // 向右\n        for (int i = left; i <= right; ++i) {\n            a[top][i] = num++;\n        }\n        ++top;\n        // 向下\n        for (int i = top; i <= bottom; ++i) {\n            a[i][right] = num++;\n        }\n        --right;\n        // 向左\n        if (top <= bottom) {\n            for (int i = right; i >= left; --i) {\n                a[bottom][i] = num++;\n            }\n            --bottom;\n        }\n        // 向上\n        if (left <= right) {\n            for (int i = bottom; i >= top; --i) {\n                a[i][left] = num++;\n            }\n            ++left;\n        }\n    }\n\n    // 输出矩阵\n    for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < m; ++j) {\n            cout << a[i][j] << \" \";\n        }\n        cout << \"\\n\";\n    }\n    // 输出一个空行\n    cout << \"\\n\";\n\n    return 0;\n}"
+}

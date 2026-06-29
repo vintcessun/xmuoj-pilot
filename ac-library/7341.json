@@ -1,0 +1,12 @@
+{
+  "internal_id": 7341,
+  "display_id": "JD050",
+  "title": "列阵求和",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "644c3a65d9a2f4c3883a3daff16b9e34",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:15:30+00:00",
+  "statement": "显示题号: JD050\n内部 ID: 7341\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在沙盘上画了一个数字阵列：「从M到N，全部列出来，再算和。如果M比N大，先交换。」李少白从M一路数到N，把每个数刻在石板上。\n\n## 输入描述\n若干行，每行两个整数M和N。以两个0结束。\n\n## 输出描述\n每组：先输出序列（空格隔开），再输出 `Sum=S`。\n\n## 样例\n[\n  {\n    \"input\": \"5 10\\n2 3\\n0 0\",\n    \"output\": \"5 6 7 8 9 10 Sum=45\\n2 3 Sum=5\"\n  }\n]\n\n## 提示\n循环从M到N输出并累加。",
+  "code": "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    long long M, N;\n    while (cin >> M >> N) {\n        if (M == 0 && N == 0) break;\n        if (M < 0 || N < 0) break;\n        if (M > N) swap(M, N);\n        long long sum = 0;\n        for (long long i = M; i <= N; ++i) {\n            cout << i << \" \";\n            sum += i;\n        }\n        cout << \"Sum=\" << sum << \"\\n\";\n    }\n    return 0;\n}"
+}

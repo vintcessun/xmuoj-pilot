@@ -1,0 +1,12 @@
+{
+  "internal_id": 7352,
+  "display_id": "JD061",
+  "title": "右下剑角",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "bf2aab2e27c5e7aca78fc9ad48149310",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:09+00:00",
+  "statement": "显示题号: JD061\n内部 ID: 7352\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「右下剑角——地乾之位，日落之处。从主对角线往下右方，剑势如残阳下沉，渐行渐远。」\n\n## 输入描述\n第一行一个大写字母S或M。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出对应区域的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"S\\n80.0 49.0 14.0 87.0 99.0 61.0 17.0 39.0 57.0 46.0 63.0 43.0\\n79.0 19.0 8.0 27.0 77.0 77.0 97.0 82.0 52.0 14.0 85.0 36.0\\n61.0 75.0 96.0 20.0 78.0 6.0 1.0 72.0 15.0 46.0 23.0 98.0\\n...\",\n    \"output\": \"2790.0\"\n  }\n]\n\n## 提示\n右下部分即满足i + j > 11的元素（反对角线以下）。",
+  "code": "#include <iostream>\n#include <iomanip>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    char op;\n    cin >> op;\n    \n    const int N = 12;\n    vector<vector<double>> mat(N, vector<double>(N));\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            cin >> mat[i][j];\n        }\n    }\n    \n    double sum = 0.0;\n    int cnt = 0;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (i + j >= N) { // 反对角线以下（包含？题面说反对角线以下，提示说i+j>11，即>=12）\n                sum += mat[i][j];\n                ++cnt;\n            }\n        }\n    }\n    \n    double ans = (op == 'S') ? sum : sum / cnt;\n    cout << fixed << setprecision(1) << ans << endl;\n    \n    return 0;\n}"
+}

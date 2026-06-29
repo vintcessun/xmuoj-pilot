@@ -1,0 +1,12 @@
+{
+  "internal_id": 7316,
+  "display_id": "JD025",
+  "title": "信鸽传信",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "75309ece142cb7965ab80951dc069213",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:13:54+00:00",
+  "statement": "显示题号: JD025\n内部 ID: 7316\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宗门各分舵之间用信鸽传信，每个分舵有一个编号（DDD码）。李少白拿到一个编号，需要查出它对应哪个分舵：61=Brasilia，71=Salvador，11=Sao Paulo，21=Rio de Janeiro，32=Juiz de Fora，19=Campinas，27=Vitoria，31=Belo Horizonte，其他编号则输出\"DDD nao cadastrado\"。\n\n## 输入描述\n一个整数。\n\n## 输出描述\n输出对应分舵名称，或 `DDD nao cadastrado`。\n\n## 样例\n[\n  {\n    \"input\": \"11\",\n    \"output\": \"Sao Paulo\"\n  }\n]\n\n## 提示\n用 if-elif 链逐一比对，或用字典/映射表查找。\n\n原题链接",
+  "code": "#include <iostream>\n#include <map>\n#include <string>\n\nint main() {\n    int ddd;\n    std::cin >> ddd;\n\n    const std::map<int, std::string> ddd_map = {\n        {61, \"Brasilia\"},\n        {71, \"Salvador\"},\n        {11, \"Sao Paulo\"},\n        {21, \"Rio de Janeiro\"},\n        {32, \"Juiz de Fora\"},\n        {19, \"Campinas\"},\n        {27, \"Vitoria\"},\n        {31, \"Belo Horizonte\"}\n    };\n\n    auto it = ddd_map.find(ddd);\n    if (it != ddd_map.end()) {\n        std::cout << it->second << std::endl;\n    } else {\n        std::cout << \"DDD nao cadastrado\" << std::endl;\n    }\n\n    return 0;\n}"
+}

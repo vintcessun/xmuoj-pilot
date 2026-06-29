@@ -1,0 +1,12 @@
+{
+  "internal_id": 7366,
+  "display_id": "JD075",
+  "title": "寻最长词",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f31d1ed4c277b25e3322e9e553777339",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:55+00:00",
+  "statement": "显示题号: JD075\n内部 ID: 7366\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着古卷上的一句话：「找出最长的那个词。」\n\n## 输入描述\n一行，以'.'结尾的英文句子（长度不超过500）。\n\n## 输出描述\n最长的单词。\n\n## 样例\n[\n  {\n    \"input\": \"I am a student of Peking University.\",\n    \"output\": \"University\"\n  }\n]\n\n## 提示\n按空格分割单词（去掉末尾的'.'），遍历比较长度。",
+  "code": "#include <iostream>\n#include <string>\n#include <sstream>\n\nusing namespace std;\n\nint main() {\n    string line;\n    getline(cin, line);\n    istringstream iss(line);\n    string word, longest;\n    while (iss >> word) {\n        if (!word.empty() && word.back() == '.') {\n            word.pop_back();   // 去掉末尾的句点\n        }\n        if (word.size() > longest.size()) {\n            longest = word;\n        }\n    }\n    cout << longest << endl;\n    return 0;\n}"
+}

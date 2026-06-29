@@ -1,0 +1,12 @@
+{
+  "internal_id": 7319,
+  "display_id": "JD028",
+  "title": "田赋计算",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f44324722d4307734d45928e5e1fd0b0",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:14:06+00:00",
+  "statement": "显示题号: JD028\n内部 ID: 7319\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n李少白入了宗门，开始交田赋。税率分档：2000以下免税，2000.01~3000部分征8%，3000.01~4500部分征18%，4500以上部分征28%。注意是分段计税——只有超出部分按对应税率算。\n\n## 输入描述\n一个浮点数，表示月收入。\n\n## 输出描述\n输出 `R$ X.XX`。免税则输出 `Isento`。\n\n## 样例\n[\n  {\n    \"input\": \"3002.00\",\n    \"output\": \"R$ 80.36\"\n  }\n]\n\n## 提示\n分段计算：1000×8% + 2×18% = 80.36。每段只对超出部分征税。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n#include <algorithm>\n\nusing namespace std;\n\nint main() {\n    double income;\n    cin >> income;\n\n    cout << fixed << setprecision(2);\n\n    if (income <= 2000.00) {\n        cout << \"Isento\" << endl;\n    } else {\n        double tax = 0.0;\n\n        // 第二档：2000.01 ~ 3000.00 部分 8%\n        double part2 = min(max(0.0, income - 2000.0), 1000.0);\n        tax += part2 * 0.08;\n\n        // 第三档：3000.01 ~ 4500.00 部分 18%\n        double part3 = min(max(0.0, income - 3000.0), 1500.0);\n        tax += part3 * 0.18;\n\n        // 第四档：4500.01 以上部分 28%\n        double part4 = max(0.0, income - 4500.0);\n        tax += part4 * 0.28;\n\n        cout << \"R$ \" << tax << endl;\n    }\n\n    return 0;\n}"
+}

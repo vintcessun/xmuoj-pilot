@@ -1,0 +1,12 @@
+{
+  "internal_id": 7353,
+  "display_id": "JD062",
+  "title": "左下剑角",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2df233fe830170238d542e45df15cf18",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:12+00:00",
+  "statement": "显示题号: JD062\n内部 ID: 7353\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「左下剑角——地坤之位，月升之处。从主对角线往下左方，剑气似初月升空，一弧清辉。」\n\n## 输入描述\n第一行一个大写字母S或M。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出对应区域的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"S\\n43.0 96.0 42.0 21.0 34.0 15.0 13.0 59.0 82.0 4.0 35.0 93.0\\n78.0 97.0 91.0 19.0 38.0 91.0 16.0 90.0 38.0 53.0 31.0 73.0\\n25.0 37.0 40.0 40.0 34.0 39.0 98.0 77.0 29.0 2.0 84.0 54.0\\n...\",\n    \"output\": \"3154.0\"\n  }\n]\n\n## 提示\n左下部分即满足j < i的元素（主对角线以下）。",
+  "code": "#include <cstdio>\n\nint main() {\n    char op;\n    scanf(\" %c\", &op);\n    double a[12][12];\n    for (int i = 0; i < 12; ++i)\n        for (int j = 0; j < 12; ++j)\n            scanf(\"%lf\", &a[i][j]);\n    \n    double sum = 0.0;\n    int cnt = 0;\n    for (int i = 0; i < 12; ++i) {\n        for (int j = 0; j < i; ++j) { // 主对角线以下，即 j < i\n            sum += a[i][j];\n            ++cnt;\n        }\n    }\n    \n    if (op == 'S') {\n        printf(\"%.1f\\n\", sum);\n    } else { // op == 'M'\n        printf(\"%.1f\\n\", sum / cnt);\n    }\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7351,
+  "display_id": "JD060",
+  "title": "左上剑角",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "e6ba99481988deab5fec07a4919ad8b4",
+  "contest_id": 361,
+  "fetched_at": "2026-06-29T17:16:06+00:00",
+  "statement": "显示题号: JD060\n内部 ID: 7351\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n「左上剑角——天坤之位，月落之处。从主对角线往上左方，剑气如新月之弧，划出一角天地。」\n\n## 输入描述\n第一行一个大写字母S或M。接下来12行，每行12个浮点数。\n\n## 输出描述\n输出对应区域的和或平均值，保留一位小数。\n\n## 样例\n[\n  {\n    \"input\": \"S\\n49.0 20.0 80.0 78.0 8.0 14.0 59.0 46.0 32.0 6.0 7.0 97.0\\n59.0 80.0 31.0 74.0 20.0 20.0 88.0 27.0 11.0 18.0 28.0 12.0\\n97.0 85.0 70.0 33.0 61.0 32.0 10.0 89.0 42.0 82.0 21.0 79.0\\n...\",\n    \"output\": \"2981.0\"\n  }\n]\n\n## 提示\n左上部分即i+j<11的元素。",
+  "code": "#include <iostream>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    char op;\n    cin >> op;\n    double a[12][12];\n    for (int i = 0; i < 12; ++i)\n        for (int j = 0; j < 12; ++j)\n            cin >> a[i][j];\n    double sum = 0;\n    int cnt = 0;\n    for (int i = 0; i < 12; ++i)\n        for (int j = 0; j < 12; ++j)\n            if (i + j < 11) {\n                sum += a[i][j];\n                ++cnt;\n            }\n    cout << fixed << setprecision(1);\n    if (op == 'S')\n        cout << sum;\n    else // 'M'\n        cout << sum / cnt;\n    return 0;\n}"
+}
