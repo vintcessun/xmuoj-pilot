@@ -74,6 +74,12 @@ jobs:
           name: ac-library
           path: ac-library
 
+      # 自动启用 Pages（首次运行无需手动去 Settings 打开）
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
