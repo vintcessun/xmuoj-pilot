@@ -1,0 +1,29 @@
+[project]
+name = "xmuoj-pilot"
+version = "0.1.0"
+description = "A personal XMUOJ CLI learning assistant."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27.0",
+  "nuitka>=4.1.3",
+  "openai>=1.40.0",
+  "pydantic>=2.7.0",
+  "rich>=13.7.0",
+  "typer>=0.12.0",
+]
+
+[project.scripts]
+xmuoj-pilot = "xmuoj_pilot.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/xmuoj_pilot"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
