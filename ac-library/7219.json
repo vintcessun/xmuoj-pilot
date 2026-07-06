@@ -1,0 +1,12 @@
+{
+  "internal_id": 7219,
+  "display_id": "JD115",
+  "title": "双剑验序",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "ee90695e669ec1b9cb058e4fef5ab636",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T05:12:58+00:00",
+  "statement": "显示题号: JD115\n内部 ID: 7219\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿拿着两卷竹简，上面各写着一串数字。她问：\"第二卷的内容是不是第一卷的子序列？子序列不要求连续，但必须保持原有次序。\"\n\n李少白用两个指针：\"一个指针遍历第一卷，另一个指向第二卷。如果当前字符匹配，第二卷的指针就往前走。最后看第二卷的指针有没有走到头——走到头就说明全部匹配上了。\"\n\n\"对，两个指针各走一遍，O(n)。\"\n\n给定序列 a（长度 n）和序列 b（长度 m），判断 a 是否为 b 的子序列。\n\n## 输入描述\n第一行两个整数n和m。第二行n个整数（序列a）。第三行m个整数（序列b）。\n\n## 输出描述\n是子序列输出Yes，否则输出No。\n\n## 样例\n[\n  {\n    \"input\": \"3 5\\n1 3 5\\n1 2 3 4 5\",\n    \"output\": \"Yes\"\n  }\n]\n\n## 提示\n双指针：i 遍历 a，j 遍历 b。a[i] == b[j] 时 i++。i 到头说明是子序列。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iomanip>\n#include <numeric>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#ifdef LOCAL\n    #include \"debug.h\"\n#else\n    #define debug(...) (__VA_ARGS__)\n    #define dbg(...) (__VA_ARGS__)\n#endif\n#pragma GCC optimize(\"Ofast\")\n\nll read(){\n    ll x; std::cin >> x; return x;\n}\n\nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    for(; b; b >>= 1, a = (a * a) % p) if(b & 1) res = (res * a) % p;\n    return res;\n}\n\nvoid solve(){\n    int n = read(), m = read();\n    std::map<int, std::vector<int>> mp;\n    std::vector<int> a(n), b(m);\n    for(auto& x : a) x = read();\n    for(int i = 0; i < m; ++i){\n        b[i] = read();\n        mp[b[i]].push_back(i);\n    }\n    int now = -1;\n    for(int i = 0; i < n; ++i){\n        if(!mp.count(a[i])) return puts(\"No\"), void();\n        auto& rec = mp[a[i]];\n        auto it = std::upper_bound(rec.begin(), rec.end(), now);\n        if(it == rec.end()) return puts(\"No\"), void();\n        now = *it;\n    }\n    puts(\"Yes\");\n}\n\nsigned main(){\n    std::cin.tie(0) -> std::ios::sync_with_stdio(false);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7211,
+  "display_id": "JD107",
+  "title": "石壁听风",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "3c405a40e6e05cb0478e2b9c786fcf61",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T05:12:25+00:00",
+  "statement": "显示题号: JD107\n内部 ID: 7211\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白一排刻着数字的石块，从左到右从小到大排好了。她问：\"数字 3 第一次出现在哪块石块上？最后一次出现在哪？\"\n\n李少白想从头数，但石块有十万块。赵晴儿拦住他：\"石块是有序的，不用一个个看。先看最中间那块——如果中间的数比 3 大，说明 3 只可能在左半边，右半边不用看了。每次都把范围砍一半，这就是二分。\"\n\n\"找第一次出现的位置和最后一次出现的位置，各二分一次。\"李少白接话道。\n\n\"对。如果整个范围里都找不到，就说明没有。\"\n\n给定一个升序排列的长度为 n 的整数数组和 q 个查询，对每个查询返回目标值的起始位置和终止位置（从0开始），不存在则返回 -1 -1。\n\n## 输入描述\n第一行两个整数n和q。第二行n个整数（升序）。第三行q个待查询的整数。\n\n## 输出描述\n每行两个整数，起始位置和终止位置。不存在输出-1 -1。\n\n## 样例\n[\n  {\n    \"input\": \"6 3\\n1 2 2 3 3 4\\n2 3 5\",\n    \"output\": \"1 2\\n3 4\\n-1 -1\"\n  }\n]\n\n## 提示\n两次二分：找第一个 ≥ x 的位置（左边界），找最后一个 ≤ x 的位置（右边界）。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <numeric>\n#include <climits>\n#include <cstring>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#pragma GCC optimize(\"O2\")\n#include <cassert>\n \nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n \n//ll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    while(b){\n        if(b & 1) res = (res * a) % p;\n        a = (a * a) % p;\n        b >>= 1;\n    }\n    return res;\n}\n \nvoid solve(){\n    int n, q; std::cin >> n >> q;\n    std::vector<int> a(n);\n    for(int i = 0; i < n; i++) std::cin >> a[i];\n    while(q--){\n        int x; std::cin >> x;\n        int L = std::lower_bound(a.begin(), a.end(), x) - a.begin();\n        int R = std::upper_bound(a.begin(), a.end(), x) - a.begin() - 1;\n        if(L > R) puts(\"-1 -1\");\n        else printf(\"%d %d\\n\", L, R);\n    }\n}\n \nsigned main(){\n    std::ios::sync_with_stdio(false);\n  //  std::cin.tie(0);\n  //  std::cout.tie(0);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}
