@@ -120,6 +120,20 @@ a { color: #0969da; }
 <tr><td><a href="#p7204">7204</a></td><td>JD100</td><td>铁链翻转</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7205">7205</a></td><td>JD101</td><td>双链归并</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7206">7206</a></td><td>JD102</td><td>三元归序</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7207">7207</a></td><td>JD103</td><td>立桩定阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7208">7208</a></td><td>JD104</td><td>照妖辨品</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7209">7209</a></td><td>JD105</td><td>双剑合阵</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7210">7210</a></td><td>JD106</td><td>逆流之数</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7211">7211</a></td><td>JD107</td><td>石壁听风</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7212">7212</a></td><td>JD108</td><td>剑指方根</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7213">7213</a></td><td>JD109</td><td>铁壁识痕</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7214">7214</a></td><td>JD110</td><td>万钧合一</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7215">7215</a></td><td>JD111</td><td>削铁如泥</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7216">7216</a></td><td>JD112</td><td>叠甲千层</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7217">7217</a></td><td>JD113</td><td>分金断玉</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7218">7218</a></td><td>JD114</td><td>双剑求和</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7219">7219</a></td><td>JD115</td><td>双剑验序</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7220">7220</a></td><td>JD116</td><td>无重之最</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7292">7292</a></td><td>JD001</td><td>铁令求和</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7293">7293</a></td><td>JD002</td><td>铁令相乘</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7294">7294</a></td><td>JD003</td><td>四令求差</td><td>100.0</td><td>361</td></tr>
@@ -5336,6 +5350,2475 @@ void solve(){
 }
 
 signed main(){
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7207">
+<h2>内部 ID 7207（JD103 立桩定阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7207.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+int a[1000005];
+ 
+void solve(){
+    int n; std::cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; ++i) std::cin &gt;&gt; a[i];
+    std::stable_sort(&amp;a[0], &amp;a[n]);
+    for(int i = 0; i &lt; n; ++i) printf(&quot;%d &quot;, a[i]);
+}
+ 
+signed main(){
+    std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7208">
+<h2>内部 ID 7208（JD104 照妖辨品）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7208.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstdio&gt;
+#include &lt;cmath&gt;
+using namespace std;
+ 
+const int N = 100010;
+ 
+int a[N];
+ 
+int quick_sort(int q[], int l, int r, int k)
+{
+    //同快速排序
+    int x = q[(l + r) / 2], i = l - 1, j = r + 1;
+    if (l &gt;= r) return q[l];
+    while (i &lt; j)
+    {
+        while (q[ ++ i] &lt; x);
+        while (q[ -- j] &gt; x);
+        if (i &lt; j) swap(q[i], q[j]);
+    }
+    if (j - l + 1 &gt;= k) return quick_sort(q, l, j, k); //第k小数在左边区间
+    else return quick_sort(q, j + 1, r, k - (j - l + 1)); //第k小数在右边区间
+}
+ 
+int main()
+{
+    int n, k;
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
+    for (int i = 1; i &lt;= n; i ++ ) scanf(&quot;%d&quot;, &amp;a[i]);
+    printf(&quot;%d&quot;, quick_sort(a, 1, n, k));
+    return 0;
+}</code></pre>
+</section>
+<section id="p7209">
+<h2>内部 ID 7209（JD105 双剑合阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7209.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+int a[1000005];
+ 
+void solve(){
+    int n; std::cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; ++i) std::cin &gt;&gt; a[i];
+    std::stable_sort(&amp;a[0], &amp;a[n]);
+    for(int i = 0; i &lt; n; ++i) printf(&quot;%d &quot;, a[i]);
+}
+ 
+signed main(){
+    std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7210">
+<h2>内部 ID 7210（JD106 逆流之数）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7210.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+#define int long long
+#define MAXN 500005
+ 
+int n, inverse_cnt;
+int a[MAXN], b[MAXN];
+ 
+int read(){
+    int x = 0, f = 1; char ch = getchar();
+    for(;!isdigit(ch);ch = getchar()) if(ch == &#x27;-&#x27;) f = -1;
+    for(;isdigit(ch);ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch xor 48);
+    return x*f;
+}
+ 
+void merge_sort(int l, int r){
+    if(l &gt;= r) return;
+    int mid = (l + r) &gt;&gt; 1;
+    merge_sort(l, mid); merge_sort(mid + 1, r);
+    int i = l, j = mid + 1, tot = 0;
+    while(i &lt;= mid and j &lt;= r){
+        if(a[j] &lt; a[i]){
+            b[++tot] = a[j++];
+            inverse_cnt += mid - i + 1;
+        }
+        else b[++tot] = a[i++];
+    }
+    while(i &lt;= mid) b[++tot] = a[i++];
+    while(j &lt;= r) b[++tot] = a[j++];
+    for(int k = l; k &lt;= r; ++k) a[k] = b[k - l + 1];
+}
+ 
+signed main(){
+    n = read();
+    for(int i = 1; i &lt;= n; ++i) a[i] = read();
+    merge_sort(1, n);
+    printf(&quot;%lld\n&quot;, inverse_cnt);
+    return 0;
+}</code></pre>
+</section>
+<section id="p7211">
+<h2>内部 ID 7211（JD107 石壁听风）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7211.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    int n, q; std::cin &gt;&gt; n &gt;&gt; q;
+    std::vector&lt;int&gt; a(n);
+    for(int i = 0; i &lt; n; i++) std::cin &gt;&gt; a[i];
+    while(q--){
+        int x; std::cin &gt;&gt; x;
+        int L = std::lower_bound(a.begin(), a.end(), x) - a.begin();
+        int R = std::upper_bound(a.begin(), a.end(), x) - a.begin() - 1;
+        if(L &gt; R) puts(&quot;-1 -1&quot;);
+        else printf(&quot;%d %d\n&quot;, L, R);
+    }
+}
+ 
+signed main(){
+    std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7212">
+<h2>内部 ID 7212（JD108 剑指方根）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7212.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#pragma GCC optimize(&quot;O2&quot;)
+#include &lt;cassert&gt;
+ 
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+ 
+//ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    while(b){
+        if(b &amp; 1) res = (res * a) % p;
+        a = (a * a) % p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ 
+void solve(){
+    double x; std::cin &gt;&gt; x;
+    double L = -10000.0, R = 10000.0;
+    while(R - L &gt; 1e-8){
+        double mid = (L + R) / 2.0;
+        double y = mid * mid * mid;
+        if(y &lt; x) L = mid;
+        else R = mid;
+    }
+    printf(&quot;%.6lf\n&quot;, L);
+}
+ 
+signed main(){
+    std::ios::sync_with_stdio(false);
+  //  std::cin.tie(0);
+  //  std::cout.tie(0);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7213">
+<h2>内部 ID 7213（JD109 铁壁识痕）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7213.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+inline int lowbit(int &amp;x)
+{
+    return x &amp; -x;//x的二进制的最后一个1所构成的整数
+}
+int main()
+{
+    int n, x;
+    cin &gt;&gt; n;
+    while (n--)
+    {
+        //读入一个数，并且计算1的个数，并且输出
+        cin &gt;&gt; x;
+        int res = 0;//计数变量
+        while (x)
+            x -= lowbit(x), res++; //使用,表达式，简化代码去括号
+        cout &lt;&lt; res &lt;&lt; &quot; &quot;;        //输出运算结果
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7214">
+<h2>内部 ID 7214（JD110 万钧合一）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7214.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+#pragma GCC optimize(&quot;Ofast&quot;)
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    for(; b; b &gt;&gt;= 1, a = (a * a) % p) if(b &amp; 1) res = (res * a) % p;
+    return res;
+}
+
+namespace BigInt {
+    const int base = 1000000000;
+    const int base_digits = 9; // 分解为九个数位一个数字
+    struct BigInt {
+        std::vector&lt;int&gt; a;
+        int sign;
+
+        #pragma region Constructors
+
+        BigInt() : sign(1) {}
+        BigInt(const BigInt&amp;) = default;
+        BigInt(BigInt&amp;&amp;) noexcept = default;
+        BigInt&amp; operator = (const BigInt&amp;) = default;
+        BigInt&amp; operator = (BigInt&amp;&amp;) noexcept = default;
+
+        explicit BigInt(ll v){*this = v;}
+        explicit BigInt(int v){*this = (ll)v;}
+        BigInt(const std::string&amp; s){str2int(s);}
+
+        #pragma endregion
+        #pragma region Utils
+        
+        void trim(){
+            while(!a.empty() and !a.back()) a.pop_back();
+            if(a.empty()) sign = 1;
+        }
+
+        bool isZero() const {
+            return a.empty() or (a.size() == 1 and !a[0]);
+        }
+
+        BigInt abs() const {
+            BigInt res = *this;
+            res.sign = 1;
+            return res;
+        }
+
+        explicit operator bool() const {
+            return !isZero();
+        }
+
+        void str2int(const std::string&amp; s){
+            sign = 1;
+            a.clear();
+            int pos = 0, n = s.size();
+            for(; pos &lt; n and isspace(s[pos]); ++pos);
+            for(; pos &lt; n and (s[pos] == &#x27;+&#x27; or s[pos] == &#x27;-&#x27;); ++pos) if(s[pos] == &#x27;-&#x27;) sign = -1;
+            for(; pos &lt; n and s[pos] == &#x27;0&#x27;; ++pos);
+            if(pos == n){a.clear(); sign = 1; return;}
+            for(int i = n - 1; i &gt;= pos; i -= base_digits){
+                int x = 0;
+                for(int j = std::max(pos, i - base_digits + 1); j &lt;= i; ++j) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (s[j] xor 48);
+                a.push_back(x);
+            }
+            trim();
+        }
+
+        std::string to_string() const {
+            if(isZero()) return &quot;0&quot;;
+            std::string s = (sign == -1 ? &quot;-&quot; : &quot;&quot;);
+            s += std::to_string(a.back());
+            for(int i = (int)a.size() - 2; i &gt;= 0; --i){
+                std::string t = std::to_string(a[i]);
+                s += std::string(base_digits - t.size(), &#x27;0&#x27;) + t;
+            }
+            return s;
+        }
+
+        ll to_ll() const {
+            ll res = 0;
+            for(int i = a.size() - 1; i &gt;= 0; --i) res = res * base + a[i];
+            return res * sign;
+        }
+
+        static std::vector&lt;int&gt; convert_base(const std::vector&lt;int&gt;&amp; a, int old_digits, int new_digits){
+            std::vector&lt;ll&gt; p(std::max(old_digits, new_digits) + 1);
+            p[0] = 1;
+            for(int i = 1; i &lt; (int)p.size(); ++i) p[i] = p[i - 1] * 10;
+            std::vector&lt;int&gt; res;
+            ll cur = 0;
+            int cur_digits = 0;
+            for(int i = 0; i &lt; (int)a.size(); ++i){
+                cur += (ll)a[i] * p[cur_digits];
+                cur_digits += old_digits;
+                while(cur_digits &gt;= new_digits){
+                    res.push_back((int)(cur % p[new_digits]));
+                    cur /= p[new_digits];
+                    cur_digits -= new_digits;
+                }
+            }
+            if(cur &gt; 0) res.push_back(cur);
+            while(!res.empty() and !res.back()) res.pop_back();
+            return res;
+        }
+
+        BigInt operator - () const {
+            BigInt res = *this;
+            res.sign = -res.sign;
+            return res;
+        }
+
+        void operator = (ll v){
+            a.clear();
+            sign = 1;
+            if(v &lt; 0) sign = -1, v = -v;
+            for(; v; v = v / base) a.push_back(v % base);
+        }
+
+        void swap(BigInt&amp; other) noexcept {
+            a.swap(other.a);
+            std::swap(sign, other.sign);
+        }
+
+        #pragma endregion
+        #pragma region Arithmetics
+
+        BigInt operator + (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this - (-v);
+            BigInt res = v;
+            ll carry = 0;
+            int n = std::max(a.size(), v.a.size());
+            res.a.resize(n, 0);
+            for(int i = 0; i &lt; n or carry; ++i){
+                if(i == res.a.size()) res.a.push_back(0);
+                ll av = (i &lt; a.size() ? a[i] : 0);
+                ll sum = res.a[i] + av + carry;
+                res.a[i] = (int)(sum % base);
+                carry = sum / base;
+            }
+            return res;
+        }
+
+        BigInt operator - (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this + (-v);
+            if(abs() &lt; v.abs()) return -(v - *this);
+            BigInt res = *this;
+            ll borrow = 0;
+            for(int i = 0; i &lt; (int)v.a.size() or borrow; ++i){
+                ll sub = (ll)res.a[i] - (i &lt; v.a.size() ? v.a[i] : 0) - borrow;
+                if(sub &lt; 0) sub += base, borrow = 1;
+                else borrow = 0;
+                res.a[i] = (int)sub;
+            }
+            res.trim();
+            return res;
+        }
+
+        void operator += (const BigInt&amp; v){
+            *this = *this + v;
+        }
+
+        void operator -= (const BigInt&amp; v){
+            *this = *this - v;
+        }
+
+        void operator *= (int v){
+            operator *= ((ll)v);
+        }
+
+        void operator *= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)a.size() or carry; ++i){
+                if(i == a.size()) a.push_back(0);
+                ll cur = a[i] * v + carry;
+                carry = cur / base;
+                a[i] = cur % base;
+            }
+            trim();
+        }
+
+        void operator /= (int v){
+            operator /= ((ll)v);
+        }
+
+        void operator /= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll rem = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                ll cur = a[i] + rem * base;
+                a[i] = cur / v;
+                rem = cur % v;
+            }
+            trim();
+        }
+
+        ll operator % (int v) const {
+            return operator % ((ll)v);
+        }
+
+        ll operator % (ll v) const {
+            if(v &lt; 0) v = -v;
+            ll m = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                m = (m * (ll)base + a[i]) % v;
+            }
+            return m * sign;
+        }
+
+        void operator %= (int v){
+            *this = *this % v;
+        }
+
+        void operator %= (ll v){
+            *this = *this % v;
+        }
+
+        BigInt operator * (int v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator * (ll v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator / (int v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        BigInt operator / (ll v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        bool operator &lt; (const BigInt&amp; v) const {
+            if(sign != v.sign) return sign &lt; v.sign;
+            if(a.size() != v.a.size()) return a.size() * sign &lt; v.a.size() * v.sign;
+            for(int i = a.size() - 1; i &gt;= 0; --i)
+                if(a[i] != v.a[i]) return a[i] * sign &lt; v.a[i] * v.sign;
+            return false;
+        }
+
+        bool operator &gt; (const BigInt&amp; v) const {
+            return v &lt; *this;
+        }
+
+        bool operator &lt;= (const BigInt&amp; v) const {
+            return !(v &lt; *this);
+        }
+
+        bool operator &gt;= (const BigInt&amp; v) const {
+            return !(*this &lt; v);
+        }
+
+        bool operator == (const BigInt&amp; v) const {
+            return !(*this &lt; v) and !(v &lt; *this);
+        }
+
+        bool operator != (const BigInt&amp; v) const {
+            return  (*this &lt; v) or  (v &lt; *this);
+        }
+
+        friend BigInt gcd(BigInt a, BigInt b){
+            while(!b.isZero()){
+                BigInt r = a % b;
+                a = std::move(b);
+                b = std::move(r);
+            }
+            return a;
+        }
+
+        friend BigInt lcm(const BigInt&amp; a, const BigInt&amp; b){
+            if(a.isZero() or b.isZero()) return BigInt(0);
+            return a / gcd(a, b) * b;
+        }
+
+        friend BigInt pow(BigInt a, ll e){
+            BigInt res(1);
+            for(; e; e &gt;&gt;= 1, a = a * a) if(e &amp; 1) res *= a;
+            return res;
+        }
+
+        friend BigInt pow(BigInt _base, BigInt exp, const BigInt&amp; mod){
+            BigInt base = _base % mod;
+            BigInt res(1);
+            while(!exp.isZero()){
+                if((exp % 2) != 0) res = (res * base) % mod;
+                base = (base * base) % mod;
+                exp /= 2;
+            }
+            return res % mod;
+        }
+
+        #pragma endregion
+        #pragma region IO
+
+        friend std::istream&amp; operator &gt;&gt; (std::istream &amp;stream, BigInt&amp; v){
+            std::string s; stream &gt;&gt; s;
+            v.str2int(s);
+            return stream;
+        }
+
+        friend std::ostream&amp; operator &lt;&lt; (std::ostream &amp;stream, const BigInt&amp; v){
+            if(v.sign == -1) stream &lt;&lt; &quot;-&quot;;
+            stream &lt;&lt; (v.a.empty() ? 0 : v.a.back());
+            for(int i = (int)v.a.size() - 2; i &gt;= 0; --i)
+                stream &lt;&lt; std::setw(base_digits) &lt;&lt; std::setfill(&#x27;0&#x27;) &lt;&lt; v.a[i];
+            return stream;
+        }
+
+        #pragma endregion
+        #pragma region MulDiv
+
+        #define vll std::vector&lt;ll&gt;
+
+        BigInt operator * (const BigInt&amp; v) const {
+            std::vector&lt;int&gt; a6 = convert_base(a, base_digits, 6);
+            std::vector&lt;int&gt; b6 = convert_base(v.a, base_digits, 6);
+            vll a(a6.begin(), a6.end());
+            vll b(b6.begin(), b6.end());
+            while(a.size() &lt; b.size()) a.push_back(0);
+            while(b.size() &lt; a.size()) b.push_back(0);
+            while(a.size() &amp; (a.size() - 1)) a.push_back(0), b.push_back(0);
+            vll c = Karatsuba(a, b);
+            BigInt res;
+            res.sign = sign * v.sign;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)c.size(); ++i){
+                ll cur = c[i] + carry;
+                res.a.push_back(cur % 1000000);
+                carry = cur / 1000000;
+            }
+            while(carry){
+                res.a.push_back(carry % 1000000);
+                carry /= 1000000;
+            }
+            res.a = convert_base(res.a, 6, base_digits);
+            res.trim();
+            return res;
+        }
+
+        static vll Karatsuba(const vll&amp; a, const vll&amp; b){
+            int n = a.size();
+            vll res(n &lt;&lt; 1);
+            if(n &lt;= 32){
+                for(int i = 0; i &lt; n; ++i){
+                    for(int j = 0; j &lt; n; ++j){
+                        res[i + j] += a[i] * b[j];
+                    }
+                }
+                return res;
+            }
+            int k = n &gt;&gt; 1;
+            vll a1(a.begin(), a.begin() + k);
+            vll a2(a.begin() + k, a.end());
+            vll b1(b.begin(), b.begin() + k);
+            vll b2(b.begin() + k, b.end());
+
+            vll a1b1 = Karatsuba(a1, b1);
+            vll a2b2 = Karatsuba(a2, b2);
+            
+            for(int i = 0; i &lt; k; ++i) a2[i] += a1[i];
+            for(int i = 0; i &lt; k; ++i) b2[i] += b1[i];
+            
+            vll r = Karatsuba(a2, b2);
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) r[i] -= a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) r[i] -= a2b2[i];
+            
+            for(int i = 0; i &lt; (int)r.size(); ++i) res[i + k] += r[i];
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) res[i] += a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) res[i + n] += a2b2[i];
+            return res;
+        }
+
+        friend std::pair&lt;BigInt, BigInt&gt; divmod(const BigInt&amp; a1, const BigInt&amp; b1){
+            int norm = base / (b1.a.back() + 1);
+            BigInt a = a1.abs() * norm;
+            BigInt b = b1.abs() * norm;
+            BigInt q, r;
+            q.a.resize(a.a.size());
+            for(int i = (int)a.a.size() - 1; i &gt;= 0; --i){
+                r *= base;
+                if(r.a.empty()) r.a.push_back(a.a[i]);
+                else r.a[0] += a.a[i];
+                r.trim();
+                int s1 = r.a.size() &lt;= b.a.size() ? 0 : r.a[b.a.size()];
+                int s2 = r.a.size() &lt;= b.a.size() - 1 ? 0 : r.a[b.a.size() - 1];
+                ll d = ((ll)base * s1 + s2) / b.a.back();
+                if(d &gt; base - 1) d = base - 1;
+                BigInt bd = b * d;
+                while(r &lt; bd){
+                    --d;
+                    bd = b * d;
+                }
+                r = r - bd;
+                q.a[i] = d;
+            }
+            q.sign = a1.sign * b1.sign;
+            r.sign = a1.sign;
+            q.trim(); r.trim();
+            if(norm != 1) r /= norm;
+            return std::make_pair(q, r);
+        }
+
+        void operator *= (const BigInt&amp; v){
+            *this = *this * v;
+        }
+
+        BigInt operator / (const BigInt&amp; v) const {
+            return divmod(*this, v).first;
+        }
+
+        void operator /= (const BigInt&amp; v){
+            *this = *this / v;
+        }
+
+        BigInt operator % (const BigInt&amp; v) const {
+            return divmod(*this, v).second;
+        }
+
+        void operator %= (const BigInt&amp; v){
+            *this = *this % v;
+        }
+
+        #undef vll
+        #pragma endregion
+    };
+};
+
+void solve(){
+    BigInt::BigInt a, b;
+    std::cin &gt;&gt; a &gt;&gt; b;
+    std::cout &lt;&lt; a + b &lt;&lt; std::endl;
+}
+
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7215">
+<h2>内部 ID 7215（JD111 削铁如泥）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7215.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+#pragma GCC optimize(&quot;Ofast&quot;)
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    for(; b; b &gt;&gt;= 1, a = (a * a) % p) if(b &amp; 1) res = (res * a) % p;
+    return res;
+}
+
+namespace BigInt {
+    const int base = 1000000000;
+    const int base_digits = 9; // 分解为九个数位一个数字
+    struct BigInt {
+        std::vector&lt;int&gt; a;
+        int sign;
+
+        #pragma region Constructors
+
+        BigInt() : sign(1) {}
+        BigInt(const BigInt&amp;) = default;
+        BigInt(BigInt&amp;&amp;) noexcept = default;
+        BigInt&amp; operator = (const BigInt&amp;) = default;
+        BigInt&amp; operator = (BigInt&amp;&amp;) noexcept = default;
+
+        explicit BigInt(ll v){*this = v;}
+        explicit BigInt(int v){*this = (ll)v;}
+        BigInt(const std::string&amp; s){str2int(s);}
+
+        #pragma endregion
+        #pragma region Utils
+        
+        void trim(){
+            while(!a.empty() and !a.back()) a.pop_back();
+            if(a.empty()) sign = 1;
+        }
+
+        bool isZero() const {
+            return a.empty() or (a.size() == 1 and !a[0]);
+        }
+
+        BigInt abs() const {
+            BigInt res = *this;
+            res.sign = 1;
+            return res;
+        }
+
+        explicit operator bool() const {
+            return !isZero();
+        }
+
+        void str2int(const std::string&amp; s){
+            sign = 1;
+            a.clear();
+            int pos = 0, n = s.size();
+            for(; pos &lt; n and isspace(s[pos]); ++pos);
+            for(; pos &lt; n and (s[pos] == &#x27;+&#x27; or s[pos] == &#x27;-&#x27;); ++pos) if(s[pos] == &#x27;-&#x27;) sign = -1;
+            for(; pos &lt; n and s[pos] == &#x27;0&#x27;; ++pos);
+            if(pos == n){a.clear(); sign = 1; return;}
+            for(int i = n - 1; i &gt;= pos; i -= base_digits){
+                int x = 0;
+                for(int j = std::max(pos, i - base_digits + 1); j &lt;= i; ++j) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (s[j] xor 48);
+                a.push_back(x);
+            }
+            trim();
+        }
+
+        std::string to_string() const {
+            if(isZero()) return &quot;0&quot;;
+            std::string s = (sign == -1 ? &quot;-&quot; : &quot;&quot;);
+            s += std::to_string(a.back());
+            for(int i = (int)a.size() - 2; i &gt;= 0; --i){
+                std::string t = std::to_string(a[i]);
+                s += std::string(base_digits - t.size(), &#x27;0&#x27;) + t;
+            }
+            return s;
+        }
+
+        ll to_ll() const {
+            ll res = 0;
+            for(int i = a.size() - 1; i &gt;= 0; --i) res = res * base + a[i];
+            return res * sign;
+        }
+
+        static std::vector&lt;int&gt; convert_base(const std::vector&lt;int&gt;&amp; a, int old_digits, int new_digits){
+            std::vector&lt;ll&gt; p(std::max(old_digits, new_digits) + 1);
+            p[0] = 1;
+            for(int i = 1; i &lt; (int)p.size(); ++i) p[i] = p[i - 1] * 10;
+            std::vector&lt;int&gt; res;
+            ll cur = 0;
+            int cur_digits = 0;
+            for(int i = 0; i &lt; (int)a.size(); ++i){
+                cur += (ll)a[i] * p[cur_digits];
+                cur_digits += old_digits;
+                while(cur_digits &gt;= new_digits){
+                    res.push_back((int)(cur % p[new_digits]));
+                    cur /= p[new_digits];
+                    cur_digits -= new_digits;
+                }
+            }
+            if(cur &gt; 0) res.push_back(cur);
+            while(!res.empty() and !res.back()) res.pop_back();
+            return res;
+        }
+
+        BigInt operator - () const {
+            BigInt res = *this;
+            res.sign = -res.sign;
+            return res;
+        }
+
+        void operator = (ll v){
+            a.clear();
+            sign = 1;
+            if(v &lt; 0) sign = -1, v = -v;
+            for(; v; v = v / base) a.push_back(v % base);
+        }
+
+        void swap(BigInt&amp; other) noexcept {
+            a.swap(other.a);
+            std::swap(sign, other.sign);
+        }
+
+        #pragma endregion
+        #pragma region Arithmetics
+
+        BigInt operator + (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this - (-v);
+            BigInt res = v;
+            ll carry = 0;
+            int n = std::max(a.size(), v.a.size());
+            res.a.resize(n, 0);
+            for(int i = 0; i &lt; n or carry; ++i){
+                if(i == res.a.size()) res.a.push_back(0);
+                ll av = (i &lt; a.size() ? a[i] : 0);
+                ll sum = res.a[i] + av + carry;
+                res.a[i] = (int)(sum % base);
+                carry = sum / base;
+            }
+            return res;
+        }
+
+        BigInt operator - (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this + (-v);
+            if(abs() &lt; v.abs()) return -(v - *this);
+            BigInt res = *this;
+            ll borrow = 0;
+            for(int i = 0; i &lt; (int)v.a.size() or borrow; ++i){
+                ll sub = (ll)res.a[i] - (i &lt; v.a.size() ? v.a[i] : 0) - borrow;
+                if(sub &lt; 0) sub += base, borrow = 1;
+                else borrow = 0;
+                res.a[i] = (int)sub;
+            }
+            res.trim();
+            return res;
+        }
+
+        void operator += (const BigInt&amp; v){
+            *this = *this + v;
+        }
+
+        void operator -= (const BigInt&amp; v){
+            *this = *this - v;
+        }
+
+        void operator *= (int v){
+            operator *= ((ll)v);
+        }
+
+        void operator *= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)a.size() or carry; ++i){
+                if(i == a.size()) a.push_back(0);
+                ll cur = a[i] * v + carry;
+                carry = cur / base;
+                a[i] = cur % base;
+            }
+            trim();
+        }
+
+        void operator /= (int v){
+            operator /= ((ll)v);
+        }
+
+        void operator /= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll rem = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                ll cur = a[i] + rem * base;
+                a[i] = cur / v;
+                rem = cur % v;
+            }
+            trim();
+        }
+
+        ll operator % (int v) const {
+            return operator % ((ll)v);
+        }
+
+        ll operator % (ll v) const {
+            if(v &lt; 0) v = -v;
+            ll m = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                m = (m * (ll)base + a[i]) % v;
+            }
+            return m * sign;
+        }
+
+        void operator %= (int v){
+            *this = *this % v;
+        }
+
+        void operator %= (ll v){
+            *this = *this % v;
+        }
+
+        BigInt operator * (int v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator * (ll v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator / (int v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        BigInt operator / (ll v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        bool operator &lt; (const BigInt&amp; v) const {
+            if(sign != v.sign) return sign &lt; v.sign;
+            if(a.size() != v.a.size()) return a.size() * sign &lt; v.a.size() * v.sign;
+            for(int i = a.size() - 1; i &gt;= 0; --i)
+                if(a[i] != v.a[i]) return a[i] * sign &lt; v.a[i] * v.sign;
+            return false;
+        }
+
+        bool operator &gt; (const BigInt&amp; v) const {
+            return v &lt; *this;
+        }
+
+        bool operator &lt;= (const BigInt&amp; v) const {
+            return !(v &lt; *this);
+        }
+
+        bool operator &gt;= (const BigInt&amp; v) const {
+            return !(*this &lt; v);
+        }
+
+        bool operator == (const BigInt&amp; v) const {
+            return !(*this &lt; v) and !(v &lt; *this);
+        }
+
+        bool operator != (const BigInt&amp; v) const {
+            return  (*this &lt; v) or  (v &lt; *this);
+        }
+
+        friend BigInt gcd(BigInt a, BigInt b){
+            while(!b.isZero()){
+                BigInt r = a % b;
+                a = std::move(b);
+                b = std::move(r);
+            }
+            return a;
+        }
+
+        friend BigInt lcm(const BigInt&amp; a, const BigInt&amp; b){
+            if(a.isZero() or b.isZero()) return BigInt(0);
+            return a / gcd(a, b) * b;
+        }
+
+        friend BigInt pow(BigInt a, ll e){
+            BigInt res(1);
+            for(; e; e &gt;&gt;= 1, a = a * a) if(e &amp; 1) res *= a;
+            return res;
+        }
+
+        friend BigInt pow(BigInt _base, BigInt exp, const BigInt&amp; mod){
+            BigInt base = _base % mod;
+            BigInt res(1);
+            while(!exp.isZero()){
+                if((exp % 2) != 0) res = (res * base) % mod;
+                base = (base * base) % mod;
+                exp /= 2;
+            }
+            return res % mod;
+        }
+
+        #pragma endregion
+        #pragma region IO
+
+        friend std::istream&amp; operator &gt;&gt; (std::istream &amp;stream, BigInt&amp; v){
+            std::string s; stream &gt;&gt; s;
+            v.str2int(s);
+            return stream;
+        }
+
+        friend std::ostream&amp; operator &lt;&lt; (std::ostream &amp;stream, const BigInt&amp; v){
+            if(v.sign == -1) stream &lt;&lt; &quot;-&quot;;
+            stream &lt;&lt; (v.a.empty() ? 0 : v.a.back());
+            for(int i = (int)v.a.size() - 2; i &gt;= 0; --i)
+                stream &lt;&lt; std::setw(base_digits) &lt;&lt; std::setfill(&#x27;0&#x27;) &lt;&lt; v.a[i];
+            return stream;
+        }
+
+        #pragma endregion
+        #pragma region MulDiv
+
+        #define vll std::vector&lt;ll&gt;
+
+        BigInt operator * (const BigInt&amp; v) const {
+            std::vector&lt;int&gt; a6 = convert_base(a, base_digits, 6);
+            std::vector&lt;int&gt; b6 = convert_base(v.a, base_digits, 6);
+            vll a(a6.begin(), a6.end());
+            vll b(b6.begin(), b6.end());
+            while(a.size() &lt; b.size()) a.push_back(0);
+            while(b.size() &lt; a.size()) b.push_back(0);
+            while(a.size() &amp; (a.size() - 1)) a.push_back(0), b.push_back(0);
+            vll c = Karatsuba(a, b);
+            BigInt res;
+            res.sign = sign * v.sign;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)c.size(); ++i){
+                ll cur = c[i] + carry;
+                res.a.push_back(cur % 1000000);
+                carry = cur / 1000000;
+            }
+            while(carry){
+                res.a.push_back(carry % 1000000);
+                carry /= 1000000;
+            }
+            res.a = convert_base(res.a, 6, base_digits);
+            res.trim();
+            return res;
+        }
+
+        static vll Karatsuba(const vll&amp; a, const vll&amp; b){
+            int n = a.size();
+            vll res(n &lt;&lt; 1);
+            if(n &lt;= 32){
+                for(int i = 0; i &lt; n; ++i){
+                    for(int j = 0; j &lt; n; ++j){
+                        res[i + j] += a[i] * b[j];
+                    }
+                }
+                return res;
+            }
+            int k = n &gt;&gt; 1;
+            vll a1(a.begin(), a.begin() + k);
+            vll a2(a.begin() + k, a.end());
+            vll b1(b.begin(), b.begin() + k);
+            vll b2(b.begin() + k, b.end());
+
+            vll a1b1 = Karatsuba(a1, b1);
+            vll a2b2 = Karatsuba(a2, b2);
+            
+            for(int i = 0; i &lt; k; ++i) a2[i] += a1[i];
+            for(int i = 0; i &lt; k; ++i) b2[i] += b1[i];
+            
+            vll r = Karatsuba(a2, b2);
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) r[i] -= a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) r[i] -= a2b2[i];
+            
+            for(int i = 0; i &lt; (int)r.size(); ++i) res[i + k] += r[i];
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) res[i] += a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) res[i + n] += a2b2[i];
+            return res;
+        }
+
+        friend std::pair&lt;BigInt, BigInt&gt; divmod(const BigInt&amp; a1, const BigInt&amp; b1){
+            int norm = base / (b1.a.back() + 1);
+            BigInt a = a1.abs() * norm;
+            BigInt b = b1.abs() * norm;
+            BigInt q, r;
+            q.a.resize(a.a.size());
+            for(int i = (int)a.a.size() - 1; i &gt;= 0; --i){
+                r *= base;
+                if(r.a.empty()) r.a.push_back(a.a[i]);
+                else r.a[0] += a.a[i];
+                r.trim();
+                int s1 = r.a.size() &lt;= b.a.size() ? 0 : r.a[b.a.size()];
+                int s2 = r.a.size() &lt;= b.a.size() - 1 ? 0 : r.a[b.a.size() - 1];
+                ll d = ((ll)base * s1 + s2) / b.a.back();
+                if(d &gt; base - 1) d = base - 1;
+                BigInt bd = b * d;
+                while(r &lt; bd){
+                    --d;
+                    bd = b * d;
+                }
+                r = r - bd;
+                q.a[i] = d;
+            }
+            q.sign = a1.sign * b1.sign;
+            r.sign = a1.sign;
+            q.trim(); r.trim();
+            if(norm != 1) r /= norm;
+            return std::make_pair(q, r);
+        }
+
+        void operator *= (const BigInt&amp; v){
+            *this = *this * v;
+        }
+
+        BigInt operator / (const BigInt&amp; v) const {
+            return divmod(*this, v).first;
+        }
+
+        void operator /= (const BigInt&amp; v){
+            *this = *this / v;
+        }
+
+        BigInt operator % (const BigInt&amp; v) const {
+            return divmod(*this, v).second;
+        }
+
+        void operator %= (const BigInt&amp; v){
+            *this = *this % v;
+        }
+
+        #undef vll
+        #pragma endregion
+    };
+};
+
+void solve(){
+    BigInt::BigInt a, b;
+    std::cin &gt;&gt; a &gt;&gt; b;
+    std::cout &lt;&lt; (a - b).abs() &lt;&lt; std::endl;
+}
+
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7216">
+<h2>内部 ID 7216（JD112 叠甲千层）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7216.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+#pragma GCC optimize(&quot;Ofast&quot;)
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    for(; b; b &gt;&gt;= 1, a = (a * a) % p) if(b &amp; 1) res = (res * a) % p;
+    return res;
+}
+
+namespace BigInt {
+    const int base = 1000000000;
+    const int base_digits = 9; // 分解为九个数位一个数字
+    struct BigInt {
+        std::vector&lt;int&gt; a;
+        int sign;
+
+        #pragma region Constructors
+
+        BigInt() : sign(1) {}
+        BigInt(const BigInt&amp;) = default;
+        BigInt(BigInt&amp;&amp;) noexcept = default;
+        BigInt&amp; operator = (const BigInt&amp;) = default;
+        BigInt&amp; operator = (BigInt&amp;&amp;) noexcept = default;
+
+        explicit BigInt(ll v){*this = v;}
+        explicit BigInt(int v){*this = (ll)v;}
+        BigInt(const std::string&amp; s){str2int(s);}
+
+        #pragma endregion
+        #pragma region Utils
+        
+        void trim(){
+            while(!a.empty() and !a.back()) a.pop_back();
+            if(a.empty()) sign = 1;
+        }
+
+        bool isZero() const {
+            return a.empty() or (a.size() == 1 and !a[0]);
+        }
+
+        BigInt abs() const {
+            BigInt res = *this;
+            res.sign = 1;
+            return res;
+        }
+
+        explicit operator bool() const {
+            return !isZero();
+        }
+
+        void str2int(const std::string&amp; s){
+            sign = 1;
+            a.clear();
+            int pos = 0, n = s.size();
+            for(; pos &lt; n and isspace(s[pos]); ++pos);
+            for(; pos &lt; n and (s[pos] == &#x27;+&#x27; or s[pos] == &#x27;-&#x27;); ++pos) if(s[pos] == &#x27;-&#x27;) sign = -1;
+            for(; pos &lt; n and s[pos] == &#x27;0&#x27;; ++pos);
+            if(pos == n){a.clear(); sign = 1; return;}
+            for(int i = n - 1; i &gt;= pos; i -= base_digits){
+                int x = 0;
+                for(int j = std::max(pos, i - base_digits + 1); j &lt;= i; ++j) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (s[j] xor 48);
+                a.push_back(x);
+            }
+            trim();
+        }
+
+        std::string to_string() const {
+            if(isZero()) return &quot;0&quot;;
+            std::string s = (sign == -1 ? &quot;-&quot; : &quot;&quot;);
+            s += std::to_string(a.back());
+            for(int i = (int)a.size() - 2; i &gt;= 0; --i){
+                std::string t = std::to_string(a[i]);
+                s += std::string(base_digits - t.size(), &#x27;0&#x27;) + t;
+            }
+            return s;
+        }
+
+        ll to_ll() const {
+            ll res = 0;
+            for(int i = a.size() - 1; i &gt;= 0; --i) res = res * base + a[i];
+            return res * sign;
+        }
+
+        static std::vector&lt;int&gt; convert_base(const std::vector&lt;int&gt;&amp; a, int old_digits, int new_digits){
+            std::vector&lt;ll&gt; p(std::max(old_digits, new_digits) + 1);
+            p[0] = 1;
+            for(int i = 1; i &lt; (int)p.size(); ++i) p[i] = p[i - 1] * 10;
+            std::vector&lt;int&gt; res;
+            ll cur = 0;
+            int cur_digits = 0;
+            for(int i = 0; i &lt; (int)a.size(); ++i){
+                cur += (ll)a[i] * p[cur_digits];
+                cur_digits += old_digits;
+                while(cur_digits &gt;= new_digits){
+                    res.push_back((int)(cur % p[new_digits]));
+                    cur /= p[new_digits];
+                    cur_digits -= new_digits;
+                }
+            }
+            if(cur &gt; 0) res.push_back(cur);
+            while(!res.empty() and !res.back()) res.pop_back();
+            return res;
+        }
+
+        BigInt operator - () const {
+            BigInt res = *this;
+            res.sign = -res.sign;
+            return res;
+        }
+
+        void operator = (ll v){
+            a.clear();
+            sign = 1;
+            if(v &lt; 0) sign = -1, v = -v;
+            for(; v; v = v / base) a.push_back(v % base);
+        }
+
+        void swap(BigInt&amp; other) noexcept {
+            a.swap(other.a);
+            std::swap(sign, other.sign);
+        }
+
+        #pragma endregion
+        #pragma region Arithmetics
+
+        BigInt operator + (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this - (-v);
+            BigInt res = v;
+            ll carry = 0;
+            int n = std::max(a.size(), v.a.size());
+            res.a.resize(n, 0);
+            for(int i = 0; i &lt; n or carry; ++i){
+                if(i == res.a.size()) res.a.push_back(0);
+                ll av = (i &lt; a.size() ? a[i] : 0);
+                ll sum = res.a[i] + av + carry;
+                res.a[i] = (int)(sum % base);
+                carry = sum / base;
+            }
+            return res;
+        }
+
+        BigInt operator - (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this + (-v);
+            if(abs() &lt; v.abs()) return -(v - *this);
+            BigInt res = *this;
+            ll borrow = 0;
+            for(int i = 0; i &lt; (int)v.a.size() or borrow; ++i){
+                ll sub = (ll)res.a[i] - (i &lt; v.a.size() ? v.a[i] : 0) - borrow;
+                if(sub &lt; 0) sub += base, borrow = 1;
+                else borrow = 0;
+                res.a[i] = (int)sub;
+            }
+            res.trim();
+            return res;
+        }
+
+        void operator += (const BigInt&amp; v){
+            *this = *this + v;
+        }
+
+        void operator -= (const BigInt&amp; v){
+            *this = *this - v;
+        }
+
+        void operator *= (int v){
+            operator *= ((ll)v);
+        }
+
+        void operator *= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)a.size() or carry; ++i){
+                if(i == a.size()) a.push_back(0);
+                ll cur = a[i] * v + carry;
+                carry = cur / base;
+                a[i] = cur % base;
+            }
+            trim();
+        }
+
+        void operator /= (int v){
+            operator /= ((ll)v);
+        }
+
+        void operator /= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll rem = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                ll cur = a[i] + rem * base;
+                a[i] = cur / v;
+                rem = cur % v;
+            }
+            trim();
+        }
+
+        ll operator % (int v) const {
+            return operator % ((ll)v);
+        }
+
+        ll operator % (ll v) const {
+            if(v &lt; 0) v = -v;
+            ll m = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                m = (m * (ll)base + a[i]) % v;
+            }
+            return m * sign;
+        }
+
+        void operator %= (int v){
+            *this = *this % v;
+        }
+
+        void operator %= (ll v){
+            *this = *this % v;
+        }
+
+        BigInt operator * (int v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator * (ll v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator / (int v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        BigInt operator / (ll v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        bool operator &lt; (const BigInt&amp; v) const {
+            if(sign != v.sign) return sign &lt; v.sign;
+            if(a.size() != v.a.size()) return a.size() * sign &lt; v.a.size() * v.sign;
+            for(int i = a.size() - 1; i &gt;= 0; --i)
+                if(a[i] != v.a[i]) return a[i] * sign &lt; v.a[i] * v.sign;
+            return false;
+        }
+
+        bool operator &gt; (const BigInt&amp; v) const {
+            return v &lt; *this;
+        }
+
+        bool operator &lt;= (const BigInt&amp; v) const {
+            return !(v &lt; *this);
+        }
+
+        bool operator &gt;= (const BigInt&amp; v) const {
+            return !(*this &lt; v);
+        }
+
+        bool operator == (const BigInt&amp; v) const {
+            return !(*this &lt; v) and !(v &lt; *this);
+        }
+
+        bool operator != (const BigInt&amp; v) const {
+            return  (*this &lt; v) or  (v &lt; *this);
+        }
+
+        friend BigInt gcd(BigInt a, BigInt b){
+            while(!b.isZero()){
+                BigInt r = a % b;
+                a = std::move(b);
+                b = std::move(r);
+            }
+            return a;
+        }
+
+        friend BigInt lcm(const BigInt&amp; a, const BigInt&amp; b){
+            if(a.isZero() or b.isZero()) return BigInt(0);
+            return a / gcd(a, b) * b;
+        }
+
+        friend BigInt pow(BigInt a, ll e){
+            BigInt res(1);
+            for(; e; e &gt;&gt;= 1, a = a * a) if(e &amp; 1) res *= a;
+            return res;
+        }
+
+        friend BigInt pow(BigInt _base, BigInt exp, const BigInt&amp; mod){
+            BigInt base = _base % mod;
+            BigInt res(1);
+            while(!exp.isZero()){
+                if((exp % 2) != 0) res = (res * base) % mod;
+                base = (base * base) % mod;
+                exp /= 2;
+            }
+            return res % mod;
+        }
+
+        #pragma endregion
+        #pragma region IO
+
+        friend std::istream&amp; operator &gt;&gt; (std::istream &amp;stream, BigInt&amp; v){
+            std::string s; stream &gt;&gt; s;
+            v.str2int(s);
+            return stream;
+        }
+
+        friend std::ostream&amp; operator &lt;&lt; (std::ostream &amp;stream, const BigInt&amp; v){
+            if(v.sign == -1) stream &lt;&lt; &quot;-&quot;;
+            stream &lt;&lt; (v.a.empty() ? 0 : v.a.back());
+            for(int i = (int)v.a.size() - 2; i &gt;= 0; --i)
+                stream &lt;&lt; std::setw(base_digits) &lt;&lt; std::setfill(&#x27;0&#x27;) &lt;&lt; v.a[i];
+            return stream;
+        }
+
+        #pragma endregion
+        #pragma region MulDiv
+
+        #define vll std::vector&lt;ll&gt;
+
+        BigInt operator * (const BigInt&amp; v) const {
+            std::vector&lt;int&gt; a6 = convert_base(a, base_digits, 6);
+            std::vector&lt;int&gt; b6 = convert_base(v.a, base_digits, 6);
+            vll a(a6.begin(), a6.end());
+            vll b(b6.begin(), b6.end());
+            while(a.size() &lt; b.size()) a.push_back(0);
+            while(b.size() &lt; a.size()) b.push_back(0);
+            while(a.size() &amp; (a.size() - 1)) a.push_back(0), b.push_back(0);
+            vll c = Karatsuba(a, b);
+            BigInt res;
+            res.sign = sign * v.sign;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)c.size(); ++i){
+                ll cur = c[i] + carry;
+                res.a.push_back(cur % 1000000);
+                carry = cur / 1000000;
+            }
+            while(carry){
+                res.a.push_back(carry % 1000000);
+                carry /= 1000000;
+            }
+            res.a = convert_base(res.a, 6, base_digits);
+            res.trim();
+            return res;
+        }
+
+        static vll Karatsuba(const vll&amp; a, const vll&amp; b){
+            int n = a.size();
+            vll res(n &lt;&lt; 1);
+            if(n &lt;= 32){
+                for(int i = 0; i &lt; n; ++i){
+                    for(int j = 0; j &lt; n; ++j){
+                        res[i + j] += a[i] * b[j];
+                    }
+                }
+                return res;
+            }
+            int k = n &gt;&gt; 1;
+            vll a1(a.begin(), a.begin() + k);
+            vll a2(a.begin() + k, a.end());
+            vll b1(b.begin(), b.begin() + k);
+            vll b2(b.begin() + k, b.end());
+
+            vll a1b1 = Karatsuba(a1, b1);
+            vll a2b2 = Karatsuba(a2, b2);
+            
+            for(int i = 0; i &lt; k; ++i) a2[i] += a1[i];
+            for(int i = 0; i &lt; k; ++i) b2[i] += b1[i];
+            
+            vll r = Karatsuba(a2, b2);
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) r[i] -= a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) r[i] -= a2b2[i];
+            
+            for(int i = 0; i &lt; (int)r.size(); ++i) res[i + k] += r[i];
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) res[i] += a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) res[i + n] += a2b2[i];
+            return res;
+        }
+
+        friend std::pair&lt;BigInt, BigInt&gt; divmod(const BigInt&amp; a1, const BigInt&amp; b1){
+            int norm = base / (b1.a.back() + 1);
+            BigInt a = a1.abs() * norm;
+            BigInt b = b1.abs() * norm;
+            BigInt q, r;
+            q.a.resize(a.a.size());
+            for(int i = (int)a.a.size() - 1; i &gt;= 0; --i){
+                r *= base;
+                if(r.a.empty()) r.a.push_back(a.a[i]);
+                else r.a[0] += a.a[i];
+                r.trim();
+                int s1 = r.a.size() &lt;= b.a.size() ? 0 : r.a[b.a.size()];
+                int s2 = r.a.size() &lt;= b.a.size() - 1 ? 0 : r.a[b.a.size() - 1];
+                ll d = ((ll)base * s1 + s2) / b.a.back();
+                if(d &gt; base - 1) d = base - 1;
+                BigInt bd = b * d;
+                while(r &lt; bd){
+                    --d;
+                    bd = b * d;
+                }
+                r = r - bd;
+                q.a[i] = d;
+            }
+            q.sign = a1.sign * b1.sign;
+            r.sign = a1.sign;
+            q.trim(); r.trim();
+            if(norm != 1) r /= norm;
+            return std::make_pair(q, r);
+        }
+
+        void operator *= (const BigInt&amp; v){
+            *this = *this * v;
+        }
+
+        BigInt operator / (const BigInt&amp; v) const {
+            return divmod(*this, v).first;
+        }
+
+        void operator /= (const BigInt&amp; v){
+            *this = *this / v;
+        }
+
+        BigInt operator % (const BigInt&amp; v) const {
+            return divmod(*this, v).second;
+        }
+
+        void operator %= (const BigInt&amp; v){
+            *this = *this % v;
+        }
+
+        #undef vll
+        #pragma endregion
+    };
+};
+
+void solve(){
+    BigInt::BigInt a, b;
+    std::cin &gt;&gt; a &gt;&gt; b;
+    std::cout &lt;&lt; a * b &lt;&lt; std::endl;
+}
+
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7217">
+<h2>内部 ID 7217（JD113 分金断玉）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7217.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+#pragma GCC optimize(&quot;Ofast&quot;)
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    for(; b; b &gt;&gt;= 1, a = (a * a) % p) if(b &amp; 1) res = (res * a) % p;
+    return res;
+}
+
+namespace BigInt {
+    const int base = 1000000000;
+    const int base_digits = 9; // 分解为九个数位一个数字
+    struct BigInt {
+        std::vector&lt;int&gt; a;
+        int sign;
+
+        #pragma region Constructors
+
+        BigInt() : sign(1) {}
+        BigInt(const BigInt&amp;) = default;
+        BigInt(BigInt&amp;&amp;) noexcept = default;
+        BigInt&amp; operator = (const BigInt&amp;) = default;
+        BigInt&amp; operator = (BigInt&amp;&amp;) noexcept = default;
+
+        explicit BigInt(ll v){*this = v;}
+        explicit BigInt(int v){*this = (ll)v;}
+        BigInt(const std::string&amp; s){str2int(s);}
+
+        #pragma endregion
+        #pragma region Utils
+        
+        void trim(){
+            while(!a.empty() and !a.back()) a.pop_back();
+            if(a.empty()) sign = 1;
+        }
+
+        bool isZero() const {
+            return a.empty() or (a.size() == 1 and !a[0]);
+        }
+
+        BigInt abs() const {
+            BigInt res = *this;
+            res.sign = 1;
+            return res;
+        }
+
+        explicit operator bool() const {
+            return !isZero();
+        }
+
+        void str2int(const std::string&amp; s){
+            sign = 1;
+            a.clear();
+            int pos = 0, n = s.size();
+            for(; pos &lt; n and isspace(s[pos]); ++pos);
+            for(; pos &lt; n and (s[pos] == &#x27;+&#x27; or s[pos] == &#x27;-&#x27;); ++pos) if(s[pos] == &#x27;-&#x27;) sign = -1;
+            for(; pos &lt; n and s[pos] == &#x27;0&#x27;; ++pos);
+            if(pos == n){a.clear(); sign = 1; return;}
+            for(int i = n - 1; i &gt;= pos; i -= base_digits){
+                int x = 0;
+                for(int j = std::max(pos, i - base_digits + 1); j &lt;= i; ++j) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (s[j] xor 48);
+                a.push_back(x);
+            }
+            trim();
+        }
+
+        std::string to_string() const {
+            if(isZero()) return &quot;0&quot;;
+            std::string s = (sign == -1 ? &quot;-&quot; : &quot;&quot;);
+            s += std::to_string(a.back());
+            for(int i = (int)a.size() - 2; i &gt;= 0; --i){
+                std::string t = std::to_string(a[i]);
+                s += std::string(base_digits - t.size(), &#x27;0&#x27;) + t;
+            }
+            return s;
+        }
+
+        ll to_ll() const {
+            ll res = 0;
+            for(int i = a.size() - 1; i &gt;= 0; --i) res = res * base + a[i];
+            return res * sign;
+        }
+
+        static std::vector&lt;int&gt; convert_base(const std::vector&lt;int&gt;&amp; a, int old_digits, int new_digits){
+            std::vector&lt;ll&gt; p(std::max(old_digits, new_digits) + 1);
+            p[0] = 1;
+            for(int i = 1; i &lt; (int)p.size(); ++i) p[i] = p[i - 1] * 10;
+            std::vector&lt;int&gt; res;
+            ll cur = 0;
+            int cur_digits = 0;
+            for(int i = 0; i &lt; (int)a.size(); ++i){
+                cur += (ll)a[i] * p[cur_digits];
+                cur_digits += old_digits;
+                while(cur_digits &gt;= new_digits){
+                    res.push_back((int)(cur % p[new_digits]));
+                    cur /= p[new_digits];
+                    cur_digits -= new_digits;
+                }
+            }
+            if(cur &gt; 0) res.push_back(cur);
+            while(!res.empty() and !res.back()) res.pop_back();
+            return res;
+        }
+
+        BigInt operator - () const {
+            BigInt res = *this;
+            res.sign = -res.sign;
+            return res;
+        }
+
+        void operator = (ll v){
+            a.clear();
+            sign = 1;
+            if(v &lt; 0) sign = -1, v = -v;
+            for(; v; v = v / base) a.push_back(v % base);
+        }
+
+        void swap(BigInt&amp; other) noexcept {
+            a.swap(other.a);
+            std::swap(sign, other.sign);
+        }
+
+        #pragma endregion
+        #pragma region Arithmetics
+
+        BigInt operator + (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this - (-v);
+            BigInt res = v;
+            ll carry = 0;
+            int n = std::max(a.size(), v.a.size());
+            res.a.resize(n, 0);
+            for(int i = 0; i &lt; n or carry; ++i){
+                if(i == res.a.size()) res.a.push_back(0);
+                ll av = (i &lt; a.size() ? a[i] : 0);
+                ll sum = res.a[i] + av + carry;
+                res.a[i] = (int)(sum % base);
+                carry = sum / base;
+            }
+            return res;
+        }
+
+        BigInt operator - (const BigInt&amp; v) const {
+            if(sign != v.sign) return *this + (-v);
+            if(abs() &lt; v.abs()) return -(v - *this);
+            BigInt res = *this;
+            ll borrow = 0;
+            for(int i = 0; i &lt; (int)v.a.size() or borrow; ++i){
+                ll sub = (ll)res.a[i] - (i &lt; v.a.size() ? v.a[i] : 0) - borrow;
+                if(sub &lt; 0) sub += base, borrow = 1;
+                else borrow = 0;
+                res.a[i] = (int)sub;
+            }
+            res.trim();
+            return res;
+        }
+
+        void operator += (const BigInt&amp; v){
+            *this = *this + v;
+        }
+
+        void operator -= (const BigInt&amp; v){
+            *this = *this - v;
+        }
+
+        void operator *= (int v){
+            operator *= ((ll)v);
+        }
+
+        void operator *= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)a.size() or carry; ++i){
+                if(i == a.size()) a.push_back(0);
+                ll cur = a[i] * v + carry;
+                carry = cur / base;
+                a[i] = cur % base;
+            }
+            trim();
+        }
+
+        void operator /= (int v){
+            operator /= ((ll)v);
+        }
+
+        void operator /= (ll v){
+            if(v &lt; 0) sign = -sign, v = -v;
+            ll rem = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                ll cur = a[i] + rem * base;
+                a[i] = cur / v;
+                rem = cur % v;
+            }
+            trim();
+        }
+
+        ll operator % (int v) const {
+            return operator % ((ll)v);
+        }
+
+        ll operator % (ll v) const {
+            if(v &lt; 0) v = -v;
+            ll m = 0;
+            for(int i = (int)a.size() - 1; i &gt;= 0; --i){
+                m = (m * (ll)base + a[i]) % v;
+            }
+            return m * sign;
+        }
+
+        void operator %= (int v){
+            *this = *this % v;
+        }
+
+        void operator %= (ll v){
+            *this = *this % v;
+        }
+
+        BigInt operator * (int v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator * (ll v) const {
+            BigInt res = *this;
+            res *= v;
+            return res;
+        }
+
+        BigInt operator / (int v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        BigInt operator / (ll v) const {
+            BigInt res = *this;
+            res /= v;
+            return res;
+        }
+
+        bool operator &lt; (const BigInt&amp; v) const {
+            if(sign != v.sign) return sign &lt; v.sign;
+            if(a.size() != v.a.size()) return a.size() * sign &lt; v.a.size() * v.sign;
+            for(int i = a.size() - 1; i &gt;= 0; --i)
+                if(a[i] != v.a[i]) return a[i] * sign &lt; v.a[i] * v.sign;
+            return false;
+        }
+
+        bool operator &gt; (const BigInt&amp; v) const {
+            return v &lt; *this;
+        }
+
+        bool operator &lt;= (const BigInt&amp; v) const {
+            return !(v &lt; *this);
+        }
+
+        bool operator &gt;= (const BigInt&amp; v) const {
+            return !(*this &lt; v);
+        }
+
+        bool operator == (const BigInt&amp; v) const {
+            return !(*this &lt; v) and !(v &lt; *this);
+        }
+
+        bool operator != (const BigInt&amp; v) const {
+            return  (*this &lt; v) or  (v &lt; *this);
+        }
+
+        friend BigInt gcd(BigInt a, BigInt b){
+            while(!b.isZero()){
+                BigInt r = a % b;
+                a = std::move(b);
+                b = std::move(r);
+            }
+            return a;
+        }
+
+        friend BigInt lcm(const BigInt&amp; a, const BigInt&amp; b){
+            if(a.isZero() or b.isZero()) return BigInt(0);
+            return a / gcd(a, b) * b;
+        }
+
+        friend BigInt pow(BigInt a, ll e){
+            BigInt res(1);
+            for(; e; e &gt;&gt;= 1, a = a * a) if(e &amp; 1) res *= a;
+            return res;
+        }
+
+        friend BigInt pow(BigInt _base, BigInt exp, const BigInt&amp; mod){
+            BigInt base = _base % mod;
+            BigInt res(1);
+            while(!exp.isZero()){
+                if((exp % 2) != 0) res = (res * base) % mod;
+                base = (base * base) % mod;
+                exp /= 2;
+            }
+            return res % mod;
+        }
+
+        #pragma endregion
+        #pragma region IO
+
+        friend std::istream&amp; operator &gt;&gt; (std::istream &amp;stream, BigInt&amp; v){
+            std::string s; stream &gt;&gt; s;
+            v.str2int(s);
+            return stream;
+        }
+
+        friend std::ostream&amp; operator &lt;&lt; (std::ostream &amp;stream, const BigInt&amp; v){
+            if(v.sign == -1) stream &lt;&lt; &quot;-&quot;;
+            stream &lt;&lt; (v.a.empty() ? 0 : v.a.back());
+            for(int i = (int)v.a.size() - 2; i &gt;= 0; --i)
+                stream &lt;&lt; std::setw(base_digits) &lt;&lt; std::setfill(&#x27;0&#x27;) &lt;&lt; v.a[i];
+            return stream;
+        }
+
+        #pragma endregion
+        #pragma region MulDiv
+
+        #define vll std::vector&lt;ll&gt;
+
+        BigInt operator * (const BigInt&amp; v) const {
+            std::vector&lt;int&gt; a6 = convert_base(a, base_digits, 6);
+            std::vector&lt;int&gt; b6 = convert_base(v.a, base_digits, 6);
+            vll a(a6.begin(), a6.end());
+            vll b(b6.begin(), b6.end());
+            while(a.size() &lt; b.size()) a.push_back(0);
+            while(b.size() &lt; a.size()) b.push_back(0);
+            while(a.size() &amp; (a.size() - 1)) a.push_back(0), b.push_back(0);
+            vll c = Karatsuba(a, b);
+            BigInt res;
+            res.sign = sign * v.sign;
+            ll carry = 0;
+            for(int i = 0; i &lt; (int)c.size(); ++i){
+                ll cur = c[i] + carry;
+                res.a.push_back(cur % 1000000);
+                carry = cur / 1000000;
+            }
+            while(carry){
+                res.a.push_back(carry % 1000000);
+                carry /= 1000000;
+            }
+            res.a = convert_base(res.a, 6, base_digits);
+            res.trim();
+            return res;
+        }
+
+        static vll Karatsuba(const vll&amp; a, const vll&amp; b){
+            int n = a.size();
+            vll res(n &lt;&lt; 1);
+            if(n &lt;= 32){
+                for(int i = 0; i &lt; n; ++i){
+                    for(int j = 0; j &lt; n; ++j){
+                        res[i + j] += a[i] * b[j];
+                    }
+                }
+                return res;
+            }
+            int k = n &gt;&gt; 1;
+            vll a1(a.begin(), a.begin() + k);
+            vll a2(a.begin() + k, a.end());
+            vll b1(b.begin(), b.begin() + k);
+            vll b2(b.begin() + k, b.end());
+
+            vll a1b1 = Karatsuba(a1, b1);
+            vll a2b2 = Karatsuba(a2, b2);
+            
+            for(int i = 0; i &lt; k; ++i) a2[i] += a1[i];
+            for(int i = 0; i &lt; k; ++i) b2[i] += b1[i];
+            
+            vll r = Karatsuba(a2, b2);
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) r[i] -= a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) r[i] -= a2b2[i];
+            
+            for(int i = 0; i &lt; (int)r.size(); ++i) res[i + k] += r[i];
+            for(int i = 0; i &lt; (int)a1b1.size(); ++i) res[i] += a1b1[i];
+            for(int i = 0; i &lt; (int)a2b2.size(); ++i) res[i + n] += a2b2[i];
+            return res;
+        }
+
+        friend std::pair&lt;BigInt, BigInt&gt; divmod(const BigInt&amp; a1, const BigInt&amp; b1){
+            int norm = base / (b1.a.back() + 1);
+            BigInt a = a1.abs() * norm;
+            BigInt b = b1.abs() * norm;
+            BigInt q, r;
+            q.a.resize(a.a.size());
+            for(int i = (int)a.a.size() - 1; i &gt;= 0; --i){
+                r *= base;
+                if(r.a.empty()) r.a.push_back(a.a[i]);
+                else r.a[0] += a.a[i];
+                r.trim();
+                int s1 = r.a.size() &lt;= b.a.size() ? 0 : r.a[b.a.size()];
+                int s2 = r.a.size() &lt;= b.a.size() - 1 ? 0 : r.a[b.a.size() - 1];
+                ll d = ((ll)base * s1 + s2) / b.a.back();
+                if(d &gt; base - 1) d = base - 1;
+                BigInt bd = b * d;
+                while(r &lt; bd){
+                    --d;
+                    bd = b * d;
+                }
+                r = r - bd;
+                q.a[i] = d;
+            }
+            q.sign = a1.sign * b1.sign;
+            r.sign = a1.sign;
+            q.trim(); r.trim();
+            if(norm != 1) r /= norm;
+            return std::make_pair(q, r);
+        }
+
+        void operator *= (const BigInt&amp; v){
+            *this = *this * v;
+        }
+
+        BigInt operator / (const BigInt&amp; v) const {
+            return divmod(*this, v).first;
+        }
+
+        void operator /= (const BigInt&amp; v){
+            *this = *this / v;
+        }
+
+        BigInt operator % (const BigInt&amp; v) const {
+            return divmod(*this, v).second;
+        }
+
+        void operator %= (const BigInt&amp; v){
+            *this = *this % v;
+        }
+
+        #undef vll
+        #pragma endregion
+    };
+};
+
+void solve(){
+    BigInt::BigInt a, b;
+    std::cin &gt;&gt; a &gt;&gt; b;
+    std::cout &lt;&lt; a / b &lt;&lt; &quot;\n&quot; &lt;&lt; a % b &lt;&lt; std::endl;
+}
+
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7218">
+<h2>内部 ID 7218（JD114 双剑求和）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7218.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+#pragma GCC optimize(&quot;Ofast&quot;)
+
+ll read(){
+    ll x = 0, f = 1; char ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) f ^= (ch == &#x27;-&#x27;);
+    for(; isdigit(ch); ch = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (ch ^ 48);
+    return f ? x : -x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    for(; b; b &gt;&gt;= 1, a = (a * a) % p) if(b &amp; 1) res = (res * a) % p;
+    return res;
+}
+
+void solve(){
+    int n, m; ll x; std::cin &gt;&gt; n &gt;&gt; m &gt;&gt; x;
+    std::vector&lt;ll&gt; a(n), b(m);
+    for(auto&amp; x : a) std::cin &gt;&gt; x;
+    for(auto&amp; x : b) std::cin &gt;&gt; x;
+    int i = 0, j = m - 1;
+    while(true){
+        while(i &lt; n - 1 and a[i] + b[j] &lt; x) ++i;
+        while(j &gt; 0 and a[i] + b[j] &gt; x) --j;
+        if(a[i] + b[j] == x) return printf(&quot;%d %d\n&quot;, i, j), void();
+    }
+    
+}
+
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7219">
+<h2>内部 ID 7219（JD115 双剑验序）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7219.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+#pragma GCC optimize(&quot;Ofast&quot;)
+
+ll read(){
+    ll x; std::cin &gt;&gt; x; return x;
+}
+
+ll abs(ll x){return x &gt; 0 ? x : -x;}
+ll min(ll a, ll b){return a &lt; b ? a : b;}
+ll max(ll a, ll b){return a &gt; b ? a : b;}
+ll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}
+ll power(ll a, ll b, ll p){
+    a %= p; ll res = 1;
+    for(; b; b &gt;&gt;= 1, a = (a * a) % p) if(b &amp; 1) res = (res * a) % p;
+    return res;
+}
+
+void solve(){
+    int n = read(), m = read();
+    std::map&lt;int, std::vector&lt;int&gt;&gt; mp;
+    std::vector&lt;int&gt; a(n), b(m);
+    for(auto&amp; x : a) x = read();
+    for(int i = 0; i &lt; m; ++i){
+        b[i] = read();
+        mp[b[i]].push_back(i);
+    }
+    int now = -1;
+    for(int i = 0; i &lt; n; ++i){
+        if(!mp.count(a[i])) return puts(&quot;No&quot;), void();
+        auto&amp; rec = mp[a[i]];
+        auto it = std::upper_bound(rec.begin(), rec.end(), now);
+        if(it == rec.end()) return puts(&quot;No&quot;), void();
+        now = *it;
+    }
+    puts(&quot;Yes&quot;);
+}
+
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
+    int T = 1;
+    while(T--) solve();
+    return 0^(0-0)^0;
+}</code></pre>
+</section>
+<section id="p7220">
+<h2>内部 ID 7220（JD116 无重之最）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7220.json">JSON</a></p>
+<pre><code>#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;unordered_map&gt;
+#define ll long long
+#define ull unsigned long long
+#ifdef LOCAL
+    #include &quot;debug.h&quot;
+#else
+    #define debug(...) (__VA_ARGS__)
+    #define dbg(...) (__VA_ARGS__)
+#endif
+ 
+ll read(){
+    ll x; std::cin &gt;&gt; x; return x;
+}
+ 
+void solve(){
+    ll n; std::cin &gt;&gt; n;
+    std::vector&lt;ll&gt; a(n);
+    for(auto&amp; x : a) std::cin &gt;&gt; x;
+    ll l = 0, ans = 0;
+    std::unordered_map&lt;ll, int&gt; last;
+    for(int r = 0; r &lt; n; ++r){
+        if(last.find(a[r]) != last.end() and last[a[r]] &gt;= l) l = last[a[r]] + 1;
+        last[a[r]] = r;
+        ans = std::max(ans, r - l + 1);
+    }
+    printf(&quot;%lld\n&quot;, ans);
+}
+ 
+signed main(){
+    std::cin.tie(0) -&gt; std::ios::sync_with_stdio(false);
     int T = 1;
     while(T--) solve();
     return 0^(0-0)^0;

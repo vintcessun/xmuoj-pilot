@@ -1,0 +1,12 @@
+{
+  "internal_id": 7208,
+  "display_id": "JD104",
+  "title": "照妖辨品",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6bff2e05ada580d5786d8a53f7569798",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T05:12:15+00:00",
+  "statement": "显示题号: JD104\n内部 ID: 7208\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰指着那排弟子：\"我不需要所有人都排好——只要知道第 K 矮的人是谁。\"\n\n赵晴儿想了想：\"还是用刚才的方法：挑一个人站中间，矮的左、高的右。数一数左边有几个人——如果左边刚好有 K-1 个人，那中间那个就是答案。如果左边人比 K-1 多，说明答案在左边，只管左边就行。如果不够，就去右边找第 K-左-1 矮的。\"\n\n\"所以快排是把两边都排好，快选只需要管一边。\"梁嘉峰点头，\"省了一半的力气。\"\n\n给定一个长度为 n 的整数数列和一个整数 k，求数列中第 k 小的数。\n\n## 输入描述\n第一行两个整数n和k。第二行n个整数。\n\n## 输出描述\n一行，第k小的数。\n\n## 样例\n[\n  {\n    \"input\": \"5 3\\n3 1 2 4 5\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\npartition 后判断 k 在左半还是右半，只递归一半。平均 O(n)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\n#include <cstdio>\n#include <cmath>\nusing namespace std;\n \nconst int N = 100010;\n \nint a[N];\n \nint quick_sort(int q[], int l, int r, int k)\n{\n    //同快速排序\n    int x = q[(l + r) / 2], i = l - 1, j = r + 1;\n    if (l >= r) return q[l];\n    while (i < j)\n    {\n        while (q[ ++ i] < x);\n        while (q[ -- j] > x);\n        if (i < j) swap(q[i], q[j]);\n    }\n    if (j - l + 1 >= k) return quick_sort(q, l, j, k); //第k小数在左边区间\n    else return quick_sort(q, j + 1, r, k - (j - l + 1)); //第k小数在右边区间\n}\n \nint main()\n{\n    int n, k;\n    scanf(\"%d%d\", &n, &k);\n    for (int i = 1; i <= n; i ++ ) scanf(\"%d\", &a[i]);\n    printf(\"%d\", quick_sort(a, 1, n, k));\n    return 0;\n}"
+}

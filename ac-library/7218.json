@@ -1,0 +1,12 @@
+{
+  "internal_id": 7218,
+  "display_id": "JD114",
+  "title": "双剑求和",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "8aac55140953952f8326b66ab79db944",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T05:12:53+00:00",
+  "statement": "显示题号: JD114\n内部 ID: 7218\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白两排有序的铁牌，每排上的数字从小到大排列。她说：\"从两排铁牌中各取一块，使它们的数字之和刚好等于一个目标值。\"\n\n李少白想暴力枚举，但每排都有十万块。赵晴儿说：\"两排都是有序的——第一个指针从第一排的头部开始，第二个指针从第二排的尾部开始。如果和太大，第二个指针往左移；和太小，第一个指针往右移。两个指针配合，一次遍历就够了。\"\n\n给定两个升序数组 A 和 B，以及目标值 x，找出满足 A[i] + B[j] = x 的数对 (i, j)。保证有唯一解。\n\n## 输入描述\n第一行两个整数n和m。第二行n个整数。第三行m个整数。\n\n## 输出描述\n一行，两个整数i和j。\n\n## 样例\n[\n  {\n    \"input\": \"4 5 6\\n1 2 4 7\\n3 4 6 8 9\",\n    \"output\": \"1 1\"\n  }\n]\n\n## 提示\n双指针：i 从 A 的头，j 从 B 的尾。A[i]+B[j] < x 则 i++，> x 则 j--。O(n+m)。\n\n原题链接",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <iomanip>\n#include <numeric>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#ifdef LOCAL\n    #include \"debug.h\"\n#else\n    #define debug(...) (__VA_ARGS__)\n    #define dbg(...) (__VA_ARGS__)\n#endif\n#pragma GCC optimize(\"Ofast\")\n\nll read(){\n    ll x = 0, f = 1; char ch = getchar();\n    for(; !isdigit(ch); ch = getchar()) f ^= (ch == '-');\n    for(; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);\n    return f ? x : -x;\n}\n\nll abs(ll x){return x > 0 ? x : -x;}\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    for(; b; b >>= 1, a = (a * a) % p) if(b & 1) res = (res * a) % p;\n    return res;\n}\n\nvoid solve(){\n    int n, m; ll x; std::cin >> n >> m >> x;\n    std::vector<ll> a(n), b(m);\n    for(auto& x : a) std::cin >> x;\n    for(auto& x : b) std::cin >> x;\n    int i = 0, j = m - 1;\n    while(true){\n        while(i < n - 1 and a[i] + b[j] < x) ++i;\n        while(j > 0 and a[i] + b[j] > x) --j;\n        if(a[i] + b[j] == x) return printf(\"%d %d\\n\", i, j), void();\n    }\n    \n}\n\nsigned main(){\n    std::cin.tie(0) -> std::ios::sync_with_stdio(false);\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

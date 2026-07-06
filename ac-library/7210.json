@@ -1,0 +1,12 @@
+{
+  "internal_id": 7210,
+  "display_id": "JD106",
+  "title": "逆流之数",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "e40eb2040d2ca9056f6623227049d4cd",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T05:12:22+00:00",
+  "statement": "显示题号: JD106\n内部 ID: 7210\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n弟子们排成一列，每人身上有一个编号。赵晴儿发现，有些排在前面的人编号反而比后面的大——这就是\"逆序对\"，说明队伍很乱。\n\n\"逆序对越多，队伍越乱。\"赵晴儿说，\"但要一个个比太慢了。有没有 O(nlogn) 的方法？\"\n\n李少白盯着归并排序看了一会儿，突然开窍：\"归并的时候，左右两队都是从小到大排好的。从两队的排头开始比较——如果右边的先出列，说明右边这个人比左边队里剩下的所有人都小，那些都是逆序对！\"\n\n\"没错。\"赵晴儿笑了，\"排完序，逆序对也数完了。\"\n\n给定一个长度为 n 的整数数列，求逆序对的数量。\n\n## 输入描述\n第一行包含整数n。第二行包含n个整数（1≤n≤100000）。\n\n## 输出描述\n一行，逆序对的数量。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n2 3 1 5 4\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n归并排序过程中，当右边元素先被选中时，左边剩余元素个数就是新增的逆序对数。用 long long 存结果。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\n#define int long long\n#define MAXN 500005\n \nint n, inverse_cnt;\nint a[MAXN], b[MAXN];\n \nint read(){\n    int x = 0, f = 1; char ch = getchar();\n    for(;!isdigit(ch);ch = getchar()) if(ch == '-') f = -1;\n    for(;isdigit(ch);ch = getchar()) x = (x << 3) + (x << 1) + (ch xor 48);\n    return x*f;\n}\n \nvoid merge_sort(int l, int r){\n    if(l >= r) return;\n    int mid = (l + r) >> 1;\n    merge_sort(l, mid); merge_sort(mid + 1, r);\n    int i = l, j = mid + 1, tot = 0;\n    while(i <= mid and j <= r){\n        if(a[j] < a[i]){\n            b[++tot] = a[j++];\n            inverse_cnt += mid - i + 1;\n        }\n        else b[++tot] = a[i++];\n    }\n    while(i <= mid) b[++tot] = a[i++];\n    while(j <= r) b[++tot] = a[j++];\n    for(int k = l; k <= r; ++k) a[k] = b[k - l + 1];\n}\n \nsigned main(){\n    n = read();\n    for(int i = 1; i <= n; ++i) a[i] = read();\n    merge_sort(1, n);\n    printf(\"%lld\\n\", inverse_cnt);\n    return 0;\n}"
+}
