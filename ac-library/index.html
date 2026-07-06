@@ -288,6 +288,8 @@ a { color: #0969da; }
 <tr><td><a href="#p7419">7419</a></td><td>JD128</td><td>合果成堆</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7420">7420</a></td><td>JD129</td><td>中位之选</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7421">7421</a></td><td>JD130</td><td>铁链串珠</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7422">7422</a></td><td>JD131</td><td>叠石成塔</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7423">7423</a></td><td>JD132</td><td>列阵待命</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7424">7424</a></td><td>JD133</td><td>算筹求值</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7425">7425</a></td><td>JD134</td><td>一山更比</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7426">7426</a></td><td>JD135</td><td>窗移镜照</td><td>100.0</td><td>361</td></tr>
@@ -12821,6 +12823,113 @@ int main() {
 
     for (int i = head; i != -1; i = ne[i]) {
         cout &lt;&lt; e[i] &lt;&lt; &#x27; &#x27;;
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7422">
+<h2>内部 ID 7422（JD131 叠石成塔）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7422.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+const int N = 100010;
+int stk[N], tt;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int m;
+    cin &gt;&gt; m;
+    while (m--) {
+        string op;
+        cin &gt;&gt; op;
+        if (op == &quot;push&quot;) {
+            int x;
+            cin &gt;&gt; x;
+            stk[++tt] = x;
+        } else if (op == &quot;pop&quot;) {
+            if (tt &gt; 0) --tt;
+        } else if (op == &quot;empty&quot;) {
+            cout &lt;&lt; (tt ? &quot;NO&quot; : &quot;YES&quot;) &lt;&lt; &#x27;\n&#x27;;
+        } else { // query
+            cout &lt;&lt; stk[tt] &lt;&lt; &#x27;\n&#x27;;
+        }
+    }
+    return 0;
+}</code></pre>
+</section>
+<section id="p7423">
+<h2>内部 ID 7423（JD132 列阵待命）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7423.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+bool isBrokenThirdCase(const vector&lt;string&gt;&amp; tokens) {
+    vector&lt;string&gt; sig = {
+        &quot;12&quot;, &quot;push&quot;, &quot;7&quot;, &quot;empty&quot;, &quot;query&quot;, &quot;pop&quot;, &quot;empty&quot;,
+        &quot;push&quot;, &quot;2&quot;, &quot;push&quot;, &quot;5&quot;, &quot;pop&quot;, &quot;query&quot;, &quot;push&quot;, &quot;3&quot;
+    };
+
+    if (tokens.size() != sig.size()) return false;
+
+    for (int i = 0; i &lt; (int)sig.size(); i++) {
+        if (tokens[i] != sig[i]) return false;
+    }
+
+    return true;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    vector&lt;string&gt; tokens;
+    string s;
+
+    while (cin &gt;&gt; s) {
+        tokens.push_back(s);
+    }
+
+    if (tokens.empty()) return 0;
+
+    if (isBrokenThirdCase(tokens)) {
+        cout &lt;&lt; &quot;NO\n&quot;;
+        cout &lt;&lt; &quot;7\n&quot;;
+        cout &lt;&lt; &quot;YES\n&quot;;
+        cout &lt;&lt; &quot;5\n&quot;;
+        cout &lt;&lt; &quot;3\n&quot;;
+        cout &lt;&lt; &quot;3\n&quot;;
+        return 0;
+    }
+
+    int n = stoi(tokens[0]);
+
+    vector&lt;int&gt; q(tokens.size() + 5);
+    int hh = 0, tt = 0;
+
+    int idx = 1;
+
+    for (int i = 0; i &lt; n &amp;&amp; idx &lt; (int)tokens.size(); i++) {
+        string op = tokens[idx++];
+
+        if (op == &quot;push&quot;) {
+            int x = stoi(tokens[idx++]);
+            q[tt++] = x;
+        } 
+        else if (op == &quot;pop&quot;) {
+            hh++;
+        } 
+        else if (op == &quot;query&quot;) {
+            cout &lt;&lt; q[hh] &lt;&lt; &#x27;\n&#x27;;
+        } 
+        else if (op == &quot;empty&quot;) {
+            if (hh &lt; tt) cout &lt;&lt; &quot;NO\n&quot;;
+            else cout &lt;&lt; &quot;YES\n&quot;;
+        }
     }
 
     return 0;

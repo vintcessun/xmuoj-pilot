@@ -2430,6 +2430,24 @@
     "path": "7421.json"
   },
   {
+    "internal_id": 7422,
+    "display_id": "JD131",
+    "title": "叠石成塔",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7422.json"
+  },
+  {
+    "internal_id": 7423,
+    "display_id": "JD132",
+    "title": "列阵待命",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7423.json"
+  },
+  {
     "internal_id": 7424,
     "display_id": "JD133",
     "title": "算筹求值",
