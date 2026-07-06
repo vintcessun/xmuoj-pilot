@@ -1,0 +1,12 @@
+{
+  "internal_id": 7418,
+  "display_id": "JD127",
+  "title": "一箭穿心",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "94ca6feb667549ceba4bca88c8a0808c",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:25:06+00:00",
+  "statement": "显示题号: JD127\n内部 ID: 7418\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在数轴上标了 N 个区间，每个区间表示一个敌人的巡逻范围。\"用最少的暗器，让每个敌人的巡逻范围里至少中一枚。\"\n\n李少白想每个区间放一枚。赵晴儿摇头：\"贪心——按右端点从小到大排。第一枚暗器射在第一个区间的右端点，这样所有包含这个点的区间都中了。然后跳过这些区间，再射下一批。\"\n\n\"选右端点是因为它最'靠左'——能覆盖尽可能多的后续区间。\"\n\n给定 N 个闭区间，选择尽量少的点，使得每个区间内至少有一个点。\n\n## 输入描述\n第一行一个整数N（1≤N≤100000）。接下来N行每行两个整数a和b。\n\n## 输出描述\n一行，最少需要的点数。\n\n## 样例\n[\n  {\n    \"input\": \"3\\n1 3\\n2 4\\n3 5\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\n按右端点排序，每次选当前区间的右端点，跳过所有包含该点的区间。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n\n    vector<pair<int, int>> seg(n);\n\n    for (int i = 0; i < n; i++) {\n        int a, b;\n        cin >> a >> b;\n        seg[i] = {a, b};\n    }\n\n    sort(seg.begin(), seg.end(), [](const pair<int, int>& x, const pair<int, int>& y) {\n        return x.second < y.second;\n    });\n\n    int ans = 0;\n    int last = -0x3f3f3f3f;\n\n    for (auto& p : seg) {\n        int l = p.first;\n        int r = p.second;\n\n        if (l > last) {\n            ans++;\n            last = r;\n        }\n    }\n\n    cout << ans << '\\n';\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7414,
+  "display_id": "JD123",
+  "title": "差分之术",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "b53e03d252783c63a59dee562afad0ea",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:48+00:00",
+  "statement": "显示题号: JD123\n内部 ID: 7414\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着一排石块：\"我要把第3块到第7块每块都加上5。如果一块块改，太慢了。\"\n\n梁嘉峰说：\"差分——前缀和的逆运算。你在第3块的位置加5，在第8块的位置减5。最后对整排求一次前缀和，第3到第7块就都加了5，其余不变。\"\n\n\"就像往水面扔两块石头，\"李少白恍然大悟，\"波纹叠加后就是最终结果。\"\n\n给定一个长度为 n 的整数序列和 m 个操作，每个操作将 [l, r] 的每个数加 c。输出所有操作后的序列。\n\n## 输入描述\n第一行两个整数n和m。第二行n个整数。接下来m行每行两个整数l和r。\n\n## 输出描述\n一行，n个整数，空格隔开，表示经过m次操作后的最终序列。\n\n## 样例\n[\n  {\n    \"input\": \"5 3\\n1 2 3 4 5\\n1 3 2\\n2 4 1\\n3 5 3\",\n    \"output\": \"3 5 8 8 8\"\n  }\n]\n\n## 提示\n差分：b[l] += c, b[r+1] -= c。所有操作完成后，对 b 求前缀和得到最终序列。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n\n    vector<long long> a(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> a[i];\n    }\n\n    vector<long long> diff(n + 2, 0); // 1-indexed 差分，多开一位防越界\n\n    while (m--) {\n        int l, r, c;\n        cin >> l >> r >> c;\n        diff[l] += c;\n        diff[r + 1] -= c;\n    }\n\n    long long cur = 0;\n    for (int i = 0; i < n; ++i) {\n        cur += diff[i + 1];\n        a[i] += cur;\n    }\n\n    for (int i = 0; i < n; ++i) {\n        if (i) cout << ' ';\n        cout << a[i];\n    }\n    cout << '\\n';\n\n    return 0;\n}"
+}

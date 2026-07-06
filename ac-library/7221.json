@@ -1,0 +1,12 @@
+{
+  "internal_id": 7221,
+  "display_id": "JD117",
+  "title": "独剑无双",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6f7aa51b6f3ac3bfd0dc4c2f95056c7b",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:17:22+00:00",
+  "statement": "显示题号: JD117\n内部 ID: 7221\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n藏剑阁深处，梁嘉峰领着李少白走进一间密室。墙上挂满了剑，每把剑柄上都刻着一个数字。\n\n\"这些剑，成双成对，唯有一把是独一无二的。\"梁嘉峰说，\"你能在 O(1) 额外空间内找出它吗？\"\n\n李少白想用哈希表记录每把剑出现的次数。赵晴儿摇头：\"空间不够。想想异或的性质——a ^ a = 0，a ^ 0 = a。成对的剑异或后消失，留下的就是独剑。\"\n\n给定 n 个整数，其中只有一个数出现了一次，其余数都恰好出现了两次。找出那个只出现一次的数。要求时间复杂度 O(n)，空间复杂度 O(1)。\n\n## 输入描述\n第一行一个整数 n（n 为奇数，1 ≤ n ≤ 100000）。第二行 n 个整数，每个数在 int 范围内。\n\n## 输出描述\n一行，只出现一次的那个数。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n1 2 3 2 1\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n原题链接\n\n异或性质：a^a=0, a^0=a。所有数异或，成对消失，独者现身。O(n) 时间，O(1) 空间。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <numeric>\n#include <cassert>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#ifdef LOCAL\n    #include \"debug.h\"\n#else\n    #define debug(...) (__VA_ARGS__)\n    #define dbg(...) (__VA_ARGS__)\n#endif\n\nint cnt = 0;\n\nll read(){\n    ll x = 0; std::cin >> x; ++cnt; return x;\n}\n\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    for(; b; b >>= 1, a = (a * a) % p) if(b & 1) res = (res * a) % p;\n    return res;\n}\n\nvoid solve(){\n    int n = read();\n    ll ans = 0;\n    while(n--) ans ^= read();\n    printf(\"%lld\\n\", ans);\n}\n\nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

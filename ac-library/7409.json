@@ -1,0 +1,12 @@
+{
+  "internal_id": 7409,
+  "display_id": "JD118",
+  "title": "剑招收放",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "9dba9b0c563813db87a8f1a54bb11cfb",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:29+00:00",
+  "statement": "显示题号: JD118\n内部 ID: 7409\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n剑道宗大殿前，十八般兵器陈列两旁。梁嘉峰指着 n 把剑说：\"每一把，你可以选择施展（选）或收起（不选）。列出所有可能的剑招组合。\"\n\n李少白问：\"n 把剑有 2^n 种组合，怎么枚举？\"赵晴儿递来一张纸：\"递归。对于每把剑，先试'选'，再试'不选'。走到尽头就输出当前组合。\"\n\n给定 n，按字典序输出 1~n 的所有非空子集。每个子集内数字升序排列。\n\n## 输入描述\n一行一个整数 n（1 ≤ n ≤ 16）。\n\n## 输出描述\n每行一个子集，子集内数字升序排列，子集之间按字典序排列。空集不输出。\n\n## 样例\n[\n  {\n    \"input\": \"3\",\n    \"output\": \"1\\n1 2\\n1 2 3\\n1 3\\n2\\n2 3\\n3\"\n  }\n]\n\n## 提示\n原题链接\n\n递归枚举：对每个位置选或不选，到达边界输出。2^n 种组合。",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(0);\n    int n;\n    cin >> n;\n    for (int mask = 1; mask < (1 << n); ++mask) {\n        bool first = true;\n        for (int i = 0; i < n; ++i) {\n            if (mask & (1 << i)) {\n                if (!first) cout << ' ';\n                cout << i + 1;\n                first = false;\n            }\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+}

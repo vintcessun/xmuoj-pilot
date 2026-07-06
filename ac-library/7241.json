@@ -1,0 +1,12 @@
+{
+  "internal_id": 7241,
+  "display_id": "JD137",
+  "title": "堆石成丘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c6a56d7e4fea05dde69dba30f64ce8fe",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:23:03+00:00",
+  "statement": "显示题号: JD137\n内部 ID: 7241\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在地上堆了一座小丘：\"堆——一种特殊的完全二叉树。父节点的值永远比子节点小（小根堆）。\"\n\n赵晴儿说：\"用数组存——父节点i的子节点是2i和2i+1。插入时上浮，删除时下沉。支持插入、取最小值、删除任意元素。\"\n\n实现一个小根堆，支持插入、删除第k个插入的元素、查询最小值。\n\n## 输入描述\n若干行操作命令：I x（插入x）、PM（查询最小值）、D k（删除第k个插入的元素）。\n\n## 输出描述\n对每个PM操作输出一行最小值。\n\n## 样例\n[\n  {\n    \"input\": \"5\\nI 3\\nI 1\\nI 4\\nPM\\nD 1\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\n数组模拟堆：上浮和下沉操作。父节点i的子节点是2i和2i+1。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nconst int N = 100010;\nint h[N], ph[N], hp[N], sz, idx;\nvoid heap_swap(int a, int b) {\n    swap(ph[hp[a]], ph[hp[b]]);\n    swap(hp[a], hp[b]);\n    swap(h[a], h[b]);\n}\nvoid down(int u) {\n    int t = u;\n    if (u * 2 <= sz && h[u * 2] < h[t]) t = u * 2;\n    if (u * 2 + 1 <= sz && h[u * 2 + 1] < h[t]) t = u * 2 + 1;\n    if (u != t) { heap_swap(u, t); down(t); }\n}\nvoid up(int u) {\n    while (u / 2 && h[u / 2] > h[u]) { heap_swap(u, u / 2); u /= 2; }\n}\nint main() {\n    int m;\n    scanf(\"%d\", &m);\n    while (m--) {\n        string op;\n        cin >> op;\n        if (op == \"I\") {\n            int x; scanf(\"%d\", &x);\n            sz++; idx++;\n            ph[idx] = sz; hp[sz] = idx;\n            h[sz] = x;\n            up(sz);\n        } else if (op == \"PM\") {\n            printf(\"%d\\n\", h[1]);\n        } else if (op == \"DM\") {\n            heap_swap(1, sz); sz--; down(1);\n        } else if (op == \"D\") {\n            int k; scanf(\"%d\", &k);\n            int u = ph[k];\n            heap_swap(u, sz); sz--;\n            down(u); up(u);\n        } else if (op == \"C\") {\n            int k, x; scanf(\"%d%d\", &k, &x);\n            int u = ph[k];\n            h[u] = x;\n            down(u); up(u);\n        }\n    }\n    return 0;\n}"
+}

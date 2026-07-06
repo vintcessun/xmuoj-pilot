@@ -1,0 +1,12 @@
+{
+  "internal_id": 7222,
+  "display_id": "JD118",
+  "title": "剑招收放",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f643ca3df463c2059fbd4736ece6494e",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:17:26+00:00",
+  "statement": "显示题号: JD118\n内部 ID: 7222\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n剑道宗大殿前，十八般兵器陈列两旁。梁嘉峰指着 n 把剑说：\"每一把，你可以选择施展（选）或收起（不选）。列出所有可能的剑招组合。\"\n\n李少白问：\"n 把剑有 2^n 种组合，怎么枚举？\"赵晴儿递来一张纸：\"递归。对于每把剑，先试'选'，再试'不选'。走到尽头就输出当前组合。\"\n\n给定 n，按字典序输出 1~n 的所有非空子集。每个子集内数字升序排列。\n\n## 输入描述\n一行一个整数 n（1 ≤ n ≤ 16）。\n\n## 输出描述\n每行一个子集，子集内数字升序排列，子集之间按字典序排列。空集不输出。\n\n## 样例\n[\n  {\n    \"input\": \"3\",\n    \"output\": \"1\\n1 2\\n1 2 3\\n1 3\\n2\\n2 3\\n3\"\n  }\n]\n\n## 提示\n原题链接\n\n递归枚举：对每个位置选或不选，到达边界输出。2^n 种组合。",
+  "code": "#include <map>\n#include <set>\n#include <cmath>\n#include <queue>\n#include <stack>\n#include <cstdio>\n#include <vector>\n#include <string>\n#include <climits>\n#include <cstring>\n#include <numeric>\n#include <cassert>\n#include <iostream>\n#include <algorithm>\n#define ll long long\n#define ull unsigned long long\n#ifdef LOCAL\n    #include \"debug.h\"\n#else\n    #define debug(...) (__VA_ARGS__)\n    #define dbg(...) (__VA_ARGS__)\n#endif\n\nint cnt = 0;\n\nll read(){\n    ll x = 0; std::cin >> x; ++cnt; return x;\n}\n\nll min(ll a, ll b){return a < b ? a : b;}\nll max(ll a, ll b){return a > b ? a : b;}\nll gcd(ll a, ll b){return b ? gcd(b, a % b) : a;}\nll power(ll a, ll b, ll p){\n    a %= p; ll res = 1;\n    for(; b; b >>= 1, a = (a * a) % p) if(b & 1) res = (res * a) % p;\n    return res;\n}\n\nvoid solve(){\n    int n = read();\n  //  std::vector<std::vector<int>> ans;\n    for(int mask = 1; mask < (1 << n); ++mask){\n        std::vector<int> tmp;\n        for(int j = 0; j < n; ++j){\n            if((mask >> j) & 1){\n                tmp.push_back(j); \n            }\n        }\n        printf(\"%d\", tmp[0] + 1);\n        for(int i = 1; i < tmp.size(); ++i) printf(\" %d\", tmp[i] + 1); puts(\"\");\n       // ans.push_back(tmp); \n    }\n  //  std::sort(ans.begin(), ans.end());\n\n/*    for(auto& v : ans){\n        for(auto& x : v) printf(\"%d \", x + 1);\n        puts(\"\");\n    } */\n}\n\nsigned main(){\n    int T = 1;\n    while(T--) solve();\n    return 0^(0-0)^0;\n}"
+}

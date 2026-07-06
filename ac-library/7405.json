@@ -1,0 +1,12 @@
+{
+  "internal_id": 7405,
+  "display_id": "JD114",
+  "title": "双剑求和",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "8a879b503ae53d8792ea6d5e788491f0",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:16+00:00",
+  "statement": "显示题号: JD114\n内部 ID: 7405\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递给李少白两排有序的铁牌，每排上的数字从小到大排列。她说：\"从两排铁牌中各取一块，使它们的数字之和刚好等于一个目标值。\"\n\n李少白想暴力枚举，但每排都有十万块。赵晴儿说：\"两排都是有序的——第一个指针从第一排的头部开始，第二个指针从第二排的尾部开始。如果和太大，第二个指针往左移；和太小，第一个指针往右移。两个指针配合，一次遍历就够了。\"\n\n给定两个升序数组 A 和 B，以及目标值 x，找出满足 A[i] + B[j] = x 的数对 (i, j)。保证有唯一解。\n\n## 输入描述\n第一行两个整数n和m。第二行n个整数。第三行m个整数。\n\n## 输出描述\n一行，两个整数i和j。\n\n## 样例\n[\n  {\n    \"input\": \"4 5 6\\n1 2 4 7\\n3 4 6 8 9\",\n    \"output\": \"1 1\"\n  }\n]\n\n## 提示\n双指针：i 从 A 的头，j 从 B 的尾。A[i]+B[j] < x 则 i++，> x 则 j--。O(n+m)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, x;\n    cin >> n >> m >> x;  // 根据样例，第一行实为 n m x\n\n    vector<int> A(n);\n    for (int i = 0; i < n; ++i) \n        cin >> A[i];\n\n    vector<int> B(m);\n    for (int i = 0; i < m; ++i)\n        cin >> B[i];\n\n    int i = 0, j = m - 1;\n    while (i < n && j >= 0) {\n        int s = A[i] + B[j];\n        if (s == x) {\n            cout << i << ' ' << j << '\\n';  // 0‑based 下标\n            break;\n        } else if (s < x) {\n            ++i;\n        } else {\n            --j;\n        }\n    }\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7395,
+  "display_id": "JD104",
+  "title": "照妖辨品",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "e55df7fc600c51266065834598133a77",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:23:42+00:00",
+  "statement": "显示题号: JD104\n内部 ID: 7395\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰指着那排弟子：\"我不需要所有人都排好——只要知道第 K 矮的人是谁。\"\n\n赵晴儿想了想：\"还是用刚才的方法：挑一个人站中间，矮的左、高的右。数一数左边有几个人——如果左边刚好有 K-1 个人，那中间那个就是答案。如果左边人比 K-1 多，说明答案在左边，只管左边就行。如果不够，就去右边找第 K-左-1 矮的。\"\n\n\"所以快排是把两边都排好，快选只需要管一边。\"梁嘉峰点头，\"省了一半的力气。\"\n\n给定一个长度为 n 的整数数列和一个整数 k，求数列中第 k 小的数。\n\n## 输入描述\n第一行两个整数n和k。第二行n个整数。\n\n## 输出描述\n一行，第k小的数。\n\n## 样例\n[\n  {\n    \"input\": \"5 3\\n3 1 2 4 5\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\npartition 后判断 k 在左半还是右半，只递归一半。平均 O(n)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <cstdlib>\n#include <ctime>\nusing namespace std;\n\nint partition(vector<int>& a, int l, int r, int pivot_idx) {\n    int pivot = a[pivot_idx];\n    swap(a[pivot_idx], a[r]);\n    int store = l;\n    for (int i = l; i < r; ++i) {\n        if (a[i] < pivot) {\n            swap(a[i], a[store]);\n            ++store;\n        }\n    }\n    swap(a[store], a[r]);\n    return store;\n}\n\nint quickselect(vector<int>& a, int l, int r, int k) {\n    if (l == r) return a[l];\n    int pivot_idx = l + rand() % (r - l + 1);\n    int pi = partition(a, l, r, pivot_idx);\n    if (pi == k) return a[pi];\n    else if (pi > k) return quickselect(a, l, pi - 1, k);\n    else return quickselect(a, pi + 1, r, k);\n}\n\nint main() {\n    srand(time(0));\n    int n, k;\n    cin >> n >> k;\n    vector<int> a(n);\n    for (int i = 0; i < n; ++i) cin >> a[i];\n    cout << quickselect(a, 0, n - 1, k - 1) << endl;\n    return 0;\n}"
+}

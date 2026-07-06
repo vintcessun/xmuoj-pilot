@@ -1,0 +1,12 @@
+{
+  "internal_id": 7399,
+  "display_id": "JD108",
+  "title": "剑指方根",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "5d7c03281792e8f2cf8d002865704651",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:23:55+00:00",
+  "statement": "显示题号: JD108\n内部 ID: 7399\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在沙盘上写下一个数 n：\"求它的三次方根。\"\n\n李少白试了几个整数，立方后不是太大就是太小。赵晴儿说：\"别猜了。三次方根一定在 -10000 到 10000 之间。你取中间值试试——如果中间值的立方比 n 大，说明真正的答案在左半边；比 n 小，就在右半边。范围不断缩小，直到精度足够。\"\n\n\"和整数二分一样的思路，\"李少白说，\"只不过这次找的不是一个确切的位置，而是一个足够精确的浮点数。\"\n\n\"对。整数二分停在某个整数上，浮点二分停在精度达标时。\"\n\n给定一个浮点数 n，求它的三次方根。\n\n## 输入描述\n一个浮点数n（-10000≤n≤10000）。\n\n## 输出描述\nn的三次方根，保留6位小数。\n\n## 样例\n[\n  {\n    \"input\": \"1000.000000\",\n    \"output\": \"10.000000\"\n  }\n]\n\n## 提示\n浮点二分：left=-10000, right=10000，while(right-left>1e-8)，mid=(left+right)/2。若 mid³≥n，right=mid；否则 left=mid。\n\n原题链接",
+  "code": "#include <iostream>\n#include <iomanip>\n#include <cmath>\n\nint main() {\n    double n;\n    std::cin >> n;\n    \n    double left = -10000.0, right = 10000.0;\n    while (right - left > 1e-8) {\n        double mid = (left + right) / 2.0;\n        if (mid * mid * mid >= n) {\n            right = mid;\n        } else {\n            left = mid;\n        }\n    }\n    \n    std::cout << std::fixed << std::setprecision(6) << left << std::endl;\n    return 0;\n}"
+}

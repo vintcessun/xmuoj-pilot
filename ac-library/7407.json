@@ -1,0 +1,12 @@
+{
+  "internal_id": 7407,
+  "display_id": "JD116",
+  "title": "无重之最",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "ac1a39952aee0e4b616b66692f3bd9b7",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:22+00:00",
+  "statement": "显示题号: JD116\n内部 ID: 7407\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在沙盘上摆了一排石块，每块上刻着一个数字。他问：\"从这排石块中，找出最长的一段——这段里每个数字都不重复。\"\n\n李少白想从头遍历每一段，但石块有十万块。赵晴儿教他：\"用两个指针，一左一右，框住一段区间。右指针往右扩展，遇到重复数字就收缩左指针，直到区间内没有重复。每一步都更新最大长度。\"\n\n\"两个指针各走各的，总共只走一遍——O(n)。\"\n\n给定一个长度为 n 的整数序列，找出最长的不含重复数字的连续子序列，输出其长度。\n\n## 输入描述\n第一行一个整数n。第二行n个整数（1≤n≤100000）。\n\n## 输出描述\n一行，最长连续不重复子序列的长度。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n1 2 2 3 5\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n滑动窗口：右指针扩展，用哈希表判断是否重复，重复则左指针收缩。O(n)。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> a[i];\n    }\n\n    unordered_map<int, int> last_pos;\n    int left = 0, ans = 0;\n    for (int right = 0; right < n; ++right) {\n        auto it = last_pos.find(a[right]);\n        if (it != last_pos.end() && it->second >= left) {\n            left = it->second + 1;\n        }\n        last_pos[a[right]] = right;\n        ans = max(ans, right - left + 1);\n    }\n    cout << ans << \"\\n\";\n    return 0;\n}"
+}

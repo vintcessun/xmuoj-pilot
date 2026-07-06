@@ -1,0 +1,12 @@
+{
+  "internal_id": 7234,
+  "display_id": "JD130",
+  "title": "铁链串珠",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "eb70d6b0c15ca0798a6271710c7d4b12",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:21:50+00:00",
+  "statement": "显示题号: JD130\n内部 ID: 7234\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n兵器阁的深处，梁嘉峰指着一条铁链：\"这条链上每颗珠子存着一个值，每颗珠子还指着下一颗——这就是链表。\"\n\n\"用数组模拟链表：head指向第一颗珠子，val[]存每颗珠子的值，ne[]存下一颗珠子的下标。插入、删除都只需要改指针，O(1)。\"\n\n赵晴儿说：\"链表的好处是插入删除快，代价是不能随机访问。\"\n\n实现一个单链表，支持在头部插入、在第k个插入的元素后面插入、删除第k个插入的元素前面的元素。\n\n## 输入描述\n若干行操作命令：H x（头部插入x）、I k x（在第k个插入的元素后插入x）、D k（删除第k个插入的元素前面的元素）。\n\n## 输出描述\n输出最终链表，从头到尾空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"10\\nH 9\\nI 1 1\\nD 1\\nH 6\\nI 3 6\\nI 4 7\\nD 3\\nD 4\\nI 2 2\\nD 2\",\n    \"output\": \"6\\n7\"\n  }\n]\n\n## 提示\n数组模拟链表：head, val[], ne[]。插入：新节点的ne指向原next，前驱的ne指向新节点。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n \nconst int N = 1e5 + 10;\nint head, e[N], ne[N], idx;\n \nvoid init() {\n    head = -1;\n    idx = 0;\n}\n \n// 头插法\nvoid add_to_head(int x) {\n    e[idx] = x;\n    ne[idx] = head;\n    head = idx++;\n}\n \n// 在第k个插入的节点后插入x\nvoid add(int k, int x) {\n    e[idx] = x;\n    ne[idx] = ne[k];\n    ne[k] = idx++;\n}\n \n// 删除第k个插入的节点后的节点\nvoid remove(int k) {\n    ne[k] = ne[ne[k]];\n}\n \nint main() {\n    int m;\n    cin >> m;\n    init();\n    while (m--) {\n        char op;\n        int k, x;\n        cin >> op;\n        if (op == 'H') {\n            cin >> x;\n            add_to_head(x);\n        } else if (op == 'D') {\n            cin >> k;\n            if (!k) head = ne[head]; // 删除头节点\n            else remove(k - 1);\n        } else {\n            cin >> k >> x;\n            add(k - 1, x);\n        }\n    }\n    for (int i = head; i != -1; i = ne[i]) cout << e[i] << ' ';\n    return 0;\n}"
+}

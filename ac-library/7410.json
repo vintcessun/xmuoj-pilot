@@ -1,0 +1,12 @@
+{
+  "internal_id": 7410,
+  "display_id": "JD119",
+  "title": "剑阵组合",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "3a6be91cf563631c1e74bbdb8b896f89",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:33+00:00",
+  "statement": "显示题号: JD119\n内部 ID: 7410\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n练武场上，梁嘉峰递给李少白 n 把剑，说：\"从中选出 k 把，列出所有选法。\"\n\n李少白问：\"这和子集枚举有什么区别？\"赵晴儿说：\"子集枚举是选任意数量，组合枚举是恰好选 k 个。多了一个约束——必须选满 k 个才能输出。但递归框架类似，只是多了一个剪枝。\"\n\n给定 n 和 k，按字典序输出从 1~n 中选 k 个数的所有组合。每个组合内数字升序排列。\n\n## 输入描述\n一行两个整数 n 和 k（1 ≤ k ≤ n ≤ 16）。\n\n## 输出描述\n每行 k 个数（升序），组合之间按字典序排列。\n\n## 样例\n[\n  {\n    \"input\": \"4 2\",\n    \"output\": \"1 2\\n1 3\\n1 4\\n2 3\\n2 4\\n3 4\"\n  }\n]\n\n## 提示\n原题链接\n\n递归枚举，每次从上一个数+1开始。剪枝：剩余数字不够则提前返回。C(n,k) 种组合。",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint n, k;\nvector<int> combination;\n\nvoid backtrack(int start, int depth) {\n    if (depth == k) {\n        for (int i = 0; i < k; ++i) {\n            if (i > 0) cout << ' ';\n            cout << combination[i];\n        }\n        cout << '\\n';\n        return;\n    }\n    // 剪枝：剩余数字个数 (n - start + 1) 必须 >= (k - depth)\n    for (int i = start; i <= n - (k - depth) + 1; ++i) {\n        combination.push_back(i);\n        backtrack(i + 1, depth + 1);\n        combination.pop_back();\n    }\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cin >> n >> k;\n    backtrack(1, 0);\n    return 0;\n}"
+}

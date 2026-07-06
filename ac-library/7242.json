@@ -1,0 +1,12 @@
+{
+  "internal_id": 7242,
+  "display_id": "JD138",
+  "title": "合帮并派",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "78097da8a7054ba3ea1ca541ce9b799f",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:23:11+00:00",
+  "statement": "显示题号: JD138\n内部 ID: 7242\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n江湖上有N个门派，每个弟子属于一个门派。赵晴儿问：\"两个弟子是不是同门？\"梁嘉峰说：\"用并查集——合并两个门派用union，查询两个人是否同门用find。路径压缩后几乎O(1)。\"\n\n给定N个元素和M个操作：合并两个集合，或查询两个元素是否在同一集合。\n\n## 输入描述\n第一行两个整数N和M。接下来M行，每行M 1 a b（合并a和b所在集合）或Q a b（查询a和b是否同属一个集合）。\n\n## 输出描述\n对每个Q操作输出一行Yes或No。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\nM 1 2\\nQ 1 2\\nM 2 3\\nQ 1 3\\nQ 1 4\",\n    \"output\": \"Yes\\nYes\\nNo\"\n  }\n]\n\n## 提示\n并查集：find时路径压缩，union时合并两棵树。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n\nconst int MAXN = 100005;\nint parent[MAXN];\nint rankArr[MAXN];  // 树的高度，用于优化合并\n\n// 查找元素x的根节点（路径压缩）\nint find(int x) {\n    if (parent[x] != x) {\n        parent[x] = find(parent[x]);  // 路径压缩\n    }\n    return parent[x];\n}\n\n// 合并两个元素所在的集合（按秩合并）\nvoid unionSets(int a, int b) {\n    int rootA = find(a);\n    int rootB = find(b);\n    \n    if (rootA == rootB) return;  // 已在同一集合\n    \n    // 按秩合并：将矮树合并到高树下\n    if (rankArr[rootA] < rankArr[rootB]) {\n        parent[rootA] = rootB;\n    } else if (rankArr[rootA] > rankArr[rootB]) {\n        parent[rootB] = rootA;\n    } else {\n        parent[rootB] = rootA;\n        rankArr[rootA]++;\n    }\n}\n\nint main() {\n    int N, M;\n    cin >> N >> M;\n    \n    // 初始化：每个元素自成一个集合\n    for (int i = 1; i <= N; i++) {\n        parent[i] = i;\n        rankArr[i] = 0;\n    }\n    \n    // 处理M个操作\n    for (int i = 0; i < M; i++) {\n        char op;\n        int a, b;\n        cin >> op >> a >> b;\n        \n        if (op == 'M') {\n            unionSets(a, b);  // 合并\n        } else if (op == 'Q') {\n            // 查询\n            if (find(a) == find(b)) {\n                cout << \"Yes\" << endl;\n            } else {\n                cout << \"No\" << endl;\n            }\n        }\n    }\n    \n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7396,
+  "display_id": "JD105",
+  "title": "双剑合阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "88b7ceac035aef04791f325131a48be8",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:23:45+00:00",
+  "statement": "显示题号: JD105\n内部 ID: 7396\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿把弟子们两两分成一组，每组内部先按身高排好。然后两组合成一组四人——从两组的排头各看一眼，矮的先出列，依次接上。四人组再两两合并成八人组……\n\n梁嘉峰看明白了：\"快排是先挑基准把人分开，归并是先把人拆到最小单位，再一层层合并上来。\"\n\n\"对，\"赵晴儿说，\"合并时两边都是有序的，所以每次只需要比较排头，O(n)就能合并。拆到底再合上来，总共 O(nlogn)。而且最坏情况也一样——不像快排最坏会退化。\"\n\n给定一个长度为 n 的整数数列，请用归并排序将其从小到大排序。\n\n## 输入描述\n第一行包含整数n。第二行包含n个整数。\n\n## 输出描述\n一行，n个排好序的整数，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n3 1 2 4 5\",\n    \"output\": \"1 2 3 4 5\"\n  }\n]\n\n## 提示\n递归拆分 → 合并两个有序数组。需要额外空间 O(n)。稳定排序。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvoid merge(vector<int>& arr, int l, int m, int r) {\n    int n1 = m - l + 1;\n    int n2 = r - m;\n    vector<int> L(n1), R(n2);\n    for (int i = 0; i < n1; ++i) L[i] = arr[l + i];\n    for (int i = 0; i < n2; ++i) R[i] = arr[m + 1 + i];\n\n    int i = 0, j = 0, k = l;\n    while (i < n1 && j < n2) {\n        if (L[i] <= R[j])\n            arr[k++] = L[i++];\n        else\n            arr[k++] = R[j++];\n    }\n    while (i < n1) arr[k++] = L[i++];\n    while (j < n2) arr[k++] = R[j++];\n}\n\nvoid merge_sort(vector<int>& arr, int l, int r) {\n    if (l < r) {\n        int m = l + (r - l) / 2;\n        merge_sort(arr, l, m);\n        merge_sort(arr, m + 1, r);\n        merge(arr, l, m, r);\n    }\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; ++i)\n        cin >> a[i];\n\n    merge_sort(a, 0, n - 1);\n\n    for (int i = 0; i < n; ++i) {\n        if (i > 0) cout << ' ';\n        cout << a[i];\n    }\n    cout << '\\n';\n\n    return 0;\n}"
+}

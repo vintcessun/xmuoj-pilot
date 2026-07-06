@@ -1,0 +1,12 @@
+{
+  "internal_id": 7420,
+  "display_id": "JD129",
+  "title": "中位之选",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c91351f1f6d3d9ac9df6d60ba5d57f68",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:25:15+00:00",
+  "statement": "显示题号: JD129\n内部 ID: 7420\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n数轴上有 N 个商铺，赵晴儿要建一个货仓，让所有商铺到货仓的货物运输距离之和最小。\n\n\"选在哪里？\"李少白问。\n\n\"排序后取中位数。\"赵晴儿说，\"数学可以证明：中位数使绝对偏差之和最小。如果选在中位数左边，右边的商铺距离全部变远；选在中位数右边，左边的商铺距离全部变远。只有中位数是平衡点。\"\n\n给定 N 个点的坐标，求一个位置使所有点到该位置的绝对距离之和最小，输出最小距离之和。\n\n## 输入描述\n第一行一个整数N（1≤N≤100000）。第二行N个整数，表示各点坐标。\n\n## 输出描述\n一行，最小距离之和。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n1 2 3 4 5\",\n    \"output\": \"6\"\n  }\n]\n\n## 提示\n排序后取中位数（下标 n/2），计算所有点到中位数的距离之和。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <cmath>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> a[i];\n    }\n\n    sort(a.begin(), a.end());\n    long long median = a[n / 2]; // 题中提示的下标 n/2\n\n    long long sum = 0;\n    for (long long x : a) {\n        sum += abs(x - median);\n    }\n\n    cout << sum << '\\n';\n    return 0;\n}"
+}

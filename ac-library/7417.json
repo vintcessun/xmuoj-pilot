@@ -1,0 +1,12 @@
+{
+  "internal_id": 7417,
+  "display_id": "JD126",
+  "title": "合围归阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2c585d80af37700be51672ef0a4e9e59",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:25:00+00:00",
+  "statement": "显示题号: JD126\n内部 ID: 7417\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在地上画了一堆区间，有些重叠，有些相邻。\"把这些区间合并——有交集的归为一组，最后数一数有几组。\"\n\n赵晴儿蹲下来看了一会儿：\"先按左端点从小到大排。然后从左往右扫——如果当前区间的左端点在前一个区间内，说明它们重叠，合并；否则新开一组。\"\n\n\"合围之势，聚散有序。\"\n\n给定 n 个区间，合并所有有交集的区间（端点相交也算），输出合并后的区间个数。\n\n## 输入描述\n第一行包含整数n，表示区间个数。\n\n接下来n行，每行包含两个整数l和r，表示一个区间的左右端点。\n\n## 输出描述\n一个整数，表示合并后的区间个数。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n1 2\\n2 4\\n5 6\\n7 8\\n7 10\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n按左端点排序，遍历合并：当前区间左端点 ≤ 前一个右端点则合并，否则新开。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<pair<int, int>> intervals(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> intervals[i].first >> intervals[i].second;\n    }\n    // 按左端点排序，如果左端点相同，按右端点（可省，用稳定的 sort 也没关系）\n    sort(intervals.begin(), intervals.end());\n\n    int groups = 0;\n    int rmax = 0;\n    bool first = true;\n    for (auto &p : intervals) {\n        int l = p.first, r = p.second;\n        if (first) {\n            groups = 1;\n            rmax = r;\n            first = false;\n        } else {\n            if (l <= rmax) { // 有交集，合并\n                rmax = max(rmax, r);\n            } else { // 无交集，新组\n                ++groups;\n                rmax = r;\n            }\n        }\n    }\n\n    cout << groups << endl;\n    return 0;\n}"
+}

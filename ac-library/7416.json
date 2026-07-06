@@ -1,0 +1,12 @@
+{
+  "internal_id": 7416,
+  "display_id": "JD125",
+  "title": "离散聚力",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "8ea742a5954337069d21d0ecec4f8c30",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:55+00:00",
+  "statement": "显示题号: JD125\n内部 ID: 7416\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着一条无限长的数轴：\"坐标从负无穷到正无穷，但真正有值的位置只有几个。如果开一个那么大的数组，太浪费了。\"\n\n\"所以要把这些稀疏的大坐标映射到连续的小下标上——这就是离散化。\"梁嘉峰接话，\"映射之后再用前缀和，就能 O(1) 回答区间求和的查询。\"\n\n\"先聚力于有用之处，再一击命中。\"\n\n假定有一个无限长的数轴，初始每个坐标上都是0。先进行 n 次操作，每次将位置 x 上的数加 c。然后进行 m 次查询，每次求区间 [l, r] 的和。\n\n## 输入描述\n第一行两个整数n和m。第二行n个整数。接下来m行每行三个整数l、r和c。\n\n## 输出描述\nm行，每行一个整数，表示每次查询的结果。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\n1 2\\n3 6\\n7 5\\n1 3\\n4 6\\n7 8\",\n    \"output\": \"8\\n0\\n5\"\n  }\n]\n\n## 提示\n离散化：排序去重后映射到连续下标。用前缀和回答区间查询。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int N = 300010;\n\ntypedef pair<int, int> PII;\n\nint n, m;\nvector<int> alls;          // 存所有需要离散化的坐标\nvector<PII> add_ops;       // 存修改操作：x, c\nvector<PII> query_ops;     // 存查询操作：l, r\n\nlong long a[N], s[N];\n\n// 找到 x 离散化后的下标，从 1 开始\nint find_idx(int x) {\n    int l = 0, r = alls.size() - 1;\n\n    while (l < r) {\n        int mid = (l + r) >> 1;\n        if (alls[mid] >= x) r = mid;\n        else l = mid + 1;\n    }\n\n    return l + 1;\n}\n\nint main() {\n    cin >> n >> m;\n\n    for (int i = 0; i < n; i++) {\n        int x, c;\n        cin >> x >> c;\n\n        add_ops.push_back({x, c});\n        alls.push_back(x);\n    }\n\n    for (int i = 0; i < m; i++) {\n        int l, r;\n        cin >> l >> r;\n\n        query_ops.push_back({l, r});\n        alls.push_back(l);\n        alls.push_back(r);\n    }\n\n    // 排序去重\n    sort(alls.begin(), alls.end());\n    alls.erase(unique(alls.begin(), alls.end()), alls.end());\n\n    // 处理加法操作\n    for (auto op : add_ops) {\n        int x = op.first;\n        int c = op.second;\n\n        int idx = find_idx(x);\n        a[idx] += c;\n    }\n\n    // 求前缀和\n    for (int i = 1; i <= (int)alls.size(); i++) {\n        s[i] = s[i - 1] + a[i];\n    }\n\n    // 回答查询\n    for (auto q : query_ops) {\n        int l = q.first;\n        int r = q.second;\n\n        int left = find_idx(l);\n        int right = find_idx(r);\n\n        cout << s[right] - s[left - 1] << '\\n';\n    }\n\n    return 0;\n}"
+}

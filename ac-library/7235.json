@@ -1,0 +1,12 @@
+{
+  "internal_id": 7235,
+  "display_id": "JD131",
+  "title": "叠石成塔",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "ffde7a32561942ff64c6baaeca714935",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:22:01+00:00",
+  "statement": "显示题号: JD131\n内部 ID: 7235\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰在墙角堆了一摞石块：\"栈——后进先出。只能从顶部放石块，也只能从顶部取。\"\n\n赵晴儿指着石块：\"push是放石块到顶部，pop是取走顶部的石块，query是看看顶部那块刻着什么数。\"\n\n\"生活中到处是栈——叠盘子、摞书、函数调用。\"\n\n实现一个栈，支持push、pop、query操作。\n\n## 输入描述\n若干行操作命令：push x（入栈）、pop（出栈）、query（查询栈顶）。\n\n## 输出描述\n对每个query和pop操作输出一行结果。\n\n## 样例\n[\n  {\n    \"input\": \"10\\npush 5\\nquery\\npush 6\\npop\\nquery\\npop\\npush 3\\nquery\\npush 4\\nquery\",\n    \"output\": \"5\\n5\\n3\\n4\"\n  }\n]\n\n## 提示\n数组模拟栈：tt指向栈顶。push: st[++tt]=x。pop: tt--。query: st[tt]。\n\n原题链接",
+  "code": "#include <iostream>\n \nusing namespace std;\n \nconst int N = 100010;\n \nint m;\nint stk[N], tt;//skt数组存储栈，tt是栈点下标\n \nint main()\n{\n    cin >> m;\n    while (m -- )\n    {\n        string op;\n        int x;\n        \n        cin >> op;\n        if (op == \"push\")\n        {\n            cin >> x;\n            stk[ ++ tt] = x;//插入\n        }\n        else if (op == \"pop\") tt -- ;//弹出\n        else if (op == \"empty\") cout << (tt ? \"NO\" : \"YES\") << endl;\n        else cout << stk[tt] << endl;//stk[tt] 是栈顶\n    }\n    \n    return 0;\n}"
+}

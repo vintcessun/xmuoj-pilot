@@ -1,0 +1,12 @@
+{
+  "internal_id": 7243,
+  "display_id": "JD139",
+  "title": "门派计数",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "b51fc7752cf1c82643102accd37d27c9",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:23:21+00:00",
+  "statement": "显示题号: JD139\n内部 ID: 7243\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在并查集的基础上问：\"每个门派有多少人？\"\n\n梁嘉峰说：\"在合并时，把一个门派的人数加到另一个上。查询时直接读人数。\"\n\n给定N个元素和M个操作：合并两个集合，或查询某个元素所在集合的大小。\n\n## 输入描述\n第一行两个整数N和M。接下来M行，每行M a b（合并）或C a（查询a所在集合大小）。\n\n## 输出描述\n对每个C操作输出一行集合大小。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\nM 1 2\\nC 1\\nM 2 3\\nC 1\\nC 4\",\n    \"output\": \"2\\n3\\n1\"\n  }\n]\n\n## 提示\n维护size[]数组，合并时更新size。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std; const int N=100010; int p[N],sz[N];\nint find(int x){return p[x]==x?x:p[x]=find(p[x]);}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;for(int i=1;i<=n;i++)p[i]=i,sz[i]=1;while(m--){string op;cin>>op;if(op==\"C\"){int a,b;cin>>a>>b;int pa=find(a),pb=find(b);if(pa!=pb){p[pa]=pb;sz[pb]+=sz[pa];}}else if(op==\"Q1\"){int a,b;cin>>a>>b;cout<<(find(a)==find(b)?\"Yes\":\"No\")<<'\\n';}else{int a;cin>>a;cout<<sz[find(a)]<<'\\n';}}return 0;}"
+}

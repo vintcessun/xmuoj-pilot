@@ -1,0 +1,12 @@
+{
+  "internal_id": 7402,
+  "display_id": "JD111",
+  "title": "削铁如泥",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "6cb599df40ab45e815a2acdab8bda8cd",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:06+00:00",
+  "statement": "显示题号: JD111\n内部 ID: 7402\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰递给李少白两块铁牌：\"这次是减法。大数减大数，注意借位。\"\n\n李少白接过一看，两个数都很长。他先比较了大小——如果被减数比减数小，结果就是负数，先交换再算。\n\n\"像竖式减法一样，从最低位开始，不够减就向高位借1。\"梁嘉峰说，\"削铁如泥，一刃一刃来。\"\n\n给定两个正整数，计算它们的差（结果可能为负数）。每个数不超过 100000 位。\n\n## 输入描述\n两行，每行一个正整数（不超过100000位）。\n\n## 输出描述\n一行，两数之差。\n\n## 样例\n[\n  {\n    \"input\": \"9876543210\\n1234567890\",\n    \"output\": \"8641975320\"\n  }\n]\n\n## 提示\n先判断大小，大减小，从低位逐位减，处理借位。如果被减数小则结果加负号。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n#include <algorithm>\n\nusing namespace std;\n\n// 大减小（保证 a >= b）\nstring sub(const string& a, const string& b) {\n    string res;\n    int carry = 0;\n    int i = a.size() - 1, j = b.size() - 1;\n    while (i >= 0) {\n        int digitA = a[i] - '0';\n        int digitB = (j >= 0) ? b[j] - '0' : 0;\n        int diff = digitA - digitB - carry;\n        if (diff < 0) {\n            diff += 10;\n            carry = 1;\n        } else {\n            carry = 0;\n        }\n        res.push_back(diff + '0');\n        --i;\n        --j;\n    }\n    // 去除前导零\n    while (res.size() > 1 && res.back() == '0') {\n        res.pop_back();\n    }\n    reverse(res.begin(), res.end());\n    return res;\n}\n\nbool less_than(const string& a, const string& b) {\n    if (a.size() != b.size()) return a.size() < b.size();\n    return a < b; // 字符串字典序比较，等长时与数值比较一致\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    string a, b;\n    cin >> a >> b;\n    bool neg = false;\n    if (less_than(a, b)) {\n        neg = true;\n        swap(a, b);\n    }\n    string ans = sub(a, b);\n    if (neg) cout << '-';\n    cout << ans << '\\n';\n    return 0;\n}"
+}

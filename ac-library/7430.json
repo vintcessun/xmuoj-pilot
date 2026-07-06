@@ -1,0 +1,12 @@
+{
+  "internal_id": 7430,
+  "display_id": "JD139",
+  "title": "门派计数",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "2e8391ea4204f2993cffe500fa249be2",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:27:16+00:00",
+  "statement": "显示题号: JD139\n内部 ID: 7430\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在并查集的基础上问：\"每个门派有多少人？\"\n\n梁嘉峰说：\"在合并时，把一个门派的人数加到另一个上。查询时直接读人数。\"\n\n给定N个元素和M个操作：合并两个集合，或查询某个元素所在集合的大小。\n\n## 输入描述\n第一行两个整数N和M。接下来M行，每行M a b（合并）或C a（查询a所在集合大小）。\n\n## 输出描述\n对每个C操作输出一行集合大小。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\nM 1 2\\nC 1\\nM 2 3\\nC 1\\nC 4\",\n    \"output\": \"2\\n3\\n1\"\n  }\n]\n\n## 提示\n维护size[]数组，合并时更新size。\n\n原题链接",
+  "code": "#include <stdio.h>\n#include <string.h>\n \n#define N 100010\nint p[N], sz[N];\n \nint find(int x) {\n    if (p[x] != x) p[x] = find(p[x]);\n    return p[x];\n}\n \nvoid merge(int a, int b) {\n    int pa = find(a), pb = find(b);\n    if (pa != pb) {\n        p[pa] = pb;\n        sz[pb] += sz[pa];\n    }\n}\n \nint main() {\n    int n, m;\n    if (scanf(\"%d%d\", &n, &m) != 2) return 0;\n    for (int i = 1; i <= n; i++) {\n        p[i] = i;\n        sz[i] = 1;\n    }\n    while (m--) {\n        char op[4];\n        scanf(\"%s\", op);\n        if (strcmp(op, \"M\") == 0) {\n            int a, b;\n            scanf(\"%d%d\", &a, &b);\n            merge(a, b);\n        } else if (strcmp(op, \"C\") == 0) {\n            char rest[64];\n            int a, b;\n            fgets(rest, sizeof(rest), stdin);\n            int cnt = sscanf(rest, \"%d%d\", &a, &b);\n            if (cnt == 2) merge(a, b);\n            else if (cnt == 1) printf(\"%d%c\", sz[find(a)], 10);\n        } else if (strcmp(op, \"Q1\") == 0) {\n            int a, b;\n            scanf(\"%d%d\", &a, &b);\n            puts(find(a) == find(b) ? \"Yes\" : \"No\");\n        } else if (strcmp(op, \"Q2\") == 0) {\n            int a;\n            scanf(\"%d\", &a);\n            printf(\"%d%c\", sz[find(a)], 10);\n        }\n    }\n    return 0;\n}"
+}

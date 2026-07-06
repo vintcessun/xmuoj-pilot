@@ -1,0 +1,12 @@
+{
+  "internal_id": 7429,
+  "display_id": "JD138",
+  "title": "合帮并派",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "a6e93d9bb8fe9e7ad02f7946d0fa8168",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:27:07+00:00",
+  "statement": "显示题号: JD138\n内部 ID: 7429\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n江湖上有N个门派，每个弟子属于一个门派。赵晴儿问：\"两个弟子是不是同门？\"梁嘉峰说：\"用并查集——合并两个门派用union，查询两个人是否同门用find。路径压缩后几乎O(1)。\"\n\n给定N个元素和M个操作：合并两个集合，或查询两个元素是否在同一集合。\n\n## 输入描述\n第一行两个整数N和M。接下来M行，每行M 1 a b（合并a和b所在集合）或Q a b（查询a和b是否同属一个集合）。\n\n## 输出描述\n对每个Q操作输出一行Yes或No。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\nM 1 2\\nQ 1 2\\nM 2 3\\nQ 1 3\\nQ 1 4\",\n    \"output\": \"Yes\\nYes\\nNo\"\n  }\n]\n\n## 提示\n并查集：find时路径压缩，union时合并两棵树。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n\nconst int N = 100010;\nint fa[N];\n\nint find(int x)\n{\n    if (fa[x] != x)\n        fa[x] = find(fa[x]); // 路径压缩\n    return fa[x];\n}\n\nvoid unite(int a, int b)\n{\n    a = find(a);\n    b = find(b);\n    if (a != b)\n        fa[b] = a;\n}\n\nint main()\n{\n    ios::sync_with_stdio(false);\n    cin.tie(0);\n    int n, m;\n    cin >> n >> m;\n    // 初始化父节点自己\n    for (int i = 1; i <= n; i++)\n        fa[i] = i;\n    while (m--)\n    {\n        char op;\n        int a, b;\n        cin >> op >> a >> b;\n        if (op == 'M')\n        {\n            unite(a, b);\n        }\n        else if (op == 'Q')\n        {\n            if (find(a) == find(b))\n                cout << \"Yes\\n\";\n            else\n                cout << \"No\\n\";\n        }\n    }\n    return 0;\n}"
+}

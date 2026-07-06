@@ -1,0 +1,12 @@
+{
+  "internal_id": 7419,
+  "display_id": "JD128",
+  "title": "合果成堆",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f15a2837fef33a1f1219a0d5639a93a3",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:25:10+00:00",
+  "statement": "显示题号: JD128\n内部 ID: 7419\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n果园里有 N 堆果子，每堆重量不同。赵晴儿要把它们合并成一堆，每次只能合并两堆，消耗的能量等于两堆重量之和。\n\n\"如果先合并重的，后面每次合并都要带着这堆重的走，代价越来越大。\"赵晴儿说，\"所以反过来——每次选最轻的两堆合并，这样每一步的代价都最小。\"\n\n李少白想到用小根堆：\"每次取出堆顶（最轻的两堆），合并后放回去。总代价最小。\"\n\n这就是哈夫曼树的思想。\n\n有 N 堆果子，每次合并两堆（代价为两堆之和），求合并为一堆的最小总代价。\n\n## 输入描述\n第一行一个整数N（1≤N≤10000）。第二行N个整数，表示每堆的重量。\n\n## 输出描述\n一行，最小总代价。\n\n## 样例\n[\n  {\n    \"input\": \"3\\n1 2 9\",\n    \"output\": \"15\"\n  }\n]\n\n## 提示\n小根堆：每次取最小的两个合并，结果放回堆中。O(nlogn)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <queue>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    priority_queue<long long, vector<long long>, greater<long long>> pq;\n    for (int i = 0; i < n; ++i) {\n        long long x;\n        cin >> x;\n        pq.push(x);\n    }\n    long long total_cost = 0;\n    while (pq.size() >= 2) {\n        long long a = pq.top(); pq.pop();\n        long long b = pq.top(); pq.pop();\n        long long sum = a + b;\n        total_cost += sum;\n        pq.push(sum);\n    }\n    cout << total_cost << endl;\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7431,
+  "display_id": "JD140",
+  "title": "三界相克",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2a1a046bab67a44417c897bc7733ecf8",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:27:23+00:00",
+  "statement": "显示题号: JD140\n内部 ID: 7431\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰说：\"A吃B，B吃C，C吃A——三种动物形成环形食物链。给你N个动物和K句话，判断哪些话是假的。\"\n\n赵晴儿解释：\"扩展并查集——每个动物拆成三个节点，分别表示'A是A'、'A是B的食物'、'A是C的食物'。用模3的关系判断真假。\"\n\n给定N个动物和K句话，判断假话数量。\n\n## 输入描述\n第一行两个整数N和K。接下来K行，每行两个整数x y z（x=1表示y和z同类，x=2表示y吃z）。\n\n## 输出描述\n一行，假话的数量。\n\n## 样例\n[\n  {\n    \"input\": \"100 7\\n1 101 1\\n2 1 2\\n2 2 3\\n2 3 3\\n1 1 3\\n2 3 1\\n1 5 5\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n扩展并查集：每个点拆成3个，模3判断关系。\n\n原题链接",
+  "code": "#include <iostream>\n\t#include <vector>\n\tusing namespace std;\n\tconst int MAXN = 100005;\n\tint fa[MAXN];\n\tint d[MAXN];\n\t// 带权并查集查找函数\n\tint find(int x) {\n\t    if (x != fa[x]) {\n\t        int root = find(fa[x]); // 递归找到根节点\n\t        d[x] = (d[x] + d[fa[x]]) % 3; // 更新当前节点到根节点的距离\n\t        fa[x] = root; // 路径压缩\n\t    }\n\t    return fa[x];\n\t}\n\tint main() {\n\t    // 优化输入输出流速度\n\t    ios::sync_with_stdio(false);\n\t    cin.tie(0);\n\t    int n, k;\n\t    if (!(cin >> n >> k)) return 0;\n\t    // 初始化并查集\n\t    for (int i = 1; i <= n; i++) {\n\t        fa[i] = i;\n\t        d[i] = 0;\n\t    }\n\t    int ans = 0;\n\t    for (int i = 0; i < k; i++) {\n\t        int op, y, z;\n\t        cin >> op >> y >> z;\n\t        // 越界或自己吃自己均为假话\n\t        if (y > n || z > n || (op == 2 && y == z)) {\n\t            ans++;\n\t            continue;\n\t        }\n\t        int ry = find(y);\n\t        int rz = find(z);\n\t        if (op == 1) { // y 和 z 是同类\n\t            if (ry == rz) {\n\t                // 若在同一个集合，判断同类关系是否成立\n\t                if (d[y] != d[z]) {\n\t                    ans++;\n\t                }\n\t            } else {\n\t                // 不在同一个集合，合并并设定关系\n\t                fa[ry] = rz;\n\t                d[ry] = (d[z] - d[y] + 3) % 3;\n\t            }\n\t        } else { // op == 2，y 吃 z\n\t            if (ry == rz) {\n\t                // 若在同一个集合，判断捕食关系是否成立\n\t                if ((d[y] - d[z] + 3) % 3 != 1) {\n\t                    ans++;\n\t                }\n\t            } else {\n\t                // 不在同一个集合，合并并设定关系\n\t                fa[ry] = rz;\n\t                d[ry] = (d[z] - d[y] + 1 + 3) % 3;\n\t            }\n\t        }\n\t    }\n\t    cout << ans << \"\\n\";\n\t    return 0;\n\t}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7238,
+  "display_id": "JD134",
+  "title": "一山更比",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "bcd9346c70c5d2600c54f87785c9e288",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:22:40+00:00",
+  "statement": "显示题号: JD134\n内部 ID: 7238\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰指着一排山峰：\"每座山往左看，找到第一座比自己高的山。\"\n\n赵晴儿说：\"用一个栈维护'还没找到更高山'的山峰——从左往右扫，遇到更高的山，栈里比它矮的全部弹出，它们的答案就是这座山。\"\n\n\"栈里永远是单调递减的——所以叫单调栈。\"\n\n给定一个整数序列，对每个元素找到它左边第一个比它大的数。\n\n## 输入描述\n第一行一个整数n。第二行n个整数。\n\n## 输出描述\n一行，每个元素左边第一个比它大的数，不存在输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n3 2 5 1 4\",\n    \"output\": \"-1 3 -1 5 5\"\n  }\n]\n\n## 提示\n单调栈：遍历时弹出比当前小的元素，栈顶就是答案。\n\n原题链接",
+  "code": "#include <iostream>\n \nusing namespace std;\n \nconst int N = 100010;\n \nint stk[N], tt;\n \nint main()\n \n{\n \n    int n;\n \n    cin >> n;\n    while (n -- )\n \n    {\n \n        int x;\n \n        scanf(\"%d\", &x);\n \n        while (tt && stk[tt] >= x) tt -- ;  //从它往左边走\n \n        if (!tt) printf(\"-1 \");  //如果最后是 0 ，输出 -1  \n \n        else printf(\"%d \", stk[tt]);  \n \n        stk[ ++ tt] = x;  //记载这个数字\n \n    }\n \n    return 0;\n \n}"
+}

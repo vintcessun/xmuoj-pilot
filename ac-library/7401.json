@@ -1,0 +1,12 @@
+{
+  "internal_id": 7401,
+  "display_id": "JD110",
+  "title": "万钧合一",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "602149a20793fc845b661ac94c3b4d5f",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:03+00:00",
+  "statement": "显示题号: JD110\n内部 ID: 7401\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n精铸阁中，赵晴儿递来两块铁牌，上面各刻着一个巨大的数字——长到普通变量根本装不下。\n\n\"这两个数要加起来，\"赵晴儿说，\"但没有那么大的容器。怎么办？\"\n\n李少白想了想：\"像竖式加法一样，把每一位拆开，用数组存。从最低位开始逐位相加，满十进一。\"\n\n\"对。这就是高精度加法——用数组模拟竖式。\"\n\n给定两个正整数，计算它们的和。每个数不超过 100000 位。\n\n## 输入描述\n两行，每行一个正整数（不超过100000位）。\n\n## 输出描述\n一行，两数之和。\n\n## 样例\n[\n  {\n    \"input\": \"123456789012345678901234567890\\n987654321098765432109876543210\",\n    \"output\": \"1111111110111111111011111111100\"\n  }\n]\n\n## 提示\n用数组存每一位（倒序），从低位到高位逐位相加，处理进位。最后倒序输出。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n#include <algorithm>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    string a, b;\n    getline(cin, a);\n    getline(cin, b);\n\n    // 去除可能存在的前导零（题目说是正整数，但以防万一）\n    auto strip = [](const string& s) -> string {\n        size_t pos = s.find_first_not_of('0');\n        if (pos == string::npos) return \"0\";\n        return s.substr(pos);\n    };\n    a = strip(a);\n    b = strip(b);\n\n    vector<int> A, B;\n    for (int i = (int)a.size() - 1; i >= 0; --i) A.push_back(a[i] - '0');\n    for (int i = (int)b.size() - 1; i >= 0; --i) B.push_back(b[i] - '0');\n\n    vector<int> C;\n    int carry = 0;\n    size_t n = max(A.size(), B.size());\n    for (size_t i = 0; i < n; ++i) {\n        int sum = carry;\n        if (i < A.size()) sum += A[i];\n        if (i < B.size()) sum += B[i];\n        C.push_back(sum % 10);\n        carry = sum / 10;\n    }\n    if (carry) C.push_back(carry);\n\n    reverse(C.begin(), C.end());\n    for (int x : C) cout << x;\n    cout << '\\n';\n\n    return 0;\n}"
+}

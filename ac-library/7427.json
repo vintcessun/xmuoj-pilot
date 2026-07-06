@@ -1,0 +1,12 @@
+{
+  "internal_id": 7427,
+  "display_id": "JD136",
+  "title": "剑谱寻踪",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "a18840babb1eda3a61a944e3c8a6648b",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:26:51+00:00",
+  "statement": "显示题号: JD136\n内部 ID: 7427\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿拿着一本剑谱：\"在这本厚厚的剑谱里找一段特定的剑招序列——模式串在文本串中出现了几次？分别在哪里？\"\n\n李少白想一个个比对，但剑谱有十万字。梁嘉峰说：\"KMP算法——先预处理模式串，算出每个位置的next数组（最长相等前后缀）。匹配时利用next跳转，不用回退文本指针。O(n+m)。\"\n\n在文本串中查找模式串的所有出现位置。\n\n## 输入描述\n第一行一个整数n（模式串长度）。第二行模式串。第三行一个整数m（文本串长度）。第四行文本串。\n\n## 输出描述\n一行，模式串在文本串中所有出现的起始位置（从0开始），空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"3\\naba\\n5\\nababa\",\n    \"output\": \"0 2\"\n  }\n]\n\n## 提示\nKMP：预处理next数组（最长相等前后缀），匹配时利用next跳转。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nvector<int> getNext(string p)\n{\n    int n = p.size();\n    vector<int> ne(n, 0);\n    for (int i = 1, j = 0; i < n; ++i)\n    {\n        while (j > 0 && p[i] != p[j]) j = ne[j - 1];\n        if (p[i] == p[j]) j++;\n        ne[i] = j;\n    }\n    return ne;\n}\n\nint main()\n{\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int n, m;\n    string pat, txt;\n    cin >> n >> pat >> m >> txt;\n    vector<int> ne = getNext(pat);\n    vector<int> ans;\n    for (int i = 0, j = 0; i < m; ++i)\n    {\n        while (j > 0 && txt[i] != pat[j]) j = ne[j - 1];\n        if (txt[i] == pat[j]) j++;\n        if (j == n)\n        {\n            ans.push_back(i - n + 1);\n            j = ne[j - 1];\n        }\n    }\n    for (size_t i = 0; i < ans.size(); ++i)\n    {\n        if (i) cout << \" \";\n        cout << ans[i];\n    }\n    return 0;\n}"
+}

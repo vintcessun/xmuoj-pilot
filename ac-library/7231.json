@@ -1,0 +1,12 @@
+{
+  "internal_id": 7231,
+  "display_id": "JD127",
+  "title": "一箭穿心",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "29030333f69a6b8b20a5da0946180c32",
+  "contest_id": 359,
+  "fetched_at": "2026-07-06T06:21:27+00:00",
+  "statement": "显示题号: JD127\n内部 ID: 7231\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在数轴上标了 N 个区间，每个区间表示一个敌人的巡逻范围。\"用最少的暗器，让每个敌人的巡逻范围里至少中一枚。\"\n\n李少白想每个区间放一枚。赵晴儿摇头：\"贪心——按右端点从小到大排。第一枚暗器射在第一个区间的右端点，这样所有包含这个点的区间都中了。然后跳过这些区间，再射下一批。\"\n\n\"选右端点是因为它最'靠左'——能覆盖尽可能多的后续区间。\"\n\n给定 N 个闭区间，选择尽量少的点，使得每个区间内至少有一个点。\n\n## 输入描述\n第一行一个整数N（1≤N≤100000）。接下来N行每行两个整数a和b。\n\n## 输出描述\n一行，最少需要的点数。\n\n## 样例\n[\n  {\n    \"input\": \"3\\n1 3\\n2 4\\n3 5\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\n按右端点排序，每次选当前区间的右端点，跳过所有包含该点的区间。\n\n原题链接",
+  "code": "#include<bits/stdc++.h>\nusing namespace std;\nusing PII = pair<int, int>;\nconst int N = 1e5 + 10, INF = 0x3f3f3f3f;\nint n, res;\nvector<PII> v;\n \nbool cmp(PII p1, PII p2) {\n\treturn p1.second < p2.second;\n}\n \nint main(){\n\tcin >> n;\n\tfor (int i = 0;i < n;i++) {\n\t\tint a, b;cin >> a >> b;\n\t\tv.push_back({ a,b });\n\t}\n\tsort(v.begin(), v.end(), cmp);\n\tint cur = ~INF;\n\tfor (int i = 0;i < n;i++) {\n\t\tif (cur < v[i].first) {\n\t\t\tcur = v[i].second;\n\t\t\tres++;\n\t\t}\n\t}\n\tcout << res;\n}"
+}

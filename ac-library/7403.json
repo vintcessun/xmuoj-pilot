@@ -1,0 +1,12 @@
+{
+  "internal_id": 7403,
+  "display_id": "JD112",
+  "title": "叠甲千层",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c275c51be3b24513fc8aaf54edc4c602",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:24:09+00:00",
+  "statement": "显示题号: JD112\n内部 ID: 7403\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿递来一块刻着万位数的铁牌和一个小铁块：\"大数乘以小数。铁牌上的每一位都要乘以小铁块的数，再处理进位——就像叠甲，一层压一层。\"\n\n李少白从铁牌的最低位开始，逐位乘以小数，加上前一位的进位，本位留下余数，进位带到下一位。\n\n给定一个大正整数 A 和一个小正整数 B，计算 A × B。A 不超过 100000 位，B 不超过 10000。\n\n## 输入描述\n两行，第一行正整数A（不超过100000位），第二行正整数B（不超过10000）。\n\n## 输出描述\n一行，A×B的结果。\n\n## 样例\n[\n  {\n    \"input\": \"123456\\n789\",\n    \"output\": \"97406784\"\n  }\n]\n\n## 提示\n高精度×低精度：大数每一位乘以小数，处理进位。注意结果可能有前导零需要去掉。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    string a;\n    int b;\n    cin >> a >> b;\n\n    // 处理乘以 0 的情况（题目已说明是正整数，但为鲁棒性保留）\n    if (b == 0 || a == \"0\") {\n        cout << \"0\\n\";\n        return 0;\n    }\n\n    vector<int> res(a.size() + 10, 0); // 预留足够空间\n    int carry = 0;\n    int pos = 0; // 当前结果位置（从低位开始）\n\n    // 从 a 的最低位开始逐位乘\n    for (int i = a.size() - 1; i >= 0; --i) {\n        int digit = a[i] - '0';\n        int prod = digit * b + carry;\n        res[pos++] = prod % 10;\n        carry = prod / 10;\n    }\n\n    // 处理剩余进位\n    while (carry) {\n        res[pos++] = carry % 10;\n        carry /= 10;\n    }\n\n    // 移除前导零（pos 当前是有效长度）\n    while (pos > 1 && res[pos - 1] == 0) {\n        --pos;\n    }\n\n    // 逆序输出\n    for (int i = pos - 1; i >= 0; --i) {\n        cout << res[i];\n    }\n    cout << '\\n';\n\n    return 0;\n}"
+}

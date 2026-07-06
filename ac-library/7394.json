@@ -1,0 +1,12 @@
+{
+  "internal_id": 7394,
+  "display_id": "JD103",
+  "title": "立桩定阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "5395bd3fa92bb356fd36ce225c98a3bb",
+  "contest_id": 361,
+  "fetched_at": "2026-07-06T06:23:38+00:00",
+  "statement": "显示题号: JD103\n内部 ID: 7394\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n试炼场上，弟子们按身高排成一列，但顺序完全乱了。梁嘉峰走过去，随便挑了一个弟子站到中间，然后让所有比他矮的站到左边，比他高的站到右边。\n\n\"现在左边和右边各自还是乱的，\"赵晴儿看出来了。\n\n\"对。所以对左边和右边各自重复这个过程——挑一个人，矮的左、高的右。每次都能让一个人站到最终位置上，直到每一组只剩一个人。\"梁嘉峰说，\"这就是快速排序。一剑分两路，递归再出剑。\"\n\n给定一个长度为 n 的整数数列，请用快速排序将其从小到大排序。\n\n## 输入描述\n第一行包含整数n。第二行包含n个整数。\n\n## 输出描述\n一行，n个排好序的整数，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n3 1 2 4 5\",\n    \"output\": \"1 2 3 4 5\"\n  }\n]\n\n## 提示\n选基准元素，双指针分区：左边 ≤ 基准，右边 > 基准。递归处理左右两半。平均 O(nlogn)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    \n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int i = 0; i < n; ++i) {\n        std::cin >> a[i];\n    }\n    \n    std::sort(a.begin(), a.end());\n    \n    for (int i = 0; i < n; ++i) {\n        if (i) std::cout << ' ';\n        std::cout << a[i];\n    }\n    std::cout << '\\n';\n    \n    return 0;\n}"
+}
