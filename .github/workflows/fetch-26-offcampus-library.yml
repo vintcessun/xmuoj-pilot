@@ -1,0 +1,99 @@
+name: Fetch 26 校外实训 Library
+
+# 26 级校外实训：抓取比赛 359 与 361 的 AC 参考代码库。
+# 定时：每天 10:00（北京时间，UTC+8 → 02:00 UTC）自动执行；也支持手动触发。
+# 两场比赛密码均为 ilovexmu；抓取顺序为 359 → 361，合并进同一个 ac-library。
+#
+# 账号来源（与 Fetch AC Library 相同）：
+#   多账号（推荐）：Secret  XMUOJ_ACCOUNTS ，多行，每行一个 ``user:pass``（也支持 JSON 数组）。
+#   单账号（可选）：Secret  XMUOJ_USERNAME / XMUOJ_PASSWORD 。
+# 这些账号用于查询公开提交列表；对本账号没 AC 的题目，会从 AC 账号里尝试弱口令登录补抓。
+# 若要发布为可访问页面：Settings -> Pages -> Source 选 "GitHub Actions"。
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # 每天 02:00 UTC = 北京时间 10:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 与 Fetch AC Library 共用同一分组，避免并发抓取互相覆盖提交
+concurrency:
+  group: fetch-ac-library
+  cancel-in-progress: false
+
+env:
+  XMUOJ_PILOT_ACCOUNTS: ${{ secrets.XMUOJ_ACCOUNTS }}
+  XMUOJ_PILOT_USERNAME: ${{ secrets.XMUOJ_USERNAME }}
+  XMUOJ_PILOT_PASSWORD: ${{ secrets.XMUOJ_PASSWORD }}
+  XMUOJ_PILOT_CONTEST_PASSWORD: "ilovexmu"
+  XMUOJ_PILOT_WEAK_PASSWORD_FALLBACK: "true"
+  XMUOJ_PILOT_VERIFY_SSL: "false"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Fetch AC code (contest 359)
+        env:
+          XMUOJ_PILOT_CONTEST_ID: "359"
+        run: uv run python scripts/fetch_ac_library.py
+
+      - name: Fetch AC code (contest 361)
+        env:
+          XMUOJ_PILOT_CONTEST_ID: "361"
+        run: uv run python scripts/fetch_ac_library.py
+
+      - name: Commit library back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ac-library
+          if git diff --cached --quiet; then
+            echo "AC 代码库无变化，跳过提交。"
+          else
+            git commit -m "chore: update 26 校外实训 AC library (359, 361)"
+            git push
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ac-library
+          path: ac-library
+
+      # 自动启用 Pages（首次运行无需手动去 Settings 打开）
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ac-library
+
+  deploy:
+    needs: fetch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

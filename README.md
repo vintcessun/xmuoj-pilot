@@ -81,6 +81,7 @@ $env:XMUOJ_PILOT_AC_LIBRARY_DIR="ac-library"
 ## GitHub Actions
 
 - **Fetch AC Library**（`fetch-ac-library.yml`）：手动触发，填 `contest_id`（账号/密码用 Secret `XMUOJ_USERNAME` / `XMUOJ_PASSWORD`）。登录→抓取 AC 代码→提交回仓库→上传 artifact→部署 GitHub Pages（即可拉取的页面）。
+- **Fetch 26 校外实训 Library**（`fetch-26-offcampus-library.yml`）：每天北京时间 10:00（`0 2 * * *` UTC）定时执行，也可手动触发。依次抓取比赛 **359** 与 **361**（比赛密码均为 `ilovexmu`），合并进同一个 `ac-library` 后提交并部署 Pages。开启**弱口令补抓**：本账号没 AC 的题目，会从公开提交列表取该题 AC 过的账号，尝试常见弱口令（`123456`、学号后两位+`0603`、学号后三位+`xmu`、`xmu`+学号后三位）登录后补抓代码。
 - **Build & Release**（`build-release.yml`）：手动触发，构建 manylinux / Windows / macOS 单文件可执行。`version` 留空则只产出 artifact；填了版本号（如 `v0.1.0`）则创建对应 GitHub Release 并上传产物。
 
 ## 本地构建
