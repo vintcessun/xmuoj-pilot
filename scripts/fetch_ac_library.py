@@ -159,27 +159,16 @@ async def _fetch_problem_as_user(
 
 
 async def supplement_via_weak_passwords(ctx: AppContext, contest_id: int) -> None:
-    """对库里仍缺代码的题目，用弱口令登录 AC 账号补抓。"""
+    """对库里仍缺代码的题目，用弱口令登录 AC 账号补抓。
+
+    AC 账号完全从公开提交列表 API 获取，不使用环境变量里的账号；题目列表 / 提交列表沿用
+    正常抓取阶段留下的登录态（并再提交一次比赛密码以确保有比赛访问权限）。
+    """
     library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
-    accounts = parse_accounts()
-    if not accounts:
-        console.print("[yellow]弱口令补抓：缺少用于查询提交列表的基础账号，跳过。[/yellow]")
-        return
     contest_password = os.getenv("XMUOJ_PILOT_CONTEST_PASSWORD") or ctx.get_contest_password(contest_id)
 
-    # 阶段一：以基础账号登录，查题目列表 + 每个缺失题目的 AC 账号。
-    base_username, base_password = accounts[0]
-    ctx.session_storage.clear()
-    try:
-        base_ok = await ctx.auth.login(base_username, base_password)
-    except RuntimeError as exc:
-        console.print(f"[red]弱口令补抓：基础账号 {base_username} 登录失败：{exc}[/red]")
-        return
-    if not base_ok:
-        console.print(f"[red]弱口令补抓：基础账号 {base_username} 登录未通过，跳过。[/red]")
-        return
+    # 阶段一：沿用当前登录态，查题目列表 + 每个缺失题目 AC 过的账号（直接从 API 取）。
     await _enter_contest(ctx, contest_id, contest_password)
-
     problems_data = await problems_flow(ctx, contest_id)
     items = extract_items(problems_data, preferred_keys=("problems",)) if problems_data is not None else []
     if not items:
@@ -270,6 +259,71 @@ async def supplement_via_weak_passwords(ctx: AppContext, contest_id: int) -> Non
     console.print(f"[green]弱口令补抓完成：新增 {total_saved} 题。[/green]")
 
 
+async def report_status(ctx: AppContext, contest_id: int) -> tuple[int, int, int, list[str]]:
+    """统计该比赛当前入库情况，返回 (题目总数, 已入库, 仍缺, 缺代码题号列表)。
+
+    为拿到完整题目列表，用基础账号重新登录并进入比赛后再列题。
+    """
+    library = ACLibrary(remote_base_url=ctx.config_storage.config.ac_library_url)
+    contest_password = os.getenv("XMUOJ_PILOT_CONTEST_PASSWORD") or ctx.get_contest_password(contest_id)
+    accounts = parse_accounts()
+    if accounts:
+        username, password = accounts[0]
+        ctx.session_storage.clear()
+        try:
+            await ctx.auth.login(username, password)
+        except RuntimeError:
+            pass
+        await _enter_contest(ctx, contest_id, contest_password)
+
+    try:
+        data = await ctx.problems.list_problems(contest_id)
+    except RuntimeError:
+        data = None
+    items = extract_items(data, preferred_keys=("problems",)) if data is not None else []
+
+    total = 0
+    in_library = 0
+    missing_ids: list[str] = []
+    for item in items:
+        internal_id = _problem_internal_id(item) or _extract_internal_problem_id(item)
+        if internal_id is None:
+            continue
+        total += 1
+        existing = library.load_local(internal_id)
+        if existing and existing.get("code"):
+            in_library += 1
+        else:
+            missing_ids.append(_problem_display_id(item) or str(internal_id))
+    return total, in_library, len(missing_ids), missing_ids
+
+
+def emit_status(contest_id: int, total: int, in_library: int, missing: int, missing_ids: list[str]) -> None:
+    """把某场比赛的入库状态打到日志，并（若配置了）追加到汇总文件供 workflow 输出。"""
+    console.print(
+        f"[bold cyan]比赛 {contest_id} 状态：题目总数 {total}，已入库(已爬) {in_library}，"
+        f"仍缺 {missing}。[/bold cyan]"
+    )
+    if missing_ids:
+        console.print(f"[yellow]仍缺代码题号：{', '.join(missing_ids)}[/yellow]")
+
+    summary_path = os.getenv("XMUOJ_PILOT_SUMMARY_FILE")
+    if not summary_path:
+        return
+    lines = [
+        f"### 比赛 {contest_id}",
+        "",
+        f"- 题目总数：**{total}**",
+        f"- 已入库（成功爬到代码）：**{in_library}**",
+        f"- 仍缺代码（暂未进入 library）：**{missing}**",
+    ]
+    if missing_ids:
+        lines.append(f"- 仍缺题号：{', '.join(missing_ids)}")
+    lines.append("")
+    with open(summary_path, "a", encoding="utf-8") as handle:
+        handle.write("\n".join(lines) + "\n")
+
+
 async def main() -> int:
     contest_id_text = os.getenv("XMUOJ_PILOT_CONTEST_ID")
     if not parse_accounts():
@@ -295,6 +349,9 @@ async def main() -> int:
     if _env_flag("XMUOJ_PILOT_WEAK_PASSWORD_FALLBACK"):
         console.print("[cyan]== 启用弱口令补抓 ==[/cyan]")
         await supplement_via_weak_passwords(ctx, contest_id)
+
+    total, in_library, missing, missing_ids = await report_status(ctx, contest_id)
+    emit_status(contest_id, total, in_library, missing, missing_ids)
 
     return 0
 

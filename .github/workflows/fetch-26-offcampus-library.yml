@@ -32,6 +32,8 @@ env:
   XMUOJ_PILOT_CONTEST_PASSWORD: "ilovexmu"
   XMUOJ_PILOT_WEAK_PASSWORD_FALLBACK: "true"
   XMUOJ_PILOT_VERIFY_SSL: "false"
+  # 两次抓取都把入库状态追加到这个文件，最后统一输出到 Job Summary
+  XMUOJ_PILOT_SUMMARY_FILE: ${{ github.workspace }}/crawl-summary.md
 
 jobs:
   fetch:
@@ -48,6 +50,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
 
+      - name: Reset crawl summary
+        run: rm -f "$XMUOJ_PILOT_SUMMARY_FILE"
+
       - name: Fetch AC code (contest 359)
         env:
           XMUOJ_PILOT_CONTEST_ID: "359"
@@ -57,6 +62,19 @@ jobs:
         env:
           XMUOJ_PILOT_CONTEST_ID: "361"
         run: uv run python scripts/fetch_ac_library.py
+
+      - name: Publish crawl summary
+        if: always()
+        run: |
+          {
+            echo "# 26 校外实训抓取状态（359 / 361）"
+            echo ""
+            if [ -f "$XMUOJ_PILOT_SUMMARY_FILE" ]; then
+              cat "$XMUOJ_PILOT_SUMMARY_FILE"
+            else
+              echo "本次未生成抓取状态（脚本可能提前失败）。"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit library back to repo
         run: |
