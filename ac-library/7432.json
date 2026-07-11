@@ -1,0 +1,12 @@
+{
+  "internal_id": 7432,
+  "display_id": "JD141",
+  "title": "雾中排阵",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "310951d410b4aa694b9744e80cd5c009",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T06:13:56+00:00",
+  "statement": "显示题号: JD141\n内部 ID: 7432\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n迷雾弥漫的林间小径上，梁嘉峰递给李少白n枚令牌：\"按字典序列出1到n的所有排列。每步选一个没用过的令牌，选完所有就回头换一个——这就是DFS回溯。\"\n\n给定整数n，按字典序输出1到n的所有全排列。\n\n## 输入描述\n一个整数n（1≤n≤9）。\n\n## 输出描述\n每行一个排列，数字之间空格隔开，按字典序输出。\n\n## 样例\n[\n  {\n    \"input\": \"3\",\n    \"output\": \"1 2 3\\n1 3 2\\n2 1 3\\n2 3 1\\n3 1 2\\n3 2 1\"\n  }\n]\n\n## 提示\nDFS+回溯：选→递归→撤销。用used[]标记。\n\n原题链接",
+  "code": "#include <stdio.h>\nint a[10], used[10], n;\nvoid dfs(int d) {\n    if (d == n) {\n        for (int i = 0; i < n; i++)\n            printf(\"%d \", a[i]);\n        putchar(10);\n        return;\n    }\n    for (int i = 1; i <= n; i++) {\n        if (!used[i]) {\n            used[i] = 1;\n            a[d] = i;\n            dfs(d + 1);\n            used[i] = 0;\n        }\n    }\n}\nint main() {\n    scanf(\"%d\", &n);\n    dfs(0);\n    return 0;\n}"
+}

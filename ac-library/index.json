@@ -1260,6 +1260,285 @@
     "path": "7244.json"
   },
   {
+    "internal_id": 7245,
+    "display_id": "JD141",
+    "title": "雾中排阵",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7245.json"
+  },
+  {
+    "internal_id": 7246,
+    "display_id": "JD142",
+    "title": "棋盘布后",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7246.json"
+  },
+  {
+    "internal_id": 7247,
+    "display_id": "JD143",
+    "title": "迷宫寻路",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7247.json"
+  },
+  {
+    "internal_id": 7248,
+    "display_id": "JD144",
+    "title": "八码迷局",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7248.json"
+  },
+  {
+    "internal_id": 7249,
+    "display_id": "JD145",
+    "title": "古树重心",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7249.json"
+  },
+  {
+    "internal_id": 7250,
+    "display_id": "JD146",
+    "title": "城池层递",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7250.json"
+  },
+  {
+    "internal_id": 7251,
+    "display_id": "JD147",
+    "title": "拓扑之序",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7251.json"
+  },
+  {
+    "internal_id": 7252,
+    "display_id": "JD148",
+    "title": "近者先行",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7252.json"
+  },
+  {
+    "internal_id": 7253,
+    "display_id": "JD149",
+    "title": "堆中取近",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7253.json"
+  },
+  {
+    "internal_id": 7254,
+    "display_id": "JD150",
+    "title": "队中松弛",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7254.json"
+  },
+  {
+    "internal_id": 7255,
+    "display_id": "JD151",
+    "title": "万径归一",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7255.json"
+  },
+  {
+    "internal_id": 7256,
+    "display_id": "JD152",
+    "title": "蔓延成网",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7256.json"
+  },
+  {
+    "internal_id": 7257,
+    "display_id": "JD153",
+    "title": "逐边成林",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7257.json"
+  },
+  {
+    "internal_id": 7258,
+    "display_id": "JD154",
+    "title": "二色分界",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7258.json"
+  },
+  {
+    "internal_id": 7259,
+    "display_id": "JD155",
+    "title": "一剑一鞘",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7259.json"
+  },
+  {
+    "internal_id": 7260,
+    "display_id": "JD156",
+    "title": "无穷剑阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7260.json"
+  },
+  {
+    "internal_id": 7261,
+    "display_id": "JD157",
+    "title": "三角登峰",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7261.json"
+  },
+  {
+    "internal_id": 7262,
+    "display_id": "JD158",
+    "title": "递增剑意",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7262.json"
+  },
+  {
+    "internal_id": 7263,
+    "display_id": "JD159",
+    "title": "双谱共鸣",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7263.json"
+  },
+  {
+    "internal_id": 7264,
+    "display_id": "JD160",
+    "title": "合石成堆",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7264.json"
+  },
+  {
+    "internal_id": 7265,
+    "display_id": "JD161",
+    "title": "改字成经",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7265.json"
+  },
+  {
+    "internal_id": 7266,
+    "display_id": "JD162",
+    "title": "雪道寻长",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7266.json"
+  },
+  {
+    "internal_id": 7267,
+    "display_id": "JD163",
+    "title": "背包叠甲",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7267.json"
+  },
+  {
+    "internal_id": 7268,
+    "display_id": "JD164",
+    "title": "背包限重",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7268.json"
+  },
+  {
+    "internal_id": 7269,
+    "display_id": "JD165",
+    "title": "分组选宝",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 359,
+    "path": "7269.json"
+  },
+  {
+    "internal_id": 7270,
+    "display_id": "JD166",
+    "title": "递增剑意II",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7270.json"
+  },
+  {
+    "internal_id": 7271,
+    "display_id": "JD167",
+    "title": "整分剑法",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7271.json"
+  },
+  {
+    "internal_id": 7273,
+    "display_id": "JD169",
+    "title": "棋盘铺阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7273.json"
+  },
+  {
+    "internal_id": 7274,
+    "display_id": "JD170",
+    "title": "万城巡游",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7274.json"
+  },
+  {
+    "internal_id": 7275,
+    "display_id": "JD171",
+    "title": "群经改字",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7275.json"
+  },
+  {
+    "internal_id": 7276,
+    "display_id": "JD172",
+    "title": "千机棋局",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7276.json"
+  },
+  {
     "internal_id": 7292,
     "display_id": "JD001",
     "title": "铁令求和",
@@ -2518,5 +2797,32 @@
     "language": "C++",
     "contest_id": 361,
     "path": "7431.json"
+  },
+  {
+    "internal_id": 7432,
+    "display_id": "JD141",
+    "title": "雾中排阵",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 361,
+    "path": "7432.json"
+  },
+  {
+    "internal_id": 7433,
+    "display_id": "JD142",
+    "title": "棋盘布后",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 361,
+    "path": "7433.json"
+  },
+  {
+    "internal_id": 7434,
+    "display_id": "JD143",
+    "title": "迷宫寻路",
+    "score": 100.0,
+    "language": "C",
+    "contest_id": 361,
+    "path": "7434.json"
   }
 ]

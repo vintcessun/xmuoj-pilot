@@ -1,0 +1,12 @@
+{
+  "internal_id": 7276,
+  "display_id": "JD172",
+  "title": "千机棋局",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "29ec187746c54fe36646aa2fd09ce9e0",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:11:33+00:00",
+  "statement": "显示题号: JD172\n内部 ID: 7276\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山绝顶，风雷激荡。最后一位对手——棋魔，传说中的千机棋圣。他缓缓展开一张巨大的人员图谱：\"这是宗门的命脉——每个人有一个直属上司。现在要派人出征，但一个士兵和他的上司不能同时出征——否则后方崩溃。每个士兵有不同的战斗力。\"\n\n梁嘉峰在台下喊道：\"树形DP！dp[u][0]表示u留守时子树的最大战力，dp[u][1]表示u出征时。出征则下属必须留守，留守则下属可出可留。找到根节点，DFS一遍！\"\n\n李少白深吸一口气，闭上眼睛。他想起了第一天来到剑道宗的那个下午——梁嘉峰递给他两枚铁令，赵晴儿在沙盘上画圆。从变量到递归，从数组到图论，从排序到动态规划……每一步都是剑道的修行。\n\n他睁开眼睛，提笔写下最后一行代码。\n\n棋魔看着答案，沉默良久，终于起身，深深一揖：\"华山论剑，到此为止。\"\n\n梁嘉峰走上前来，拍了拍李少白的肩膀：\"恭喜。你可以出师了。\"\n\n赵晴儿在一旁笑了：\"别急，回去还得教下一届呢。\"\n\n## 输入描述\n第一行一个整数N。第二行N个整数（每个员工的快乐值）。接下来N-1行每行两个整数l k（l的上司是k）。\n\n## 输出描述\n一行，最大总快乐值。\n\n## 样例\n[\n  {\n    \"input\": \"7\\n1 1 1 1 1 1 1\\n2 6\\n3 6\\n4 6\\n6 7\\n5 7\",\n    \"output\": \"5\"\n  }\n]\n\n## 提示\n树形DP：dp[u][0/1]表示u不出征/出征时的最大值。DFS从根遍历。dp[u][1] = h[u] + Σdp[v][0]，dp[u][0] = Σmax(dp[v][0], dp[v][1])。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\n\nconst int N = 10010;\n\n\nvector<int> son[N];\n\n\nint happy[N];\n\n\nint dp[N][2];\n\n\nbool hasFather[N];\n\n\n\nvoid dfs(int u)\n{\n    // 选择u\n    dp[u][1]=happy[u];\n\n\n    // 不选择u\n    dp[u][0]=0;\n\n\n\n    for(int v:son[u])\n    {\n        dfs(v);\n\n\n\n        // u不出征\n        dp[u][0]+=max(\n            dp[v][0],\n            dp[v][1]\n        );\n\n\n\n        // u出征\n        dp[u][1]+=dp[v][0];\n    }\n}\n\n\n\nint main()\n{\n    int n;\n\n    cin >> n;\n\n\n\n    for(int i=1;i<=n;i++)\n    {\n        cin >> happy[i];\n    }\n\n\n\n    for(int i=0;i<n-1;i++)\n    {\n        int l,k;\n\n        cin >> l >> k;\n\n\n        son[k].push_back(l);\n\n\n        hasFather[l]=true;\n    }\n\n\n\n    int root=1;\n\n\n    while(hasFather[root])\n        root++;\n\n\n\n    dfs(root);\n\n\n\n    cout << max(\n        dp[root][0],\n        dp[root][1]\n    );\n\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7269,
+  "display_id": "JD165",
+  "title": "分组选宝",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "98ab4349807d87f7ebc46d1fac421a94",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:10:25+00:00",
+  "statement": "显示题号: JD165\n内部 ID: 7269\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宝物被分成若干组，每组只能选一件。\"分组背包——三重循环：外层遍历组，内层逆序容量，最内层遍历组内物品。\"\n\n对手是丐帮长老，手中竹棒一点：\"小子，你确定每组只选一件？\"\n\n李少白微微一笑：\"确定。每组选最优的那一件。\"长老哈哈大笑：\"好！\"\n\n## 输入描述\n第一行两个整数N和V。接下来每组：第一行S（组内物品数），接下来S行每行两个整数v和w。\n\n## 输出描述\n一行，最大价值。\n\n## 样例\n[\n  {\n    \"input\": \"71 46\\n80\\n84 76\",\n    \"output\": \"1869\"\n  }\n]\n\n## 提示\n分组背包：外层遍历组，内层逆序容量，最内层遍历组内物品。\n\n原题链接",
+  "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXV 1005\n#define MAXN 105\n\nint dp[MAXV];\nint v[MAXN], w[MAXN];\n\nint main() {\n    int N, V;\n    scanf(\"%d%d\", &N, &V);\n    memset(dp, 0, sizeof(dp));\n    for (int i = 0; i < N; i++) {\n        int S;\n        scanf(\"%d\", &S);\n        for (int j = 0; j < S; j++) {\n            scanf(\"%d%d\", &v[j], &w[j]);\n        }\n        // 逆序容量\n        for (int j = V; j >= 0; j--) {\n            for (int k = 0; k < S; k++) {\n                if (j >= v[k]) {\n                    if (dp[j - v[k]] + w[k] > dp[j])\n                        dp[j] = dp[j - v[k]] + w[k];\n                }\n            }\n        }\n    }\n    printf(\"%d\\n\", dp[V]);\n    return 0;\n}"
+}

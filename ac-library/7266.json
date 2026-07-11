@@ -1,0 +1,12 @@
+{
+  "internal_id": 7266,
+  "display_id": "JD162",
+  "title": "雪道寻长",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "148863d93576080902610e1f94b8cf28",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:09:53+00:00",
+  "statement": "显示题号: JD162\n内部 ID: 7266\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山后山，白雪皑皑。一个R×C的滑雪场，从任意高处滑向相邻的低处。\"最长能滑多远？\"\n\n赵晴儿踏雪而行：\"记忆化搜索——DFS+缓存。每个格子只算一次，取四个方向中最长的路径加一。\"\n\n她的身影在雪道上飞驰，划出一道完美的弧线。\n\n## 输入描述\n第一行两个整数R和C。接下来R行每行C个整数表示高度。\n\n## 输出描述\n一行，最长递减路径的长度。\n\n## 样例\n[\n  {\n    \"input\": \"5 5\\n1 2 3 4 5\\n16 17 18 19 6\\n15 24 25 20 7\\n14 23 22 21 8\\n13 12 11 10 9\",\n    \"output\": \"25\"\n  }\n]\n\n## 提示\n记忆化搜索：DFS+缓存。每个格子只算一次，取四个方向中最长路径+1。\n\n原题链接",
+  "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXR 105\n#define MAXC 105\n\nint R, C;\nint h[MAXR][MAXC];\nint dp[MAXR][MAXC];\nint dx[4] = {-1, 1, 0, 0};\nint dy[4] = {0, 0, -1, 1};\n\nint dfs(int x, int y) {\n    if (dp[x][y] != -1) return dp[x][y];\n    int best = 1;\n    for (int k = 0; k < 4; k++) {\n        int nx = x + dx[k], ny = y + dy[k];\n        if (nx >= 0 && nx < R && ny >= 0 && ny < C && h[nx][ny] < h[x][y]) {\n            int val = dfs(nx, ny) + 1;\n            if (val > best) best = val;\n        }\n    }\n    return dp[x][y] = best;\n}\n\nint main() {\n    scanf(\"%d%d\", &R, &C);\n    for (int i = 0; i < R; i++)\n        for (int j = 0; j < C; j++)\n            scanf(\"%d\", &h[i][j]);\n    memset(dp, -1, sizeof(dp));\n    int ans = 0;\n    for (int i = 0; i < R; i++)\n        for (int j = 0; j < C; j++) {\n            int cur = dfs(i, j);\n            if (cur > ans) ans = cur;\n        }\n    printf(\"%d\\n\", ans);\n    return 0;\n}"
+}

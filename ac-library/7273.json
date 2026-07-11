@@ -1,0 +1,12 @@
+{
+  "internal_id": 7273,
+  "display_id": "JD169",
+  "title": "棋盘铺阵",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "90e767a804f22a2a877b15f26a9c721c",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:11:00+00:00",
+  "statement": "显示题号: JD169\n内部 ID: 7273\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山之巅，云雾缭绕。四位绝顶高手已经等候多时。\n\n第一位是棋圣。他摆出一个n×m的棋盘和一堆1×2的骨牌：\"铺满整个棋盘，有多少种铺法？\"\n\n赵晴儿凝视棋盘，忽然眼中一亮：\"状压DP——逐列处理。用二进制掩码表示哪些格子被前一列的横骨牌占了。\"\n\n棋圣抚掌而笑：\"好一个状压！老夫输了。\"\n\n## 输入描述\n多组数据，每组两个整数n和m。以0 0结束。\n\n## 输出描述\n每组一行，铺法总数。\n\n## 样例\n[\n  {\n    \"input\": \"2 3\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\n状压DP：逐列处理，状态掩码表示被前一列横骨牌占的格子。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main()\n{\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    while (cin >> n >> m && (n || m))\n    {\n        vector<int> ok(1 << m);\n        // 预处理合法单行状态\n        for (int sta = 0; sta < (1 << m); sta++)\n        {\n            int cnt = 0;\n            bool good = true;\n            for (int i = 0; i < m; i++)\n            {\n                if (sta >> i & 1)\n                {\n                    if (cnt & 1)\n                    {\n                        good = false;\n                        break;\n                    }\n                    cnt = 0;\n                }\n                else\n                {\n                    cnt++;\n                }\n            }\n            if (cnt & 1) good = false;\n            ok[sta] = good;\n        }\n\n        // 预处理合法状态转移\n        vector<vector<int>> trans(1 << m);\n        for (int a = 0; a < (1 << m); a++)\n        {\n            for (int b = 0; b < (1 << m); b++)\n            {\n                if ((a & b) == 0 && ok[a | b])\n                {\n                    trans[a].push_back(b);\n                }\n            }\n        }\n\n        vector<long long> dp(1 << m), ndp(1 << m);\n        dp[0] = 1;\n        // 逐行DP\n        for (int i = 0; i < n; i++)\n        {\n            fill(ndp.begin(), ndp.end(), 0);\n            for (int a = 0; a < (1 << m); a++)\n            {\n                if (!dp[a]) continue;\n                for (int b : trans[a])\n                {\n                    ndp[b] += dp[a];\n                }\n            }\n            dp.swap(ndp);\n        }\n        cout << dp[0] << '\\n';\n    }\n    return 0;\n}"
+}

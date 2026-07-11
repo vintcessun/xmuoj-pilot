@@ -1,0 +1,12 @@
+{
+  "internal_id": 7433,
+  "display_id": "JD142",
+  "title": "棋盘布后",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "16ebd8aed0aa2cf0f3f55c495531b609",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T06:14:09+00:00",
+  "statement": "显示题号: JD142\n内部 ID: 7433\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着一个n×n的棋盘：\"放n个皇后，不能同行、同列、同对角线。有多少种放法？\"\n\n李少白逐行放置，用三个布尔数组标记列和对角线。\"每行选一个安全的位置放皇后，递归下一行。冲突就回退。\"\n\n给定n，求n皇后的所有解。\n\n## 输入描述\n一个整数n。\n\n## 输出描述\n所有解，每个解n行（Q表示皇后，.表示空），解之间空行。\n\n## 样例\n[\n  {\n    \"input\": \"4\",\n    \"output\": \".Q..\\n...Q\\nQ...\\n..Q.\\n\\n..Q.\\nQ...\\n...Q\\n.Q..\"\n  }\n]\n\n## 提示\nDFS+回溯：逐行放置，标记列和两条对角线。\n\n原题链接",
+  "code": "#include <stdio.h>\nint n, first = 1;\nint col[20], d1[40], d2[40];\nchar b[20][21];\nvoid dfs(int r) {\n    if (r == n) {\n        if (!first) putchar(10);\n        first = 0;\n        for (int i = 0; i < n; i++)\n            puts(b[i]);\n        return;\n    }\n    for (int c = 0; c < n; c++) {\n        if (!col[c] && !d1[r+c] && !d2[r-c+20]) {\n            col[c] = d1[r+c] = d2[r-c+20] = 1;\n            b[r][c] = 'Q';\n            dfs(r + 1);\n            b[r][c] = '.';\n            col[c] = d1[r+c] = d2[r-c+20] = 0;\n        }\n    }\n}\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++)\n            b[i][j] = '.';\n        b[i][n] = 0;\n    }\n    dfs(0);\n    return 0;\n}"
+}

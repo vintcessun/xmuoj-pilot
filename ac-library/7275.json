@@ -1,0 +1,12 @@
+{
+  "internal_id": 7275,
+  "display_id": "JD171",
+  "title": "群经改字",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "f605647b470889ae7498c6f2f8562423",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:11:24+00:00",
+  "statement": "显示题号: JD171\n内部 ID: 7275\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n第三位——藏经阁阁主。他取出一本字典和一段经文：\"字典里有多少个词，和这段经文的编辑距离不超过k？\"\n\n赵晴儿沉吟片刻：\"对字典里每个词，算它和经文的编辑距离。标准编辑距离DP——dp[i][j] = min(三种操作)。\"\n\n阁主长叹：\"当年我花了十年才悟出此法，你竟片刻之间……\"\n\n## 输入描述\n第一行两个整数N和M。接下来N行每行一个字符串（字典）。接下来M行每行一个字符串和一个整数k。\n\n## 输出描述\nM行，每行一个整数（字典中编辑距离≤k的字符串个数）。\n\n## 样例\n[\n  {\n    \"input\": \"2 2\\nabc\\ndef\\nabc 1\\nadc 2\",\n    \"output\": \"1\\n1\"\n  }\n]\n\n## 提示\n编辑距离DP：dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\n\nusing namespace std;\n\n\n\nint editDistance(string a,string b)\n{\n    int n=a.size();\n    int m=b.size();\n\n\n    vector<vector<int>> dp(\n        n+1,\n        vector<int>(m+1)\n    );\n\n\n\n    // 初始化\n    for(int i=0;i<=n;i++)\n        dp[i][0]=i;\n\n\n    for(int j=0;j<=m;j++)\n        dp[0][j]=j;\n\n\n\n    for(int i=1;i<=n;i++)\n    {\n        for(int j=1;j<=m;j++)\n        {\n            int cost;\n\n\n            if(a[i-1]==b[j-1])\n                cost=0;\n            else\n                cost=1;\n\n\n\n            dp[i][j]=min({\n                dp[i-1][j]+1,      // 删除\n                dp[i][j-1]+1,      // 插入\n                dp[i-1][j-1]+cost  // 修改\n            });\n        }\n    }\n\n\n    return dp[n][m];\n}\n\n\n\nint main()\n{\n    int N,M;\n\n\n    cin >> N >> M;\n\n\n\n    vector<string> dict(N);\n\n\n\n    for(int i=0;i<N;i++)\n        cin >> dict[i];\n\n\n\n    while(M--)\n    {\n        string s;\n        int k;\n\n\n        cin >> s >> k;\n\n\n\n        int ans=0;\n\n\n\n        for(string word:dict)\n        {\n            if(editDistance(word,s)<=k)\n                ans++;\n        }\n\n\n\n        cout << ans << endl;\n    }\n\n\n\n    return 0;\n}"
+}

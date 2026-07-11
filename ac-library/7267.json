@@ -1,0 +1,12 @@
+{
+  "internal_id": 7267,
+  "display_id": "JD163",
+  "title": "背包叠甲",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "94dd86c0e3492ffc51f1b6ea8eb403d3",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:10:03+00:00",
+  "statement": "显示题号: JD163\n内部 ID: 7267\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n论剑峰上，铠甲大师出场。他有N种铠甲，每种有重量、防御和库存。\"每种最多拿s件——你能装多少防御？\"\n\n李少白眉头一皱：\"逐件拆分太慢……二进制优化！把s拆成1、2、4、8…的和，转化为01背包。\"\n\n铠甲大师大惊：\"你竟然知道这种方法！\"\n\n## 输入描述\n第一行两个整数N和V。接下来N行每行三个整数v、w和s（体积、价值、数量）。\n\n## 输出描述\n一行，最大价值。\n\n## 样例\n[\n  {\n    \"input\": \"3 12\\n76 84 46\\n34 31 44\",\n    \"output\": \"0\"\n  }\n]\n\n## 提示\n多重背包二进制优化：拆分s为2的幂次，转化为01背包。O(N*V*logS)。\n\n原题链接",
+  "code": "#include <stdio.h>\n#include <string.h>\n#include <stdlib.h>\n\n#define MAXV 20005\n#define MAXN 1005\n\nint dp[MAXV];\nint w[MAXN * 15], v[MAXN * 15], cnt; // 拆分后的物品\n\nint main() {\n    int N, V;\n    scanf(\"%d%d\", &N, &V);\n    cnt = 0;\n    for (int i = 0; i < N; i++) {\n        int vi, wi, s;\n        scanf(\"%d%d%d\", &vi, &wi, &s);\n        // 二进制拆分\n        int k = 1;\n        while (k <= s) {\n            w[++cnt] = wi * k;\n            v[cnt] = vi * k;\n            s -= k;\n            k <<= 1;\n        }\n        if (s > 0) {\n            w[++cnt] = wi * s;\n            v[cnt] = vi * s;\n        }\n    }\n    // 01背包\n    memset(dp, 0, sizeof(dp));\n    for (int i = 1; i <= cnt; i++) {\n        for (int j = V; j >= v[i]; j--) {\n            if (dp[j - v[i]] + w[i] > dp[j])\n                dp[j] = dp[j - v[i]] + w[i];\n        }\n    }\n    printf(\"%d\\n\", dp[V]);\n    return 0;\n}"
+}

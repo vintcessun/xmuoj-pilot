@@ -1,0 +1,12 @@
+{
+  "internal_id": 7256,
+  "display_id": "JD152",
+  "title": "蔓延成网",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "cd0ae93220572e94ffc8afeec91e1f05",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:07:32+00:00",
+  "statement": "显示题号: JD152\n内部 ID: 7256\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着散落的城池：\"用最少的路把所有城池连起来，总路长最短。\"\n\n梁嘉峰说：\"Prim算法——类似Dijkstra，每次选离已连通部分最近的未加入点，把那条边加入生成树。\"\n\n给定一个带权无向图，求最小生成树的总权值。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行三个整数a b w。\n\n## 输出描述\n一行，最小生成树的总权值。不连通输出impossible。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\n1 2 1\\n1 3 2\\n2 3 3\\n2 4 4\\n3 4 5\",\n    \"output\": \"7\"\n  }\n]\n\n## 提示\nPrim：O(n²)。每次选最近未加入点。\n\n原题链接",
+  "code": "#include <stdio.h>\n#include <string.h>\n\n#define N 510\n#define INF 0x3f3f3f3f\n\nint g[N][N];\nint dist[N];\nint st[N];\n\nint main()\n{\n    int n,m;\n    scanf(\"%d%d\",&n,&m);\n\n    memset(g,0x3f,sizeof g);\n\n    while(m--)\n    {\n        int a,b,w;\n        scanf(\"%d%d%d\",&a,&b,&w);\n\n        if(w<g[a][b])\n        {\n            g[a][b]=g[b][a]=w;\n        }\n    }\n\n    memset(dist,0x3f,sizeof dist);\n\n    int ans=0;\n\n    for(int i=0;i<n;i++)\n    {\n        int t=-1;\n\n        for(int j=1;j<=n;j++)\n            if(!st[j]&&(t==-1||dist[j]<dist[t]))\n                t=j;\n\n        if(i&&dist[t]==INF)\n        {\n            puts(\"impossible\");\n            return 0;\n        }\n\n        if(i) ans+=dist[t];\n\n        st[t]=1;\n\n        for(int j=1;j<=n;j++)\n            if(dist[j]>g[t][j])\n                dist[j]=g[t][j];\n    }\n\n    printf(\"%d\",ans);\n\n    return 0;\n}"
+}

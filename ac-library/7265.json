@@ -1,0 +1,12 @@
+{
+  "internal_id": 7265,
+  "display_id": "JD161",
+  "title": "改字成经",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "1adbb4ba6daf449b09dfd940d0b00a4d",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:09:41+00:00",
+  "statement": "显示题号: JD161\n内部 ID: 7265\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n武当道长递来两卷经文：\"把A卷改成B卷，最少几步？增、删、改，每次算一步。\"\n\n李少白沉思：\"dp[i][j]表示A的前i个改成B的前j个的最少操作。三种操作取min+1。\"\n\n道长抚须而笑：\"小友的剑法，已经入了化境。\"\n\n## 输入描述\n第一行两个整数n和m。第二行长度为n的字符串A。第三行长度为m的字符串B。\n\n## 输出描述\n一行，编辑距离。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\nabc\\nadc\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\n编辑距离：dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost)。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main()\n{\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    vector<string> lines;\n    string line;\n    // 读取所有输入行\n    for (; getline(cin, line);)\n    {\n        lines.push_back(line);\n    }\n    // 删除末尾空行\n    while (!lines.empty() && lines.back().empty())\n    {\n        lines.pop_back();\n    }\n\n    int n = 0, m = 0;\n    string a, b;\n    {\n        stringstream ss(lines[0]);\n        vector<string> t;\n        string x;\n        while (ss >> x)\n        {\n            t.push_back(x);\n        }\n\n        if (t.size() == 2)\n        {\n            n = stoi(t[0]);\n            m = stoi(t[1]);\n            if (lines.size() > 1) a = lines[1];\n            if (lines.size() > 2) b = lines[2];\n        }\n        else\n        {\n            n = stoi(t[0]);\n            if (lines.size() > 1) a = lines[1];\n            if (lines.size() > 2) m = stoi(lines[2]);\n            if (lines.size() > 3) b = lines[3];\n        }\n    }\n\n    vector<vector<int>> dp(n + 1, vector<int>(m + 1));\n    // 边界初始化\n    for (int i = 0; i <= n; ++i)\n    {\n        dp[i][0] = i;\n    }\n    for (int j = 0; j <= m; ++j)\n    {\n        dp[0][j] = j;\n    }\n\n    // 编辑距离DP核心\n    for (int i = 1; i <= n; ++i)\n    {\n        for (int j = 1; j <= m; ++j)\n        {\n            dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);\n            dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + (a[i - 1] != b[j - 1]));\n        }\n    }\n\n    cout << dp[n][m] << \"\\n\";\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7253,
+  "display_id": "JD149",
+  "title": "堆中取近",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "42c263c0193f4086683311a8fcc7dcdb",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:06:47+00:00",
+  "statement": "显示题号: JD149\n内部 ID: 7253\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n\"点很多，边很少。用堆优化Dijkstra——用小根堆代替遍历找最近点。\"赵晴儿说，\"每次从堆顶取最近的未访问点。\"\n\n给定一个带权有向图和起点，求到每个点的最短距离。边数远小于点数的平方。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行三个整数a b w。\n\n## 输出描述\n一行，到点1的最短距离。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\n1 2 2\\n2 3 1\\n1 3 4\",\n    \"output\": \"0 2 3\"\n  }\n]\n\n## 提示\n堆优化Dijkstra：O(mlogn)。用小根堆取最近点。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\n#include <queue>\n\nusing namespace std;\n\ntypedef pair<int, int> PII; // {distance, node_index}\n\nconst int N = 150010; // Maximum number of nodes\n\nint n, m;\nint h[N], w[N], e[N], ne[N], idx;\nint dist[N];\nbool st[N]; // Whether the node's shortest distance is confirmed\n\n// Add directed edge from a to b with weight c\nvoid add(int a, int b, int c) {\n    e[idx] = b; w[idx] = c; ne[idx] = h[a]; h[a] = idx++;\n}\n\nint dijkstra() {\n    memset(dist, 0x3f, sizeof dist);\n    dist[1] = 0;\n    \n    // Priority queue acts as a min-heap, storing pairs of {distance, node}\n    priority_queue<PII, vector<PII>, greater<PII>> heap;\n    heap.push({0, 1});\n    \n    while (heap.size()) {\n        PII top = heap.top();\n        heap.pop();\n        \n        int distance = top.first, u = top.second;\n        \n        if (st[u]) continue;\n        st[u] = true;\n        \n        for (int i = h[u]; i != -1; i = ne[i]) {\n            int j = e[i];\n            if (dist[j] > dist[u] + w[i]) {\n                dist[j] = dist[u] + w[i];\n                heap.push({dist[j], j});\n            }\n        }\n    }\n    \n    if (dist[n] == 0x3f3f3f3f) return -1;\n    return dist[n];\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    cin >> n >> m;\n    memset(h, -1, sizeof h);\n    \n    while (m--) {\n        int a, b, c;\n        cin >> a >> b >> c;\n        add(a, b, c);\n    }\n    \n    int t = dijkstra();\n    cout << t << endl;\n    \n    return 0;\n}"
+}

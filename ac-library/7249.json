@@ -1,0 +1,12 @@
+{
+  "internal_id": 7249,
+  "display_id": "JD145",
+  "title": "古树重心",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "573c4f3c462001839115bcbe7f09a1ff",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:06:02+00:00",
+  "statement": "显示题号: JD145\n内部 ID: 7249\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n迷踪林深处有一棵大树。梁嘉峰说：\"找到它的重心——删除后最大子树最小的那个节点。\"\n\n赵晴儿说：\"DFS遍历树，对每个节点计算：删掉它后，最大子树有多少个节点。取最小的那个。\"\n\n给定一棵树，求其重心和最大子树的最小大小。\n\n## 输入描述\n第一行一个整数n。接下来n-1行每行两个整数表示一条边。\n\n## 输出描述\n一行，最大子树的最小大小。\n\n## 样例\n[\n  {\n    \"input\": \"9\\n1 2\\n1 7\\n1 4\\n2 8\\n2 5\\n4 3\\n4 6\\n6 9\",\n    \"output\": \"4\"\n  }\n]\n\n## 提示\nDFS遍历树，计算每个节点的最大子树大小。重心=max(n-subSize, 各子树size)最小的节点。\n\n原题链接",
+  "code": "#include <stdio.h>\n#include <string.h>\n\n#define N 100010\n#define M 200010\n\nint h[N],e[M],ne[M],idx;\nint ans=N;\nint n;\nint st[N];\n\nvoid add(int a,int b)\n{\n    e[idx]=b;\n    ne[idx]=h[a];\n    h[a]=idx++;\n}\n\nint dfs(int u)\n{\n    st[u]=1;\n\n    int sum=1;\n    int res=0;\n\n    for(int i=h[u];i!=-1;i=ne[i])\n    {\n        int j=e[i];\n\n        if(!st[j])\n        {\n            int s=dfs(j);\n            if(s>res) res=s;\n            sum+=s;\n        }\n    }\n\n    if(n-sum>res)\n        res=n-sum;\n\n    if(res<ans)\n        ans=res;\n\n    return sum;\n}\n\nint main()\n{\n    scanf(\"%d\",&n);\n\n    memset(h,-1,sizeof h);\n\n    for(int i=0;i<n-1;i++)\n    {\n        int a,b;\n        scanf(\"%d%d\",&a,&b);\n\n        add(a,b);\n        add(b,a);\n    }\n\n    dfs(1);\n\n    printf(\"%d\\n\",ans);\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7252,
+  "display_id": "JD148",
+  "title": "近者先行",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "67a1631265c131aa04fb284524d769f0",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:06:37+00:00",
+  "statement": "显示题号: JD148\n内部 ID: 7252\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿在城池图上标了距离：\"从城1出发，到每个城池的最短距离是多少？边权都是正数。\"\n\n梁嘉峰说：\"朴素Dijkstra——每次选未访问的最近点，用它更新邻居的距离。选过的点不再更新。\"\n\n给定一个带权有向图和起点，求到每个点的最短距离。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行三个整数a b w表示一条从a到b的权为w的有向边。\n\n## 输出描述\n一行，n个整数表示到点1的最短距离。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\n1 2 2\\n2 3 1\\n1 3 4\",\n    \"output\": \"0 2 3\"\n  }\n]\n\n## 提示\nDijkstra：O(n²)。每次选最近未访问点，更新邻居。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\n\nusing namespace std;\n\nconst int N = 510;\n\nint n, m;\nint g[N][N]; // 邻接矩阵存储图\nint dist[N]; // 存储每个点到起点的最短距离\nbool st[N];  // 存储每个点的最短距离是否已经确定\n\nint dijkstra()\n{\n    memset(dist, 0x3f, sizeof dist);\n    dist[1] = 0;\n\n    for (int i = 0; i < n; i ++ )\n    {\n        int t = -1;\n        // 寻找距离最近的未确定点\n        for (int j = 1; j <= n; j ++ )\n            if (!st[j] && (t == -1 || dist[t] > dist[j]))\n                t = j;\n\n        st[t] = true;\n\n        // 用 t 更新其他点的距离\n        for (int j = 1; j <= n; j ++ )\n            dist[j] = min(dist[j], dist[t] + g[t][j]);\n    }\n\n    if (dist[n] == 0x3f3f3f3f) return -1;\n    return dist[n];\n}\n\nint main()\n{\n    ios::sync_with_stdio(false);\n    cin.tie(0);\n    \n    cin >> n >> m;\n\n    memset(g, 0x3f, sizeof g);\n    for (int i = 0; i < m; i ++ )\n    {\n        int a, b, c;\n        cin >> a >> b >> c;\n        // 重边取最小值\n        g[a][b] = min(g[a][b], c);\n    }\n\n    cout << dijkstra() << endl;\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7248,
+  "display_id": "JD144",
+  "title": "八码迷局",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "287631be67d4c452bef6e01b814c6603",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:05:51+00:00",
+  "statement": "显示题号: JD144\n内部 ID: 7248\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n迷雾中出现一个3×3数字拼盘，有一个空格。赵晴儿说：\"从初始状态移到目标状态，最少几步？每次只能把空格和相邻数字交换。\"\n\n梁嘉峰说：\"BFS+状态压缩——把整个拼盘编码成一个字符串，每次移动生成新状态，用哈希表判重。\"\n\n给定初始状态和目标状态，求最少移动步数。\n\n## 输入描述\n两行，每行9个字符（3×3拼盘，x表示空格）。第一行初始状态，第二行目标状态。\n\n## 输出描述\n一行，最少移动步数。无解输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"1 2 3\\nx 4 6\\n7 5 8\\n\\n1 2 3\\n4 5 6\\n7 8 x\",\n    \"output\": \"2\"\n  }\n]\n\n## 提示\nBFS+状态编码为字符串，哈希表判重。\n\n原题链接",
+  "code": "#include <iostream>\n#include <algorithm>\n#include <string>\n#include <queue>\n#include <unordered_map>\n\nusing namespace std;\n\nint bfs(string start) {\n    string end = \"12345678x\";\n    queue<string> q;\n    unordered_map<string, int> dist;\n\n    q.push(start);\n    dist[start] = 0;\n\n    int dx[4] = {-1, 1, 0, 0};\n    int dy[4] = {0, 0, -1, 1};\n\n    while (!q.empty()) {\n        string t = q.front();\n        q.pop();\n\n        if (t == end) return dist[t];\n\n        // 获取 'x' 在一维字符串中的下标\n        int k = t.find('x');\n        int x = k / 3, y = k % 3;\n\n        for (int i = 0; i < 4; ++i) {\n            int nx = x + dx[i];\n            int ny = y + dy[i];\n\n            if (nx >= 0 && nx < 3 && ny >= 0 && ny < 3) {\n                int next_k = nx * 3 + ny;\n                string temp = t;\n                swap(temp[k], temp[next_k]);\n\n                if (dist.find(temp) == dist.end()) {\n                    dist[temp] = dist[t] + 1;\n                    q.push(temp);\n                }\n            }\n        }\n    }\n    return -1;\n}\n\nint main() {\n    string start = \"\";\n    for (int i = 0; i < 9; ++i) {\n        char c;\n        cin >> c;\n        start += c;\n    }\n\n    cout << bfs(start) << endl;\n    return 0;\n}"
+}

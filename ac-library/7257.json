@@ -1,0 +1,12 @@
+{
+  "internal_id": 7257,
+  "display_id": "JD153",
+  "title": "逐边成林",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "a8aab5a6551d07fc5451083c18f0a5df",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:07:41+00:00",
+  "statement": "显示题号: JD153\n内部 ID: 7257\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰说：\"Kruskal——按边权从小到大排序，逐条加入。如果这条边的两个端点已经在同一连通块里（用并查集判断），就跳过；否则加入。\"\n\n给定一个带权无向图，求最小生成树的总权值。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行三个整数a b w。\n\n## 输出描述\n一行，最小生成树的总权值。不连通输出impossible。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\n1 2 1\\n1 3 2\\n2 3 3\\n2 4 4\\n3 4 5\",\n    \"output\": \"7\"\n  }\n]\n\n## 提示\nKruskal：O(mlogm)。按边权排序，并查集判环。\n\n原题链接",
+  "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nstruct E{int a,b,w;};\nint p[100005];\nint find(int x){return p[x]==x?x:p[x]=find(p[x]);}\nint main(){\n    ios::sync_with_stdio(false);cin.tie(0);\n    int n,m;cin>>n>>m;\n    vector<E> ed(m);\n    for(int i=0;i<m;i++)cin>>ed[i].a>>ed[i].b>>ed[i].w;\n    sort(ed.begin(),ed.end(),[](const E&x,const E&y){return x.w<y.w;});\n    for(int i=1;i<=n;i++)p[i]=i;\n    long long ans=0;int cnt=0;\n    for(auto&e:ed){\n        int ra=find(e.a),rb=find(e.b);\n        if(ra!=rb){p[ra]=rb;ans+=e.w;cnt++;}\n    }\n    if(cnt<n-1)cout<<\"impossible\"<<'\\n';\n    else cout<<ans<<'\\n';\n    return 0;\n}"
+}

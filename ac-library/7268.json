@@ -1,0 +1,12 @@
+{
+  "internal_id": 7268,
+  "display_id": "JD164",
+  "title": "背包限重",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "dc8084b91d0f1e43feed4dab449e4503",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:10:14+00:00",
+  "statement": "显示题号: JD164\n内部 ID: 7268\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n第二轮铠甲战。数据更大——N和V都到了极限。\"同样的方法还管用吗？\"对手冷笑。\n\n梁嘉峰在台下喊道：\"方法不变，多重背包的经典解法！\"\n\n李少白再次出手，代码如剑，一气呵成。\n\n## 输入描述\n第一行两个整数N和V。接下来N行每行三个整数v、w和s。\n\n## 输出描述\n一行，最大价值。\n\n## 样例\n[\n  {\n    \"input\": \"680 1562\\n866 815 599\\n1355 680 202\",\n    \"output\": \"742560\"\n  }\n]\n\n## 提示\n多重背包二进制优化。与JD163相同思路，数据范围更大。\n\n原题链接",
+  "code": "// 本解法与“背包叠甲”完全相同，只是数据更大，但数组已开到足够大\n// 为了体现区别，这里直接复用代码，但可调整数组大小\n#include <stdio.h>\n#include <string.h>\n#include <stdlib.h>\n\n#define MAXV 20005\n#define MAXN 1005\n\nint dp[MAXV];\nint w[MAXN * 15], v[MAXN * 15], cnt;\n\nint main() {\n    int N, V;\n    scanf(\"%d%d\", &N, &V);\n    cnt = 0;\n    for (int i = 0; i < N; i++) {\n        int vi, wi, s;\n        scanf(\"%d%d%d\", &vi, &wi, &s);\n        int k = 1;\n        while (k <= s) {\n            w[++cnt] = wi * k;\n            v[cnt] = vi * k;\n            s -= k;\n            k <<= 1;\n        }\n        if (s > 0) {\n            w[++cnt] = wi * s;\n            v[cnt] = vi * s;\n        }\n    }\n    memset(dp, 0, sizeof(dp));\n    for (int i = 1; i <= cnt; i++) {\n        for (int j = V; j >= v[i]; j--) {\n            if (dp[j - v[i]] + w[i] > dp[j])\n                dp[j] = dp[j - v[i]] + w[i];\n        }\n    }\n    printf(\"%d\\n\", dp[V]);\n    return 0;\n}"
+}

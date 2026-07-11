@@ -1,0 +1,12 @@
+{
+  "internal_id": 7434,
+  "display_id": "JD143",
+  "title": "迷宫寻路",
+  "language": "C",
+  "score": 100.0,
+  "submission_id": "4c7bb8fe54a5c83b04b9edfe290c1f5a",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T06:14:24+00:00",
+  "statement": "显示题号: JD143\n内部 ID: 7434\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n石墙围成的迷宫，入口在左上角，出口在右下角。赵晴儿问：\"最短路径有多长？\"\n\n梁嘉峰说：\"BFS——从入口开始，一层一层向外扩展。第一次到达出口时，层数就是最短路径。\"\n\n给定一个n×m的迷宫（0可走，1是墙），求最短路径长度。\n\n## 输入描述\n第一行两个整数n和m。接下来n行每行m个整数（0可走，1是墙）。\n\n## 输出描述\n一行，最短路径长度。不可达输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"5 5\\n0 1 0 0 0\\n0 1 0 1 0\\n0 0 0 0 0\\n0 1 1 1 0\\n0 0 0 1 0\",\n    \"output\": \"8\"\n  }\n]\n\n## 提示\nBFS层序遍历，第一次到达终点就是最短路径。\n\n原题链接",
+  "code": "#include <stdio.h>\nint n, m;\nint a[105][105];\nint qx[10005], qy[10005];\nint dist[105][105];\nint dx[] = {0, 0, 1, -1};\nint dy[] = {1, -1, 0, 0};\n\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < m; j++)\n            scanf(\"%d\", &a[i][j]);\n\n    if (a[0][0] == 1 || a[n-1][m-1] == 1) {\n        printf(\"-1\\n\");\n        return 0;\n    }\n\n    int head = 0, tail = 0;\n    qx[tail] = 0; qy[tail] = 0; tail++;\n    a[0][0] = 1;\n\n    while (head < tail) {\n        int x = qx[head], y = qy[head]; head++;\n        if (x == n-1 && y == m-1) {\n            printf(\"%d\\n\", dist[x][y]);\n            return 0;\n        }\n        for (int d = 0; d < 4; d++) {\n            int nx = x + dx[d], ny = y + dy[d];\n            if (nx >= 0 && nx < n && ny >= 0 && ny < m && a[nx][ny] == 0) {\n                a[nx][ny] = 1;\n                dist[nx][ny] = dist[x][y] + 1;\n                qx[tail] = nx; qy[tail] = ny; tail++;\n            }\n        }\n    }\n\n    printf(\"-1\\n\");\n    return 0;\n}"
+}
