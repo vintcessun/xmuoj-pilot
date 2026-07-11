@@ -1,0 +1,12 @@
+{
+  "internal_id": 7445,
+  "display_id": "JD154",
+  "title": "二色分界",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "71532ad4a95d99aaebc93034a7874668",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:09:34+00:00",
+  "statement": "显示题号: JD154\n内部 ID: 7445\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着一个图：\"能不能把所有点分成两组，同组之间没有直接相连的边？\"\n\n梁嘉峰说：\"染色法——从任意点开始，染红色；它的邻居染蓝色；邻居的邻居染红色……如果某个点需要同时染两种颜色，就不是二分图。\"\n\n给定一个无向图，判断是否是二分图。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行两个整数a b。\n\n## 输出描述\n一行，Yes或No。\n\n## 样例\n[\n  {\n    \"input\": \"4 4\\n1 2\\n2 3\\n3 4\\n4 1\",\n    \"output\": \"Yes\"\n  }\n]\n\n## 提示\nBFS/DFS染色，冲突则不是二分图。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <queue>\nusing namespace std;\n\nconst int N = 100010;\nvector<int> adj[N];\nint color[N];\n\nbool bfs(int start) {\n    queue<int> q;\n    q.push(start);\n    color[start] = 1;\n    while (!q.empty()) {\n        int u = q.front();\n        q.pop();\n        for (int v : adj[u]) {\n            if (color[v] == 0) {\n                color[v] = color[u] == 1 ? 2 : 1;\n                q.push(v);\n            } else if (color[v] == color[u]) {\n                return false;\n            }\n        }\n    }\n    return true;\n}\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    for (int i = 0; i < m; i++) {\n        int a, b;\n        cin >> a >> b;\n        adj[a].push_back(b);\n        adj[b].push_back(a);\n    }\n    for (int i = 1; i <= n; i++) {\n        if (color[i] == 0 && !bfs(i)) {\n            cout << \"No\" << endl;\n            return 0;\n        }\n    }\n    cout << \"Yes\" << endl;\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7456,
+  "display_id": "JD165",
+  "title": "分组选宝",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "59eb8986941b9aa045717eccf69d95f8",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:10:53+00:00",
+  "statement": "显示题号: JD165\n内部 ID: 7456\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n宝物被分成若干组，每组只能选一件。\"分组背包——三重循环：外层遍历组，内层逆序容量，最内层遍历组内物品。\"\n\n对手是丐帮长老，手中竹棒一点：\"小子，你确定每组只选一件？\"\n\n李少白微微一笑：\"确定。每组选最优的那一件。\"长老哈哈大笑：\"好！\"\n\n## 输入描述\n第一行两个整数N和V。接下来每组：第一行S（组内物品数），接下来S行每行两个整数v和w。\n\n## 输出描述\n一行，最大价值。\n\n## 样例\n[\n  {\n    \"input\": \"71 46\\n80\\n84 76\",\n    \"output\": \"1869\"\n  }\n]\n\n## 提示\n分组背包：外层遍历组，内层逆序容量，最内层遍历组内物品。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    int N, V;\n    cin >> N >> V;\n    \n    // dp[j] = maximum value using capacity j after processing some groups\n    vector<long long> dp(V + 1, 0);\n    \n    for (int i = 0; i < N; ++i) {\n        int S;\n        cin >> S;\n        vector<pair<int, long long>> items;\n        items.reserve(S);\n        for (int j = 0; j < S; ++j) {\n            int v; long long w;\n            cin >> v >> w;\n            // ignore items heavier than the knapsack capacity\n            if (v <= V) items.emplace_back(v, w);\n        }\n        if (items.empty()) continue; // no valid items in this group\n        \n        // ndp will hold the best value after considering this group\n        // initially, we can choose to pick no item from this group\n        vector<long long> ndp = dp;\n        \n        // for each item in the group, try to update ndp using the previous dp\n        for (auto &it : items) {\n            int v = it.first;\n            long long w = it.second;\n            // traverse capacity backwards to avoid using the same item twice\n            for (int j = V; j >= v; --j) {\n                if (dp[j - v] + w > ndp[j]) {\n                    ndp[j] = dp[j - v] + w;\n                }\n            }\n        }\n        dp = move(ndp);\n    }\n    \n    cout << dp[V] << \"\\n\";\n    return 0;\n}"
+}

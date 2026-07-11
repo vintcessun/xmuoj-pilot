@@ -1,0 +1,12 @@
+{
+  "internal_id": 7457,
+  "display_id": "JD166",
+  "title": "递增剑意II",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "a2b860e1350193d48cde3d3a86657c02",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:11:01+00:00",
+  "statement": "显示题号: JD166\n内部 ID: 7457\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n擂台第二轮——剑的数量到了十万。O(n²)的剑法已经不够用了。\n\n梁嘉峰在台下传音：\"贪心+二分——维护最小末尾数组，O(nlogn)。这是剑法的极致。\"\n\n李少白闭上眼睛，剑意如丝，层层递进。对手的剑阵瞬间崩溃。\n\n## 输入描述\n第一行一个整数N。第二行N个整数。\n\n## 输出描述\n一行，最长递增子序列的长度。\n\n## 样例\n[\n  {\n    \"input\": \"7\\n3 1 2 1 8 5 6\",\n    \"output\": \"4\"\n  }\n]\n\n## 提示\n贪心+二分：维护最小末尾数组q[]，二分查找替换。O(nlogn)。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 读取所有元素 (long long 以支持大整数)\n    vector<long long> a(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> a[i];\n    }\n\n    // tails 数组：tails[i] 表示长度为 i+1 的递增子序列的最小可能末尾元素\n    vector<long long> tails;\n    tails.reserve(n);\n\n    for (long long x : a) {\n        // 在 tails 中二分查找第一个 >= x 的位置\n        auto it = lower_bound(tails.begin(), tails.end(), x);\n        if (it == tails.end()) {\n            // 当前 x 比所有 tails 元素都大，可扩展最长子序列\n            tails.push_back(x);\n        } else {\n            // 否则用更小的 x 替换该位置，保持 tails 数组尽可能小\n            *it = x;\n        }\n    }\n\n    // tails 的大小即为最长严格递增子序列的长度\n    cout << tails.size() << '\\n';\n\n    return 0;\n}"
+}

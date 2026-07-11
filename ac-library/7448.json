@@ -1,0 +1,12 @@
+{
+  "internal_id": 7448,
+  "display_id": "JD157",
+  "title": "三角登峰",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "c91d717b269a412bc118511a5881e8e9",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:09:56+00:00",
+  "statement": "显示题号: JD157\n内部 ID: 7448\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山云梯，台阶排成三角形，每级刻着一个数字。从顶到底，每步只能向左下或右下。\"找出一条路径，使数字之和最大。\"裁判宣布。\n\n李少白仰望云梯，忽然笑了：\"从底向上——每级取下方两个方向中较大的，加上自己。一层层往上推，山顶就是答案。\"\n\n## 输入描述\n第一行一个整数n。接下来n行第i行有i个整数。\n\n## 输出描述\n一行，最大路径和。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n7\\n3 8\\n8 1 0\\n2 7 4 4\\n4 5 2 6 5\",\n    \"output\": \"30\"\n  }\n]\n\n## 提示\n从底向上DP。dp[i][j] = max(dp[i+1][j], dp[i+1][j+1]) + a[i][j]。\n\n原题链接",
+  "code": "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 510;\nint a[N][N];\n\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++) {\n            cin >> a[i][j];\n        }\n    }\n    for (int i = n - 1; i >= 1; i--) {\n        for (int j = 1; j <= i; j++) {\n            a[i][j] += max(a[i + 1][j], a[i + 1][j + 1]);\n        }\n    }\n    cout << a[1][1] << endl;\n    return 0;\n}"
+}

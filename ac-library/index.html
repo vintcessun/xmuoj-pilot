@@ -333,6 +333,32 @@ a { color: #0969da; }
 <tr><td><a href="#p7432">7432</a></td><td>JD141</td><td>雾中排阵</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7433">7433</a></td><td>JD142</td><td>棋盘布后</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7434">7434</a></td><td>JD143</td><td>迷宫寻路</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7435">7435</a></td><td>JD144</td><td>八码迷局</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7436">7436</a></td><td>JD145</td><td>古树重心</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7437">7437</a></td><td>JD146</td><td>城池层递</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7438">7438</a></td><td>JD147</td><td>拓扑之序</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7439">7439</a></td><td>JD148</td><td>近者先行</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7440">7440</a></td><td>JD149</td><td>堆中取近</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7441">7441</a></td><td>JD150</td><td>队中松弛</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7442">7442</a></td><td>JD151</td><td>万径归一</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7443">7443</a></td><td>JD152</td><td>蔓延成网</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7445">7445</a></td><td>JD154</td><td>二色分界</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7446">7446</a></td><td>JD155</td><td>一剑一鞘</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7447">7447</a></td><td>JD156</td><td>无穷剑阵</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7448">7448</a></td><td>JD157</td><td>三角登峰</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7449">7449</a></td><td>JD158</td><td>递增剑意</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7450">7450</a></td><td>JD159</td><td>双谱共鸣</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7451">7451</a></td><td>JD160</td><td>合石成堆</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7453">7453</a></td><td>JD162</td><td>雪道寻长</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7454">7454</a></td><td>JD163</td><td>背包叠甲</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7455">7455</a></td><td>JD164</td><td>背包限重</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7456">7456</a></td><td>JD165</td><td>分组选宝</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7457">7457</a></td><td>JD166</td><td>递增剑意II</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7458">7458</a></td><td>JD167</td><td>整分剑法</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7460">7460</a></td><td>JD169</td><td>棋盘铺阵</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7461">7461</a></td><td>JD170</td><td>万城巡游</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7462">7462</a></td><td>JD171</td><td>群经改字</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7463">7463</a></td><td>JD172</td><td>千机棋局</td><td>100.0</td><td>361</td></tr>
 </tbody></table>
 <section id="p7105">
 <h2>内部 ID 7105（JD001 铁令求和）</h2>
@@ -15304,6 +15330,1220 @@ int main() {
     }
 
     printf(&quot;-1\n&quot;);
+    return 0;
+}</code></pre>
+</section>
+<section id="p7435">
+<h2>内部 ID 7435（JD144 八码迷局）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7435.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;queue&gt;
+#include &lt;unordered_map&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+int bfs(string start) {
+    // 目标状态固定为 1 2 3 4 5 6 7 8 x
+    string target = &quot;12345678x&quot;;
+
+    if (start == target) return 0;
+
+    int dx[4] = {-3, 3, -1, 1};
+    queue&lt;string&gt; q;
+    unordered_map&lt;string, int&gt; dist;
+
+    q.push(start);
+    dist[start] = 0;
+
+    while (!q.empty()) {
+        string t = q.front();
+        q.pop();
+        
+        int distance = dist[t];
+        int pos = t.find(&#x27;x&#x27;);
+
+        for (int i = 0; i &lt; 4; i++) {
+            int new_pos = pos + dx[i];
+            
+            if (new_pos &gt;= 0 &amp;&amp; new_pos &lt; 9) {
+                // 检查边界：左移右移不能跨行
+                if (i &lt; 2 || (pos / 3 == new_pos / 3)) {
+                    string next = t;
+                    swap(next[pos], next[new_pos]);
+
+                    if (next == target) return distance + 1;
+
+                    if (dist.find(next) == dist.end()) {
+                        dist[next] = distance + 1;
+                        q.push(next);
+                    }
+                }
+            }
+        }
+    }
+    return -1;
+}
+
+int main() {
+    string start, c;
+    // 核心逻辑：一直读取字符直到读完 9 个
+    for (int i = 0; i &lt; 9; i++) {
+        cin &gt;&gt; c;
+        start += c;
+    }
+    
+    cout &lt;&lt; bfs(start) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7436">
+<h2>内部 ID 7436（JD145 古树重心）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7436.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 100010;
+int n;
+vector&lt;int&gt; g[N]; // 邻接表存树
+bool st[N];        // 记录节点是否被访问过
+int ans = N;       // 全局答案，初始化为一个很大的数
+
+// 返回以 u 为根的子树中节点的个数
+int dfs(int u) {
+    st[u] = true; // 标记 u 已经被访问
+
+    int sum = 1;   // 当前子树总大小，包括 u 自己
+    int res = 0;   // 去掉 u 之后，剩余各个连通块的最大值
+
+    // 遍历 u 的所有子节点
+    for (int i = 0; i &lt; g[u].size(); i++) {
+        int j = g[u][i];
+        if (!st[j]) {
+            int s = dfs(j);   // 递归计算 j 为根的子树大小
+            res = max(res, s); // 更新 res（u 的某个子树的节点数）
+            sum += s;          // 累加到总大小
+        }
+    }
+
+    // 计算剩余的“父节点方向”的连通块大小
+    res = max(res, n - sum);
+
+    // 用当前状态下最大的连通块去更新全局最小值
+    ans = min(ans, res);
+
+    return sum;
+}
+
+int main() {
+    cin &gt;&gt; n;
+    // 读取 n-1 条边
+    for (int i = 0; i &lt; n - 1; i++) {
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        g[a].push_back(b);
+        g[b].push_back(a); // 无向图，存两次
+    }
+
+    // 从任意节点开始搜索（这里从 1 开始）
+    dfs(1);
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7437">
+<h2>内部 ID 7437（JD146 城池层递）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7437.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+int n, m;
+int h[N], e[N], ne[N], idx; // 邻接表存储图
+int d[N];     // 记录 1 号点到各个点的距离，初始化为 -1 表示未访问
+int q[N];     // 模拟队列（手写队列比 std::queue 更快，适合 ACM/OJ）
+
+// 添加一条边 a-&gt;b
+void add(int a, int b) {
+    e[idx] = b;
+    ne[idx] = h[a];
+    h[a] = idx++;
+}
+
+int bfs() {
+    int hh = 0, tt = 0; // 队列头尾指针
+    q[0] = 1; // 起点 1 入队
+    
+    memset(d, -1, sizeof d); // 初始化距离数组为 -1
+    d[1] = 0; // 起点到自己的距离是 0
+
+    while (hh &lt;= tt) {
+        int t = q[hh++]; // 取出队头
+
+        // 遍历 t 的所有出边
+        for (int i = h[t]; i != -1; i = ne[i]) {
+            int j = e[i]; // j 是 t 能到达的点
+            
+            // 如果 j 还没有被访问过
+            if (d[j] == -1) {
+                d[j] = d[t] + 1;  // 更新距离
+                q[++tt] = j;      // j 入队
+            }
+        }
+    }
+
+    return d[n]; // 返回 1 到 n 的距离，如果不可达，d[n] 依然是 -1
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    memset(h, -1, sizeof h); // 初始化邻接表头为 -1
+
+    // 读入 m 条边
+    for (int i = 0; i &lt; m; i++) {
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        add(a, b); // 有向图，只存一次
+    }
+
+    cout &lt;&lt; bfs() &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7438">
+<h2>内部 ID 7438（JD147 拓扑之序）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7438.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+int n, m;
+vector&lt;int&gt; g[N];
+int d[N];
+
+bool topsort() {
+    queue&lt;int&gt; q;
+    for (int i = 1; i &lt;= n; i++) {
+        if (d[i] == 0) q.push(i);
+    }
+
+    int cnt = 0;
+    while (!q.empty()) {
+        int t = q.front();
+        q.pop();
+        cnt++;
+
+        for (int i = 0; i &lt; g[t].size(); i++) {
+            int j = g[t][i];
+            if (--d[j] == 0) q.push(j);
+        }
+    }
+
+    return cnt == n;
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 0; i &lt; m; i++) {
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        g[a].push_back(b);
+        d[b]++;
+    }
+
+    if (topsort()) {
+        queue&lt;int&gt; q;
+        for (int i = 1; i &lt;= n; i++) {
+            if (d[i] == 0) q.push(i);
+        }
+
+        while (!q.empty()) {
+            int t = q.front();
+            q.pop();
+            cout &lt;&lt; t &lt;&lt; &quot; &quot;;
+
+            for (int i = 0; i &lt; g[t].size(); i++) {
+                int j = g[t][i];
+                if (--d[j] == 0) q.push(j);
+            }
+        }
+        cout &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; -1 &lt;&lt; endl;
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7439">
+<h2>内部 ID 7439（JD148 近者先行）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7439.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 510;
+
+int n, m;
+int g[N][N];
+int dist[N];
+bool st[N];
+
+int dijkstra() {
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] = 0;
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        int t = -1;
+        for (int j = 1; j &lt;= n; j++) {
+            if (!st[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j])) {
+                t = j;
+            }
+        }
+
+        for (int j = 1; j &lt;= n; j++) {
+            dist[j] = min(dist[j], dist[t] + g[t][j]);
+        }
+
+        st[t] = true;
+    }
+
+    if (dist[n] == 0x3f3f3f3f) return -1;
+    return dist[n];
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    memset(g, 0x3f, sizeof g);
+
+    for (int i = 0; i &lt; m; i++) {
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        g[a][b] = min(g[a][b], c);
+    }
+
+    cout &lt;&lt; dijkstra() &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7440">
+<h2>内部 ID 7440（JD149 堆中取近）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7440.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+typedef pair&lt;int, int&gt; PII;
+
+const int N = 150010;
+
+int n, m;
+int h[N], e[N], ne[N], w[N], idx;
+int dist[N];
+bool st[N];
+
+void add(int a, int b, int c) {
+    e[idx] = b;
+    w[idx] = c;
+    ne[idx] = h[a];
+    h[a] = idx++;
+}
+
+int dijkstra() {
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] = 0;
+    
+    priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap;
+    heap.push({0, 1});
+    
+    while (heap.size()) {
+        PII t = heap.top();
+        heap.pop();
+        
+        int ver = t.second, distance = t.first;
+        
+        if (st[ver]) continue;
+        st[ver] = true;
+        
+        for (int i = h[ver]; i != -1; i = ne[i]) {
+            int j = e[i];
+            if (dist[j] &gt; distance + w[i]) {
+                dist[j] = distance + w[i];
+                heap.push({dist[j], j});
+            }
+        }
+    }
+    
+    if (dist[n] == 0x3f3f3f3f) return -1;
+    return dist[n];
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+    
+    memset(h, -1, sizeof h);
+    
+    for (int i = 0; i &lt; m; i++) {
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        add(a, b, c);
+    }
+    
+    cout &lt;&lt; dijkstra() &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+</section>
+<section id="p7441">
+<h2>内部 ID 7441（JD150 队中松弛）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7441.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+int n, m;
+int h[N], e[N], ne[N], w[N], idx;
+int dist[N];
+bool st[N];
+
+void add(int a, int b, int c) {
+    e[idx] = b;
+    w[idx] = c;
+    ne[idx] = h[a];
+    h[a] = idx++;
+}
+
+int spfa() {
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] = 0;
+
+    queue&lt;int&gt; q;
+    q.push(1);
+    st[1] = true;
+
+    while (q.size()) {
+        int t = q.front();
+        q.pop();
+
+        st[t] = false;
+
+        for (int i = h[t]; i != -1; i = ne[i]) {
+            int j = e[i];
+            if (dist[j] &gt; dist[t] + w[i]) {
+                dist[j] = dist[t] + w[i];
+                if (!st[j]) {
+                    q.push(j);
+                    st[j] = true;
+                }
+            }
+        }
+    }
+
+    if (dist[n] == 0x3f3f3f3f) return -1;
+    return dist[n];
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    memset(h, -1, sizeof h);
+
+    for (int i = 0; i &lt; m; i++) {
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        add(a, b, c);
+    }
+
+    cout &lt;&lt; spfa() &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7442">
+<h2>内部 ID 7442（JD151 万径归一）</h2>
+<p>分数：100.0 ｜ 语言：Python3 ｜ <a href="7442.json">JSON</a></p>
+<pre><code>import sys
+data = list(map(int, sys.stdin.read().split()))
+n, m, q = data[0], data[1], data[2]
+INF = 10**18
+dist = [[INF]*(n+1) for _ in range(n+1)]
+for i in range(1, n+1):
+    dist[i][i] = 0
+idx = 3
+for _ in range(m):
+    a, b, w = data[idx], data[idx+1], data[idx+2]
+    idx += 3
+    if w &lt; dist[a][b]:
+        dist[a][b] = w
+for k in range(1, n+1):
+    for i in range(1, n+1):
+        if dist[i][k] == INF:
+            continue
+        for j in range(1, n+1):
+            nd = dist[i][k] + dist[k][j]
+            if nd &lt; dist[i][j]:
+                dist[i][j] = nd
+out = []
+for _ in range(q):
+    a, b = data[idx], data[idx+1]
+    idx += 2
+    d = dist[a][b]
+    out.append(str(d) if d &lt; INF//2 else &quot;impossible&quot;)
+sys.stdout.write(&#x27;\n&#x27;.join(out))</code></pre>
+</section>
+<section id="p7443">
+<h2>内部 ID 7443（JD152 蔓延成网）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7443.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 510;
+const int INF = 0x3f3f3f3f;
+int g[N][N];
+int dist[N];
+bool visited[N];
+
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    memset(g, 0x3f, sizeof g);
+    for (int i = 0; i &lt; m; i++) {
+        int a, b, w;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
+        g[a][b] = g[b][a] = min(g[a][b], w);
+    }
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] = 0;
+    int res = 0;
+    for (int i = 0; i &lt; n; i++) {
+        int u = -1;
+        for (int j = 1; j &lt;= n; j++) {
+            if (!visited[j] &amp;&amp; (u == -1 || dist[j] &lt; dist[u])) {
+                u = j;
+            }
+        }
+        if (dist[u] == INF) {
+            cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
+            return 0;
+        }
+        res += dist[u];
+        visited[u] = true;
+        for (int v = 1; v &lt;= n; v++) {
+            dist[v] = min(dist[v], g[u][v]);
+        }
+    }
+    cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7445">
+<h2>内部 ID 7445（JD154 二色分界）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7445.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+const int N = 100010;
+vector&lt;int&gt; adj[N];
+int color[N];
+
+bool bfs(int start) {
+    queue&lt;int&gt; q;
+    q.push(start);
+    color[start] = 1;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v : adj[u]) {
+            if (color[v] == 0) {
+                color[v] = color[u] == 1 ? 2 : 1;
+                q.push(v);
+            } else if (color[v] == color[u]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 0; i &lt; m; i++) {
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    for (int i = 1; i &lt;= n; i++) {
+        if (color[i] == 0 &amp;&amp; !bfs(i)) {
+            cout &lt;&lt; &quot;No&quot; &lt;&lt; endl;
+            return 0;
+        }
+    }
+    cout &lt;&lt; &quot;Yes&quot; &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7446">
+<h2>内部 ID 7446（JD155 一剑一鞘）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7446.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1010;
+int dp[N];
+
+int main() {
+    int n, v;
+    cin &gt;&gt; n &gt;&gt; v;
+    for (int i = 0; i &lt; n; i++) {
+        int vi, wi;
+        cin &gt;&gt; vi &gt;&gt; wi;
+        for (int j = v; j &gt;= vi; j--) {
+            dp[j] = max(dp[j], dp[j - vi] + wi);
+        }
+    }
+    cout &lt;&lt; dp[v] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7447">
+<h2>内部 ID 7447（JD156 无穷剑阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7447.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1010;
+int dp[N];
+
+int main() {
+    int n, v;
+    cin &gt;&gt; n &gt;&gt; v;
+    for (int i = 0; i &lt; n; i++) {
+        int vi, wi;
+        cin &gt;&gt; vi &gt;&gt; wi;
+        for (int j = vi; j &lt;= v; j++) {
+            dp[j] = max(dp[j], dp[j - vi] + wi);
+        }
+    }
+    cout &lt;&lt; dp[v] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7448">
+<h2>内部 ID 7448（JD157 三角登峰）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7448.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 510;
+int a[N][N];
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            cin &gt;&gt; a[i][j];
+        }
+    }
+    for (int i = n - 1; i &gt;= 1; i--) {
+        for (int j = 1; j &lt;= i; j++) {
+            a[i][j] += max(a[i + 1][j], a[i + 1][j + 1]);
+        }
+    }
+    cout &lt;&lt; a[1][1] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7449">
+<h2>内部 ID 7449（JD158 递增剑意）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7449.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 100010;
+int a[N];
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; a[i];
+    }
+    vector&lt;int&gt; q;
+    for (int i = 0; i &lt; n; i++) {
+        auto it = lower_bound(q.begin(), q.end(), a[i]);
+        if (it == q.end()) {
+            q.push_back(a[i]);
+        } else {
+            *it = a[i];
+        }
+    }
+    cout &lt;&lt; q.size() &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7450">
+<h2>内部 ID 7450（JD159 双谱共鸣）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7450.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    string a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    
+    // in case the given lengths don&#x27;t match the actual strings (safety)
+    if (static_cast&lt;int&gt;(a.size()) != n) a.resize(n);
+    if (static_cast&lt;int&gt;(b.size()) != m) b.resize(m);
+    
+    // space-optimized DP: two rows of length m+1
+    vector&lt;int&gt; prev(m + 1, 0), cur(m + 1, 0);
+    
+    for (int i = 1; i &lt;= n; ++i) {
+        cur[0] = 0;
+        for (int j = 1; j &lt;= m; ++j) {
+            if (a[i - 1] == b[j - 1]) {
+                cur[j] = prev[j - 1] + 1;
+            } else {
+                cur[j] = max(prev[j], cur[j - 1]);
+            }
+        }
+        swap(prev, cur);
+    }
+    
+    cout &lt;&lt; prev[m] &lt;&lt; &#x27;\n&#x27;;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7451">
+<h2>内部 ID 7451（JD160 合石成堆）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7451.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 310;
+int a[N], s[N];
+int dp[N][N];
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; a[i];
+        s[i] = s[i - 1] + a[i];
+    }
+    for (int len = 2; len &lt;= n; len++) {
+        for (int i = 1; i + len - 1 &lt;= n; i++) {
+            int j = i + len - 1;
+            dp[i][j] = 0x3f3f3f3f;
+            for (int k = i; k &lt; j; k++) {
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + s[j] - s[i - 1]);
+            }
+        }
+    }
+    cout &lt;&lt; dp[1][n] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7453">
+<h2>内部 ID 7453（JD162 雪道寻长）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7453.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 310;
+int h[N][N], dp[N][N];
+int r, c;
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, 1, 0, -1};
+
+int dfs(int x, int y) {
+    if (dp[x][y]) return dp[x][y];
+    dp[x][y] = 1;
+    for (int i = 0; i &lt; 4; i++) {
+        int nx = x + dx[i], ny = y + dy[i];
+        if (nx &gt;= 1 &amp;&amp; nx &lt;= r &amp;&amp; ny &gt;= 1 &amp;&amp; ny &lt;= c &amp;&amp; h[nx][ny] &lt; h[x][y]) {
+            dp[x][y] = max(dp[x][y], dfs(nx, ny) + 1);
+        }
+    }
+    return dp[x][y];
+}
+
+int main() {
+    cin &gt;&gt; r &gt;&gt; c;
+    for (int i = 1; i &lt;= r; i++) {
+        for (int j = 1; j &lt;= c; j++) {
+            cin &gt;&gt; h[i][j];
+        }
+    }
+    int res = 0;
+    for (int i = 1; i &lt;= r; i++) {
+        for (int j = 1; j &lt;= c; j++) {
+            res = max(res, dfs(i, j));
+        }
+    }
+    cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7454">
+<h2>内部 ID 7454（JD163 背包叠甲）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7454.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 2010;
+int dp[N];
+
+int main() {
+    int n, v;
+    cin &gt;&gt; n &gt;&gt; v;
+    for (int i = 0; i &lt; n; i++) {
+        int vi, wi, s;
+        cin &gt;&gt; vi &gt;&gt; wi &gt;&gt; s;
+        for (int j = v; j &gt;= vi; j--) {
+            for (int k = 1; k &lt;= s &amp;&amp; k * vi &lt;= j; k++) {
+                dp[j] = max(dp[j], dp[j - k * vi] + k * wi);
+            }
+        }
+    }
+    cout &lt;&lt; dp[v] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7455">
+<h2>内部 ID 7455（JD164 背包限重）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7455.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 20010;
+int dp[N];
+
+int main() {
+    int n, v;
+    cin &gt;&gt; n &gt;&gt; v;
+    for (int i = 0; i &lt; n; i++) {
+        int vi, wi, s;
+        cin &gt;&gt; vi &gt;&gt; wi &gt;&gt; s;
+        for (int k = 1; k &lt;= s; k *= 2) {
+            for (int j = v; j &gt;= k * vi; j--) {
+                dp[j] = max(dp[j], dp[j - k * vi] + k * wi);
+            }
+            s -= k;
+        }
+        if (s &gt; 0) {
+            for (int j = v; j &gt;= s * vi; j--) {
+                dp[j] = max(dp[j], dp[j - s * vi] + s * wi);
+            }
+        }
+    }
+    cout &lt;&lt; dp[v] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7456">
+<h2>内部 ID 7456（JD165 分组选宝）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7456.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int N, V;
+    cin &gt;&gt; N &gt;&gt; V;
+    
+    // dp[j] = maximum value using capacity j after processing some groups
+    vector&lt;long long&gt; dp(V + 1, 0);
+    
+    for (int i = 0; i &lt; N; ++i) {
+        int S;
+        cin &gt;&gt; S;
+        vector&lt;pair&lt;int, long long&gt;&gt; items;
+        items.reserve(S);
+        for (int j = 0; j &lt; S; ++j) {
+            int v; long long w;
+            cin &gt;&gt; v &gt;&gt; w;
+            // ignore items heavier than the knapsack capacity
+            if (v &lt;= V) items.emplace_back(v, w);
+        }
+        if (items.empty()) continue; // no valid items in this group
+        
+        // ndp will hold the best value after considering this group
+        // initially, we can choose to pick no item from this group
+        vector&lt;long long&gt; ndp = dp;
+        
+        // for each item in the group, try to update ndp using the previous dp
+        for (auto &amp;it : items) {
+            int v = it.first;
+            long long w = it.second;
+            // traverse capacity backwards to avoid using the same item twice
+            for (int j = V; j &gt;= v; --j) {
+                if (dp[j - v] + w &gt; ndp[j]) {
+                    ndp[j] = dp[j - v] + w;
+                }
+            }
+        }
+        dp = move(ndp);
+    }
+    
+    cout &lt;&lt; dp[V] &lt;&lt; &quot;\n&quot;;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7457">
+<h2>内部 ID 7457（JD166 递增剑意II）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7457.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin &gt;&gt; n;
+    // 读取所有元素 (long long 以支持大整数)
+    vector&lt;long long&gt; a(n);
+    for (int i = 0; i &lt; n; ++i) {
+        cin &gt;&gt; a[i];
+    }
+
+    // tails 数组：tails[i] 表示长度为 i+1 的递增子序列的最小可能末尾元素
+    vector&lt;long long&gt; tails;
+    tails.reserve(n);
+
+    for (long long x : a) {
+        // 在 tails 中二分查找第一个 &gt;= x 的位置
+        auto it = lower_bound(tails.begin(), tails.end(), x);
+        if (it == tails.end()) {
+            // 当前 x 比所有 tails 元素都大，可扩展最长子序列
+            tails.push_back(x);
+        } else {
+            // 否则用更小的 x 替换该位置，保持 tails 数组尽可能小
+            *it = x;
+        }
+    }
+
+    // tails 的大小即为最长严格递增子序列的长度
+    cout &lt;&lt; tails.size() &lt;&lt; &#x27;\n&#x27;;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7458">
+<h2>内部 ID 7458（JD167 整分剑法）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7458.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int MOD = 1e9 + 7;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int n;
+    cin &gt;&gt; n;
+    
+    // dp[j] = number of ways to partition j
+    vector&lt;long long&gt; dp(n + 1, 0);
+    dp[0] = 1; // base case: sum 0 has 1 way (empty set)
+    
+    // Complete knapsack: each number i can be used unlimited times
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = i; j &lt;= n; ++j) {
+            dp[j] = (dp[j] + dp[j - i]) % MOD;
+        }
+    }
+    
+    cout &lt;&lt; dp[n] % MOD &lt;&lt; &#x27;\n&#x27;;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7460">
+<h2>内部 ID 7460（JD169 棋盘铺阵）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7460.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    while (true) {
+        int n, m;
+        cin &gt;&gt; n &gt;&gt; m;
+        if (n == 0 &amp;&amp; m == 0) break;
+
+        // Ensure n &lt;= m to minimize state space
+        if (n &gt; m) swap(n, m);
+
+        // If total cells are odd, no tiling exists
+        if ((n * m) % 2 != 0) {
+            cout &lt;&lt; 0 &lt;&lt; &#x27;\n&#x27;;
+            continue;
+        }
+
+        // DP: dp[mask] = ways to fill processed columns with given protrusion mask
+        vector&lt;long long&gt; dp(1 &lt;&lt; n, 0);
+        dp[0] = 1;
+
+        // Process column by column
+        for (int col = 0; col &lt; m; ++col) {
+            vector&lt;long long&gt; next_dp(1 &lt;&lt; n, 0);
+            for (int mask = 0; mask &lt; (1 &lt;&lt; n); ++mask) {
+                if (dp[mask] == 0) continue;
+
+                // Recursively fill the current column given the incoming mask
+                function&lt;void(int, int, int)&gt; dfs = [&amp;](int row, int cur, int nxt) {
+                    if (row == n) {
+                        next_dp[nxt] += dp[mask];
+                        return;
+                    }
+                    // Already occupied by a horizontal domino from previous column
+                    if (cur &amp; (1 &lt;&lt; row)) {
+                        dfs(row + 1, cur, nxt);
+                    } else {
+                        // Option 1: place a horizontal domino starting here
+                        // It fills this cell and sets the same row in the next mask
+                        dfs(row + 1, cur | (1 &lt;&lt; row), nxt | (1 &lt;&lt; row));
+
+                        // Option 2: place a vertical domino (if possible)
+                        if (row + 1 &lt; n &amp;&amp; !(cur &amp; (1 &lt;&lt; (row + 1)))) {
+                            // Fill both current and next row in the current column
+                            dfs(row + 2, cur | (1 &lt;&lt; row) | (1 &lt;&lt; (row + 1)), nxt);
+                        }
+                    }
+                };
+
+                dfs(0, mask, 0);
+            }
+            dp = move(next_dp);
+        }
+
+        // After filling all m columns, the mask must be 0 (no overhang)
+        cout &lt;&lt; dp[0] &lt;&lt; &#x27;\n&#x27;;
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7461">
+<h2>内部 ID 7461（JD170 万城巡游）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7461.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin &gt;&gt; n;
+
+    vector&lt;vector&lt;long long&gt;&gt; dist(n, vector&lt;long long&gt;(n));
+    for (int i = 0; i &lt; n; ++i) {
+        for (int j = 0; j &lt; n; ++j) {
+            cin &gt;&gt; dist[i][j];
+        }
+    }
+
+    // dp[mask][i] = minimum cost to visit the set of cities `mask`, ending at city i
+    // 1&lt;&lt;n states, start with city 0 only
+    const long long INF = 1e18;
+    vector&lt;vector&lt;long long&gt;&gt; dp(1 &lt;&lt; n, vector&lt;long long&gt;(n, INF));
+    dp[1][0] = 0; // mask = 1 means only city 0 visited
+
+    for (int mask = 1; mask &lt; (1 &lt;&lt; n); ++mask) {
+        // require that city 0 is always visited (optional pruning)
+        if (!(mask &amp; 1)) continue;
+
+        for (int i = 0; i &lt; n; ++i) {
+            if (!(mask &amp; (1 &lt;&lt; i))) continue; // i is not in current set
+            if (dp[mask][i] == INF) continue;
+
+            // try to go to an unvisited city j
+            for (int j = 0; j &lt; n; ++j) {
+                if (mask &amp; (1 &lt;&lt; j)) continue; // already visited
+                int nxtMask = mask | (1 &lt;&lt; j);
+                dp[nxtMask][j] = min(dp[nxtMask][j], dp[mask][i] + dist[i][j]);
+            }
+        }
+    }
+
+    // The answer is the minimum cost to visit all cities and end at n-1
+    long long ans = dp[(1 &lt;&lt; n) - 1][n - 1];
+    cout &lt;&lt; ans &lt;&lt; &#x27;\n&#x27;;
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7462">
+<h2>内部 ID 7462（JD171 群经改字）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7462.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+// Check if edit distance between a and b is &lt;= k
+bool edit_distance_le(const string&amp; a, const string&amp; b, int k) {
+    int n = (int)a.size(), m = (int)b.size();
+    // If length diff exceeds k, edit distance cannot be &lt;= k
+    if (abs(n - m) &gt; k) return false;
+    // Ensure a is the shorter string to reduce DP row size
+    if (n &gt; m) return edit_distance_le(b, a, k);
+    // dp is the previous row, ndp is the current row
+    vector&lt;int&gt; dp(m + 1), ndp(m + 1);
+    iota(dp.begin(), dp.end(), 0); // dp[j] = j
+
+    for (int i = 1; i &lt;= n; ++i) {
+        ndp[0] = i; // delete all from shorter string
+        for (int j = 1; j &lt;= m; ++j) {
+            int cost = (a[i - 1] == b[j - 1]) ? 0 : 1;
+            ndp[j] = min({dp[j] + 1, ndp[j - 1] + 1, dp[j - 1] + cost});
+        }
+        // Early exit: if minimum in this row &gt; k, no need to continue
+        bool possible = false;
+        for (int j = 0; j &lt;= m; ++j) {
+            if (ndp[j] &lt;= k) { possible = true; break; }
+        }
+        if (!possible) return false;
+        swap(dp, ndp);
+    }
+    return dp[m] &lt;= k;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int N, M;
+    cin &gt;&gt; N &gt;&gt; M;
+    vector&lt;string&gt; dict(N);
+    for (int i = 0; i &lt; N; ++i) {
+        cin &gt;&gt; dict[i];
+    }
+
+    while (M--) {
+        string s;
+        int k;
+        cin &gt;&gt; s &gt;&gt; k;
+        int cnt = 0;
+        for (const auto&amp; w : dict) {
+            if (edit_distance_le(w, s, k)) {
+                ++cnt;
+            }
+        }
+        cout &lt;&lt; cnt &lt;&lt; &#x27;\n&#x27;;
+    }
+
+    return 0;
+}</code></pre>
+</section>
+<section id="p7463">
+<h2>内部 ID 7463（JD172 千机棋局）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7463.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int N;
+    cin &gt;&gt; N;
+    vector&lt;long long&gt; happy(N + 1);
+    for (int i = 1; i &lt;= N; ++i) {
+        cin &gt;&gt; happy[i];
+    }
+
+    vector&lt;vector&lt;int&gt;&gt; adj(N + 1);
+    vector&lt;int&gt; indeg(N + 1, 0);
+    // 读入 N-1 条边，但为了应对可能的不连通（森林），我们直接读到 EOF
+    // 但由于题目保证是树或森林，我们根据给定的边数读取
+    // 原题应为 N-1 条边，这里用 for 循环 N-1 次
+    for (int i = 0; i &lt; N - 1; ++i) {
+        int l, k;
+        cin &gt;&gt; l &gt;&gt; k;  // l 的上司是 k
+        adj[k].push_back(l);
+        indeg[l]++;
+    }
+
+    // dp[u][0]: u 不出征; dp[u][1]: u 出征
+    vector&lt;array&lt;long long, 2&gt;&gt; dp(N + 1);
+
+    // DFS 计算 dp
+    function&lt;void(int)&gt; dfs = [&amp;](int u) {
+        dp[u][0] = 0;
+        dp[u][1] = happy[u];
+        for (int v : adj[u]) {
+            dfs(v);
+            dp[u][0] += max(dp[v][0], dp[v][1]);
+            dp[u][1] += dp[v][0];
+        }
+    };
+
+    long long ans = 0;
+    // 可能有多个入度为 0 的节点（森林）
+    for (int i = 1; i &lt;= N; ++i) {
+        if (indeg[i] == 0) {
+            dfs(i);
+            ans += max(dp[i][0], dp[i][1]);
+        }
+    }
+
+    cout &lt;&lt; ans &lt;&lt; &quot;\n&quot;;
     return 0;
 }</code></pre>
 </section>

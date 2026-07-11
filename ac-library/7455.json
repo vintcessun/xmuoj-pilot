@@ -1,0 +1,12 @@
+{
+  "internal_id": 7455,
+  "display_id": "JD164",
+  "title": "背包限重",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "63d3ddcd2a1e10072c2ea52b8ad32f56",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:10:40+00:00",
+  "statement": "显示题号: JD164\n内部 ID: 7455\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n第二轮铠甲战。数据更大——N和V都到了极限。\"同样的方法还管用吗？\"对手冷笑。\n\n梁嘉峰在台下喊道：\"方法不变，多重背包的经典解法！\"\n\n李少白再次出手，代码如剑，一气呵成。\n\n## 输入描述\n第一行两个整数N和V。接下来N行每行三个整数v、w和s。\n\n## 输出描述\n一行，最大价值。\n\n## 样例\n[\n  {\n    \"input\": \"680 1562\\n866 815 599\\n1355 680 202\",\n    \"output\": \"742560\"\n  }\n]\n\n## 提示\n多重背包二进制优化。与JD163相同思路，数据范围更大。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n\nconst int N = 20010;\nint dp[N];\n\nint main() {\n    int n, v;\n    cin >> n >> v;\n    for (int i = 0; i < n; i++) {\n        int vi, wi, s;\n        cin >> vi >> wi >> s;\n        for (int k = 1; k <= s; k *= 2) {\n            for (int j = v; j >= k * vi; j--) {\n                dp[j] = max(dp[j], dp[j - k * vi] + k * wi);\n            }\n            s -= k;\n        }\n        if (s > 0) {\n            for (int j = v; j >= s * vi; j--) {\n                dp[j] = max(dp[j], dp[j - s * vi] + s * wi);\n            }\n        }\n    }\n    cout << dp[v] << endl;\n    return 0;\n}"
+}

@@ -2833,5 +2833,239 @@
     "language": "C",
     "contest_id": 361,
     "path": "7434.json"
+  },
+  {
+    "internal_id": 7435,
+    "display_id": "JD144",
+    "title": "八码迷局",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7435.json"
+  },
+  {
+    "internal_id": 7436,
+    "display_id": "JD145",
+    "title": "古树重心",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7436.json"
+  },
+  {
+    "internal_id": 7437,
+    "display_id": "JD146",
+    "title": "城池层递",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7437.json"
+  },
+  {
+    "internal_id": 7438,
+    "display_id": "JD147",
+    "title": "拓扑之序",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7438.json"
+  },
+  {
+    "internal_id": 7439,
+    "display_id": "JD148",
+    "title": "近者先行",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7439.json"
+  },
+  {
+    "internal_id": 7440,
+    "display_id": "JD149",
+    "title": "堆中取近",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7440.json"
+  },
+  {
+    "internal_id": 7441,
+    "display_id": "JD150",
+    "title": "队中松弛",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7441.json"
+  },
+  {
+    "internal_id": 7442,
+    "display_id": "JD151",
+    "title": "万径归一",
+    "score": 100.0,
+    "language": "Python3",
+    "contest_id": 361,
+    "path": "7442.json"
+  },
+  {
+    "internal_id": 7443,
+    "display_id": "JD152",
+    "title": "蔓延成网",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7443.json"
+  },
+  {
+    "internal_id": 7445,
+    "display_id": "JD154",
+    "title": "二色分界",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7445.json"
+  },
+  {
+    "internal_id": 7446,
+    "display_id": "JD155",
+    "title": "一剑一鞘",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7446.json"
+  },
+  {
+    "internal_id": 7447,
+    "display_id": "JD156",
+    "title": "无穷剑阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7447.json"
+  },
+  {
+    "internal_id": 7448,
+    "display_id": "JD157",
+    "title": "三角登峰",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7448.json"
+  },
+  {
+    "internal_id": 7449,
+    "display_id": "JD158",
+    "title": "递增剑意",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7449.json"
+  },
+  {
+    "internal_id": 7450,
+    "display_id": "JD159",
+    "title": "双谱共鸣",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7450.json"
+  },
+  {
+    "internal_id": 7451,
+    "display_id": "JD160",
+    "title": "合石成堆",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7451.json"
+  },
+  {
+    "internal_id": 7453,
+    "display_id": "JD162",
+    "title": "雪道寻长",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7453.json"
+  },
+  {
+    "internal_id": 7454,
+    "display_id": "JD163",
+    "title": "背包叠甲",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7454.json"
+  },
+  {
+    "internal_id": 7455,
+    "display_id": "JD164",
+    "title": "背包限重",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7455.json"
+  },
+  {
+    "internal_id": 7456,
+    "display_id": "JD165",
+    "title": "分组选宝",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7456.json"
+  },
+  {
+    "internal_id": 7457,
+    "display_id": "JD166",
+    "title": "递增剑意II",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7457.json"
+  },
+  {
+    "internal_id": 7458,
+    "display_id": "JD167",
+    "title": "整分剑法",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7458.json"
+  },
+  {
+    "internal_id": 7460,
+    "display_id": "JD169",
+    "title": "棋盘铺阵",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7460.json"
+  },
+  {
+    "internal_id": 7461,
+    "display_id": "JD170",
+    "title": "万城巡游",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7461.json"
+  },
+  {
+    "internal_id": 7462,
+    "display_id": "JD171",
+    "title": "群经改字",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7462.json"
+  },
+  {
+    "internal_id": 7463,
+    "display_id": "JD172",
+    "title": "千机棋局",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7463.json"
   }
 ]

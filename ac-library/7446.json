@@ -1,0 +1,12 @@
+{
+  "internal_id": 7446,
+  "display_id": "JD155",
+  "title": "一剑一鞘",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "62761aeaef1653416f285feb244896e4",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:09:42+00:00",
+  "statement": "显示题号: JD155\n内部 ID: 7446\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山脚下，试剑台前。西域刀客赫连铁拔出背上唯一的刀鞘，鞘中却藏着N柄短刀，每柄有重量和锋芒。刀鞘容量有限——选哪些刀，才能让锋芒之和最大？\n\n李少白拔剑上前。梁嘉峰低声道：\"每柄刀只能选一次——01背包。逆序遍历容量，dp[j] = max(dp[j], dp[j-v]+w)。\"\n\n李少白深吸一口气，提笔写下。赫连铁看了答案，缓缓点头：\"第一关，过了。\"\n\n## 输入描述\n第一行两个整数N和V。接下来N行每行两个整数v和w。\n\n## 输出描述\n一行，最大价值。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\n1 2\\n2 4\\n3 4\\n4 5\",\n    \"output\": \"8\"\n  }\n]\n\n## 提示\n01背包：dp[j] = max(dp[j], dp[j-v[i]]+w[i])，逆序遍历j。\n\n原题链接",
+  "code": "#include <iostream>\nusing namespace std;\n\nconst int N = 1010;\nint dp[N];\n\nint main() {\n    int n, v;\n    cin >> n >> v;\n    for (int i = 0; i < n; i++) {\n        int vi, wi;\n        cin >> vi >> wi;\n        for (int j = v; j >= vi; j--) {\n            dp[j] = max(dp[j], dp[j - vi] + wi);\n        }\n    }\n    cout << dp[v] << endl;\n    return 0;\n}"
+}

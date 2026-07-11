@@ -1,0 +1,12 @@
+{
+  "internal_id": 7461,
+  "display_id": "JD170",
+  "title": "万城巡游",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "492d9db0b506d0160da831a9d7d2e6f7",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:11:19+00:00",
+  "statement": "显示题号: JD170\n内部 ID: 7461\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n第二位绝顶高手——游侠。他铺开一张城池图：\"从城0出发，每座城恰好走一次，到城n-1。最短路径？\"\n\n李少白眼中精光一闪：\"状压DP——dp[mask][i]表示访问集合mask、当前在城i的最小代价。枚举所有状态和转移。O(2^n × n²)。\"\n\n游侠击节赞叹：\"好！这一剑，我甘拜下风！\"\n\n## 输入描述\n第一行一个整数n。接下来n行每行n个整数，表示邻接矩阵。\n\n## 输出描述\n一行，最短Hamilton路径长度。\n\n## 样例\n[\n  {\n    \"input\": \"5\\n0 2 4 5 1\\n2 0 6 5 3\\n4 6 0 8 3\\n5 5 8 0 5\\n1 3 3 5 0\",\n    \"output\": \"19\"\n  }\n]\n\n## 提示\n状压DP：dp[mask][i]表示访问集合mask、当前在城i的最小代价。O(2^n * n²)。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n\n    vector<vector<long long>> dist(n, vector<long long>(n));\n    for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < n; ++j) {\n            cin >> dist[i][j];\n        }\n    }\n\n    // dp[mask][i] = minimum cost to visit the set of cities `mask`, ending at city i\n    // 1<<n states, start with city 0 only\n    const long long INF = 1e18;\n    vector<vector<long long>> dp(1 << n, vector<long long>(n, INF));\n    dp[1][0] = 0; // mask = 1 means only city 0 visited\n\n    for (int mask = 1; mask < (1 << n); ++mask) {\n        // require that city 0 is always visited (optional pruning)\n        if (!(mask & 1)) continue;\n\n        for (int i = 0; i < n; ++i) {\n            if (!(mask & (1 << i))) continue; // i is not in current set\n            if (dp[mask][i] == INF) continue;\n\n            // try to go to an unvisited city j\n            for (int j = 0; j < n; ++j) {\n                if (mask & (1 << j)) continue; // already visited\n                int nxtMask = mask | (1 << j);\n                dp[nxtMask][j] = min(dp[nxtMask][j], dp[mask][i] + dist[i][j]);\n            }\n        }\n    }\n\n    // The answer is the minimum cost to visit all cities and end at n-1\n    long long ans = dp[(1 << n) - 1][n - 1];\n    cout << ans << '\\n';\n\n    return 0;\n}"
+}

@@ -1,0 +1,12 @@
+{
+  "internal_id": 7442,
+  "display_id": "JD151",
+  "title": "万径归一",
+  "language": "Python3",
+  "score": 100.0,
+  "submission_id": "25f0625ca60df6ab4aa27104b9a0d488",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:09:17+00:00",
+  "statement": "显示题号: JD151\n内部 ID: 7442\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n梁嘉峰铺开全图：\"多源最短路——任意两点之间的最短距离。Floyd算法：三重循环，dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j])。\"\n\n给定一个带权图，求任意两点之间的最短距离。\n\n## 输入描述\n第一行三个整数n、m和q。接下来m行每行三个整数a b w。接下来q行每行两个整数a b。\n\n## 输出描述\nq行，每行一个整数。不可达输出impossible。\n\n## 样例\n[\n  {\n    \"input\": \"3 3 2\\n1 2 2\\n2 3 1\\n1 3 4\\n1 3\\n2 1\",\n    \"output\": \"3\\n3\"\n  }\n]\n\n## 提示\nFloyd：O(n³)。三重循环枚举中间点。\n\n原题链接",
+  "code": "import sys\ndata = list(map(int, sys.stdin.read().split()))\nn, m, q = data[0], data[1], data[2]\nINF = 10**18\ndist = [[INF]*(n+1) for _ in range(n+1)]\nfor i in range(1, n+1):\n    dist[i][i] = 0\nidx = 3\nfor _ in range(m):\n    a, b, w = data[idx], data[idx+1], data[idx+2]\n    idx += 3\n    if w < dist[a][b]:\n        dist[a][b] = w\nfor k in range(1, n+1):\n    for i in range(1, n+1):\n        if dist[i][k] == INF:\n            continue\n        for j in range(1, n+1):\n            nd = dist[i][k] + dist[k][j]\n            if nd < dist[i][j]:\n                dist[i][j] = nd\nout = []\nfor _ in range(q):\n    a, b = data[idx], data[idx+1]\n    idx += 2\n    d = dist[a][b]\n    out.append(str(d) if d < INF//2 else \"impossible\")\nsys.stdout.write('\\n'.join(out))"
+}

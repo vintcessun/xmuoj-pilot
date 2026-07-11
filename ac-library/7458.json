@@ -1,0 +1,12 @@
+{
+  "internal_id": 7458,
+  "display_id": "JD167",
+  "title": "整分剑法",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2c527f15184f654a4e24bb9871ecc110",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:11:07+00:00",
+  "statement": "显示题号: JD167\n内部 ID: 7458\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n对手是一位数学大师，他写下数字n：\"把它拆成若干正整数之和，有多少种拆法？\"\n\n赵晴儿上前：\"完全背包——从1到n，每个数可以用无限次。dp[j] += dp[j-i]，模1e9+7。\"\n\n大师推了推眼镜：\"你用背包来解整数划分？有意思。\"\n\n## 输入描述\n一个整数n（1≤n≤1000）。\n\n## 输出描述\n一行，划分方案数模1e9+7。\n\n## 样例\n[\n  {\n    \"input\": \"5\",\n    \"output\": \"7\"\n  }\n]\n\n## 提示\n完全背包DP：dp[j] += dp[j-i]，i从1到n。模1e9+7。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MOD = 1e9 + 7;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    int n;\n    cin >> n;\n    \n    // dp[j] = number of ways to partition j\n    vector<long long> dp(n + 1, 0);\n    dp[0] = 1; // base case: sum 0 has 1 way (empty set)\n    \n    // Complete knapsack: each number i can be used unlimited times\n    for (int i = 1; i <= n; ++i) {\n        for (int j = i; j <= n; ++j) {\n            dp[j] = (dp[j] + dp[j - i]) % MOD;\n        }\n    }\n    \n    cout << dp[n] % MOD << '\\n';\n    return 0;\n}"
+}

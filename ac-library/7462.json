@@ -1,0 +1,12 @@
+{
+  "internal_id": 7462,
+  "display_id": "JD171",
+  "title": "群经改字",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "42bb0f254d47a115097a8c00f5d2d967",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:11:26+00:00",
+  "statement": "显示题号: JD171\n内部 ID: 7462\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n第三位——藏经阁阁主。他取出一本字典和一段经文：\"字典里有多少个词，和这段经文的编辑距离不超过k？\"\n\n赵晴儿沉吟片刻：\"对字典里每个词，算它和经文的编辑距离。标准编辑距离DP——dp[i][j] = min(三种操作)。\"\n\n阁主长叹：\"当年我花了十年才悟出此法，你竟片刻之间……\"\n\n## 输入描述\n第一行两个整数N和M。接下来N行每行一个字符串（字典）。接下来M行每行一个字符串和一个整数k。\n\n## 输出描述\nM行，每行一个整数（字典中编辑距离≤k的字符串个数）。\n\n## 样例\n[\n  {\n    \"input\": \"2 2\\nabc\\ndef\\nabc 1\\nadc 2\",\n    \"output\": \"1\\n1\"\n  }\n]\n\n## 提示\n编辑距离DP：dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost)。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\n// Check if edit distance between a and b is <= k\nbool edit_distance_le(const string& a, const string& b, int k) {\n    int n = (int)a.size(), m = (int)b.size();\n    // If length diff exceeds k, edit distance cannot be <= k\n    if (abs(n - m) > k) return false;\n    // Ensure a is the shorter string to reduce DP row size\n    if (n > m) return edit_distance_le(b, a, k);\n    // dp is the previous row, ndp is the current row\n    vector<int> dp(m + 1), ndp(m + 1);\n    iota(dp.begin(), dp.end(), 0); // dp[j] = j\n\n    for (int i = 1; i <= n; ++i) {\n        ndp[0] = i; // delete all from shorter string\n        for (int j = 1; j <= m; ++j) {\n            int cost = (a[i - 1] == b[j - 1]) ? 0 : 1;\n            ndp[j] = min({dp[j] + 1, ndp[j - 1] + 1, dp[j - 1] + cost});\n        }\n        // Early exit: if minimum in this row > k, no need to continue\n        bool possible = false;\n        for (int j = 0; j <= m; ++j) {\n            if (ndp[j] <= k) { possible = true; break; }\n        }\n        if (!possible) return false;\n        swap(dp, ndp);\n    }\n    return dp[m] <= k;\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    vector<string> dict(N);\n    for (int i = 0; i < N; ++i) {\n        cin >> dict[i];\n    }\n\n    while (M--) {\n        string s;\n        int k;\n        cin >> s >> k;\n        int cnt = 0;\n        for (const auto& w : dict) {\n            if (edit_distance_le(w, s, k)) {\n                ++cnt;\n            }\n        }\n        cout << cnt << '\\n';\n    }\n\n    return 0;\n}"
+}

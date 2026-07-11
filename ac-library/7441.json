@@ -1,0 +1,12 @@
+{
+  "internal_id": 7441,
+  "display_id": "JD150",
+  "title": "队中松弛",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "ae6b669123dbd4d3b227f43a89ad16a2",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:09:10+00:00",
+  "statement": "显示题号: JD150\n内部 ID: 7441\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着图上的负权边：\"Dijkstra处理不了负权边。用SPFA——BFS+松弛。把待更新的点放入队列，每次取一个点，用它更新邻居。邻居变短了就入队。\"\n\n给定一个可能有负权边的图，求最短距离。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行三个整数a b w（w可为负）。\n\n## 输出描述\n一行，到点1的最短距离。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\n1 2 -1\\n2 3 2\\n1 3 3\",\n    \"output\": \"0 -1 1\"\n  }\n]\n\n## 提示\nSPFA：队列优化Bellman-Ford。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\n#include <queue>\n\nusing namespace std;\n\nconst int N = 100010;\n\nint n, m;\nint h[N], e[N], ne[N], w[N], idx;\nint dist[N];\nbool st[N];\n\nvoid add(int a, int b, int c) {\n    e[idx] = b;\n    w[idx] = c;\n    ne[idx] = h[a];\n    h[a] = idx++;\n}\n\nint spfa() {\n    memset(dist, 0x3f, sizeof dist);\n    dist[1] = 0;\n\n    queue<int> q;\n    q.push(1);\n    st[1] = true;\n\n    while (q.size()) {\n        int t = q.front();\n        q.pop();\n\n        st[t] = false;\n\n        for (int i = h[t]; i != -1; i = ne[i]) {\n            int j = e[i];\n            if (dist[j] > dist[t] + w[i]) {\n                dist[j] = dist[t] + w[i];\n                if (!st[j]) {\n                    q.push(j);\n                    st[j] = true;\n                }\n            }\n        }\n    }\n\n    if (dist[n] == 0x3f3f3f3f) return -1;\n    return dist[n];\n}\n\nint main() {\n    cin >> n >> m;\n\n    memset(h, -1, sizeof h);\n\n    for (int i = 0; i < m; i++) {\n        int a, b, c;\n        cin >> a >> b >> c;\n        add(a, b, c);\n    }\n\n    cout << spfa() << endl;\n\n    return 0;\n}"
+}

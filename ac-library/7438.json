@@ -1,0 +1,12 @@
+{
+  "internal_id": 7438,
+  "display_id": "JD147",
+  "title": "拓扑之序",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "7ef404a35afa0a6a7ea73199bd19acde",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:08:46+00:00",
+  "statement": "显示题号: JD147\n内部 ID: 7438\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n城际连横。赵晴儿铺开城池图：\"城池之间有方向道路。排出一个合法的建设顺序——每条道路都是从先建的城池指向后建的。\"\n\n梁嘉峰说：\"拓扑排序——找入度为0的点，输出后删除它的出边，再找下一个入度为0的点。如果有环，就不可能全部输出。\"\n\n给定一个有向图，输出拓扑序。有环则输出-1。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行两个整数a b表示一条有向边。\n\n## 输出描述\n一行，拓扑序，空格隔开。有环输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\n1 2\\n2 3\\n1 3\",\n    \"output\": \"1 2 3\"\n  }\n]\n\n## 提示\nBFS+入度维护。有环则无解。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <vector>\n#include <queue>\n\nusing namespace std;\n\nconst int N = 100010;\n\nint n, m;\nvector<int> g[N];\nint d[N];\n\nbool topsort() {\n    queue<int> q;\n    for (int i = 1; i <= n; i++) {\n        if (d[i] == 0) q.push(i);\n    }\n\n    int cnt = 0;\n    while (!q.empty()) {\n        int t = q.front();\n        q.pop();\n        cnt++;\n\n        for (int i = 0; i < g[t].size(); i++) {\n            int j = g[t][i];\n            if (--d[j] == 0) q.push(j);\n        }\n    }\n\n    return cnt == n;\n}\n\nint main() {\n    cin >> n >> m;\n\n    for (int i = 0; i < m; i++) {\n        int a, b;\n        cin >> a >> b;\n        g[a].push_back(b);\n        d[b]++;\n    }\n\n    if (topsort()) {\n        queue<int> q;\n        for (int i = 1; i <= n; i++) {\n            if (d[i] == 0) q.push(i);\n        }\n\n        while (!q.empty()) {\n            int t = q.front();\n            q.pop();\n            cout << t << \" \";\n\n            for (int i = 0; i < g[t].size(); i++) {\n                int j = g[t][i];\n                if (--d[j] == 0) q.push(j);\n            }\n        }\n        cout << endl;\n    } else {\n        cout << -1 << endl;\n    }\n\n    return 0;\n}"
+}

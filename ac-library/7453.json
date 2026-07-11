@@ -1,0 +1,12 @@
+{
+  "internal_id": 7453,
+  "display_id": "JD162",
+  "title": "雪道寻长",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "2d1837f3169e2dbcb5bbe5587449f264",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:10:27+00:00",
+  "statement": "显示题号: JD162\n内部 ID: 7453\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山后山，白雪皑皑。一个R×C的滑雪场，从任意高处滑向相邻的低处。\"最长能滑多远？\"\n\n赵晴儿踏雪而行：\"记忆化搜索——DFS+缓存。每个格子只算一次，取四个方向中最长的路径加一。\"\n\n她的身影在雪道上飞驰，划出一道完美的弧线。\n\n## 输入描述\n第一行两个整数R和C。接下来R行每行C个整数表示高度。\n\n## 输出描述\n一行，最长递减路径的长度。\n\n## 样例\n[\n  {\n    \"input\": \"5 5\\n1 2 3 4 5\\n16 17 18 19 6\\n15 24 25 20 7\\n14 23 22 21 8\\n13 12 11 10 9\",\n    \"output\": \"25\"\n  }\n]\n\n## 提示\n记忆化搜索：DFS+缓存。每个格子只算一次，取四个方向中最长路径+1。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\nusing namespace std;\n\nconst int N = 310;\nint h[N][N], dp[N][N];\nint r, c;\nint dx[] = {-1, 0, 1, 0};\nint dy[] = {0, 1, 0, -1};\n\nint dfs(int x, int y) {\n    if (dp[x][y]) return dp[x][y];\n    dp[x][y] = 1;\n    for (int i = 0; i < 4; i++) {\n        int nx = x + dx[i], ny = y + dy[i];\n        if (nx >= 1 && nx <= r && ny >= 1 && ny <= c && h[nx][ny] < h[x][y]) {\n            dp[x][y] = max(dp[x][y], dfs(nx, ny) + 1);\n        }\n    }\n    return dp[x][y];\n}\n\nint main() {\n    cin >> r >> c;\n    for (int i = 1; i <= r; i++) {\n        for (int j = 1; j <= c; j++) {\n            cin >> h[i][j];\n        }\n    }\n    int res = 0;\n    for (int i = 1; i <= r; i++) {\n        for (int j = 1; j <= c; j++) {\n            res = max(res, dfs(i, j));\n        }\n    }\n    cout << res << endl;\n    return 0;\n}"
+}

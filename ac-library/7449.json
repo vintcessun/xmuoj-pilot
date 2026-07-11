@@ -1,0 +1,12 @@
+{
+  "internal_id": 7449,
+  "display_id": "JD158",
+  "title": "递增剑意",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "9086cd9f5f418aa6cd64496aa95be5dc",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:10:04+00:00",
+  "statement": "显示题号: JD158\n内部 ID: 7449\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n擂台上，青城派弟子摆出一排剑，每把刻着一个数字。\"选出最长的递增序列——数字必须递增，不必相邻。\"\n\n李少白用O(n²)的DP接下第一招。梁嘉峰却摇头：\"后面数据更大。贪心+二分——维护最小末尾数组，O(nlogn)。\"\n\n李少白重写代码，青城弟子面色一变：\"好快的剑！\"\n\n## 输入描述\n第一行一个整数n。第二行n个整数。\n\n## 输出描述\n一行，最长递增子序列的长度。\n\n## 样例\n[\n  {\n    \"input\": \"7\\n3 1 2 1 8 5 6\",\n    \"output\": \"4\"\n  }\n]\n\n## 提示\n贪心+二分：维护最小末尾数组q[]，二分查找替换。O(nlogn)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 100010;\nint a[N];\n\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        cin >> a[i];\n    }\n    vector<int> q;\n    for (int i = 0; i < n; i++) {\n        auto it = lower_bound(q.begin(), q.end(), a[i]);\n        if (it == q.end()) {\n            q.push_back(a[i]);\n        } else {\n            *it = a[i];\n        }\n    }\n    cout << q.size() << endl;\n    return 0;\n}"
+}

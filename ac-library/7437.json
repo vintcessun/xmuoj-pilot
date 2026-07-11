@@ -1,0 +1,12 @@
+{
+  "internal_id": 7437,
+  "display_id": "JD146",
+  "title": "城池层递",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "274c34e44a27b7dfd136788e5b7fa4e6",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:08:36+00:00",
+  "statement": "显示题号: JD146\n内部 ID: 7437\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n城际连横。赵晴儿铺开城池图：\"城池之间有道路相连。从城1出发，到每个城池的最短距离是多少？\"\n\n梁嘉峰说：\"BFS——从城1开始，每层扩展一步。第一次到达的城池，层数就是最短距离。\"\n\n给定一个有向图和起点1，求每个点到起点的最短距离。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行两个整数a b表示一条有向边。\n\n## 输出描述\n一行，n个整数表示每个点到点1的最短距离，不可达输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"4 4\\n1 2\\n2 3\\n1 3\\n3 4\",\n    \"output\": \"0 1 1 2\"\n  }\n]\n\n## 提示\nBFS层序遍历，每层距离+1。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\n\nusing namespace std;\n\nconst int N = 100010;\n\nint n, m;\nint h[N], e[N], ne[N], idx; // 邻接表存储图\nint d[N];     // 记录 1 号点到各个点的距离，初始化为 -1 表示未访问\nint q[N];     // 模拟队列（手写队列比 std::queue 更快，适合 ACM/OJ）\n\n// 添加一条边 a->b\nvoid add(int a, int b) {\n    e[idx] = b;\n    ne[idx] = h[a];\n    h[a] = idx++;\n}\n\nint bfs() {\n    int hh = 0, tt = 0; // 队列头尾指针\n    q[0] = 1; // 起点 1 入队\n    \n    memset(d, -1, sizeof d); // 初始化距离数组为 -1\n    d[1] = 0; // 起点到自己的距离是 0\n\n    while (hh <= tt) {\n        int t = q[hh++]; // 取出队头\n\n        // 遍历 t 的所有出边\n        for (int i = h[t]; i != -1; i = ne[i]) {\n            int j = e[i]; // j 是 t 能到达的点\n            \n            // 如果 j 还没有被访问过\n            if (d[j] == -1) {\n                d[j] = d[t] + 1;  // 更新距离\n                q[++tt] = j;      // j 入队\n            }\n        }\n    }\n\n    return d[n]; // 返回 1 到 n 的距离，如果不可达，d[n] 依然是 -1\n}\n\nint main() {\n    cin >> n >> m;\n\n    memset(h, -1, sizeof h); // 初始化邻接表头为 -1\n\n    // 读入 m 条边\n    for (int i = 0; i < m; i++) {\n        int a, b;\n        cin >> a >> b;\n        add(a, b); // 有向图，只存一次\n    }\n\n    cout << bfs() << endl;\n\n    return 0;\n}"
+}

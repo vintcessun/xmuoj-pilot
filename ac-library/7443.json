@@ -1,0 +1,12 @@
+{
+  "internal_id": 7443,
+  "display_id": "JD152",
+  "title": "蔓延成网",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "8fdc76422b129098987116cd25caeaa7",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:09:26+00:00",
+  "statement": "显示题号: JD152\n内部 ID: 7443\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n赵晴儿指着散落的城池：\"用最少的路把所有城池连起来，总路长最短。\"\n\n梁嘉峰说：\"Prim算法——类似Dijkstra，每次选离已连通部分最近的未加入点，把那条边加入生成树。\"\n\n给定一个带权无向图，求最小生成树的总权值。\n\n## 输入描述\n第一行两个整数n和m。接下来m行每行三个整数a b w。\n\n## 输出描述\n一行，最小生成树的总权值。不连通输出impossible。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\n1 2 1\\n1 3 2\\n2 3 3\\n2 4 4\\n3 4 5\",\n    \"output\": \"7\"\n  }\n]\n\n## 提示\nPrim：O(n²)。每次选最近未加入点。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\nusing namespace std;\n\nconst int N = 510;\nconst int INF = 0x3f3f3f3f;\nint g[N][N];\nint dist[N];\nbool visited[N];\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    memset(g, 0x3f, sizeof g);\n    for (int i = 0; i < m; i++) {\n        int a, b, w;\n        cin >> a >> b >> w;\n        g[a][b] = g[b][a] = min(g[a][b], w);\n    }\n    memset(dist, 0x3f, sizeof dist);\n    dist[1] = 0;\n    int res = 0;\n    for (int i = 0; i < n; i++) {\n        int u = -1;\n        for (int j = 1; j <= n; j++) {\n            if (!visited[j] && (u == -1 || dist[j] < dist[u])) {\n                u = j;\n            }\n        }\n        if (dist[u] == INF) {\n            cout << \"impossible\" << endl;\n            return 0;\n        }\n        res += dist[u];\n        visited[u] = true;\n        for (int v = 1; v <= n; v++) {\n            dist[v] = min(dist[v], g[u][v]);\n        }\n    }\n    cout << res << endl;\n    return 0;\n}"
+}

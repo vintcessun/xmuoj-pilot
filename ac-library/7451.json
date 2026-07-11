@@ -1,0 +1,12 @@
+{
+  "internal_id": 7451,
+  "display_id": "JD160",
+  "title": "合石成堆",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "fc2b81fdb8dacb742325f2cf921bb69d",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:10:20+00:00",
+  "statement": "显示题号: JD160\n内部 ID: 7451\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山脚下的石阵——N堆石子排成一行，每次只能合并相邻两堆，代价是两堆之和。\"全部合并的最小代价？\"\n\n少林高僧双手合十：\"贪心不行，必须区间DP。枚举分割点k，dp[i][j] = min(dp[i][k] + dp[k+1][j]) + sum(i..j)。\"\n\n李少白闭目凝神，三重循环缓缓展开。高僧点头：\"施主悟了。\"\n\n## 输入描述\n第一行一个整数N。第二行N个整数。\n\n## 输出描述\n一行，最小总代价。\n\n## 样例\n[\n  {\n    \"input\": \"4\\n1 3 5 2\",\n    \"output\": \"22\"\n  }\n]\n\n## 提示\n区间DP：枚举分割点。dp[i][j] = min(dp[i][k] + dp[k+1][j]) + sum(i..j)。O(n³)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 310;\nint a[N], s[N];\nint dp[N][N];\n\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; i++) {\n        cin >> a[i];\n        s[i] = s[i - 1] + a[i];\n    }\n    for (int len = 2; len <= n; len++) {\n        for (int i = 1; i + len - 1 <= n; i++) {\n            int j = i + len - 1;\n            dp[i][j] = 0x3f3f3f3f;\n            for (int k = i; k < j; k++) {\n                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + s[j] - s[i - 1]);\n            }\n        }\n    }\n    cout << dp[1][n] << endl;\n    return 0;\n}"
+}

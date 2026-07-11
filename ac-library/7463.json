@@ -1,0 +1,12 @@
+{
+  "internal_id": 7463,
+  "display_id": "JD172",
+  "title": "千机棋局",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "89c491656b1a798ef37b740a4e79802c",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:11:34+00:00",
+  "statement": "显示题号: JD172\n内部 ID: 7463\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山绝顶，风雷激荡。最后一位对手——棋魔，传说中的千机棋圣。他缓缓展开一张巨大的人员图谱：\"这是宗门的命脉——每个人有一个直属上司。现在要派人出征，但一个士兵和他的上司不能同时出征——否则后方崩溃。每个士兵有不同的战斗力。\"\n\n梁嘉峰在台下喊道：\"树形DP！dp[u][0]表示u留守时子树的最大战力，dp[u][1]表示u出征时。出征则下属必须留守，留守则下属可出可留。找到根节点，DFS一遍！\"\n\n李少白深吸一口气，闭上眼睛。他想起了第一天来到剑道宗的那个下午——梁嘉峰递给他两枚铁令，赵晴儿在沙盘上画圆。从变量到递归，从数组到图论，从排序到动态规划……每一步都是剑道的修行。\n\n他睁开眼睛，提笔写下最后一行代码。\n\n棋魔看着答案，沉默良久，终于起身，深深一揖：\"华山论剑，到此为止。\"\n\n梁嘉峰走上前来，拍了拍李少白的肩膀：\"恭喜。你可以出师了。\"\n\n赵晴儿在一旁笑了：\"别急，回去还得教下一届呢。\"\n\n## 输入描述\n第一行一个整数N。第二行N个整数（每个员工的快乐值）。接下来N-1行每行两个整数l k（l的上司是k）。\n\n## 输出描述\n一行，最大总快乐值。\n\n## 样例\n[\n  {\n    \"input\": \"7\\n1 1 1 1 1 1 1\\n2 6\\n3 6\\n4 6\\n6 7\\n5 7\",\n    \"output\": \"5\"\n  }\n]\n\n## 提示\n树形DP：dp[u][0/1]表示u不出征/出征时的最大值。DFS从根遍历。dp[u][1] = h[u] + Σdp[v][0]，dp[u][0] = Σmax(dp[v][0], dp[v][1])。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    vector<long long> happy(N + 1);\n    for (int i = 1; i <= N; ++i) {\n        cin >> happy[i];\n    }\n\n    vector<vector<int>> adj(N + 1);\n    vector<int> indeg(N + 1, 0);\n    // 读入 N-1 条边，但为了应对可能的不连通（森林），我们直接读到 EOF\n    // 但由于题目保证是树或森林，我们根据给定的边数读取\n    // 原题应为 N-1 条边，这里用 for 循环 N-1 次\n    for (int i = 0; i < N - 1; ++i) {\n        int l, k;\n        cin >> l >> k;  // l 的上司是 k\n        adj[k].push_back(l);\n        indeg[l]++;\n    }\n\n    // dp[u][0]: u 不出征; dp[u][1]: u 出征\n    vector<array<long long, 2>> dp(N + 1);\n\n    // DFS 计算 dp\n    function<void(int)> dfs = [&](int u) {\n        dp[u][0] = 0;\n        dp[u][1] = happy[u];\n        for (int v : adj[u]) {\n            dfs(v);\n            dp[u][0] += max(dp[v][0], dp[v][1]);\n            dp[u][1] += dp[v][0];\n        }\n    };\n\n    long long ans = 0;\n    // 可能有多个入度为 0 的节点（森林）\n    for (int i = 1; i <= N; ++i) {\n        if (indeg[i] == 0) {\n            dfs(i);\n            ans += max(dp[i][0], dp[i][1]);\n        }\n    }\n\n    cout << ans << \"\\n\";\n    return 0;\n}"
+}

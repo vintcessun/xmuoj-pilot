@@ -1,0 +1,12 @@
+{
+  "internal_id": 7435,
+  "display_id": "JD144",
+  "title": "八码迷局",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "29a0ddd2a595cb3b2d29984f0fb6b4c6",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:08:16+00:00",
+  "statement": "显示题号: JD144\n内部 ID: 7435\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n迷雾中出现一个3×3数字拼盘，有一个空格。赵晴儿说：\"从初始状态移到目标状态，最少几步？每次只能把空格和相邻数字交换。\"\n\n梁嘉峰说：\"BFS+状态压缩——把整个拼盘编码成一个字符串，每次移动生成新状态，用哈希表判重。\"\n\n给定初始状态和目标状态，求最少移动步数。\n\n## 输入描述\n两行，每行9个字符（3×3拼盘，x表示空格）。第一行初始状态，第二行目标状态。\n\n## 输出描述\n一行，最少移动步数。无解输出-1。\n\n## 样例\n[\n  {\n    \"input\": \"1 2 3\\nx 4 6\\n7 5 8\\n\\n1 2 3\\n4 5 6\\n7 8 x\",\n    \"output\": \"2\"\n  }\n]\n\n## 提示\nBFS+状态编码为字符串，哈希表判重。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n#include <queue>\n#include <unordered_map>\n#include <algorithm>\n\nusing namespace std;\n\nint bfs(string start) {\n    // 目标状态固定为 1 2 3 4 5 6 7 8 x\n    string target = \"12345678x\";\n\n    if (start == target) return 0;\n\n    int dx[4] = {-3, 3, -1, 1};\n    queue<string> q;\n    unordered_map<string, int> dist;\n\n    q.push(start);\n    dist[start] = 0;\n\n    while (!q.empty()) {\n        string t = q.front();\n        q.pop();\n        \n        int distance = dist[t];\n        int pos = t.find('x');\n\n        for (int i = 0; i < 4; i++) {\n            int new_pos = pos + dx[i];\n            \n            if (new_pos >= 0 && new_pos < 9) {\n                // 检查边界：左移右移不能跨行\n                if (i < 2 || (pos / 3 == new_pos / 3)) {\n                    string next = t;\n                    swap(next[pos], next[new_pos]);\n\n                    if (next == target) return distance + 1;\n\n                    if (dist.find(next) == dist.end()) {\n                        dist[next] = distance + 1;\n                        q.push(next);\n                    }\n                }\n            }\n        }\n    }\n    return -1;\n}\n\nint main() {\n    string start, c;\n    // 核心逻辑：一直读取字符直到读完 9 个\n    for (int i = 0; i < 9; i++) {\n        cin >> c;\n        start += c;\n    }\n    \n    cout << bfs(start) << endl;\n    return 0;\n}"
+}

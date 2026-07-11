@@ -1,0 +1,12 @@
+{
+  "internal_id": 7450,
+  "display_id": "JD159",
+  "title": "双谱共鸣",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "47269ebbb219687655f0bb0dde0563e7",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T10:10:12+00:00",
+  "statement": "显示题号: JD159\n内部 ID: 7450\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n峨眉派女侠递来两卷剑谱：\"找出两谱中最长的公共剑招序列——顺序一致但不必连续。\"\n\n赵晴儿接过剑谱：\"LCS——dp[i][j]表示前i招和前j招的最长公共子序列。相等时加一，否则取较大值。\"\n\n女侠看了答案，微微一笑：\"峨眉输了。\"\n\n## 输入描述\n第一行两个整数n和m。第二行长度为n的字符串。第三行长度为m的字符串。\n\n## 输出描述\n一行，最长公共子序列的长度。\n\n## 样例\n[\n  {\n    \"input\": \"4 5\\nabcd\\nacebd\",\n    \"output\": \"3\"\n  }\n]\n\n## 提示\nLCS：二维DP。相等时dp[i][j]=dp[i-1][j-1]+1，否则取max(dp[i-1][j], dp[i][j-1])。\n\n原题链接",
+  "code": "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    \n    int n, m;\n    cin >> n >> m;\n    string a, b;\n    cin >> a >> b;\n    \n    // in case the given lengths don't match the actual strings (safety)\n    if (static_cast<int>(a.size()) != n) a.resize(n);\n    if (static_cast<int>(b.size()) != m) b.resize(m);\n    \n    // space-optimized DP: two rows of length m+1\n    vector<int> prev(m + 1, 0), cur(m + 1, 0);\n    \n    for (int i = 1; i <= n; ++i) {\n        cur[0] = 0;\n        for (int j = 1; j <= m; ++j) {\n            if (a[i - 1] == b[j - 1]) {\n                cur[j] = prev[j - 1] + 1;\n            } else {\n                cur[j] = max(prev[j], cur[j - 1]);\n            }\n        }\n        swap(prev, cur);\n    }\n    \n    cout << prev[m] << '\\n';\n    return 0;\n}"
+}
