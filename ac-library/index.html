@@ -185,6 +185,7 @@ a { color: #0969da; }
 <tr><td><a href="#p7269">7269</a></td><td>JD165</td><td>分组选宝</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7270">7270</a></td><td>JD166</td><td>递增剑意II</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7271">7271</a></td><td>JD167</td><td>整分剑法</td><td>100.0</td><td>359</td></tr>
+<tr><td><a href="#p7272">7272</a></td><td>JD168</td><td>数码计数</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7273">7273</a></td><td>JD169</td><td>棋盘铺阵</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7274">7274</a></td><td>JD170</td><td>万城巡游</td><td>100.0</td><td>359</td></tr>
 <tr><td><a href="#p7275">7275</a></td><td>JD171</td><td>群经改字</td><td>100.0</td><td>359</td></tr>
@@ -10512,6 +10513,57 @@ int main() {
 
     cout &lt;&lt; dp[n];
 
+    return 0;
+}</code></pre>
+</section>
+<section id="p7272">
+<h2>内部 ID 7272（JD168 数码计数）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7272.json">JSON</a></p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int getNum(const vector&lt;int&gt;&amp; num, int l, int r) {
+    int res = 0;
+    for (int i = l; i &gt;= r; i--) res = res * 10 + num[i];
+    return res;
+}
+
+int power10(int x) {
+    int res = 1;
+    while (x--) res *= 10;
+    return res;
+}
+
+int countDigit(int n, int x) {
+    if (!n) return 0;
+    vector&lt;int&gt; num;
+    while (n) {
+        num.push_back(n % 10);
+        n /= 10;
+    }
+
+    n = num.size();
+    int res = 0;
+    for (int i = n - 1 - !x; i &gt;= 0; i--) {
+        if (i &lt; n - 1) {
+            res += getNum(num, n - 1, i + 1) * power10(i);
+            if (!x) res -= power10(i);
+        }
+        if (num[i] == x) res += getNum(num, i - 1, 0) + 1;
+        else if (num[i] &gt; x) res += power10(i);
+    }
+    return res;
+}
+
+int main() {
+    int a, b;
+    while (cin &gt;&gt; a &gt;&gt; b, a || b) {
+        if (a &gt; b) swap(a, b);
+        for (int i = 0; i &lt; 10; i++) {
+            cout &lt;&lt; countDigit(b, i) - countDigit(a - 1, i) &lt;&lt; &#x27; &#x27;;
+        }
+        cout &lt;&lt; endl;
+    }
     return 0;
 }</code></pre>
 </section>

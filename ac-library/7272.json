@@ -1,0 +1,12 @@
+{
+  "internal_id": 7272,
+  "display_id": "JD168",
+  "title": "数码计数",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "89a3724941fa2dac2ee2fd9ceed8afb8",
+  "contest_id": 359,
+  "fetched_at": "2026-07-11T06:23:02+00:00",
+  "statement": "显示题号: JD168\n内部 ID: 7272\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n华山石壁上刻着从a到b的所有数字。\"0到9每个数字各出现了几次？\"对手出了一道算术题。\n\n李少白没有一个个数。\"数位统计——对每个数字和位置，用数学公式算出现次数。f(b)-f(a-1)。\"\n\n对手目瞪口呆：\"你……你怎么算得这么快？\"\n\n## 输入描述\n一行两个整数a和b。\n\n## 输出描述\n一行，10个整数，分别表示数字0~9在[a,b]中出现的次数，空格隔开。\n\n## 样例\n[\n  {\n    \"input\": \"1 10\",\n    \"output\": \"1 2 1 1 1 1 1 1 1 1\"\n  }\n]\n\n## 提示\n数位统计：对每个数字和位置用数学公式计算出现次数。f(b)-f(a-1)。\n\n原题链接",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint getNum(const vector<int>& num, int l, int r) {\n    int res = 0;\n    for (int i = l; i >= r; i--) res = res * 10 + num[i];\n    return res;\n}\n\nint power10(int x) {\n    int res = 1;\n    while (x--) res *= 10;\n    return res;\n}\n\nint countDigit(int n, int x) {\n    if (!n) return 0;\n    vector<int> num;\n    while (n) {\n        num.push_back(n % 10);\n        n /= 10;\n    }\n\n    n = num.size();\n    int res = 0;\n    for (int i = n - 1 - !x; i >= 0; i--) {\n        if (i < n - 1) {\n            res += getNum(num, n - 1, i + 1) * power10(i);\n            if (!x) res -= power10(i);\n        }\n        if (num[i] == x) res += getNum(num, i - 1, 0) + 1;\n        else if (num[i] > x) res += power10(i);\n    }\n    return res;\n}\n\nint main() {\n    int a, b;\n    while (cin >> a >> b, a || b) {\n        if (a > b) swap(a, b);\n        for (int i = 0; i < 10; i++) {\n            cout << countDigit(b, i) - countDigit(a - 1, i) << ' ';\n        }\n        cout << endl;\n    }\n    return 0;\n}"
+}

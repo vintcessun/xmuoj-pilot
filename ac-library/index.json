@@ -1503,6 +1503,15 @@
     "path": "7271.json"
   },
   {
+    "internal_id": 7272,
+    "display_id": "JD168",
+    "title": "数码计数",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 359,
+    "path": "7272.json"
+  },
+  {
     "internal_id": 7273,
     "display_id": "JD169",
     "title": "棋盘铺阵",
