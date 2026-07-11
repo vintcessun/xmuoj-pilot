@@ -342,6 +342,7 @@ a { color: #0969da; }
 <tr><td><a href="#p7441">7441</a></td><td>JD150</td><td>队中松弛</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7442">7442</a></td><td>JD151</td><td>万径归一</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7443">7443</a></td><td>JD152</td><td>蔓延成网</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7444">7444</a></td><td>JD153</td><td>逐边成林</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7445">7445</a></td><td>JD154</td><td>二色分界</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7446">7446</a></td><td>JD155</td><td>一剑一鞘</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7447">7447</a></td><td>JD156</td><td>无穷剑阵</td><td>100.0</td><td>361</td></tr>
@@ -349,12 +350,14 @@ a { color: #0969da; }
 <tr><td><a href="#p7449">7449</a></td><td>JD158</td><td>递增剑意</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7450">7450</a></td><td>JD159</td><td>双谱共鸣</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7451">7451</a></td><td>JD160</td><td>合石成堆</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7452">7452</a></td><td>JD161</td><td>改字成经</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7453">7453</a></td><td>JD162</td><td>雪道寻长</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7454">7454</a></td><td>JD163</td><td>背包叠甲</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7455">7455</a></td><td>JD164</td><td>背包限重</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7456">7456</a></td><td>JD165</td><td>分组选宝</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7457">7457</a></td><td>JD166</td><td>递增剑意II</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7458">7458</a></td><td>JD167</td><td>整分剑法</td><td>100.0</td><td>361</td></tr>
+<tr><td><a href="#p7459">7459</a></td><td>JD168</td><td>数码计数</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7460">7460</a></td><td>JD169</td><td>棋盘铺阵</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7461">7461</a></td><td>JD170</td><td>万城巡游</td><td>100.0</td><td>361</td></tr>
 <tr><td><a href="#p7462">7462</a></td><td>JD171</td><td>群经改字</td><td>100.0</td><td>361</td></tr>
@@ -15867,6 +15870,53 @@ int main() {
     return 0;
 }</code></pre>
 </section>
+<section id="p7444">
+<h2>内部 ID 7444（JD153 逐边成林）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7444.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 100010, M = 200010;
+int n, m;
+int p[N];
+
+struct Edge {
+    int a, b, w;
+    bool operator&lt;(const Edge&amp; t) const {
+        return w &lt; t.w;
+    }
+} e[M];
+
+int find(int x) {
+    if (p[x] != x) p[x] = find(p[x]);
+    return p[x];
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 0; i &lt; m; i++) {
+        int a, b, w;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
+        e[i] = {a, b, w};
+    }
+    sort(e, e + m);
+    for (int i = 1; i &lt;= n; i++) p[i] = i;
+    int res = 0, cnt = 0;
+    for (int i = 0; i &lt; m; i++) {
+        int a = e[i].a, b = e[i].b, w = e[i].w;
+        int pa = find(a), pb = find(b);
+        if (pa != pb) {
+            p[pa] = pb;
+            res += w;
+            cnt++;
+        }
+    }
+    if (cnt &lt; n - 1) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
+    else cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
 <section id="p7445">
 <h2>内部 ID 7445（JD154 二色分界）</h2>
 <p>分数：100.0 ｜ 语言：C++ ｜ <a href="7445.json">JSON</a></p>
@@ -16093,6 +16143,32 @@ int main() {
     return 0;
 }</code></pre>
 </section>
+<section id="p7452">
+<h2>内部 ID 7452（JD161 改字成经）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7452.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 1010;
+int n, m;
+char a[N], b[N];
+int f[N][N];
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; a + 1;
+    cin &gt;&gt; m &gt;&gt; b + 1;
+    for (int i = 1; i &lt;= n; i++) f[i][0] = i;
+    for (int j = 1; j &lt;= m; j++) f[0][j] = j;
+    for (int i = 1; i &lt;= n; i++)
+        for (int j = 1; j &lt;= m; j++) {
+            f[i][j] = min({f[i-1][j] + 1, f[i][j-1] + 1, f[i-1][j-1] + (a[i] != b[j])});
+        }
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</section>
 <section id="p7453">
 <h2>内部 ID 7453（JD162 雪道寻长）</h2>
 <p>分数：100.0 ｜ 语言：C++ ｜ <a href="7453.json">JSON</a></p>
@@ -16309,6 +16385,48 @@ int main() {
     }
     
     cout &lt;&lt; dp[n] % MOD &lt;&lt; &#x27;\n&#x27;;
+    return 0;
+}</code></pre>
+</section>
+<section id="p7459">
+<h2>内部 ID 7459（JD168 数码计数）</h2>
+<p>分数：100.0 ｜ 语言：C++ ｜ <a href="7459.json">JSON</a></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+int get(vector&lt;int&gt; num, int l, int r) {
+    int res = 0;
+    for (int i = l; i &gt;= r; i--) res = res * 10 + num[i];
+    return res;
+}
+
+int count(int n, int x) {
+    if (!n) return 0;
+    vector&lt;int&gt; num;
+    while (n) { num.push_back(n % 10); n /= 10; }
+    n = num.size();
+    int res = 0;
+    for (int i = n - 1 - !x; i &gt;= 0; i--) {
+        if (i &lt; n - 1) {
+            res += get(num, n - 1, i + 1) * pow(10, i);
+            if (!x) res -= pow(10, i);
+        }
+        if (num[i] &gt; x) res += pow(10, i);
+        else if (num[i] == x) res += get(num, i - 1, 0) + 1;
+    }
+    return res;
+}
+
+int main() {
+    int a, b;
+    while (cin &gt;&gt; a &gt;&gt; b, a || b) {
+        if (a &gt; b) swap(a, b);
+        for (int i = 0; i &lt; 10; i++)
+            cout &lt;&lt; count(b, i) - count(a - 1, i) &lt;&lt; &#x27; &#x27;;
+        cout &lt;&lt; endl;
+    }
     return 0;
 }</code></pre>
 </section>

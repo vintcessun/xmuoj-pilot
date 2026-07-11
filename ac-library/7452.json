@@ -1,0 +1,12 @@
+{
+  "internal_id": 7452,
+  "display_id": "JD161",
+  "title": "改字成经",
+  "language": "C++",
+  "score": 100.0,
+  "submission_id": "8a1b5b6d181bbb36c18283dc9c3f50f8",
+  "contest_id": 361,
+  "fetched_at": "2026-07-11T11:44:41+00:00",
+  "statement": "显示题号: JD161\n内部 ID: 7452\n时间限制: 1000\n内存限制: 256\n\n## 题目描述\n武当道长递来两卷经文：\"把A卷改成B卷，最少几步？增、删、改，每次算一步。\"\n\n李少白沉思：\"dp[i][j]表示A的前i个改成B的前j个的最少操作。三种操作取min+1。\"\n\n道长抚须而笑：\"小友的剑法，已经入了化境。\"\n\n## 输入描述\n第一行两个整数n和m。第二行长度为n的字符串A。第三行长度为m的字符串B。\n\n## 输出描述\n一行，编辑距离。\n\n## 样例\n[\n  {\n    \"input\": \"3 3\\nabc\\nadc\",\n    \"output\": \"1\"\n  }\n]\n\n## 提示\n编辑距离：dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost)。\n\n原题链接",
+  "code": "#include <iostream>\n#include <cstring>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 1010;\nint n, m;\nchar a[N], b[N];\nint f[N][N];\n\nint main() {\n    cin >> n >> a + 1;\n    cin >> m >> b + 1;\n    for (int i = 1; i <= n; i++) f[i][0] = i;\n    for (int j = 1; j <= m; j++) f[0][j] = j;\n    for (int i = 1; i <= n; i++)\n        for (int j = 1; j <= m; j++) {\n            f[i][j] = min({f[i-1][j] + 1, f[i][j-1] + 1, f[i-1][j-1] + (a[i] != b[j])});\n        }\n    cout << f[n][m] << endl;\n    return 0;\n}"
+}

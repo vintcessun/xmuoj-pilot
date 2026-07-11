@@ -2916,6 +2916,15 @@
     "path": "7443.json"
   },
   {
+    "internal_id": 7444,
+    "display_id": "JD153",
+    "title": "逐边成林",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7444.json"
+  },
+  {
     "internal_id": 7445,
     "display_id": "JD154",
     "title": "二色分界",
@@ -2979,6 +2988,15 @@
     "path": "7451.json"
   },
   {
+    "internal_id": 7452,
+    "display_id": "JD161",
+    "title": "改字成经",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7452.json"
+  },
+  {
     "internal_id": 7453,
     "display_id": "JD162",
     "title": "雪道寻长",
@@ -3031,6 +3049,15 @@
     "language": "C++",
     "contest_id": 361,
     "path": "7458.json"
+  },
+  {
+    "internal_id": 7459,
+    "display_id": "JD168",
+    "title": "数码计数",
+    "score": 100.0,
+    "language": "C++",
+    "contest_id": 361,
+    "path": "7459.json"
   },
   {
     "internal_id": 7460,
